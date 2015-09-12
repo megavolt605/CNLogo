@@ -18,3 +18,4 @@ First commit contains:
 
 2015-09-08: logotype
 
+2015-09-12: expressions, minor refactor some structs to classes
