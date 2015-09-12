@@ -70,7 +70,7 @@ enum CNExpressionParseElement {
             }
         case let Function(name, parameters):
             if let function = inBlock.functionByName(name) {
-                return try function.executeWithParameters(parameters, inBlock: inBlock)
+                return try function.executeWithParameters(parameters)
             } else {
                 throw NSError(domain: "Function not found \(name)", code: 0, userInfo: nil)
             }
@@ -149,10 +149,9 @@ class CNExpression: CNBlock {
     // )    / +         A B C * D E -
     // fin              A B C * D E - / +
     
-    private var prepared = false
     private var preparedSource: [CNExpressionParseElement] = []
-    override func prepare(inBlock: CNBlock) throws {
-
+    override func prepare() throws {
+        try super.prepare()
         var operatorStack = CNStack<CNExpressionParseElement>()
         preparedSource = []
         for element in source {
@@ -194,15 +193,12 @@ class CNExpression: CNBlock {
         while operatorStack.count > 0 {
             preparedSource.append(operatorStack.pop()!)
         }
-        
         //preparedSource = preparedSource.reverse()
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        if !prepared {
-            try prepare(inBlock)
-        }
-        
+    override func execute() throws -> CNValue {
+        try super.execute()
+
         var result = CNStack<CNExpressionParseElement>()
         try preparedSource.forEach { element in
             if CNExpressionParseElement.operators.contains({$0 == element}) {
@@ -211,7 +207,7 @@ class CNExpression: CNBlock {
                 case .Infix:
                     let left = result.pop()!
                     let right = result.pop()!
-                    result.push(try element.getValue(left, right, inBlock))
+                    result.push(try element.getValue(left, right, self))
                 default: return
                 }
             } else {
@@ -220,7 +216,7 @@ class CNExpression: CNBlock {
             
         }
         
-        return try result.pop()!.value(inBlock)
+        return try result.pop()!.value(self)
     }
 
     init(source: [CNExpressionParseElement]) {

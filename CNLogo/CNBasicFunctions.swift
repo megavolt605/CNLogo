@@ -10,14 +10,16 @@ import Foundation
 
 class CNStatementForward: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        try program.player.moveForward(parameters.first!, inBlock: inBlock)
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.moveForward(parameters.first!)
         return .unknown
     }
 
@@ -25,14 +27,16 @@ class CNStatementForward: CNStatement {
 
 class CNStatementBackward: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        try program.player.moveBackward(parameters.first!, inBlock: inBlock)
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.moveBackward(parameters.first!)
         return .unknown
     }
     
@@ -40,14 +44,16 @@ class CNStatementBackward: CNStatement {
 
 class CNStatementRotate: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        try program.player.rotate(parameters.first!, inBlock: inBlock)
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.rotate(parameters.first!)
         return .unknown
     }
 
@@ -55,7 +61,8 @@ class CNStatementRotate: CNStatement {
 
 class CNStatementTailDown: CNStatement {
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
+    override func execute() throws -> CNValue {
+        try super.execute()
         program.player.tailDown = true
         return .unknown
     }
@@ -64,7 +71,8 @@ class CNStatementTailDown: CNStatement {
 
 class CNStatementTailUp: CNStatement {
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
+    override func execute() throws -> CNValue {
+        try super.execute()
         program.player.tailDown = false
         return .unknown
     }
@@ -74,14 +82,16 @@ class CNStatementTailUp: CNStatement {
 
 class CNStatementColor: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        try program.player.setColor(parameters.first!, inBlock: inBlock)
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.setColor(parameters.first!)
         return .unknown
     }
     
@@ -90,14 +100,16 @@ class CNStatementColor: CNStatement {
 
 class CNStatementWidth: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        try program.player.setWidth(parameters.first!, inBlock: inBlock)
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.setWidth(parameters.first!)
         return .unknown
     }
     

@@ -10,18 +10,20 @@ import Foundation
 
 class CNStatementRepeat: CNStatement {
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
-        switch try parameters.first!.execute(inBlock) {
+    override func execute() throws -> CNValue {
+        try super.execute()
+        switch try parameters.first!.execute() {
         case let .int(value):
             for _ in 0..<value {
                 try statements.forEach {
-                    try $0.execute(inBlock)
+                    try $0.execute()
                 }
             }
         default: throw NSError(domain: "Int expected", code: 0, userInfo: nil)
@@ -33,19 +35,21 @@ class CNStatementRepeat: CNStatement {
 
 class CNStatementWhile: CNStatement {
 
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
+    override func execute() throws -> CNValue {
+        try super.execute()
         repeat {
-            switch try parameters.first!.execute(inBlock) {
+            switch try parameters.first!.execute() {
             case let .bool(value):
                 if value {
                     try statements.forEach {
-                        try $0.execute(inBlock)
+                        try $0.execute()
                     }
                 } else {
                     break
@@ -61,23 +65,25 @@ class CNStatementIf: CNStatement {
     
     var statementsElse: [CNStatement] = []
     
-    override func prepare(inBlock: CNBlock) throws {
+    override func prepare() throws {
+        try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
+    override func execute() throws -> CNValue {
+        try super.execute()
         repeat {
-            switch try parameters.first!.execute(inBlock) {
+            switch try parameters.first!.execute() {
             case let .bool(value):
                 if value {
                     try statements.forEach {
-                        try $0.execute(inBlock)
+                        try $0.execute()
                     }
                 } else {
                     try statementsElse.forEach {
-                        try $0.execute(inBlock)
+                        try $0.execute()
                     }
                 }
             default: try throwError()

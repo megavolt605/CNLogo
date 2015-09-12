@@ -20,18 +20,28 @@ class CNBlock {
     }
     var variables: [CNVariable] = []
     var functions: [CNFunction] = []
+    private var prepared = false
     weak var parentBlock: CNBlock?
 
-    func prepare(inBlock: CNBlock) throws -> Void {
+    func prepare() throws -> Void {
+        try parameters.forEach {
+            $0.parentBlock = self
+            try $0.prepare()
+        }
         try statements.forEach {
             $0.parentBlock = self
-            try $0.prepare(inBlock)
+            try $0.prepare()
         }
+        prepared = true
     }
     
-    func execute(inBlock: CNBlock) throws -> CNValue {
+    func execute() throws -> CNValue {
+        if !prepared {
+            try prepare()
+        }
+        
         try statements.forEach {
-            try $0.execute(inBlock)
+            try $0.execute()
         }
         return CNValue.unknown
     }

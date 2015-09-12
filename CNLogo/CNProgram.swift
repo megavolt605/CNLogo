@@ -46,14 +46,6 @@ class CNProgram: CNBlock {
     
     var playerDelegate: CNPlayerDelegate?
     
-    func prepare() throws {
-        try prepare(self)
-    }
-    
-    func execute() throws -> CNValue {
-        return try execute(self)
-    }
-
 }
 
 class CNPlayer {
@@ -74,8 +66,8 @@ class CNPlayer {
         program.playerDelegate?.player(self, didMoveFromPosition: oldPosition, toPosition: position)
     }
     
-    func moveForward(distance: CNExpression, inBlock: CNBlock) throws {
-        switch try distance.execute(inBlock) {
+    func moveForward(distance: CNExpression) throws {
+        switch try distance.execute() {
         case let .double(value):
             let newPosition = CGPointMake(
                 position.x + cos(angle) * CGFloat(value),
@@ -86,8 +78,8 @@ class CNPlayer {
         }
     }
     
-    func moveBackward(distance: CNExpression, inBlock: CNBlock) throws {
-        switch try distance.execute(inBlock) {
+    func moveBackward(distance: CNExpression) throws {
+        switch try distance.execute() {
         case let .double(value):
             let newPosition = CGPointMake(
                 position.x + cos(angle) * CGFloat(-value),
@@ -98,8 +90,8 @@ class CNPlayer {
         }
     }
     
-    func rotate(angleDelta: CNExpression, inBlock: CNBlock) throws {
-        switch try angleDelta.execute(inBlock) {
+    func rotate(angleDelta: CNExpression) throws {
+        switch try angleDelta.execute() {
         case let .double(value):
             let oldAngle = angle
             let newAngle = angle + CGFloat(value * M_PI / 180.0)
@@ -110,8 +102,8 @@ class CNPlayer {
         }
     }
 
-    func setColor(color: CNExpression, inBlock: CNBlock) throws {
-        switch try color.execute(inBlock) {
+    func setColor(color: CNExpression) throws {
+        switch try color.execute() {
         case let .color(value):
             program.playerDelegate?.player(self, willSetColor: value)
             self.color = value
@@ -120,8 +112,8 @@ class CNPlayer {
         }
     }
     
-    func setWidth(color: CNExpression, inBlock: CNBlock) throws {
-        switch try color.execute(inBlock) {
+    func setWidth(color: CNExpression) throws {
+        switch try color.execute() {
         case let .double(value):
             program.playerDelegate?.player(self, willSetWidth: CGFloat(value))
             self.width = CGFloat(value)

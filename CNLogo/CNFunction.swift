@@ -12,11 +12,11 @@ class CNFunction: CNBlock {
     
     var name: String
     
-    func prepareWithParameters(parameters: [CNExpression], inBlock: CNBlock) throws {
+    func prepareWithParameters(parameters: [CNExpression]) throws {
         
     }
     
-    func executeWithParameters(parameters: [CNExpression], inBlock: CNBlock) throws -> CNValue {
+    func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         return CNValue.unknown
     }
     
