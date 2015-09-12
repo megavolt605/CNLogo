@@ -26,7 +26,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
                 parameters: [makeExprFromValue(CNValue.int(value: 10))],
                 statements: [
                     CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
-                    CNForward(parameters: [CNExpression(source: [
+                    CNStatementForward(parameters: [CNExpression(source: [
                         CNExpressionParseElement.BracketOpen,
                         CNExpressionParseElement.Value(value: CNValue.double(value: 2.0)),
                         CNExpressionParseElement.Add,
@@ -35,25 +35,25 @@ class ViewController: UIViewController, CNPlayerDelegate {
                         CNExpressionParseElement.Mul,
                         CNExpressionParseElement.Value(value: CNValue.double(value: 3.0))
                     ])]),
-                    CNRotate(parameters: [CNExpression(source: [
+                    CNStatementRotate(parameters: [CNExpression(source: [
                         CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
                         CNExpressionParseElement.Div,
                         CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
                         ])]),
-                    CNTailUp(),
-                    CNForward(parameters: [CNExpression(source: [
+                    CNStatementTailUp(),
+                    CNStatementForward(parameters: [CNExpression(source: [
                         CNExpressionParseElement.Value(value: CNValue.double(value: 10.0)),
                         CNExpressionParseElement.Add,
                         CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
                         ])]),
-                    CNRotate(parameters: [
+                    CNStatementRotate(parameters: [
                         CNExpression(source: [
                             CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
                             CNExpressionParseElement.Div,
                             CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
                         ])
                     ]),
-                    CNTailDown()
+                    CNStatementTailDown()
                 ] as [CNStatement]
             )
         ]
