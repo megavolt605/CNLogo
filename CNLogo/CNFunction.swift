@@ -8,25 +8,21 @@
 
 import Foundation
 
-class CNFunction {
+class CNFunction: CNBlock {
     
-    var parameters: [CNExpression]
-
-    func prepare(inBlock: CNBlock) throws {
+    var name: String
+    
+    func prepareWithParameters(parameters: [CNExpression], inBlock: CNBlock) throws {
         
     }
     
-    func execute(inBlock: CNBlock) throws -> CNValue {
+    func executeWithParameters(parameters: [CNExpression], inBlock: CNBlock) throws -> CNValue {
         return CNValue.unknown
     }
     
-    init(parameters: [CNExpression]) {
-        self.parameters = parameters
+    init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction]) {
+        self.name = name
+        super.init(parameters: parameters, statements: statements, functions: functions)
     }
-    
-    init() {
-        self.parameters = []
-    }
-    
 }
 

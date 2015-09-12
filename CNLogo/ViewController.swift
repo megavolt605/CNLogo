@@ -21,7 +21,8 @@ class ViewController: UIViewController, CNPlayerDelegate {
         }
         
         
-        program.statements = [
+        program = CNProgram(statements: [
+            CNStatementVar(name: "A", parameters: [makeExprFromValue(CNValue.double(value: 30.0))]),
             CNStatementRepeat(
                 parameters: [makeExprFromValue(CNValue.int(value: 10))],
                 statements: [
@@ -42,9 +43,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
                         ])]),
                     CNStatementTailUp(),
                     CNStatementForward(parameters: [CNExpression(source: [
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 10.0)),
-                        CNExpressionParseElement.Add,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
+                        CNExpressionParseElement.Variable(name: "A")
                         ])]),
                     CNStatementRotate(parameters: [
                         CNExpression(source: [
@@ -56,7 +55,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
                     CNStatementTailDown()
                 ] as [CNStatement]
             )
-        ]
+        ])
         program.playerDelegate = self
         program.player.position = view.center
         try! program.prepare()

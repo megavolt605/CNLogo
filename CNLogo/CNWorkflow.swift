@@ -86,9 +86,9 @@ class CNStatementIf: CNStatement {
     }
     
 
-    init(parameters: [CNExpression], statements: [CNStatement], statementsElse: [CNStatement]) {
+    init(parameters: [CNExpression] = [], statements: [CNStatement] = [], statementsElse: [CNStatement] = [], functions: [CNFunction]) {
         self.statementsElse = statementsElse
-        super.init(parameters: parameters, statements: statements)
+        super.init(parameters: parameters, statements: statements, functions: functions)
     }
 
 }

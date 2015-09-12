@@ -30,23 +30,25 @@ class CNStatementVar: CNStatement {
     }
     
     override func execute(inBlock: CNBlock) throws -> CNValue {
-        let variable = inBlock.variableByName(name)
         if let value = try parameters.first?.execute(inBlock) {
-            variable?.value = value
+            if let variable = inBlock.variableByName(name) {
+                variable.value = value
+            } else {
+                parentBlock?.variables.append(CNVariable(name: name, value: value))
+            }
         } else {
-            variable?.value = CNValue.unknown
+            if let _ = inBlock.variableByName(name) {
+                throw NSError(domain: "Variable \(name) redelared", code: 0, userInfo: nil)
+            } else {
+                parentBlock?.variables.append(CNVariable(name: name, value: .unknown))
+            }
         }
         return .unknown
     }
     
-    init(name: String, parameters: [CNExpression]) {
+    init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         self.name = name
-        super.init(parameters: parameters)
-    }
-
-    init(name: String) {
-        self.name = name
-        super.init(parameters: [])
+        super.init(parameters: parameters, statements: statements, functions: functions)
     }
     
 }

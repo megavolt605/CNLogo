@@ -8,19 +8,28 @@
 
 import Foundation
 
-class CNBlock: CNFunction {
+class CNBlock {
     
-    var statements: [CNStatement]
+    var parameters: [CNExpression]
+    var statements: [CNStatement] {
+        didSet {
+            statements.forEach {
+                $0.parentBlock = self
+            }
+        }
+    }
     var variables: [CNVariable] = []
+    var functions: [CNFunction] = []
+    weak var parentBlock: CNBlock?
 
-    override func prepare(inBlock: CNBlock) throws -> Void {
-        try super.prepare(inBlock)
+    func prepare(inBlock: CNBlock) throws -> Void {
         try statements.forEach {
+            $0.parentBlock = self
             try $0.prepare(inBlock)
         }
     }
     
-    override func execute(inBlock: CNBlock) throws -> CNValue {
+    func execute(inBlock: CNBlock) throws -> CNValue {
         try statements.forEach {
             try $0.execute(inBlock)
         }
@@ -33,21 +42,22 @@ class CNBlock: CNFunction {
                 return v
             }
         }
-        return nil
+        return parentBlock?.variableByName(name)
     }
-
-    init(parameters: [CNExpression], statements: [CNStatement]) {
+    
+    func functionByName(name: String) -> CNFunction? {
+        for f in functions {
+            if f.name == name {
+                return f
+            }
+        }
+        return parentBlock?.functionByName(name)
+    }
+    
+    init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+        self.parameters = parameters
         self.statements = statements
-        super.init(parameters: parameters)
-    }
-    
-    override init(parameters: [CNExpression]) {
-        self.statements = []
-        super.init(parameters: parameters)
-    }
-    
-    override convenience init() {
-        self.init(parameters: [])
+        self.functions = functions
     }
     
 }

@@ -23,8 +23,8 @@ enum CNExpressionParseElement {
 
     case BracketOpen, BracketClose
     case Value(value: CNValue)
-    case Variable(variable: CNVariable)
-    case Function(function: CNFunction)
+    case Variable(name: String)
+    case Function(name: String, parameters: [CNExpression])
     
     func getValue(left: CNExpressionParseElement, _ right: CNExpressionParseElement, _ inBlock: CNBlock) throws -> CNExpressionParseElement {
         
@@ -46,9 +46,13 @@ enum CNExpressionParseElement {
         case IsEqual: return CNExpressionParseElement.Value(value: try leftValue == rightValue)
         case Assign:
             switch left {
-            case let Variable(variable):
-                variable.value = rightValue
-                return CNExpressionParseElement.Value(value: rightValue)
+            case let Variable(name):
+                if let variable = inBlock.variableByName(name) {
+                    variable.value = rightValue
+                    return CNExpressionParseElement.Value(value: rightValue)
+                } else {
+                     throw NSError(domain: "Variable not found \(name)", code: 0, userInfo: nil)
+                }
             default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
             }
         default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
@@ -58,8 +62,18 @@ enum CNExpressionParseElement {
     func value(inBlock: CNBlock) throws -> CNValue {
         switch self {
         case let Value(value): return value
-        case let Variable(variable): return variable.value
-        case let Function(function): return try function.execute(inBlock)
+        case let Variable(name):
+            if let variable = inBlock.variableByName(name) {
+                return variable.value
+            } else {
+                throw NSError(domain: "Variable not found \(name)", code: 0, userInfo: nil)
+            }
+        case let Function(name, parameters):
+            if let function = inBlock.functionByName(name) {
+                return try function.executeWithParameters(parameters, inBlock: inBlock)
+            } else {
+                throw NSError(domain: "Function not found \(name)", code: 0, userInfo: nil)
+            }
         default: return CNValue.unknown
         }
     }
@@ -115,7 +129,7 @@ func ==(lhs: CNExpressionParseElement, rhs: CNExpressionParseElement) -> Bool {
     }
 }
 
-class CNExpression: CNFunction {
+class CNExpression: CNBlock {
     
     var source: [CNExpressionParseElement]
     
@@ -211,11 +225,7 @@ class CNExpression: CNFunction {
 
     init(source: [CNExpressionParseElement]) {
         self.source = source
-        super.init()
+        super.init(statements: [])
     }
     
-    override init() {
-        source = []
-        super.init()
-    }
 }

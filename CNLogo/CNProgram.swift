@@ -10,7 +10,7 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-var program = CNProgram(parameters: [])
+var program: CNProgram!
 
 protocol CNPlayerDelegate {
     
