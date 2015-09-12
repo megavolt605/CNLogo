@@ -1,0 +1,10 @@
+# Xcode
+.DS_Store
+*.pbxuser
+xcuserdata
+profile
+DerivedData
+xcuserdata/*
+*.ipa
+*.app
+*.dSYM.zip
