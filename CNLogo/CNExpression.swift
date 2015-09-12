@@ -19,6 +19,7 @@ enum CNExpressionParseElementAssociativity {
 enum CNExpressionParseElement {
     case Add, Sub, Mul, Div, Power
     case BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
+    case IsEqual, Assign
 
     case BracketOpen, BracketClose
     case Value(value: CNValue)
@@ -31,17 +32,25 @@ enum CNExpressionParseElement {
         let leftValue = try right.value(inBlock)
 
         switch self {
-        case .Add: return CNExpressionParseElement.Value(value: try leftValue + rightValue)
-        case .Sub: return CNExpressionParseElement.Value(value: try leftValue - rightValue)
-        case .Mul: return CNExpressionParseElement.Value(value: try leftValue * rightValue)
-        case .Div: return CNExpressionParseElement.Value(value: try leftValue / rightValue)
-        case .Power: return CNExpressionParseElement.Value(value: try leftValue ^^ rightValue)
-        case .BoolAnd: return CNExpressionParseElement.Value(value: try leftValue && rightValue)
-        case .BoolOr: return CNExpressionParseElement.Value(value: try leftValue || rightValue)
-        case .BitAnd: return CNExpressionParseElement.Value(value: try leftValue & rightValue)
-        case .BitOr: return CNExpressionParseElement.Value(value: try leftValue | rightValue)
-        case .BitXor: return CNExpressionParseElement.Value(value: try leftValue ^ rightValue)
-        case .Remainder: return CNExpressionParseElement.Value(value: try leftValue % rightValue)
+        case Add: return CNExpressionParseElement.Value(value: try leftValue + rightValue)
+        case Sub: return CNExpressionParseElement.Value(value: try leftValue - rightValue)
+        case Mul: return CNExpressionParseElement.Value(value: try leftValue * rightValue)
+        case Div: return CNExpressionParseElement.Value(value: try leftValue / rightValue)
+        case Power: return CNExpressionParseElement.Value(value: try leftValue ^^ rightValue)
+        case BoolAnd: return CNExpressionParseElement.Value(value: try leftValue && rightValue)
+        case BoolOr: return CNExpressionParseElement.Value(value: try leftValue || rightValue)
+        case BitAnd: return CNExpressionParseElement.Value(value: try leftValue & rightValue)
+        case BitOr: return CNExpressionParseElement.Value(value: try leftValue | rightValue)
+        case BitXor: return CNExpressionParseElement.Value(value: try leftValue ^ rightValue)
+        case Remainder: return CNExpressionParseElement.Value(value: try leftValue % rightValue)
+        case IsEqual: return CNExpressionParseElement.Value(value: try leftValue == rightValue)
+        case Assign:
+            switch left {
+            case let Variable(variable):
+                variable.value = rightValue
+                return CNExpressionParseElement.Value(value: rightValue)
+            default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
+            }
         default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
         }
     }
@@ -79,7 +88,7 @@ enum CNExpressionParseElement {
     static let operators: [CNExpressionParseElement] = [
         Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
     ]
-
+    
 }
 
 extension CNExpressionParseElement: Equatable {

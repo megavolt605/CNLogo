@@ -151,8 +151,8 @@
 				78FDE9561B9E230E00AAFB1D /* CNProgram.swift */,
 				78FDE9581B9E233100AAFB1D /* CNStatement.swift */,
 				78FDE95A1B9E235200AAFB1D /* CNSystemFunctions.swift */,
-				78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */,
 				78FDE95E1B9E238B00AAFB1D /* CNWorkflow.swift */,
+				78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */,
 				7873582B1B9F6C800092F21E /* CNStack.swift */,
 				7889499F1BA4A01700CD8246 /* CNTools.swift */,
 			);

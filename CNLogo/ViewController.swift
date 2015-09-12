@@ -25,7 +25,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
             CNStatementRepeat(
                 parameters: [makeExprFromValue(CNValue.int(value: 10))],
                 statements: [
-                    CNPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
+                    CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
                     CNForward(parameters: [CNExpression(source: [
                         CNExpressionParseElement.BracketOpen,
                         CNExpressionParseElement.Value(value: CNValue.double(value: 2.0)),

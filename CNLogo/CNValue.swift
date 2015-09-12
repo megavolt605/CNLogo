@@ -42,6 +42,7 @@ enum CNValue {
     
 }
 
+infix operator == {}
 infix operator + {}
 infix operator - {}
 infix operator * {}
@@ -53,6 +54,69 @@ infix operator & {}
 infix operator | {}
 infix operator % {}
 infix operator ^ {}
+
+func ==(left: CNValue, right: CNValue) throws -> CNValue {
+    switch (left, right) {
+    
+    case (.unknown, _): try left.throwValueError()
+    case (_, .unknown): try right.throwValueError()
+    
+    case let (.bool(lv), .bool(rv)): return CNValue.bool(value: lv == rv)
+
+    case let (.double(lv), _):
+        switch right {
+        case let .double(rv): return CNValue.bool(value: lv == rv)
+        case let .int(rv): return CNValue.bool(value: lv == Double(rv))
+        case let .string(rv): return CNValue.bool(value: lv == rv.doubleValue)
+        default: try right.throwValueError()
+        }
+    
+    case let (_, .double(rv)):
+        switch left {
+        case let .double(lv): return CNValue.bool(value: lv == rv)
+        case let .int(lv): return CNValue.bool(value: Double(lv) == rv)
+        case let .string(lv): return CNValue.bool(value: lv.doubleValue == rv)
+        default: try left.throwValueError()
+        }
+        
+    case let (.int(lv), _):
+        switch right {
+        case let .double(rv): return CNValue.bool(value: Double(lv) == rv)
+        case let .int(rv): return CNValue.bool(value: lv == rv)
+        case let .string(rv): return CNValue.bool(value: lv == rv.integerValue)
+        default: try right.throwValueError()
+        }
+        
+    case let (_, .int(rv)):
+        switch left {
+        case let .double(lv): return CNValue.bool(value: lv == Double(rv))
+        case let .int(lv): return CNValue.bool(value: lv == rv)
+        case let .string(lv): return CNValue.bool(value: lv.integerValue == rv)
+        default: try left.throwValueError()
+        }
+        
+    case let (.string(lv), _):
+        switch right {
+        case let .int(rv): return CNValue.bool(value: lv == rv.description)
+        case let .string(rv): return CNValue.bool(value: lv == rv)
+        default: try right.throwValueError()
+        }
+        
+    case let (_, .string(rv)):
+        switch left {
+        case let .int(lv): return CNValue.bool(value: lv.description == rv)
+        case let .string(lv): return CNValue.bool(value: lv == rv)
+        default: try left.throwValueError()
+        }
+
+    // TODO: Color comparision
+
+    default: return CNValue.unknown
+    }
+
+    
+    return CNValue.unknown
+}
 
 func +(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
