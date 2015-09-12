@@ -71,22 +71,22 @@ class ViewController: UIViewController, CNPlayerDelegate {
 
     var savedPosition: CGPoint!
     
-    func player(player: CNPlayer, willMoveFromPosition position: CGPoint) {
+    func player(player: CNPlayer, willMoveFromPosition position: CGPoint, toPosition: CGPoint) {
         savedPosition = position
     }
     
-    func player(player: CNPlayer, didMoveToPosition position: CGPoint) {
+    func player(player: CNPlayer, didMoveFromPosition oldPosition: CGPoint, toPosition: CGPoint) {
         fieldView.elements.append(
-            CNFieldElement(fromPoint: savedPosition, toPoint: position, visible: player.tailDown, lineWidth: player.width, lineColor: player.color)
+            CNFieldElement(fromPoint: savedPosition, toPoint: toPosition, visible: player.tailDown, lineWidth: player.width, lineColor: player.color)
         )
 
     }
     
-    func player(player: CNPlayer, willRotateFromAngle angle: CGFloat) {
+    func player(player: CNPlayer, willRotateFromAngle angle: CGFloat, toAngle: CGFloat) {
         
     }
     
-    func player(player: CNPlayer, didRotateToAngle angle: CGFloat) {
+    func player(player: CNPlayer, didRotateFromAngle angle: CGFloat, toAngle: CGFloat) {
         
     }
     

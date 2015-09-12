@@ -14,11 +14,11 @@ var program = CNProgram(parameters: [])
 
 protocol CNPlayerDelegate {
     
-    func player(player: CNPlayer, willMoveFromPosition position: CGPoint)
-    func player(player: CNPlayer, didMoveToPosition position: CGPoint)
+    func player(player: CNPlayer, willMoveFromPosition fromPosition: CGPoint, toPosition: CGPoint )
+    func player(player: CNPlayer, didMoveFromPosition position: CGPoint, toPosition: CGPoint)
     
-    func player(player: CNPlayer, willRotateFromAngle angle: CGFloat)
-    func player(player: CNPlayer, didRotateToAngle angle: CGFloat)
+    func player(player: CNPlayer, willRotateFromAngle angle: CGFloat, toAngle: CGFloat)
+    func player(player: CNPlayer, didRotateFromAngle angle: CGFloat, toAngle: CGFloat)
     
     func player(player: CNPlayer, didTailChangeTo change: Bool)
 
@@ -68,9 +68,10 @@ class CNPlayer {
     }
     
     private func moveTo(newPosition: CGPoint) {
-        program.playerDelegate?.player(self, willMoveFromPosition: position)
+        program.playerDelegate?.player(self, willMoveFromPosition: position, toPosition: newPosition)
+        let oldPosition = position
         position = newPosition
-        program.playerDelegate?.player(self, didMoveToPosition: position)
+        program.playerDelegate?.player(self, didMoveFromPosition: oldPosition, toPosition: position)
     }
     
     func moveForward(distance: CNExpression, inBlock: CNBlock) throws {
@@ -100,9 +101,11 @@ class CNPlayer {
     func rotate(angleDelta: CNExpression, inBlock: CNBlock) throws {
         switch try angleDelta.execute(inBlock) {
         case let .double(value):
-            program.playerDelegate?.player(self, willRotateFromAngle: angle)
-            angle = angle + CGFloat(value * M_PI / 180.0)
-            program.playerDelegate?.player(self, didRotateToAngle: angle)
+            let oldAngle = angle
+            let newAngle = angle + CGFloat(value * M_PI / 180.0)
+            program.playerDelegate?.player(self, willRotateFromAngle: angle, toAngle: newAngle)
+            angle = newAngle
+            program.playerDelegate?.player(self, didRotateFromAngle: oldAngle, toAngle: newAngle)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
