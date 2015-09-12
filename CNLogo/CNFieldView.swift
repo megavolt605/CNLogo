@@ -14,12 +14,12 @@ struct CNFieldElement {
     var toPoint: CGPoint
     var visible: Bool
     
-    let lineWidth: CGFloat = 2.0
-    let lineColor: CGColorRef = UIColor.redColor().CGColor
+    let lineWidth: CGFloat
+    let lineColor: UIColor
     
     func drawInContext(context: CGContextRef) {
         if visible {
-            CGContextSetStrokeColorWithColor(context, lineColor)
+            CGContextSetStrokeColorWithColor(context, lineColor.CGColor)
             CGContextSetLineWidth(context, lineWidth)
             CGContextMoveToPoint(context, fromPoint.x, fromPoint.y)
             CGContextAddLineToPoint(context, toPoint.x, toPoint.y)

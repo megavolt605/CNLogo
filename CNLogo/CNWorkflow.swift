@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CNRepeat: CNStatement {
+class CNStatementRepeat: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -31,7 +31,7 @@ class CNRepeat: CNStatement {
     
 }
 
-class CNWhile: CNStatement {
+class CNStatementWhile: CNStatement {
 
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -55,4 +55,40 @@ class CNWhile: CNStatement {
         } while true
     }
     
+}
+
+class CNStatementIf: CNStatement {
+    
+    var statementsElse: [CNStatement] = []
+    
+    override func prepare(inBlock: CNBlock) throws {
+        if parameters.count != 1 {
+            try throwError()
+        }
+    }
+    
+    override func execute(inBlock: CNBlock) throws -> CNValue {
+        repeat {
+            switch try parameters.first!.execute(inBlock) {
+            case let .bool(value):
+                if value {
+                    try statements.forEach {
+                        try $0.execute(inBlock)
+                    }
+                } else {
+                    try statementsElse.forEach {
+                        try $0.execute(inBlock)
+                    }
+                }
+            default: try throwError()
+            }
+        } while true
+    }
+    
+
+    init(parameters: [CNExpression], statements: [CNStatement], statementsElse: [CNStatement]) {
+        self.statementsElse = statementsElse
+        super.init(parameters: parameters, statements: statements)
+    }
+
 }

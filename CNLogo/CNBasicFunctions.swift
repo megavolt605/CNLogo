@@ -70,3 +70,36 @@ class CNTailUp: CNStatement {
     }
     
 }
+
+
+class CNColor: CNStatement {
+    
+    override func prepare(inBlock: CNBlock) throws {
+        if parameters.count != 1 {
+            try throwError()
+        }
+    }
+    
+    override func execute(inBlock: CNBlock) throws -> CNValue {
+        try program.player.setColor(parameters.first!, inBlock: inBlock)
+        return .unknown
+    }
+    
+    
+}
+
+class CNWidth: CNStatement {
+    
+    override func prepare(inBlock: CNBlock) throws {
+        if parameters.count != 1 {
+            try throwError()
+        }
+    }
+    
+    override func execute(inBlock: CNBlock) throws -> CNValue {
+        try program.player.setWidth(parameters.first!, inBlock: inBlock)
+        return .unknown
+    }
+    
+    
+}

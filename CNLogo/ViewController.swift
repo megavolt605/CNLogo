@@ -22,7 +22,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
         
         
         program.statements = [
-            CNRepeat(
+            CNStatementRepeat(
                 parameters: [makeExprFromValue(CNValue.int(value: 10))],
                 statements: [
                     CNPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
@@ -77,7 +77,7 @@ class ViewController: UIViewController, CNPlayerDelegate {
     
     func player(player: CNPlayer, didMoveToPosition position: CGPoint) {
         fieldView.elements.append(
-            CNFieldElement(fromPoint: savedPosition, toPoint: position, visible: player.tailDown)
+            CNFieldElement(fromPoint: savedPosition, toPoint: position, visible: player.tailDown, lineWidth: player.width, lineColor: player.color)
         )
 
     }
@@ -94,7 +94,21 @@ class ViewController: UIViewController, CNPlayerDelegate {
         
     }
     
+    func player(player: CNPlayer, willSetColor color: UIColor) {
+        
+    }
+    
+    func player(player: CNPlayer, didSetColor color: UIColor) {
+        
+    }
 
-
+    func player(player: CNPlayer, willSetWidth width: CGFloat) {
+        
+    }
+    
+    func player(player: CNPlayer, didSetWidth width: CGFloat) {
+        
+    }
+    
 }
 
