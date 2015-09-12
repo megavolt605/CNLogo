@@ -13,6 +13,9 @@ class CNBlock {
     var parameters: [CNExpression]
     var statements: [CNStatement] {
         didSet {
+            parameters.forEach {
+                $0.parentBlock = self
+            }
             statements.forEach {
                 $0.parentBlock = self
             }
