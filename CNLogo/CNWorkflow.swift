@@ -30,3 +30,29 @@ class CNRepeat: CNStatement {
     }
     
 }
+
+class CNWhile: CNStatement {
+
+    override func prepare(inBlock: CNBlock) throws {
+        if parameters.count != 1 {
+            try throwError()
+        }
+    }
+    
+    override func execute(inBlock: CNBlock) throws -> CNValue {
+        repeat {
+            switch try parameters.first!.execute(inBlock) {
+            case let .bool(value):
+                if value {
+                    try statements.forEach {
+                        try $0.execute(inBlock)
+                    }
+                } else {
+                    break
+                }
+            default: try throwError()
+            }
+        } while true
+    }
+    
+}

@@ -16,6 +16,7 @@
 		7856FA931B9E01B40037E99F /* CNLogoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNLogoTests.swift */; };
 		7873582A1B9F5D110092F21E /* CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787358291B9F5D110092F21E /* CNExpression.swift */; settings = {ASSET_TAGS = (); }; };
 		7873582C1B9F6C800092F21E /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7873582B1B9F6C800092F21E /* CNStack.swift */; settings = {ASSET_TAGS = (); }; };
+		788949A01BA4A01700CD8246 /* CNTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889499F1BA4A01700CD8246 /* CNTools.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9501B9E22C600AAFB1D /* CNValue.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE9531B9E22DE00AAFB1D /* CNFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */; settings = {ASSET_TAGS = (); }; };
@@ -24,7 +25,7 @@
 		78FDE9591B9E233100AAFB1D /* CNStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9581B9E233100AAFB1D /* CNStatement.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE95B1B9E235200AAFB1D /* CNSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE95A1B9E235200AAFB1D /* CNSystemFunctions.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE95D1B9E236B00AAFB1D /* CNBasicFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */; settings = {ASSET_TAGS = (); }; };
-		78FDE95F1B9E238B00AAFB1D /* CNWorkflowRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE95E1B9E238B00AAFB1D /* CNWorkflowRepeat.swift */; settings = {ASSET_TAGS = (); }; };
+		78FDE95F1B9E238B00AAFB1D /* CNWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE95E1B9E238B00AAFB1D /* CNWorkflow.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		7856FA921B9E01B40037E99F /* CNLogoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLogoTests.swift; sourceTree = "<group>"; };
 		787358291B9F5D110092F21E /* CNExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExpression.swift; sourceTree = "<group>"; };
 		7873582B1B9F6C800092F21E /* CNStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStack.swift; sourceTree = "<group>"; };
+		7889499F1BA4A01700CD8246 /* CNTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTools.swift; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
 		78FDE9501B9E22C600AAFB1D /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
 		78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFunction.swift; sourceTree = "<group>"; };
@@ -59,7 +61,7 @@
 		78FDE9581B9E233100AAFB1D /* CNStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStatement.swift; sourceTree = "<group>"; };
 		78FDE95A1B9E235200AAFB1D /* CNSystemFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSystemFunctions.swift; sourceTree = "<group>"; };
 		78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBasicFunctions.swift; sourceTree = "<group>"; };
-		78FDE95E1B9E238B00AAFB1D /* CNWorkflowRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNWorkflowRepeat.swift; sourceTree = "<group>"; };
+		78FDE95E1B9E238B00AAFB1D /* CNWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNWorkflow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +152,9 @@
 				78FDE9581B9E233100AAFB1D /* CNStatement.swift */,
 				78FDE95A1B9E235200AAFB1D /* CNSystemFunctions.swift */,
 				78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */,
-				78FDE95E1B9E238B00AAFB1D /* CNWorkflowRepeat.swift */,
+				78FDE95E1B9E238B00AAFB1D /* CNWorkflow.swift */,
 				7873582B1B9F6C800092F21E /* CNStack.swift */,
+				7889499F1BA4A01700CD8246 /* CNTools.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -258,9 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788949A01BA4A01700CD8246 /* CNTools.swift in Sources */,
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
-				78FDE95F1B9E238B00AAFB1D /* CNWorkflowRepeat.swift in Sources */,
+				78FDE95F1B9E238B00AAFB1D /* CNWorkflow.swift in Sources */,
 				78FDE9551B9E22EF00AAFB1D /* CNBlock.swift in Sources */,
 				78FDE95B1B9E235200AAFB1D /* CNSystemFunctions.swift in Sources */,
 				78FDE95D1B9E236B00AAFB1D /* CNBasicFunctions.swift in Sources */,
