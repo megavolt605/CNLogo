@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CNForward: CNStatement {
+class CNStatementForward: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -23,7 +23,7 @@ class CNForward: CNStatement {
 
 }
 
-class CNBackward: CNStatement {
+class CNStatementBackward: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -38,7 +38,7 @@ class CNBackward: CNStatement {
     
 }
 
-class CNRotate: CNStatement {
+class CNStatementRotate: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -53,7 +53,7 @@ class CNRotate: CNStatement {
 
 }
 
-class CNTailDown: CNStatement {
+class CNStatementTailDown: CNStatement {
     
     override func execute(inBlock: CNBlock) throws -> CNValue {
         program.player.tailDown = true
@@ -62,7 +62,7 @@ class CNTailDown: CNStatement {
     
 }
 
-class CNTailUp: CNStatement {
+class CNStatementTailUp: CNStatement {
     
     override func execute(inBlock: CNBlock) throws -> CNValue {
         program.player.tailDown = false
@@ -72,7 +72,7 @@ class CNTailUp: CNStatement {
 }
 
 
-class CNColor: CNStatement {
+class CNStatementColor: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
@@ -88,7 +88,7 @@ class CNColor: CNStatement {
     
 }
 
-class CNWidth: CNStatement {
+class CNStatementWidth: CNStatement {
     
     override func prepare(inBlock: CNBlock) throws {
         if parameters.count != 1 {
