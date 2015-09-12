@@ -17,7 +17,10 @@ enum CNExpressionParseElementAssociativity {
 }
 
 enum CNExpressionParseElement {
-    case Add, Sub, Mul, Div, BracketOpen, BracketClose
+    case Add, Sub, Mul, Div, Power
+    case BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
+
+    case BracketOpen, BracketClose
     case Value(value: CNValue)
     case Variable(variable: CNVariable)
     case Function(function: CNFunction)
@@ -32,6 +35,13 @@ enum CNExpressionParseElement {
         case .Sub: return CNExpressionParseElement.Value(value: try leftValue - rightValue)
         case .Mul: return CNExpressionParseElement.Value(value: try leftValue * rightValue)
         case .Div: return CNExpressionParseElement.Value(value: try leftValue / rightValue)
+        case .Power: return CNExpressionParseElement.Value(value: try leftValue ^^ rightValue)
+        case .BoolAnd: return CNExpressionParseElement.Value(value: try leftValue && rightValue)
+        case .BoolOr: return CNExpressionParseElement.Value(value: try leftValue || rightValue)
+        case .BitAnd: return CNExpressionParseElement.Value(value: try leftValue & rightValue)
+        case .BitOr: return CNExpressionParseElement.Value(value: try leftValue | rightValue)
+        case .BitXor: return CNExpressionParseElement.Value(value: try leftValue ^ rightValue)
+        case .Remainder: return CNExpressionParseElement.Value(value: try leftValue % rightValue)
         default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
         }
     }
@@ -47,8 +57,13 @@ enum CNExpressionParseElement {
     
     var weight: Int {
         switch self {
-        case .Add, .Sub: return 100
-        case .Mul, .Div: return 200
+        case BoolAnd, BoolOr: return 100
+        case Add, Sub: return 200
+        case BitOr: return 250
+        case Mul, Div: return 300
+        case BitAnd: return 350
+        case BitXor, Remainder: return 375
+        case Power: return 400
         default: return 0
         }
     }
@@ -61,19 +76,9 @@ enum CNExpressionParseElement {
         return .Left
     }
     
-    static func initWithChar(char: Character) -> CNExpressionParseElement? {
-        switch char {
-        case "+": return self.Add
-        case "-": return self.Sub
-        case "*": return self.Mul
-        case "/": return self.Div
-        case "(": return self.BracketOpen
-        case ")": return self.BracketClose
-        default: return nil
-        }
-    }
-    
-    static let operators: [CNExpressionParseElement] = [.Add, .Sub, .Mul, .Div]
+    static let operators: [CNExpressionParseElement] = [
+        Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
+    ]
 
 }
 
@@ -88,6 +93,13 @@ func ==(lhs: CNExpressionParseElement, rhs: CNExpressionParseElement) -> Bool {
     case (.Sub, .Sub): return true
     case (.Mul, .Mul): return true
     case (.Div, .Div): return true
+    case (.Power, .Power): return true
+    case (.BoolAnd, .BoolAnd): return true
+    case (.BoolOr, .BoolOr): return true
+    case (.BitAnd, .BitAnd): return true
+    case (.BitOr, .BitOr): return true
+    case (.BitXor, .BitXor): return true
+    case (.Remainder, .Remainder): return true
     case (.BracketOpen, .BracketOpen): return true
     case (.BracketClose, .BracketClose): return true
     default: return false

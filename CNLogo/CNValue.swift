@@ -40,12 +40,13 @@ infix operator + {}
 infix operator - {}
 infix operator * {}
 infix operator / {}
-infix operator ^ {}
+infix operator ^^ {}
 infix operator && {}
 infix operator || {}
 infix operator & {}
 infix operator | {}
 infix operator % {}
+infix operator ^ {}
 
 func +(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
@@ -214,7 +215,7 @@ func /(left: CNValue, right: CNValue) throws -> CNValue {
     return CNValue.unknown
 }
 
-func ^(left: CNValue, right: CNValue) throws -> CNValue {
+func ^^(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
     case .unknown, .bool: try right.throwValueError()
@@ -378,3 +379,30 @@ func %(left: CNValue, right: CNValue) throws -> CNValue {
     }
     return CNValue.unknown
 }
+
+func ^(left: CNValue, right: CNValue) throws -> CNValue {
+    switch left {
+        
+    case .unknown, .bool, .double: try right.throwValueError()
+        
+    case let .string(leftValue):
+        switch right {
+        case .unknown, .bool, .double: try right.throwValueError()
+        case let .int(rightValue):
+            return CNValue.int(value: leftValue.integerValue ^ rightValue)
+        case let .string(rightValue):
+            return CNValue.int(value: leftValue.integerValue ^ rightValue.integerValue)
+        }
+        
+    case let .int(leftValue):
+        switch right {
+        case .unknown, .bool, .double: try right.throwValueError()
+        case let .int(rightValue):
+            return CNValue.int(value: leftValue ^ rightValue)
+        case let .string(rightValue):
+            return CNValue.int(value: leftValue ^ rightValue.integerValue)
+        }
+    }
+    return CNValue.unknown
+}
+
