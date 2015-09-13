@@ -79,7 +79,6 @@ class CNStatementTailUp: CNStatement {
     
 }
 
-
 class CNStatementColor: CNStatement {
     
     override func prepare() throws {
@@ -115,3 +114,14 @@ class CNStatementWidth: CNStatement {
     
     
 }
+
+class CNStatementClear: CNStatement {
+    
+    override func execute() throws -> CNValue {
+        try super.execute()
+        program.clear()
+        return .unknown
+    }
+    
+}
+

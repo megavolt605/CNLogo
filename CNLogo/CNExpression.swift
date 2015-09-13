@@ -133,7 +133,7 @@ class CNExpression: CNBlock {
     
     var source: [CNExpressionParseElement]
     
-    // asklop notation:
+    // akslop notation:
     // A + B * C / (D - E) => A B C * D E - / +
     // 
     // A                A

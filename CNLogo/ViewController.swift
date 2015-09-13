@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, CNPlayerDelegate {
+class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
 
     @IBOutlet var fieldView: CNFieldView!
+
+    var savedPosition: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +70,12 @@ class ViewController: UIViewController, CNPlayerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    var savedPosition: CGPoint!
+    // CNProgramDelegate
+    func programWillClear(program: CNProgram) {
+        fieldView.clear()
+    }
     
+    // CNPlayerDelegate
     func player(player: CNPlayer, willMoveFromPosition position: CGPoint, toPosition: CGPoint) {
         savedPosition = position
     }

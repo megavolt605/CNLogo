@@ -44,5 +44,9 @@ class CNFieldView: UIView {
         }
     }
     
+    func clear() {
+        elements = []
+        setNeedsDisplay()
+    }
     
 }
