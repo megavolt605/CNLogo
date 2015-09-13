@@ -42,6 +42,18 @@ enum CNValue {
     
 }
 
+infix operator ~= {}
+func ~=(left: CNValue, right: CNValue) throws -> Bool {
+    switch (left, right) {
+    case (.bool, .bool): return true
+    case (.int, .int): return true
+    case (.double, .double): return true
+    case (.string, .string): return true
+    case (.color, .color): return true
+    default: return false
+    }
+}
+
 infix operator == {}
 infix operator + {}
 infix operator - {}

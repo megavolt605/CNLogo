@@ -171,7 +171,12 @@ class CNExpression: CNBlock {
             } else {
                 // not operator
                 switch element {
-                case .Value, .Variable, .Function:
+                case .Value, .Variable:
+                    preparedSource.append(element)
+                case let .Function(function):
+                    try function.parameters.forEach {
+                        try $0.prepare()
+                    }
                     preparedSource.append(element)
                 case .BracketOpen:
                     operatorStack.push(element)
