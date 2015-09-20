@@ -63,7 +63,7 @@ class CNStatementTailDown: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown = true
+        program.player.tailDown(true)
         return .unknown
     }
     
@@ -73,7 +73,7 @@ class CNStatementTailUp: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown = false
+        program.player.tailDown(false)
         return .unknown
     }
     

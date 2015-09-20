@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreGraphics
 
-class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var fieldView: CNFieldView!
 
-    var savedPosition: CGPoint!
+    var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,9 @@ class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
         
         
         program = CNProgram(statements: [
-            CNStatementVar(name: "A", parameters: [makeExprFromValue(CNValue.double(value: 30.0))]),
+            CNStatementVar(name: "A", parameters: [makeExprFromValue(CNValue.double(value: 31.0))]),
             CNStatementRepeat(
-                parameters: [makeExprFromValue(CNValue.int(value: 10))],
+                parameters: [makeExprFromValue(CNValue.int(value: 25))],
                 statements: [
                     CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
                     CNStatementForward(parameters: [CNExpression(source: [
@@ -36,7 +37,7 @@ class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
                         CNExpressionParseElement.Value(value: CNValue.double(value: 8.0)),
                         CNExpressionParseElement.BracketClose,
                         CNExpressionParseElement.Mul,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 3.0))
+                        CNExpressionParseElement.Value(value: CNValue.double(value: 5.1))
                     ])]),
                     CNStatementRotate(parameters: [CNExpression(source: [
                         CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
@@ -51,17 +52,18 @@ class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
                         CNExpression(source: [
                             CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
                             CNExpressionParseElement.Div,
-                            CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
+                            CNExpressionParseElement.Value(value: CNValue.double(value: 10.0))
                         ])
                     ]),
                     CNStatementTailDown()
                 ] as [CNStatement]
             )
         ])
-        program.playerDelegate = self
-        program.player.position = view.center
+        program.player.startState.position = view.center
         try! program.prepare()
         try! program.execute()
+        
+        visualizeResult()
         
     }
 
@@ -70,49 +72,94 @@ class ViewController: UIViewController, CNProgramDelegate, CNPlayerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // CNProgramDelegate
-    func programWillClear(program: CNProgram) {
-        fieldView.clear()
+    func visualizeResult() {
+        currentIndex = 0
+        visualizeStep()
     }
     
-    // CNPlayerDelegate
-    func player(player: CNPlayer, willMoveFromPosition position: CGPoint, toPosition: CGPoint) {
-        savedPosition = position
-    }
-    
-    func player(player: CNPlayer, didMoveFromPosition oldPosition: CGPoint, toPosition: CGPoint) {
-        fieldView.elements.append(
-            CNFieldElement(fromPoint: savedPosition, toPoint: toPosition, visible: player.tailDown, lineWidth: player.width, lineColor: player.color)
-        )
+    func visualizeStep() {
+        if currentIndex < program.executionHistory.history.count {
+            var shouldBreak = true
+            var rect = CGRectZero
+            repeat {
+                shouldBreak = true
+                let item = program.executionHistory.history[currentIndex]
+                switch item.type {
+                case .Clear:
+                    fieldView.clear()
+                    shouldBreak = false
+                case let .Move(fromPoint, toPoint, _):
+                    rect.origin = CGPointMake(min(fromPoint.x, toPoint.x), min(fromPoint.y, toPoint.y))
+                    rect.size = CGSizeMake(max(fromPoint.x, toPoint.x), max(fromPoint.y, toPoint.y))
+                    if item.playerState.tailDown {
+                        let layer = CAShapeLayer()
+                        let path = CGPathCreateMutable()
+                        CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
+                        CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
+                        layer.path = path
+                        layer.strokeColor = item.playerState.color
+                        layer.lineWidth = item.playerState.width
+                        layer.strokeEnd = 0.0
+                        fieldView.drawingLayer.addSublayer(layer)
+                        fieldView.layers.append(layer)
 
-    }
-    
-    func player(player: CNPlayer, willRotateFromAngle angle: CGFloat, toAngle: CGFloat) {
-        
-    }
-    
-    func player(player: CNPlayer, didRotateFromAngle angle: CGFloat, toAngle: CGFloat) {
-        
-    }
-    
-    func player(player: CNPlayer, didTailChangeTo change: Bool) {
-        
-    }
-    
-    func player(player: CNPlayer, willSetColor color: UIColor) {
-        
-    }
-    
-    func player(player: CNPlayer, didSetColor color: UIColor) {
-        
-    }
+                        let duration = 0.2
+                        
+                        let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
+                        strokeAnimation.duration = duration
+                        strokeAnimation.fromValue = 0.0
+                        strokeAnimation.toValue = 1.0
+                        strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                        strokeAnimation.fillMode = kCAFillModeForwards
+                        strokeAnimation.removedOnCompletion = false
+                        strokeAnimation.completion = { a in
+                            self.currentIndex++
+                            self.visualizeStep()
+                        }
+                        layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
+                        
+                        
+                        let playerAnimationX = CABasicAnimation(keyPath: "position.x")
+                        playerAnimationX.duration = duration
+                        playerAnimationX.fromValue = fromPoint.x
+                        playerAnimationX.toValue = toPoint.x
+                        playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                        playerAnimationX.fillMode = kCAFillModeForwards
+                        playerAnimationX.removedOnCompletion = false
+                        fieldView.playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
+                        
+                        let playerAnimationY = CABasicAnimation(keyPath: "position.y")
+                        playerAnimationY.duration = duration
+                        playerAnimationY.fromValue = fromPoint.y
+                        playerAnimationY.toValue = toPoint.y
+                        playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+                        playerAnimationY.fillMode = kCAFillModeForwards
+                        playerAnimationY.removedOnCompletion = false
+                        fieldView.playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
 
-    func player(player: CNPlayer, willSetWidth width: CGFloat) {
-        
-    }
-    
-    func player(player: CNPlayer, didSetWidth width: CGFloat) {
-        
+                    } else {
+                        shouldBreak = false
+                    }
+            
+                    /*fieldView.elements.append(
+                        CNFieldElement(
+                            fromPoint: fromPoint,
+                            toPoint: toPoint,
+                            visible: item.playerState.tailDown,
+                            lineWidth: item.playerState.width,
+                            lineColor: item.playerState.color
+                        )
+                    )*/
+                case .Rotate, .TailState, .Color, .Width:
+                    shouldBreak = false
+                    break
+                }
+                currentIndex++
+            } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
+            //fieldView.setNeedsDisplayInRect(rect)
+        } else {
+            //visualizeTimer.invalidate()
+        }
     }
     
 }

@@ -12,21 +12,33 @@ import UIKit
 
 var program: CNProgram!
 
-protocol CNProgramDelegate {
+enum CNError: ErrorType {
+    case Unknown
     
-    func programWillClear(program: CNProgram)
-    
+    var description: String {
+        switch self {
+        case .Unknown: return "Unknown error"
+        }
+    }
 }
 
 class CNProgram: CNBlock {
-    
+
     var player = CNPlayer()
-    
-    var playerDelegate: CNPlayerDelegate?
-    var programDelegate: CNProgramDelegate?
+    var executing = false
+    var executionHistory = CNExecutionHistory()
     
     func clear() {
-        programDelegate?.programWillClear(self)
+        player.clear()
+    }
+    
+    override func execute() throws -> CNValue {
+        executing = true
+        defer {
+            executing = false
+        }
+        player.clear()
+        return try super.execute()
     }
     
     override init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
@@ -38,3 +50,4 @@ class CNProgram: CNBlock {
     }
     
 }
+

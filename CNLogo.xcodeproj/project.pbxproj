@@ -19,6 +19,8 @@
 		788949A01BA4A01700CD8246 /* CNTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889499F1BA4A01700CD8246 /* CNTools.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A21BA5891E00CD8246 /* CNPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A11BA5891E00CD8246 /* CNPlayer.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A41BA5896000CD8246 /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A31BA5896000CD8246 /* CNVariable.swift */; settings = {ASSET_TAGS = (); }; };
+		78D4FC311BAEA27C00BC5C1E /* CNExecutionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4FC301BAEA27C00BC5C1E /* CNExecutionHistory.swift */; settings = {ASSET_TAGS = (); }; };
+		78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9501B9E22C600AAFB1D /* CNValue.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE9531B9E22DE00AAFB1D /* CNFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */; settings = {ASSET_TAGS = (); }; };
@@ -57,6 +59,8 @@
 		7889499F1BA4A01700CD8246 /* CNTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTools.swift; sourceTree = "<group>"; };
 		788949A11BA5891E00CD8246 /* CNPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPlayer.swift; sourceTree = "<group>"; };
 		788949A31BA5896000CD8246 /* CNVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVariable.swift; sourceTree = "<group>"; };
+		78D4FC301BAEA27C00BC5C1E /* CNExecutionHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExecutionHistory.swift; sourceTree = "<group>"; };
+		78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLogo+CAAnimation.swift"; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
 		78FDE9501B9E22C600AAFB1D /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
 		78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFunction.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				787358291B9F5D110092F21E /* CNExpression.swift */,
 				78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */,
 				78FDE9561B9E230E00AAFB1D /* CNProgram.swift */,
+				78D4FC301BAEA27C00BC5C1E /* CNExecutionHistory.swift */,
 				788949A11BA5891E00CD8246 /* CNPlayer.swift */,
 				78FDE9581B9E233100AAFB1D /* CNStatement.swift */,
 				78FDE95A1B9E235200AAFB1D /* CNSystemStatements.swift */,
@@ -161,6 +166,7 @@
 				78FDE95C1B9E236B00AAFB1D /* CNBasicFunctions.swift */,
 				7873582B1B9F6C800092F21E /* CNStack.swift */,
 				7889499F1BA4A01700CD8246 /* CNTools.swift */,
+				78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -271,8 +277,10 @@
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				788949A41BA5896000CD8246 /* CNVariable.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
+				78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */,
 				78FDE95F1B9E238B00AAFB1D /* CNWorkflow.swift in Sources */,
 				78FDE9551B9E22EF00AAFB1D /* CNBlock.swift in Sources */,
+				78D4FC311BAEA27C00BC5C1E /* CNExecutionHistory.swift in Sources */,
 				78FDE95B1B9E235200AAFB1D /* CNSystemStatements.swift in Sources */,
 				78FDE95D1B9E236B00AAFB1D /* CNBasicFunctions.swift in Sources */,
 				7873582C1B9F6C800092F21E /* CNStack.swift in Sources */,

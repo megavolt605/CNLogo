@@ -8,44 +8,34 @@
 
 import UIKit
 
-struct CNFieldElement {
-    
-    var fromPoint: CGPoint
-    var toPoint: CGPoint
-    var visible: Bool
-    
-    let lineWidth: CGFloat
-    let lineColor: UIColor
-    
-    func drawInContext(context: CGContextRef) {
-        if visible {
-            CGContextSetStrokeColorWithColor(context, lineColor.CGColor)
-            CGContextSetLineWidth(context, lineWidth)
-            CGContextMoveToPoint(context, fromPoint.x, fromPoint.y)
-            CGContextAddLineToPoint(context, toPoint.x, toPoint.y)
-        } else {
-            CGContextMoveToPoint(context, fromPoint.x, fromPoint.y)
-        }
-    }
-    
-}
-
 class CNFieldView: UIView {
     
-    var elements: [CNFieldElement] = []
+    var drawingLayer = CALayer()
+    var playerLayer = CALayer()
     
-    override func drawRect(rect: CGRect) {
-        
-        if let ctx = UIGraphicsGetCurrentContext() {
-            elements.forEach {
-                $0.drawInContext(ctx)
-            }
-            CGContextStrokePath(ctx)
-        }
-    }
+    var layers: [CALayer] = []
     
     func clear() {
-        elements = []
+        
+        if drawingLayer.superlayer == nil {
+            layer.addSublayer(drawingLayer)
+        }
+        
+        if playerLayer.superlayer == nil {
+            let image = UIImage(named: "player")!.CGImage
+            playerLayer.contents = image
+            playerLayer.anchorPoint = CGPointMake(0.5, 1.0)
+            playerLayer.frame = CGRectMake(0.0, 0.0, 20.0, 20.0)
+            playerLayer.position = CGPointMake(program.player.startState.position.x, program.player.startState.position.y)
+            layer.addSublayer(playerLayer)
+        }
+        
+        drawingLayer.removeAllAnimations()
+        layers.forEach {
+            $0.removeAllAnimations()
+            $0.removeFromSuperlayer()
+        }
+        
         setNeedsDisplay()
     }
     
