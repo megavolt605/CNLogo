@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var fieldView: CNFieldView!
 
     var currentIndex = 0
+    var duration = 0.1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,7 @@ class ViewController: UIViewController {
 
     func visualizeResult() {
         currentIndex = 0
+        print(program.executionHistory.history)
         visualizeStep()
     }
     
@@ -87,74 +89,33 @@ class ViewController: UIViewController {
                 switch item.type {
                 case .Clear:
                     fieldView.clear()
+                    currentIndex++
                     shouldBreak = false
                 case let .Move(fromPoint, toPoint, _):
                     rect.origin = CGPointMake(min(fromPoint.x, toPoint.x), min(fromPoint.y, toPoint.y))
                     rect.size = CGSizeMake(max(fromPoint.x, toPoint.x), max(fromPoint.y, toPoint.y))
                     if item.playerState.tailDown {
-                        let layer = CAShapeLayer()
-                        let path = CGPathCreateMutable()
-                        CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
-                        CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
-                        layer.path = path
-                        layer.strokeColor = item.playerState.color
-                        layer.lineWidth = item.playerState.width
-                        layer.strokeEnd = 0.0
-                        fieldView.drawingLayer.addSublayer(layer)
-                        fieldView.layers.append(layer)
-
-                        let duration = 0.2
-                        
-                        let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
-                        strokeAnimation.duration = duration
-                        strokeAnimation.fromValue = 0.0
-                        strokeAnimation.toValue = 1.0
-                        strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-                        strokeAnimation.fillMode = kCAFillModeForwards
-                        strokeAnimation.removedOnCompletion = false
-                        strokeAnimation.completion = { a in
+                        fieldView.addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
                             self.currentIndex++
                             self.visualizeStep()
                         }
-                        layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
-                        
-                        
-                        let playerAnimationX = CABasicAnimation(keyPath: "position.x")
-                        playerAnimationX.duration = duration
-                        playerAnimationX.fromValue = fromPoint.x
-                        playerAnimationX.toValue = toPoint.x
-                        playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-                        playerAnimationX.fillMode = kCAFillModeForwards
-                        playerAnimationX.removedOnCompletion = false
-                        fieldView.playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
-                        
-                        let playerAnimationY = CABasicAnimation(keyPath: "position.y")
-                        playerAnimationY.duration = duration
-                        playerAnimationY.fromValue = fromPoint.y
-                        playerAnimationY.toValue = toPoint.y
-                        playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-                        playerAnimationY.fillMode = kCAFillModeForwards
-                        playerAnimationY.removedOnCompletion = false
-                        fieldView.playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
-
                     } else {
-                        shouldBreak = false
+                        fieldView.addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
+                            self.currentIndex++
+                            self.visualizeStep()
+                        }
                     }
-            
-                    /*fieldView.elements.append(
-                        CNFieldElement(
-                            fromPoint: fromPoint,
-                            toPoint: toPoint,
-                            visible: item.playerState.tailDown,
-                            lineWidth: item.playerState.width,
-                            lineColor: item.playerState.color
-                        )
-                    )*/
-                case .Rotate, .TailState, .Color, .Width:
+                case let .Rotate(fromAngle, toAngle):
+                    fieldView.addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, duration: duration) { done in
+                        self.currentIndex++
+                        self.visualizeStep()
+                    }
+                case .TailState, .Color, .Width:
+                    currentIndex++
                     shouldBreak = false
                     break
                 }
-                currentIndex++
+                
             } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
             //fieldView.setNeedsDisplayInRect(rect)
         } else {
