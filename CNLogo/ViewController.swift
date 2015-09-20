@@ -75,7 +75,6 @@ class ViewController: UIViewController {
 
     func visualizeResult() {
         currentIndex = 0
-        print(program.executionHistory.history)
         visualizeStep()
     }
     
