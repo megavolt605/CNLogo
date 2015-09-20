@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var fieldView: CNFieldView!
 
     var currentIndex = 0
-    var duration = 0.001
+    var duration = 0.02
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +75,13 @@ class ViewController: UIViewController {
             )
         ])
         program.player.startState.position = view.center
-        try! program.prepare()
-        try! program.execute()
         
-        visualizeResult()
+        dispatch_async(dispatch_get_main_queue()) {
+            try! program.prepare()
+            try! program.execute()
+        
+            self.visualizeResult()
+        }
         
     }
 
@@ -94,6 +97,7 @@ class ViewController: UIViewController {
     
     func visualizeStep() {
         if currentIndex < program.executionHistory.history.count {
+            fieldView.makeSnapshot()
             var shouldBreak = true
             var rect = CGRectZero
             repeat {
