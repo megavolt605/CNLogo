@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var fieldView: CNFieldView!
 
     var currentIndex = 0
-    var duration = 0.1
+    var duration = 0.001
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,39 +25,53 @@ class ViewController: UIViewController {
         }
         
         
+        /*
+            sides = 50
+            length = 400 / sides
+            angle = 360 / sides
+            Turtle.Speed = 9
+            For j = 1 To 20
+                For i = 1 To sides
+                    Turtle.Move(length)
+                    Turtle.Turn(angle)
+                EndFor
+                Turtle.Turn(18)
+            EndFor
+        */
+
         program = CNProgram(statements: [
-            CNStatementVar(name: "A", parameters: [makeExprFromValue(CNValue.double(value: 31.0))]),
+            CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 50))]),
+            CNStatementVar(name: "length", parameters: [CNExpression(source: [
+                CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
+                CNExpressionParseElement.Div,
+                CNExpressionParseElement.Variable(name: "sides")
+            ])]),
+            CNStatementVar(name: "angle", parameters: [CNExpression(source: [
+                CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
+                CNExpressionParseElement.Div,
+                CNExpressionParseElement.Variable(name: "sides"),
+            ])]),
             CNStatementRepeat(
-                parameters: [makeExprFromValue(CNValue.int(value: 25))],
+                parameters: [makeExprFromValue(CNValue.int(value: 19))],
                 statements: [
-                    CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
-                    CNStatementForward(parameters: [CNExpression(source: [
-                        CNExpressionParseElement.BracketOpen,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 2.0)),
-                        CNExpressionParseElement.Add,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 8.0)),
-                        CNExpressionParseElement.BracketClose,
-                        CNExpressionParseElement.Mul,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 5.1))
-                    ])]),
-                    CNStatementRotate(parameters: [CNExpression(source: [
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
-                        CNExpressionParseElement.Div,
-                        CNExpressionParseElement.Value(value: CNValue.double(value: 20.0))
-                        ])]),
-                    CNStatementTailUp(),
-                    CNStatementForward(parameters: [CNExpression(source: [
-                        CNExpressionParseElement.Variable(name: "A")
-                        ])]),
-                    CNStatementRotate(parameters: [
-                        CNExpression(source: [
-                            CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
-                            CNExpressionParseElement.Div,
-                            CNExpressionParseElement.Value(value: CNValue.double(value: 10.0))
-                        ])
-                    ]),
-                    CNStatementTailDown()
-                ] as [CNStatement]
+                    CNStatementRepeat(
+                        parameters: [CNExpression(source: [
+                            CNExpressionParseElement.Variable(name: "sides"),
+                            CNExpressionParseElement.Sub,
+                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                        ])],
+                        statements: [
+                            CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
+                            CNStatementForward(parameters: [CNExpression(source: [
+                                CNExpressionParseElement.Variable(name: "length")
+                            ])]),
+                            CNStatementRotate(parameters: [CNExpression(source: [
+                                CNExpressionParseElement.Variable(name: "angle")
+                            ])])
+                        ]
+                    ),
+                    CNStatementRotate(parameters: [makeExprFromValue(CNValue.double(value: 18.0))])
+                ]
             )
         ])
         program.player.startState.position = view.center

@@ -54,6 +54,12 @@ class CNPlayer {
                 state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
             )
             moveTo(newPosition, forward: true)
+        case let .int(distance):
+            let newPosition = CGPointMake(
+                state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
+                state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+            )
+            moveTo(newPosition, forward: true)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
@@ -61,6 +67,12 @@ class CNPlayer {
     func moveBackward(value: CNExpression) throws {
         switch try value.execute() {
         case let .double(distance):
+            let newPosition = CGPointMake(
+                state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
+                state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+            )
+            moveTo(newPosition, forward: false)
+        case let .int(distance):
             let newPosition = CGPointMake(
                 state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
                 state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
@@ -75,6 +87,11 @@ class CNPlayer {
         case let .double(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(angleDelta * M_PI / 180.0)
+            state.angle = newAngle
+            program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle))
+        case let .int(angleDelta):
+            let oldAngle = state.angle
+            let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
             state.angle = newAngle
             program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle))
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
