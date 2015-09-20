@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-Pn-Ype">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVB-cw-Ja2" customClass="CNFieldView" customModule="CNLogo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
@@ -27,14 +33,19 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ahp-Pn-Ype" secondAttribute="trailing" constant="-20" id="7Vj-yX-siP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XVB-cw-Ja2" secondAttribute="bottom" id="9lY-DR-Arf"/>
                             <constraint firstItem="XVB-cw-Ja2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="AT3-Ye-asx"/>
                             <constraint firstItem="XVB-cw-Ja2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="REV-Ad-lVZ"/>
+                            <constraint firstItem="ahp-Pn-Ype" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ejw-gZ-lhF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XVB-cw-Ja2" secondAttribute="trailing" constant="-20" id="iKa-bc-An9"/>
+                            <constraint firstItem="ahp-Pn-Ype" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="o2q-Nh-RA9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ahp-Pn-Ype" secondAttribute="bottom" id="pdk-oK-ay2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="fieldView" destination="XVB-cw-Ja2" id="21Z-BW-sNX"/>
+                        <outlet property="textView" destination="ahp-Pn-Ype" id="H3o-v6-zYW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

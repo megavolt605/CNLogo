@@ -12,18 +12,21 @@ import CoreGraphics
 class ViewController: UIViewController {
 
     @IBOutlet var fieldView: CNFieldView!
+    @IBOutlet weak var textView: UITextView!
 
     var currentIndex = 0
-    var duration = 0.02
+    var duration = 0.002
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        fieldView.opaque = false
+        fieldView.backgroundColor = UIColor.clearColor()
+        
         func makeExprFromValue(value: CNValue) -> CNExpression {
             return CNExpression(source: [CNExpressionParseElement.Value(value: value)])
         }
-        
         
         /*
             sides = 50
@@ -61,7 +64,6 @@ class ViewController: UIViewController {
                             CNExpressionParseElement.Value(value: CNValue.int(value: 1))
                         ])],
                         statements: [
-                            CNStatementPrint(parameters: [makeExprFromValue(CNValue.string(value: "!!!"))]),
                             CNStatementForward(parameters: [CNExpression(source: [
                                 CNExpressionParseElement.Variable(name: "length")
                             ])]),
@@ -103,6 +105,9 @@ class ViewController: UIViewController {
             repeat {
                 shouldBreak = true
                 let item = program.executionHistory.history[currentIndex]
+                //textView.text = item.description + "\n" + textView.text
+                //textView.scrollRangeToVisible(NSMakeRange(textView.text.characters.count - 1, 1))
+                //textView.setNeedsDisplay()
                 switch item.type {
                 case .Clear:
                     fieldView.clear()
@@ -136,7 +141,7 @@ class ViewController: UIViewController {
             } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
             //fieldView.setNeedsDisplayInRect(rect)
         } else {
-            //visualizeTimer.invalidate()
+            fieldView.makeSnapshot(true)
         }
     }
     

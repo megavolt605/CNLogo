@@ -29,6 +29,17 @@ struct CNExecutionHistoryItem {
 
     var type: CNExecutionHistoryItemType
     var playerState: CNPlayerState
+
+    var description: String {
+        switch type {
+        case .Clear: return "Clear"
+        case let .Move(_, toPoint, _): return String(format: "Forward to %.2f - %.2f", toPoint.x, toPoint.y)
+        case let .Rotate(_, toAngle): return String(format: "Rotate to %.2f", toAngle)
+        case let .TailState(_, toState): return "Tail down \(toState)"
+        case .Color: return "Color"
+        case let .Width(_, toWidth): return String(format: "Width %.2f", toWidth)
+        }
+    }
     
 }
 

@@ -59,8 +59,8 @@ class CNFieldView: UIView {
         snapshotView.frame = bounds
     }
     
-    func makeSnapshot() {
-        if layers.count > 10 {
+    func makeSnapshot(force: Bool = false) {
+        if (layers.count > 200) || force {
             UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
             // Render the layer hierarchy to the current context
             snapshotView.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
@@ -100,7 +100,11 @@ class CNFieldView: UIView {
             addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
         } else {
             addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
-            completion?(true)
+            if completion != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion?(true)
+                }
+            }
         }
 
     }
@@ -126,7 +130,11 @@ class CNFieldView: UIView {
             playerAnimationY.removedOnCompletion = false
             playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
         } else {
-            completion?(true)
+            if completion != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion?(true)
+                }
+            }
         }
     }
 
@@ -142,7 +150,11 @@ class CNFieldView: UIView {
             playerAnimation.completion = completion
             playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
         } else {
-            completion?(true)
+            if completion != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion?(true)
+                }
+            }
         }
     }
 
