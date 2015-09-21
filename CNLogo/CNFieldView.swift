@@ -25,6 +25,7 @@ class CNFieldView: UIView {
             snapshotView.frame = UIScreen.mainScreen().bounds
             addSubview(snapshotView)
         }
+        snapshotView.image = nil
         
         if drawingView.superview == nil {
             drawingView.opaque = false
@@ -130,6 +131,10 @@ class CNFieldView: UIView {
             playerAnimationY.removedOnCompletion = false
             playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
         } else {
+            CATransaction.begin()
+            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+            playerLayer.position = toPoint
+            CATransaction.commit()
             if completion != nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     completion?(true)
@@ -150,6 +155,10 @@ class CNFieldView: UIView {
             playerAnimation.completion = completion
             playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
         } else {
+            CATransaction.begin()
+            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+            playerLayer.transform = CATransform3DMakeRotation(toAngle, 0, 0, 1.0)
+            CATransaction.commit()
             if completion != nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     completion?(true)
@@ -157,7 +166,5 @@ class CNFieldView: UIView {
             }
         }
     }
-
-    
 }
 

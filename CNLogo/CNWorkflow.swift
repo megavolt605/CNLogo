@@ -10,6 +10,10 @@ import Foundation
 
 class CNStatementRepeat: CNStatement {
     
+    override var description: String {
+        return "REPEAT \(parametersDescription)"
+    }
+    
     override func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
@@ -35,6 +39,10 @@ class CNStatementRepeat: CNStatement {
 
 class CNStatementWhile: CNStatement {
 
+    override var description: String {
+        return "WHILE \(parametersDescription)"
+    }
+    
     override func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
@@ -62,6 +70,10 @@ class CNStatementWhile: CNStatement {
 }
 
 class CNStatementIf: CNStatement {
+
+    override var description: String {
+        return "IF \(parametersDescription)"
+    }
     
     var statementsElse: [CNStatement] = []
     

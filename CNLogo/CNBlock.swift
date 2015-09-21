@@ -26,6 +26,20 @@ class CNBlock {
     private var prepared = false
     weak var parentBlock: CNBlock?
 
+    var description: String {
+        return "Anonymous BLOCK"
+    }
+    
+    var parametersDescription: String {
+        return parameters.reduce("") {
+            if $0 == "" {
+                return $1.description
+            } else {
+                return $0 + "," + $1.description
+            }
+        }
+    }
+    
     func prepare() throws -> Void {
         try parameters.forEach {
             $0.parentBlock = self

@@ -13,6 +13,10 @@ class CNFunction: CNBlock {
     var name: String
     var parametersDesc: [CNValue]
     
+    override var description: String {
+        return "\(name)(\(parametersDescription))"
+    }
+    
     func prepareWithParameters(parameters: [CNExpression]) throws {
         guard parameters.count == parametersDesc.count else { throw NSError(domain: "Parameter count mismatch for function \(name)", code: 0, userInfo: nil) }
         for i in 0..<parameters.count {

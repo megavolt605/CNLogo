@@ -10,6 +10,10 @@ import Foundation
 
 class CNStatementForward: CNStatement {
     
+    override var description: String {
+        return "FORWARD \(parametersDescription)"
+    }
+    
     override func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
@@ -26,6 +30,10 @@ class CNStatementForward: CNStatement {
 }
 
 class CNStatementBackward: CNStatement {
+    
+    override var description: String {
+        return "BACKWARD \(parametersDescription)"
+    }
     
     override func prepare() throws {
         try super.prepare()
@@ -44,6 +52,10 @@ class CNStatementBackward: CNStatement {
 
 class CNStatementRotate: CNStatement {
     
+    override var description: String {
+        return "ROTATE \(parametersDescription)"
+    }
+    
     override func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
@@ -61,6 +73,10 @@ class CNStatementRotate: CNStatement {
 
 class CNStatementTailDown: CNStatement {
     
+    override var description: String {
+        return "TAIL DOWN"
+    }
+    
     override func execute() throws -> CNValue {
         try super.execute()
         program.player.tailDown(true)
@@ -71,6 +87,10 @@ class CNStatementTailDown: CNStatement {
 
 class CNStatementTailUp: CNStatement {
     
+    override var description: String {
+        return "TAIL UP"
+    }
+    
     override func execute() throws -> CNValue {
         try super.execute()
         program.player.tailDown(false)
@@ -80,6 +100,10 @@ class CNStatementTailUp: CNStatement {
 }
 
 class CNStatementColor: CNStatement {
+    
+    override var description: String {
+        return "COLOR \(parametersDescription)"
+    }
     
     override func prepare() throws {
         try super.prepare()
@@ -94,10 +118,13 @@ class CNStatementColor: CNStatement {
         return .unknown
     }
     
-    
 }
 
 class CNStatementWidth: CNStatement {
+    
+    override var description: String {
+        return "WIDTH \(parametersDescription)"
+    }
     
     override func prepare() throws {
         try super.prepare()
@@ -116,6 +143,10 @@ class CNStatementWidth: CNStatement {
 }
 
 class CNStatementClear: CNStatement {
+    
+    override var description: String {
+        return "CLEAR"
+    }
     
     override func execute() throws -> CNValue {
         try super.execute()

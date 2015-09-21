@@ -19,6 +19,7 @@
 		788949A01BA4A01700CD8246 /* CNTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889499F1BA4A01700CD8246 /* CNTools.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A21BA5891E00CD8246 /* CNPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A11BA5891E00CD8246 /* CNPlayer.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A41BA5896000CD8246 /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A31BA5896000CD8246 /* CNVariable.swift */; settings = {ASSET_TAGS = (); }; };
+		78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		78D4FC311BAEA27C00BC5C1E /* CNExecutionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4FC301BAEA27C00BC5C1E /* CNExecutionHistory.swift */; settings = {ASSET_TAGS = (); }; };
 		78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -59,6 +60,7 @@
 		7889499F1BA4A01700CD8246 /* CNTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTools.swift; sourceTree = "<group>"; };
 		788949A11BA5891E00CD8246 /* CNPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPlayer.swift; sourceTree = "<group>"; };
 		788949A31BA5896000CD8246 /* CNVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVariable.swift; sourceTree = "<group>"; };
+		78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewDataSource.swift; sourceTree = "<group>"; };
 		78D4FC301BAEA27C00BC5C1E /* CNExecutionHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExecutionHistory.swift; sourceTree = "<group>"; };
 		78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLogo+CAAnimation.swift"; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
@@ -111,10 +113,8 @@
 		7856FA791B9E01B40037E99F /* CNLogo */ = {
 			isa = PBXGroup;
 			children = (
-				7856FA7C1B9E01B40037E99F /* AppDelegate.swift */,
-				7856FA7E1B9E01B40037E99F /* ViewController.swift */,
 				78FDE9601B9E24C800AAFB1D /* Core */,
-				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
+				78C0D35F1BB03D2B00CCCE70 /* User Interface */,
 				7856FA801B9E01B40037E99F /* Main.storyboard */,
 				7856FA831B9E01B40037E99F /* Images.xcassets */,
 				7856FA851B9E01B40037E99F /* LaunchScreen.xib */,
@@ -147,6 +147,17 @@
 				7856FA911B9E01B40037E99F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78C0D35F1BB03D2B00CCCE70 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				7856FA7C1B9E01B40037E99F /* AppDelegate.swift */,
+				7856FA7E1B9E01B40037E99F /* ViewController.swift */,
+				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
+				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
+			);
+			name = "User Interface";
 			sourceTree = "<group>";
 		};
 		78FDE9601B9E24C800AAFB1D /* Core */ = {
@@ -277,6 +288,7 @@
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				788949A41BA5896000CD8246 /* CNVariable.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
+				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,
 				78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */,
 				78FDE95F1B9E238B00AAFB1D /* CNWorkflow.swift in Sources */,
 				78FDE9551B9E22EF00AAFB1D /* CNBlock.swift in Sources */,
@@ -349,7 +361,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -395,7 +407,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -420,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CNLogo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
@@ -431,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = CNLogo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";

@@ -10,6 +10,10 @@ import Foundation
 
 class CNStatementPrint: CNStatement {
     
+    override var description: String {
+        return "PRINT(\(parametersDescription))"
+    }
+    
     override func execute() throws -> CNValue {
         try super.execute()
         try parameters.forEach {
@@ -21,6 +25,10 @@ class CNStatementPrint: CNStatement {
 }
 
 class CNStatementVar: CNStatement {
+    
+    override var description: String {
+        return "VAR \"\(name)\" = " + parametersDescription
+    }
     
     var name: String
     

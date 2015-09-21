@@ -10,6 +10,10 @@ import Foundation
 
 class CNStatement: CNBlock {
     
+    override var description: String {
+        return "Anonymous STATEMENT \(self)"
+    }
+    
     func throwError(code: Int = 0) throws {
         throw NSError(domain: "\(self)", code: 0, userInfo: nil)
     }

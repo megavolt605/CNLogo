@@ -26,6 +26,29 @@ enum CNExpressionParseElement {
     case Variable(name: String)
     case Function(name: String, parameters: [CNExpression])
     
+    var description: String {
+        switch self {
+        case Add: return "+"
+        case Sub: return "-"
+        case Mul: return "*"
+        case Div: return "/"
+        case Power: return "^^"
+        case BoolAnd: return "&&"
+        case BoolOr: return "||"
+        case BitAnd: return "&"
+        case BitOr: return "|"
+        case BitXor: return "^"
+        case Remainder: return "%"
+        case IsEqual: return "=="
+        case Assign: return "="
+        case BracketOpen: return "("
+        case BracketClose: return ")"
+        case let Value(value): return value.description
+        case let Variable(name): return name
+        case let Function(name, parameters): return "\(name)(\(parameters.description))"
+        }
+    }
+    
     func getValue(left: CNExpressionParseElement, _ right: CNExpressionParseElement, _ inBlock: CNBlock) throws -> CNExpressionParseElement {
         
         let rightValue = try left.value(inBlock)
@@ -132,6 +155,12 @@ func ==(lhs: CNExpressionParseElement, rhs: CNExpressionParseElement) -> Bool {
 class CNExpression: CNBlock {
     
     var source: [CNExpressionParseElement]
+    
+    override var description: String {
+        return source.reduce("") {
+            return $0 + $1.description
+        }
+    }
     
     // akslop notation:
     // A + B * C / (D - E) => A B C * D E - / +
