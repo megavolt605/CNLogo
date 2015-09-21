@@ -55,7 +55,7 @@
 		78260EC51BB08AEF006ADF68 /* statement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statement.png; sourceTree = "<group>"; };
 		78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewCell.swift; sourceTree = "<group>"; };
 		78260ECB1BB090D7006ADF68 /* statement_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statement_fill.png; sourceTree = "<group>"; };
-		78260ECD1BB09FCD006ADF68 /* ScreenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScreenShot.png; sourceTree = "<group>"; };
+		78260ECD1BB09FCD006ADF68 /* ScreenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScreenShot.png; path = ../ScreenShot.png; sourceTree = "<group>"; };
 		78260ED21BB0A0F2006ADF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		783363C01B9E14AC00B9187F /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		7856FA771B9E01B40037E99F /* CNLogo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNLogo.app; sourceTree = BUILT_PRODUCTS_DIR; };
