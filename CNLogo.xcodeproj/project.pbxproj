@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78260EC61BB08AEF006ADF68 /* statement_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 78260EC31BB08AEF006ADF68 /* statement_end.png */; settings = {ASSET_TAGS = (); }; };
+		78260EC71BB08AEF006ADF68 /* statement_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 78260EC41BB08AEF006ADF68 /* statement_start.png */; settings = {ASSET_TAGS = (); }; };
+		78260EC81BB08AEF006ADF68 /* statement.png in Resources */ = {isa = PBXBuildFile; fileRef = 78260EC51BB08AEF006ADF68 /* statement.png */; settings = {ASSET_TAGS = (); }; };
+		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		783363C11B9E14AC00B9187F /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 783363C01B9E14AC00B9187F /* player.png */; settings = {ASSET_TAGS = (); }; };
 		7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7C1B9E01B40037E99F /* AppDelegate.swift */; };
 		7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7E1B9E01B40037E99F /* ViewController.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78260EC31BB08AEF006ADF68 /* statement_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statement_end.png; sourceTree = "<group>"; };
+		78260EC41BB08AEF006ADF68 /* statement_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statement_start.png; sourceTree = "<group>"; };
+		78260EC51BB08AEF006ADF68 /* statement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statement.png; sourceTree = "<group>"; };
+		78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewCell.swift; sourceTree = "<group>"; };
 		783363C01B9E14AC00B9187F /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		7856FA771B9E01B40037E99F /* CNLogo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNLogo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7856FA7B1B9E01B40037E99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +127,9 @@
 				7856FA831B9E01B40037E99F /* Images.xcassets */,
 				7856FA851B9E01B40037E99F /* LaunchScreen.xib */,
 				783363C01B9E14AC00B9187F /* player.png */,
+				78260EC31BB08AEF006ADF68 /* statement_end.png */,
+				78260EC41BB08AEF006ADF68 /* statement_start.png */,
+				78260EC51BB08AEF006ADF68 /* statement.png */,
 				7856FA7A1B9E01B40037E99F /* Supporting Files */,
 			);
 			path = CNLogo;
@@ -156,6 +167,7 @@
 				7856FA7E1B9E01B40037E99F /* ViewController.swift */,
 				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
 				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
+				78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -264,9 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7856FA821B9E01B40037E99F /* Main.storyboard in Resources */,
+				78260EC81BB08AEF006ADF68 /* statement.png in Resources */,
 				7856FA871B9E01B40037E99F /* LaunchScreen.xib in Resources */,
+				78260EC71BB08AEF006ADF68 /* statement_start.png in Resources */,
 				783363C11B9E14AC00B9187F /* player.png in Resources */,
 				7856FA841B9E01B40037E99F /* Images.xcassets in Resources */,
+				78260EC61BB08AEF006ADF68 /* statement_end.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +302,7 @@
 				788949A01BA4A01700CD8246 /* CNTools.swift in Sources */,
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				788949A41BA5896000CD8246 /* CNVariable.swift in Sources */,
+				78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
 				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,
 				78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */,
