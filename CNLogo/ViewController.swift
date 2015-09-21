@@ -15,9 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var animationSpeedSlider: UISlider!
 
     var currentIndex = 0
-    var duration = 0.002
+    var duration = 0.0
     var executing = false
     var paused = false
     
@@ -27,6 +28,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        animationSpeedSlider.value = Float(duration)
+        
         fieldView.opaque = false
         fieldView.backgroundColor = UIColor.clearColor()
         
@@ -128,6 +131,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
+        duration = Double(animationSpeedSlider.value) / 100.0
+    }
+    
     func updateButtons() {
         pauseButton.setTitle(paused ? "Continue" : "Pause", forState: .Normal)
         startButton.setTitle(executing ? "Stop" : "Start", forState: .Normal)
@@ -150,6 +157,8 @@ class ViewController: UIViewController {
         }
         pauseButton.layer.borderWidth = 2.0
         pauseButton.layer.cornerRadius = 4.0
+        
+        animationSpeedSlider.enabled = !executing
         
     }
     

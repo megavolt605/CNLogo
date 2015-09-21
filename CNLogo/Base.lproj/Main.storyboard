@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="12" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4TR-yO-Xz3">
-                                <rect key="frame" x="0.0" y="28" width="200" height="526"/>
+                                <rect key="frame" x="0.0" y="28" width="200" height="488"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -65,25 +65,36 @@
                                     <action selector="pauseButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4L-V7-3AO"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="0by-1z-9b5">
+                                <rect key="frame" x="-2" y="524" width="204" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="animationSurationSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="QxF-xV-iyZ"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XVB-cw-Ja2" firstAttribute="leading" secondItem="4TR-yO-Xz3" secondAttribute="trailing" constant="8" id="7az-cq-ffT"/>
+                            <constraint firstItem="0by-1z-9b5" firstAttribute="centerX" secondItem="4TR-yO-Xz3" secondAttribute="centerX" id="8so-G7-A36"/>
+                            <constraint firstItem="0by-1z-9b5" firstAttribute="top" secondItem="4TR-yO-Xz3" secondAttribute="bottom" constant="8" id="Dit-kk-vpN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JOO-MO-9Jx" secondAttribute="bottom" constant="8" id="DnM-oP-Spj"/>
                             <constraint firstItem="sOd-PA-ged" firstAttribute="width" secondItem="JOO-MO-9Jx" secondAttribute="width" id="FUw-3A-rbD"/>
                             <constraint firstItem="sOd-PA-ged" firstAttribute="centerY" secondItem="JOO-MO-9Jx" secondAttribute="centerY" id="Jt5-7f-K7p"/>
-                            <constraint firstItem="XVB-cw-Ja2" firstAttribute="bottom" secondItem="4TR-yO-Xz3" secondAttribute="bottom" id="MAm-kv-bed"/>
                             <constraint firstItem="XVB-cw-Ja2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="REV-Ad-lVZ"/>
-                            <constraint firstItem="JOO-MO-9Jx" firstAttribute="top" secondItem="4TR-yO-Xz3" secondAttribute="bottom" constant="8" id="TBU-Aj-Xph"/>
+                            <constraint firstItem="sOd-PA-ged" firstAttribute="top" secondItem="XVB-cw-Ja2" secondAttribute="bottom" constant="8" id="SV9-rs-A2d"/>
                             <constraint firstItem="4TR-yO-Xz3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="UTi-Ph-V1L"/>
+                            <constraint firstItem="0by-1z-9b5" firstAttribute="width" secondItem="4TR-yO-Xz3" secondAttribute="width" id="ZG7-sr-iPX"/>
                             <constraint firstItem="sOd-PA-ged" firstAttribute="leading" secondItem="JOO-MO-9Jx" secondAttribute="trailing" constant="8" id="axF-XY-bTe"/>
                             <constraint firstAttribute="leadingMargin" secondItem="4TR-yO-Xz3" secondAttribute="leading" constant="20" id="h4K-cW-Bt1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XVB-cw-Ja2" secondAttribute="trailing" constant="-20" id="iKa-bc-An9"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JOO-MO-9Jx" secondAttribute="leading" id="jcO-lT-hS9"/>
+                            <constraint firstItem="JOO-MO-9Jx" firstAttribute="top" secondItem="0by-1z-9b5" secondAttribute="bottom" constant="8" id="nCE-VI-1wR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animationSpeedSlider" destination="0by-1z-9b5" id="c5T-gK-u4U"/>
                         <outlet property="fieldView" destination="XVB-cw-Ja2" id="21Z-BW-sNX"/>
                         <outlet property="pauseButton" destination="sOd-PA-ged" id="qNJ-gA-HUk"/>
                         <outlet property="startButton" destination="JOO-MO-9Jx" id="YnA-DF-qxu"/>

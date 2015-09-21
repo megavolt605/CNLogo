@@ -11,7 +11,7 @@ import UIKit
 class CNProgramTableViewCell: UITableViewCell {
     
     func setup(item: CNProgramTableViewItem) {
-        var x: CGFloat = 0.0
+        var x: CGFloat = 5.0
 
         let shiftImage = UIImage(named: "statement")
         (0..<item.level).forEach { index in
@@ -35,6 +35,12 @@ class CNProgramTableViewCell: UITableViewCell {
             imageView.image = startImage
             contentView.addSubview(imageView)
             x += 12.0
+            
+            let fillImage = UIImage(named: "statement_fill")
+            let imageBackView = UIImageView(frame: CGRectMake(x, 0.0, contentView.bounds.width - x, contentView.bounds.height))
+            imageBackView.image = fillImage
+            contentView.addSubview(imageBackView)
+            
         }
         
         let cellText = UILabel(frame: CGRectMake(x, 0, contentView.bounds.width - x, contentView.bounds.height))
