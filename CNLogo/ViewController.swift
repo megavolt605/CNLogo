@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         */
 
         program = CNProgram(statements: [
-            CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 20))]),
+            CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 10))]),
             CNStatementVar(name: "length", parameters: [CNExpression(source: [
                 CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
                 CNExpressionParseElement.Div,

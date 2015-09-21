@@ -25,7 +25,7 @@ class CNStatementRepeat: CNStatement {
         try super.execute()
         switch try parameters.first!.execute() {
         case let .int(value):
-            for _ in 0..<value {
+            for _ in 1...value {
                 try statements.forEach {
                     try $0.execute()
                 }

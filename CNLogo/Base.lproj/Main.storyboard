@@ -52,7 +52,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVB-cw-Ja2" customClass="CNFieldView" customModule="CNLogo" customModuleProvider="target">
                                 <rect key="frame" x="208" y="20" width="392" height="534"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.96335078534031415" green="0.96335078534031415" blue="0.96335078534031415" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="heightClass=compact" misplaced="YES">
                                     <rect key="frame" x="170" y="20" width="430" height="334"/>
                                 </variation>
