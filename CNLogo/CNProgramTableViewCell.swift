@@ -13,10 +13,10 @@ class CNProgramTableViewCell: UITableViewCell {
     func setup(item: CNProgramTableViewItem) {
         var x: CGFloat = 5.0
 
-        let shiftImage = UIImage(named: "statement")
+        let shiftImage = UIImage(named: "block_shift")
         (0..<item.level).forEach { index in
             if index != 0 || item.startIndex == nil {
-                let imageView = UIImageView(frame: CGRectMake(x, 0.0, 20.0, contentView.bounds.height))
+                let imageView = UIImageView(frame: CGRectMake(x, 0.0, 10.0, contentView.bounds.height))
                 imageView.image = shiftImage
                 contentView.addSubview(imageView)
                 x += 12.0
@@ -27,20 +27,28 @@ class CNProgramTableViewCell: UITableViewCell {
             
             let startImage: UIImage?
             if item.startIndex == nil {
-                startImage = UIImage(named: "statement_start")
+                startImage = UIImage(named: "block_start")
             } else {
-                startImage = UIImage(named: "statement_end")
+                startImage = UIImage(named: "block_end")
             }
             let imageView = UIImageView(frame: CGRectMake(x, 0.0, 20.0, contentView.bounds.height))
             imageView.image = startImage
             contentView.addSubview(imageView)
             x += 12.0
             
-            let fillImage = UIImage(named: "statement_fill")
+            
+            let fillImage = UIImage(named: "block")
             let imageBackView = UIImageView(frame: CGRectMake(x, 0.0, contentView.bounds.width - x, contentView.bounds.height))
+            imageBackView.layer.magnificationFilter = kCAFilterNearest
             imageBackView.image = fillImage
             contentView.addSubview(imageBackView)
             
+            /*
+            let fillImage = UIImage(named: "block")?.imageWithAlignmentRectInsets(UIEdgeInsetsMake(1.0, 0.0, 1.0, 0.0))
+            let backView = UIImageView(frame: CGRectMake(x, 0.0, contentView.bounds.width - x, contentView.bounds.height))
+            backView.backgroundColor = UIColor(patternImage: fillImage!)
+            contentView.addSubview(backView)
+            */
         }
         
         let cellText = UILabel(frame: CGRectMake(x, 0, contentView.bounds.width - x, contentView.bounds.height))

@@ -29,7 +29,7 @@
                                     <action selector="startButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXf-Uj-Rsc"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="12" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4TR-yO-Xz3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4TR-yO-Xz3">
                                 <rect key="frame" x="0.0" y="28" width="200" height="488"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,10 +38,10 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="I47-gL-1wi" customClass="CNProgramTableViewCell" customModule="CNLogo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="200" height="12"/>
+                                        <rect key="frame" x="0.0" y="28" width="200" height="24"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I47-gL-1wi" id="sBA-7X-6nn">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="12"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
