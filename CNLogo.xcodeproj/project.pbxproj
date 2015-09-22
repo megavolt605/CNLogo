@@ -12,7 +12,6 @@
 		78260EC81BB08AEF006ADF68 /* statement.png in Resources */ = {isa = PBXBuildFile; fileRef = 78260EC51BB08AEF006ADF68 /* statement.png */; settings = {ASSET_TAGS = (); }; };
 		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		78260ECC1BB090D7006ADF68 /* statement_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 78260ECB1BB090D7006ADF68 /* statement_fill.png */; settings = {ASSET_TAGS = (); }; };
-		78260ED31BB0A0F2006ADF68 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 78260ED21BB0A0F2006ADF68 /* README.md */; settings = {ASSET_TAGS = (); }; };
 		783363C11B9E14AC00B9187F /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 783363C01B9E14AC00B9187F /* player.png */; settings = {ASSET_TAGS = (); }; };
 		7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7C1B9E01B40037E99F /* AppDelegate.swift */; };
 		7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7E1B9E01B40037E99F /* ViewController.swift */; };
@@ -311,7 +310,6 @@
 				788949A01BA4A01700CD8246 /* CNTools.swift in Sources */,
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				788949A41BA5896000CD8246 /* CNVariable.swift in Sources */,
-				78260ED31BB0A0F2006ADF68 /* README.md in Sources */,
 				78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
 				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,

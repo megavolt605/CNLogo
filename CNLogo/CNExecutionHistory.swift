@@ -38,6 +38,7 @@ struct CNExecutionHistoryItem {
         case let .TailState(_, toState): return "Tail down \(toState)"
         case .Color: return "Color"
         case let .Width(_, toWidth): return String(format: "Width %.2f", toWidth)
+        case let .Scale(_, toScale): return String(format: "Scale %.2f", toScale)
         }
     }
     
@@ -50,4 +51,5 @@ enum CNExecutionHistoryItemType {
     case TailState(fromState: Bool, toState: Bool)
     case Color(fromColor: CGColor, toColor: CGColor)
     case Width(fromWidth: CGFloat, toWidth: CGFloat)
+    case Scale(fromScale: CGFloat, toScale: CGFloat)
 }

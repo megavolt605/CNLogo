@@ -15,6 +15,7 @@ struct CNPlayerState {
     var color: CGColor = UIColor.blackColor().CGColor
     var width: CGFloat = 2.0
     var tailDown: Bool = true
+    var scale: CGFloat = 1.0
     
     func snapshot() -> CNPlayerState {
         var res = self
@@ -49,15 +50,17 @@ class CNPlayer {
     func moveForward(value: CNExpression) throws {
         switch try value.execute() {
         case let .double(distance):
+            let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPointMake(
-                state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
-                state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+                state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
+                state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: true)
         case let .int(distance):
+            let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPointMake(
-                state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
-                state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+                state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
+                state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: true)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
@@ -67,15 +70,17 @@ class CNPlayer {
     func moveBackward(value: CNExpression) throws {
         switch try value.execute() {
         case let .double(distance):
+            let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPointMake(
-                state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
-                state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+                state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
+                state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: false)
         case let .int(distance):
+            let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPointMake(
-                state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(distance),
-                state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(distance)
+                state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
+                state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: false)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
@@ -112,8 +117,18 @@ class CNPlayer {
         switch try value.execute() {
         case let .double(newWidth):
             let oldWidth = state.width
-            state.width = CGFloat(newWidth)
+            state.width = CGFloat(newWidth) * state.scale
             program.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width))
+        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        }
+    }
+    
+    func setScale(value: CNExpression) throws {
+        switch try value.execute() {
+        case let .double(newScale):
+            let oldScale = state.scale
+            state.scale = CGFloat(newScale)
+            program.executionHistory.append(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale))
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }

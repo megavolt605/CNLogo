@@ -11,7 +11,7 @@ import Foundation
 class CNStatementForward: CNStatement {
     
     override var description: String {
-        return "FORWARD \(parametersDescription)"
+        return "FORWARD \(parametersDescription)" + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
     }
     
     override func prepare() throws {
@@ -123,7 +123,7 @@ class CNStatementColor: CNStatement {
 class CNStatementWidth: CNStatement {
     
     override var description: String {
-        return "WIDTH \(parametersDescription)"
+        return "WIDTH \(parametersDescription)" + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
     }
     
     override func prepare() throws {
@@ -153,6 +153,28 @@ class CNStatementClear: CNStatement {
         program.clear()
         return .unknown
     }
+    
+}
+
+class CNStatementScale: CNStatement {
+    
+    override var description: String {
+        return "SCALE \(parametersDescription)"
+    }
+    
+    override func prepare() throws {
+        try super.prepare()
+        if parameters.count != 1 {
+            try throwError()
+        }
+    }
+    
+    override func execute() throws -> CNValue {
+        try super.execute()
+        try program.player.setScale(parameters.first!)
+        return .unknown
+    }
+    
     
 }
 

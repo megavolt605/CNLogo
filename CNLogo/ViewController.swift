@@ -211,7 +211,7 @@ class ViewController: UIViewController {
                                 self.visualizeStep()
                             }
                         }
-                    case .TailState, .Color, .Width:
+                    case .TailState, .Color, .Width, .Scale:
                         currentIndex++
                         shouldBreak = false
                         break
