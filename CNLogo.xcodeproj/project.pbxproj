@@ -18,9 +18,17 @@
 		7856FA821B9E01B40037E99F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA801B9E01B40037E99F /* Main.storyboard */; };
 		7856FA841B9E01B40037E99F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA831B9E01B40037E99F /* Images.xcassets */; };
 		7856FA871B9E01B40037E99F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA851B9E01B40037E99F /* LaunchScreen.xib */; };
-		7856FA931B9E01B40037E99F /* CNLogoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNLogoTests.swift */; };
+		7856FA931B9E01B40037E99F /* CNExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNExpressionTests.swift */; };
 		7873582A1B9F5D110092F21E /* CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787358291B9F5D110092F21E /* CNExpression.swift */; settings = {ASSET_TAGS = (); }; };
 		7873582C1B9F6C800092F21E /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7873582B1B9F6C800092F21E /* CNStack.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D961BB1E2D3002A7E0D /* CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787358291B9F5D110092F21E /* CNExpression.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D971BB1E2FC002A7E0D /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9501B9E22C600AAFB1D /* CNValue.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D981BB1E305002A7E0D /* CNBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9541B9E22EF00AAFB1D /* CNBlock.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D991BB1E310002A7E0D /* CNStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9581B9E233100AAFB1D /* CNStatement.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D9A1BB1E318002A7E0D /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7873582B1B9F6C800092F21E /* CNStack.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D9B1BB1E31D002A7E0D /* CNFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE9521B9E22DE00AAFB1D /* CNFunction.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D9C1BB1E326002A7E0D /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A31BA5896000CD8246 /* CNVariable.swift */; settings = {ASSET_TAGS = (); }; };
+		78771D9D1BB1E339002A7E0D /* CNTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889499F1BA4A01700CD8246 /* CNTools.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A01BA4A01700CD8246 /* CNTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889499F1BA4A01700CD8246 /* CNTools.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A21BA5891E00CD8246 /* CNPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A11BA5891E00CD8246 /* CNPlayer.swift */; settings = {ASSET_TAGS = (); }; };
 		788949A41BA5896000CD8246 /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788949A31BA5896000CD8246 /* CNVariable.swift */; settings = {ASSET_TAGS = (); }; };
@@ -66,7 +74,7 @@
 		7856FA861B9E01B40037E99F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7856FA8C1B9E01B40037E99F /* CNLogoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNLogoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7856FA911B9E01B40037E99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7856FA921B9E01B40037E99F /* CNLogoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLogoTests.swift; sourceTree = "<group>"; };
+		7856FA921B9E01B40037E99F /* CNExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNExpressionTests.swift; sourceTree = "<group>"; };
 		787358291B9F5D110092F21E /* CNExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExpression.swift; sourceTree = "<group>"; };
 		7873582B1B9F6C800092F21E /* CNStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStack.swift; sourceTree = "<group>"; };
 		7889499F1BA4A01700CD8246 /* CNTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTools.swift; sourceTree = "<group>"; };
@@ -153,7 +161,7 @@
 		7856FA8F1B9E01B40037E99F /* CNLogoTests */ = {
 			isa = PBXGroup;
 			children = (
-				7856FA921B9E01B40037E99F /* CNLogoTests.swift */,
+				7856FA921B9E01B40037E99F /* CNExpressionTests.swift */,
 				7856FA901B9E01B40037E99F /* Supporting Files */,
 			);
 			path = CNLogoTests;
@@ -254,7 +262,6 @@
 					};
 					7856FA8B1B9E01B40037E99F = {
 						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 7856FA761B9E01B40037E99F;
 					};
 				};
 			};
@@ -334,7 +341,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7856FA931B9E01B40037E99F /* CNLogoTests.swift in Sources */,
+				78771D981BB1E305002A7E0D /* CNBlock.swift in Sources */,
+				78771D9A1BB1E318002A7E0D /* CNStack.swift in Sources */,
+				78771D9C1BB1E326002A7E0D /* CNVariable.swift in Sources */,
+				78771D971BB1E2FC002A7E0D /* CNValue.swift in Sources */,
+				78771D991BB1E310002A7E0D /* CNStatement.swift in Sources */,
+				78771D9B1BB1E31D002A7E0D /* CNFunction.swift in Sources */,
+				78771D961BB1E2D3002A7E0D /* CNExpression.swift in Sources */,
+				78771D9D1BB1E339002A7E0D /* CNTools.swift in Sources */,
+				7856FA931B9E01B40037E99F /* CNExpressionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +494,6 @@
 		7856FA9A1B9E01B40037E99F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -488,19 +502,16 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CNLogo.app/CNLogo";
 			};
 			name = Debug;
 		};
 		7856FA9B1B9E01B40037E99F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CNLogoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CNLogo.app/CNLogo";
 			};
 			name = Release;
 		};

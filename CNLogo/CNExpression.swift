@@ -186,17 +186,20 @@ class CNExpression: CNBlock {
         for element in source {
             if CNExpressionParseElement.operators.contains({$0 == element}) {
                 // operator
-                if let oper = operatorStack.peek() {
-                    while ((element.associativity == .Right) && (element.weight < oper.weight))
-                            ||
-                          ((element.associativity == .Left) && (element.weight <= oper.weight))
-                    {
-                        preparedSource.append(operatorStack.pop()!)
+                repeat {
+                    if let oper = operatorStack.peek() {
+                        let c1 = ((element.associativity == .Right) && (element.weight < oper.weight))
+                        let c2 = ((element.associativity == .Left) && (element.weight <= oper.weight))
+                        if CNExpressionParseElement.operators.contains({$0 == oper}) && (c1 || c2) {
+                            preparedSource.append(operatorStack.pop()!)
+                        } else {
+                            break
+                        }
+                    } else {
+                        break
                     }
-                    operatorStack.push(element)
-                } else {
-                    operatorStack.push(element)
-                }
+                } while true
+                operatorStack.push(element)
             } else {
                 // not operator
                 switch element {
