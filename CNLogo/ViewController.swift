@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var animationSpeedSlider: UISlider!
 
     var currentIndex = 0
-    var duration = 0.0
+    var duration = 0.001
     var executing = false
     var paused = false
     
@@ -132,7 +132,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
-        duration = Double(animationSpeedSlider.value) / 100.0
+        duration = Double(animationSpeedSlider.value) / 1000.0
+        print(duration)
     }
     
     func updateButtons() {

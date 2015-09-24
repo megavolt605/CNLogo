@@ -88,83 +88,50 @@ class CNFieldView: UIView {
         layer.strokeEnd = duration > 0.01 ? 0.0 : 1.0
         drawingView.layer.addSublayer(layer)
         layers.append(layer)
-        if duration > 0.01 {
-            let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
-            strokeAnimation.duration = duration
-            strokeAnimation.fromValue = 0.0
-            strokeAnimation.toValue = 1.0
-            strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-            strokeAnimation.fillMode = kCAFillModeForwards
-            strokeAnimation.removedOnCompletion = false
-            strokeAnimation.completion = completion
-            layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
-            addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
-        } else {
-            addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
-            if completion != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion?(true)
-                }
-            }
-        }
+        let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        strokeAnimation.duration = duration
+        strokeAnimation.fromValue = 0.0
+        strokeAnimation.toValue = 1.0
+        strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        strokeAnimation.fillMode = kCAFillModeForwards
+        strokeAnimation.removedOnCompletion = false
+        strokeAnimation.completion = completion
+        layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
+        addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
 
     }
     
     func addPlayerMoveWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
-        if duration > 0.01 {
-            let playerAnimationX = CABasicAnimation(keyPath: "position.x")
-            playerAnimationX.duration = duration
-            playerAnimationX.fromValue = fromPoint.x
-            playerAnimationX.toValue = toPoint.x
-            playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-            playerAnimationX.fillMode = kCAFillModeForwards
-            playerAnimationX.removedOnCompletion = false
-            playerAnimationX.completion = completion
-            playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
-            
-            let playerAnimationY = CABasicAnimation(keyPath: "position.y")
-            playerAnimationY.duration = duration
-            playerAnimationY.fromValue = fromPoint.y
-            playerAnimationY.toValue = toPoint.y
-            playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-            playerAnimationY.fillMode = kCAFillModeForwards
-            playerAnimationY.removedOnCompletion = false
-            playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
-        } else {
-            CATransaction.begin()
-            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-            playerLayer.position = toPoint
-            CATransaction.commit()
-            if completion != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion?(true)
-                }
-            }
-        }
+        let playerAnimationX = CABasicAnimation(keyPath: "position.x")
+        playerAnimationX.duration = duration
+        playerAnimationX.fromValue = fromPoint.x
+        playerAnimationX.toValue = toPoint.x
+        playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimationX.fillMode = kCAFillModeForwards
+        playerAnimationX.removedOnCompletion = false
+        playerAnimationX.completion = completion
+        playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
+        
+        let playerAnimationY = CABasicAnimation(keyPath: "position.y")
+        playerAnimationY.duration = duration
+        playerAnimationY.fromValue = fromPoint.y
+        playerAnimationY.toValue = toPoint.y
+        playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimationY.fillMode = kCAFillModeForwards
+        playerAnimationY.removedOnCompletion = false
+        playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
     }
 
     func addPlayerRotationWithItem(item: CNExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
-        if duration > 0.01 {
-            let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-            playerAnimation.duration = duration
-            playerAnimation.fromValue = fromAngle
-            playerAnimation.toValue = toAngle
-            playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-            playerAnimation.fillMode = kCAFillModeForwards
-            playerAnimation.removedOnCompletion = false
-            playerAnimation.completion = completion
-            playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
-        } else {
-            CATransaction.begin()
-            CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-            playerLayer.transform = CATransform3DMakeRotation(toAngle, 0, 0, 1.0)
-            CATransaction.commit()
-            if completion != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion?(true)
-                }
-            }
-        }
+        let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        playerAnimation.duration = duration
+        playerAnimation.fromValue = fromAngle
+        playerAnimation.toValue = toAngle
+        playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimation.fillMode = kCAFillModeForwards
+        playerAnimation.removedOnCompletion = false
+        playerAnimation.completion = completion
+        playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
     }
 }
 

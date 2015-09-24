@@ -65,7 +65,7 @@
                                     <action selector="pauseButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4L-V7-3AO"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="0by-1z-9b5">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="0by-1z-9b5">
                                 <rect key="frame" x="-2" y="524" width="204" height="31"/>
                                 <animations/>
                                 <connections>
