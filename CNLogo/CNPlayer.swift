@@ -119,7 +119,11 @@ class CNPlayer {
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
             program.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), block: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        case let .int(newWidth):
+            let oldWidth = state.width
+            state.width = CGFloat(newWidth) * state.scale
+            program.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), block: fromBlock)
+        default: throw NSError(domain: "Numeric expected", code: 0, userInfo: nil)
         }
     }
     

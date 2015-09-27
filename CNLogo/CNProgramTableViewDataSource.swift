@@ -15,6 +15,12 @@ class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableView
     private var program: CNProgram
     private var tableList: [CNProgramTableViewItem] = []
     
+    func indexOfBlock(block: CNBlock) -> Int? {
+        return tableList.indexOf { item in
+            return item.block === block
+        }
+    }
+    
     // UITableViewDataSource protocol
     @objc func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

@@ -57,6 +57,9 @@ class ViewController: UIViewController {
         */
 
         program = CNProgram(statements: [
+            CNStatementPrint(
+                parameters: [makeExprFromValue(CNValue.string(value: "Started"))]
+            ),
             CNStatementVar(name: "step", parameters: [makeExprFromValue(CNValue.int(value: 1))]),
             CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 10))]),
             CNStatementVar(name: "length", parameters: [CNExpression(source: [
@@ -64,6 +67,7 @@ class ViewController: UIViewController {
                 CNExpressionParseElement.Div,
                 CNExpressionParseElement.Variable(name: "sides")
             ])]),
+            CNStatementColor(parameters: [makeExprFromValue(CNValue.color(value: UIColor.orangeColor()))]),
             CNStatementVar(name: "angle", parameters: [CNExpression(source: [
                 CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
                 CNExpressionParseElement.Div,
@@ -74,7 +78,14 @@ class ViewController: UIViewController {
                 statements: [
                     CNStatementPrint(
                         parameters: [CNExpression(source: [
+                            CNExpressionParseElement.Variable(name: "step")
+                        ])]
+                    ),
+                    CNStatementWidth(
+                        parameters: [CNExpression(source: [
                             CNExpressionParseElement.Variable(name: "step"),
+                            CNExpressionParseElement.Div,
+                            CNExpressionParseElement.Value(value: CNValue.double(value: 5.0))
                         ])]
                     ),
                     CNStatementVar(
@@ -101,6 +112,9 @@ class ViewController: UIViewController {
                     ),
                     CNStatementRotate(parameters: [makeExprFromValue(CNValue.double(value: 18.0))])
                 ]
+            ),
+            CNStatementPrint(
+                parameters: [makeExprFromValue(CNValue.string(value: "Finished"))]
             )
         ])
 
@@ -200,6 +214,11 @@ class ViewController: UIViewController {
                 repeat {
                     shouldBreak = true
                     let item = program.executionHistory.history[currentIndex]
+                    if let block = item.block {
+                        if let cellRow = tableViewDataSource.indexOfBlock(block) {
+                            tableView.selectRowAtIndexPath(NSIndexPath(forRow: cellRow, inSection: 0), animated: true, scrollPosition: .Middle)
+                        }
+                    }
                     switch item.type {
                     case .Clear:
                         fieldView.clear()
@@ -244,9 +263,11 @@ class ViewController: UIViewController {
                     
                 } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
             }
-        } else {
+        }
+
+        if currentIndex >= program.executionHistory.history.count {
             fieldView.makeSnapshot(true)
-            runState = .Executing
+            runState = .Stopped
             updateButtons()
         }
     }

@@ -86,6 +86,7 @@ class CNFieldView: UIView {
         layer.strokeColor = item.playerState.color
         layer.lineWidth = item.playerState.width
         layer.strokeEnd = duration > 0.01 ? 0.0 : 1.0
+        layer.lineCap = kCALineCapRound
         drawingView.layer.addSublayer(layer)
         layers.append(layer)
         let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")

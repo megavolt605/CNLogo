@@ -50,6 +50,7 @@ extension CNExpression {
     
 }
 
+
 extension CNStatementVar {
     
     @objc override func createBubbles(height: CGFloat, prefix: String = "") -> [CNBubble]? {
@@ -80,6 +81,15 @@ extension CNStatementVar {
 extension CNExpressionParseElement {
 
     func createBubbles(height: CGFloat) -> [CNBubble]? {
+        switch self {
+        case let .Value(value):
+            switch value {
+            case let .color(color):
+                return [CNBubble(text: "", color: color, height: height)]
+            default: break
+            }
+        default: break
+        }
         return [CNBubble(
             text: description,
             color: UIColor(red: 0.75, green: 1.0, blue: 0.75, alpha: 1.0), height: height
