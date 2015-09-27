@@ -26,8 +26,16 @@ class CNBlock {
     private var prepared = false
     weak var parentBlock: CNBlock?
 
-    var description: String {
+    var name: String {
         return "Anonymous BLOCK"
+    }
+    
+    var description: String {
+        if parameters.count > 0 {
+            return "\(name) \(parametersDescription)"
+        } else {
+            return name
+        }
     }
     
     var parametersDescription: String {

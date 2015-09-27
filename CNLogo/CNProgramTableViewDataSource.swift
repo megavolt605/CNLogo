@@ -10,7 +10,7 @@ import UIKit
 
 typealias CNProgramTableViewItem = (block: CNBlock, level: Int, startIndex: Int?)
 
-class CNProgramTableViewDataSource: NSObject, UITableViewDataSource {
+class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     private var program: CNProgram
     private var tableList: [CNProgramTableViewItem] = []
@@ -26,10 +26,14 @@ class CNProgramTableViewDataSource: NSObject, UITableViewDataSource {
     
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CNProgramTableViewCell
-        cell.setup(tableList[indexPath.row])
+        cell.setup(tableList[indexPath.row], height: CNProgramTableViewCell.defaultHeight)
         return cell
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CNProgramTableViewCell.defaultHeight
+    }
+    
     func scanBlock(block: CNBlock, level: Int) {
         block.statements.forEach {
             let startIndex = tableList.count

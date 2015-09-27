@@ -9,6 +9,10 @@
 import UIKit
 import CoreGraphics
 
+enum CNRunState {
+    case Stopped, Executing, Paused
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet var fieldView: CNFieldView!
@@ -19,8 +23,7 @@ class ViewController: UIViewController {
 
     var currentIndex = 0
     var duration = 0.001
-    var executing = false
-    var paused = false
+    var runState = CNRunState.Stopped
     
     var tableViewDataSource: CNProgramTableViewDataSource!
     
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
         */
 
         program = CNProgram(statements: [
+            CNStatementVar(name: "step", parameters: [makeExprFromValue(CNValue.int(value: 1))]),
             CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 10))]),
             CNStatementVar(name: "length", parameters: [CNExpression(source: [
                 CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
@@ -68,6 +72,18 @@ class ViewController: UIViewController {
             CNStatementRepeat(
                 parameters: [makeExprFromValue(CNValue.int(value: 19))],
                 statements: [
+                    CNStatementPrint(
+                        parameters: [CNExpression(source: [
+                            CNExpressionParseElement.Variable(name: "step"),
+                        ])]
+                    ),
+                    CNStatementVar(
+                        name: "step", parameters: [CNExpression(source: [
+                            CNExpressionParseElement.Variable(name: "step"),
+                            CNExpressionParseElement.Add,
+                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                        ])]
+                    ),
                     CNStatementRepeat(
                         parameters: [CNExpression(source: [
                             CNExpressionParseElement.Variable(name: "sides"),
@@ -99,15 +115,15 @@ class ViewController: UIViewController {
         tableViewDataSource = CNProgramTableViewDataSource(program: program)
         tableView.reloadData()
         tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDataSource
     }
 
     @IBAction func startButtonTouchUpInside(sender: AnyObject) {
-        if executing {
-            executing = false
+        if runState == .Executing {
+            runState = .Stopped
             updateButtons()
         } else {
-            paused = false
-            executing = true
+            runState = .Executing
             updateButtons()
             do {
                 fieldView.clear()
@@ -124,11 +140,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pauseButtonTouchUpInside(sender: AnyObject) {
-        paused = !paused
-        updateButtons()
-        if !paused {
+        if runState == .Executing {
+            runState = .Paused
+        } else {
+            runState = .Executing
             visualizeStep()
         }
+        updateButtons()
     }
     
     @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
@@ -137,9 +155,9 @@ class ViewController: UIViewController {
     }
     
     func updateButtons() {
-        pauseButton.setTitle(paused ? "Continue" : "Pause", forState: .Normal)
-        startButton.setTitle(executing ? "Stop" : "Start", forState: .Normal)
-        pauseButton.enabled = executing
+        pauseButton.setTitle(runState == .Paused ? "Continue" : "Pause", forState: .Normal)
+        startButton.setTitle(runState == .Stopped ? "Start" : "Stop", forState: .Normal)
+        pauseButton.enabled = runState == .Executing
 
         startButton.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)
         startButton.layer.borderColor = UIColor(red: 0.0, green: 0.65, blue: 0.0, alpha: 1.0).CGColor
@@ -159,7 +177,7 @@ class ViewController: UIViewController {
         pauseButton.layer.borderWidth = 2.0
         pauseButton.layer.cornerRadius = 4.0
         
-        animationSpeedSlider.enabled = !executing
+        animationSpeedSlider.enabled = runState != .Executing
         
     }
     
@@ -175,7 +193,7 @@ class ViewController: UIViewController {
     
     func visualizeStep() {
         if currentIndex < program.executionHistory.history.count {
-            if executing && !paused {
+            if runState == .Executing {
                 fieldView.makeSnapshot()
                 var shouldBreak = true
                 var rect = CGRectZero
@@ -212,7 +230,13 @@ class ViewController: UIViewController {
                                 self.visualizeStep()
                             }
                         }
-                    case .TailState, .Color, .Width, .Scale:
+                    case let .Print(value):
+                        print(value)
+                        currentIndex++
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.visualizeStep()
+                        }
+                    case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
                         currentIndex++
                         shouldBreak = false
                         break
@@ -222,7 +246,7 @@ class ViewController: UIViewController {
             }
         } else {
             fieldView.makeSnapshot(true)
-            executing = false
+            runState = .Executing
             updateButtons()
         }
     }

@@ -13,9 +13,10 @@ class CNExecutionHistory {
     
     var history: [CNExecutionHistoryItem] = []
     
-    func append(itemType: CNExecutionHistoryItemType) {
+    func append(itemType: CNExecutionHistoryItemType, block: CNBlock?) {
         let playerState = program.player.state.snapshot()
-        history.append(CNExecutionHistoryItem(type: itemType, playerState: playerState))
+        let item = CNExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
+        history.append(item)
     }
     
     func clear() {
@@ -29,6 +30,7 @@ struct CNExecutionHistoryItem {
 
     var type: CNExecutionHistoryItemType
     var playerState: CNPlayerState
+    weak var block: CNBlock?
 
     var description: String {
         switch type {
@@ -39,6 +41,10 @@ struct CNExecutionHistoryItem {
         case .Color: return "Color"
         case let .Width(_, toWidth): return String(format: "Width %.2f", toWidth)
         case let .Scale(_, toScale): return String(format: "Scale %.2f", toScale)
+        case .Step: return "Step"
+        case .StepIn: return "Step In"
+        case .StepOut: return "Step Out"
+        case let .Print(value): return "Print '\(value)'"
         }
     }
     
@@ -52,4 +58,6 @@ enum CNExecutionHistoryItemType {
     case Color(fromColor: CGColor, toColor: CGColor)
     case Width(fromWidth: CGFloat, toWidth: CGFloat)
     case Scale(fromScale: CGFloat, toScale: CGFloat)
+    case Step, StepIn, StepOut
+    case Print(value: String)
 }

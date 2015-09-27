@@ -15,6 +15,8 @@
 		7856FA841B9E01B40037E99F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA831B9E01B40037E99F /* Images.xcassets */; };
 		7856FA871B9E01B40037E99F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA851B9E01B40037E99F /* LaunchScreen.xib */; };
 		7856FA931B9E01B40037E99F /* CNExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNExpressionTests.swift */; };
+		785E7A761BB475FB00998ADB /* CNVisualElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A751BB475FB00998ADB /* CNVisualElements.swift */; settings = {ASSET_TAGS = (); }; };
+		785E7A781BB7F29100998ADB /* CNBlockVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A771BB7F29100998ADB /* CNBlockVisual.swift */; settings = {ASSET_TAGS = (); }; };
 		7873582A1B9F5D110092F21E /* CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787358291B9F5D110092F21E /* CNExpression.swift */; settings = {ASSET_TAGS = (); }; };
 		7873582C1B9F6C800092F21E /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7873582B1B9F6C800092F21E /* CNStack.swift */; settings = {ASSET_TAGS = (); }; };
 		78771D961BB1E2D3002A7E0D /* CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787358291B9F5D110092F21E /* CNExpression.swift */; settings = {ASSET_TAGS = (); }; };
@@ -71,6 +73,8 @@
 		7856FA8C1B9E01B40037E99F /* CNLogoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNLogoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7856FA911B9E01B40037E99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7856FA921B9E01B40037E99F /* CNExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNExpressionTests.swift; sourceTree = "<group>"; };
+		785E7A751BB475FB00998ADB /* CNVisualElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVisualElements.swift; sourceTree = "<group>"; };
+		785E7A771BB7F29100998ADB /* CNBlockVisual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBlockVisual.swift; sourceTree = "<group>"; };
 		787358291B9F5D110092F21E /* CNExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExpression.swift; sourceTree = "<group>"; };
 		7873582B1B9F6C800092F21E /* CNStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStack.swift; sourceTree = "<group>"; };
 		78771DAF1BB1FDD3002A7E0D /* block_shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_shift.png; sourceTree = "<group>"; };
@@ -134,10 +138,13 @@
 			isa = PBXGroup;
 			children = (
 				78FDE9601B9E24C800AAFB1D /* Core */,
+				785E7A771BB7F29100998ADB /* CNBlockVisual.swift */,
+				785E7A751BB475FB00998ADB /* CNVisualElements.swift */,
 				78C0D35F1BB03D2B00CCCE70 /* User Interface */,
 				7856FA801B9E01B40037E99F /* Main.storyboard */,
 				7856FA831B9E01B40037E99F /* Images.xcassets */,
 				7856FA851B9E01B40037E99F /* LaunchScreen.xib */,
+				7856FA7C1B9E01B40037E99F /* AppDelegate.swift */,
 				78771DB01BB1FDD3002A7E0D /* block_start.png */,
 				78771DAF1BB1FDD3002A7E0D /* block_shift.png */,
 				78771DB61BB1FEA5002A7E0D /* block_end.png */,
@@ -178,11 +185,10 @@
 		78C0D35F1BB03D2B00CCCE70 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				7856FA7C1B9E01B40037E99F /* AppDelegate.swift */,
 				7856FA7E1B9E01B40037E99F /* ViewController.swift */,
 				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
-				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
 				78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */,
+				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -318,11 +324,13 @@
 				78FDE9511B9E22C600AAFB1D /* CNValue.swift in Sources */,
 				788949A41BA5896000CD8246 /* CNVariable.swift in Sources */,
 				78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */,
+				785E7A761BB475FB00998ADB /* CNVisualElements.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
 				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,
 				78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */,
 				78FDE95F1B9E238B00AAFB1D /* CNWorkflow.swift in Sources */,
 				78FDE9551B9E22EF00AAFB1D /* CNBlock.swift in Sources */,
+				785E7A781BB7F29100998ADB /* CNBlockVisual.swift in Sources */,
 				78D4FC311BAEA27C00BC5C1E /* CNExecutionHistory.swift in Sources */,
 				78FDE95B1B9E235200AAFB1D /* CNSystemStatements.swift in Sources */,
 				78FDE95D1B9E236B00AAFB1D /* CNBasicFunctions.swift in Sources */,

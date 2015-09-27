@@ -10,8 +10,12 @@ import Foundation
 
 class CNStatementForward: CNStatement {
     
+    override var name: String {
+        return "FORWARD"
+    }
+    
     override var description: String {
-        return "FORWARD \(parametersDescription)" + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
     }
     
     override func prepare() throws {
@@ -23,7 +27,7 @@ class CNStatementForward: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.moveForward(parameters.first!)
+        try program.player.moveForward(parameters.first!, fromBlock: self)
         return .unknown
     }
 
@@ -31,8 +35,8 @@ class CNStatementForward: CNStatement {
 
 class CNStatementBackward: CNStatement {
     
-    override var description: String {
-        return "BACKWARD \(parametersDescription)"
+    override var name: String {
+        return "BACKWARD"
     }
     
     override func prepare() throws {
@@ -44,7 +48,7 @@ class CNStatementBackward: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.moveBackward(parameters.first!)
+        try program.player.moveBackward(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -52,8 +56,8 @@ class CNStatementBackward: CNStatement {
 
 class CNStatementRotate: CNStatement {
     
-    override var description: String {
-        return "ROTATE \(parametersDescription)"
+    override var name: String {
+        return "ROTATE"
     }
     
     override func prepare() throws {
@@ -65,7 +69,7 @@ class CNStatementRotate: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.rotate(parameters.first!)
+        try program.player.rotate(parameters.first!, fromBlock: self)
         return .unknown
     }
 
@@ -73,13 +77,13 @@ class CNStatementRotate: CNStatement {
 
 class CNStatementTailDown: CNStatement {
     
-    override var description: String {
+    override var name: String {
         return "TAIL DOWN"
     }
     
     override func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown(true)
+        program.player.tailDown(true, fromBlock: self)
         return .unknown
     }
     
@@ -87,13 +91,13 @@ class CNStatementTailDown: CNStatement {
 
 class CNStatementTailUp: CNStatement {
     
-    override var description: String {
+    override var name: String {
         return "TAIL UP"
     }
     
     override func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown(false)
+        program.player.tailDown(false, fromBlock: self)
         return .unknown
     }
     
@@ -101,8 +105,8 @@ class CNStatementTailUp: CNStatement {
 
 class CNStatementColor: CNStatement {
     
-    override var description: String {
-        return "COLOR \(parametersDescription)"
+    override var name: String {
+        return "COLOR"
     }
     
     override func prepare() throws {
@@ -114,7 +118,7 @@ class CNStatementColor: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setColor(parameters.first!)
+        try program.player.setColor(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -122,8 +126,12 @@ class CNStatementColor: CNStatement {
 
 class CNStatementWidth: CNStatement {
     
+    override var name: String {
+        return "WIDTH"
+    }
+    
     override var description: String {
-        return "WIDTH \(parametersDescription)" + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
     }
     
     override func prepare() throws {
@@ -135,7 +143,7 @@ class CNStatementWidth: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setWidth(parameters.first!)
+        try program.player.setWidth(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -144,7 +152,7 @@ class CNStatementWidth: CNStatement {
 
 class CNStatementClear: CNStatement {
     
-    override var description: String {
+    override var name: String {
         return "CLEAR"
     }
     
@@ -158,8 +166,8 @@ class CNStatementClear: CNStatement {
 
 class CNStatementScale: CNStatement {
     
-    override var description: String {
-        return "SCALE \(parametersDescription)"
+    override var name: String {
+        return "SCALE"
     }
     
     override func prepare() throws {
@@ -171,7 +179,7 @@ class CNStatementScale: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setScale(parameters.first!)
+        try program.player.setScale(parameters.first!, fromBlock: self)
         return .unknown
     }
     

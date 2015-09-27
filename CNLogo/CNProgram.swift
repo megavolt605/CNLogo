@@ -24,7 +24,7 @@ enum CNError: ErrorType {
 
 class CNProgram: CNBlock {
 
-    override var description: String {
+    override var name: String {
         return "PROGRAM"
     }
     
@@ -32,12 +32,12 @@ class CNProgram: CNBlock {
     var executionHistory = CNExecutionHistory()
     
     func clear() {
+        player.clear(nil)
         executionHistory.clear()
-        player.clear()
     }
     
     override func execute() throws -> CNValue {
-        player.clear()
+        clear()
         return try super.execute()
     }
     

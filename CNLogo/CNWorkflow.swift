@@ -10,8 +10,8 @@ import Foundation
 
 class CNStatementRepeat: CNStatement {
     
-    override var description: String {
-        return "REPEAT \(parametersDescription)"
+    override var name: String {
+        return "REPEAT"
     }
     
     override func prepare() throws {
@@ -23,6 +23,7 @@ class CNStatementRepeat: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
+        program.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
         switch try parameters.first!.execute() {
         case let .int(value):
             for _ in 1...value {
@@ -32,6 +33,7 @@ class CNStatementRepeat: CNStatement {
             }
         default: throw NSError(domain: "Int expected", code: 0, userInfo: nil)
         }
+        program.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
         return .unknown
     }
     
@@ -39,8 +41,8 @@ class CNStatementRepeat: CNStatement {
 
 class CNStatementWhile: CNStatement {
 
-    override var description: String {
-        return "WHILE \(parametersDescription)"
+    override var name: String {
+        return "WHILE"
     }
     
     override func prepare() throws {
@@ -52,6 +54,7 @@ class CNStatementWhile: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
+        program.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
         repeat {
             switch try parameters.first!.execute() {
             case let .bool(value):
@@ -60,6 +63,7 @@ class CNStatementWhile: CNStatement {
                         try $0.execute()
                     }
                 } else {
+                    program.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
                     break
                 }
             default: try throwError()
@@ -71,8 +75,8 @@ class CNStatementWhile: CNStatement {
 
 class CNStatementIf: CNStatement {
 
-    override var description: String {
-        return "IF \(parametersDescription)"
+    override var name: String {
+        return "IF"
     }
     
     var statementsElse: [CNStatement] = []
@@ -86,21 +90,21 @@ class CNStatementIf: CNStatement {
     
     override func execute() throws -> CNValue {
         try super.execute()
-        repeat {
-            switch try parameters.first!.execute() {
-            case let .bool(value):
-                if value {
-                    try statements.forEach {
-                        try $0.execute()
-                    }
-                } else {
-                    try statementsElse.forEach {
-                        try $0.execute()
-                    }
+        program.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+        switch try parameters.first!.execute() {
+        case let .bool(value):
+            if value {
+                try statements.forEach {
+                    try $0.execute()
                 }
-            default: try throwError()
+            } else {
+                try statementsElse.forEach {
+                    try $0.execute()
+                }
             }
-        } while true
+        default: try throwError()
+        }
+        return .unknown
     }
     
 

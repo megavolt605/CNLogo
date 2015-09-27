@@ -10,7 +10,11 @@ import Foundation
 
 class CNFunction: CNBlock {
     
-    var name: String
+    private var _name: String
+    override var name: String {
+        return _name
+    }
+    
     var parametersDesc: [CNValue]
     
     override var description: String {
@@ -31,7 +35,7 @@ class CNFunction: CNBlock {
     }
     
     init(name: String, parametersDesc: [CNValue] = []) {
-        self.name = name
+        self._name = name
         self.parametersDesc = parametersDesc
         super.init(parameters: [], statements: [], functions: [])
     }

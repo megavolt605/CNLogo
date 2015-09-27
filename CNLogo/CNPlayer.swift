@@ -30,24 +30,24 @@ class CNPlayer {
     var state = CNPlayerState()
     var startState = CNPlayerState()
     
-    func clear() {
+    func clear(fromBlock: CNBlock?) {
         state = startState
-        program.executionHistory.append(CNExecutionHistoryItemType.Clear)
+        program.executionHistory.append(CNExecutionHistoryItemType.Clear, block: fromBlock)
     }
     
-    func tailDown(isDown: Bool) {
+    func tailDown(isDown: Bool, fromBlock: CNBlock?) {
         let oldTailDown = state.tailDown
         state.tailDown = isDown
-        program.executionHistory.append(CNExecutionHistoryItemType.TailState(fromState: oldTailDown, toState: isDown))
+        program.executionHistory.append(CNExecutionHistoryItemType.TailState(fromState: oldTailDown, toState: isDown), block: fromBlock)
     }
     
-    private func moveTo(newPosition: CGPoint, forward: Bool) {
+    private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNBlock?) {
         let oldPosition = state.position
         state.position = newPosition
-        program.executionHistory.append(CNExecutionHistoryItemType.Move(fromPoint: oldPosition, toPoint: newPosition, forward: forward))
+        program.executionHistory.append(CNExecutionHistoryItemType.Move(fromPoint: oldPosition, toPoint: newPosition, forward: forward), block: fromBlock)
     }
     
-    func moveForward(value: CNExpression) throws {
+    func moveForward(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
@@ -55,19 +55,19 @@ class CNPlayer {
                 state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: true)
+            moveTo(newPosition, forward: true, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPointMake(
                 state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: true)
+            moveTo(newPosition, forward: true, fromBlock: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
     
-    func moveBackward(value: CNExpression) throws {
+    func moveBackward(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
@@ -75,60 +75,60 @@ class CNPlayer {
                 state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: false)
+            moveTo(newPosition, forward: false, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPointMake(
                 state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: false)
+            moveTo(newPosition, forward: false, fromBlock: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
     
-    func rotate(value: CNExpression) throws {
+    func rotate(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(angleDelta * M_PI / 180.0)
             state.angle = newAngle
-            program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle))
+            program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), block: fromBlock)
         case let .int(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
             state.angle = newAngle
-            program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle))
+            program.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), block: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
     
-    func setColor(value: CNExpression) throws {
+    func setColor(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .color(newColor):
             let oldColor = state.color
             state.color = newColor.CGColor
-            program.executionHistory.append(CNExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color))
+            program.executionHistory.append(CNExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color), block: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
     
-    func setWidth(value: CNExpression) throws {
+    func setWidth(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(newWidth):
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
-            program.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width))
+            program.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), block: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }
     
-    func setScale(value: CNExpression) throws {
+    func setScale(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(newScale):
             let oldScale = state.scale
             state.scale = CGFloat(newScale)
-            program.executionHistory.append(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale))
+            program.executionHistory.append(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale), block: fromBlock)
         default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
         }
     }

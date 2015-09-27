@@ -10,14 +10,16 @@ import Foundation
 
 class CNStatementPrint: CNStatement {
     
-    override var description: String {
-        return "PRINT(\(parametersDescription))"
+    override var name: String {
+        return "PRINT"
     }
     
     override func execute() throws -> CNValue {
         try super.execute()
-        try parameters.forEach {
-            print(try $0.execute().description)
+        parameters.forEach {
+            if let desc = try? $0.execute().description {
+                program.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
+            }
         }
         return .unknown
     }
@@ -26,11 +28,15 @@ class CNStatementPrint: CNStatement {
 
 class CNStatementVar: CNStatement {
     
-    override var description: String {
-        return "VAR \"\(name)\" = " + parametersDescription
+    override var name: String {
+        return "VAR"
     }
     
-    var name: String
+    override var description: String {
+        return "\(name) \"\(varName)\" = " + parametersDescription
+    }
+    
+    var varName: String
     
     override func prepare() throws {
         try super.prepare()
@@ -42,31 +48,26 @@ class CNStatementVar: CNStatement {
     override func execute() throws -> CNValue {
         try super.execute()
         if let value = try parameters.first?.execute() {
-            if let variable = variableByName(name) {
+            if let variable = variableByName(varName) {
                 variable.value = value
             } else {
-                parentBlock?.variables.append(CNVariable(name: name, value: value))
+                parentBlock?.variables.append(CNVariable(name: varName, value: value))
                 return value
             }
         } else {
-            if let _ = parentBlock?.variableByName(name) {
-                throw NSError(domain: "Variable \(name) redeclared", code: 0, userInfo: nil)
+            if let _ = parentBlock?.variableByName(varName) {
+                throw NSError(domain: "Variable \(varName) redeclared", code: 0, userInfo: nil)
             } else {
-                parentBlock?.variables.append(CNVariable(name: name, value: .unknown))
+                parentBlock?.variables.append(CNVariable(name: varName, value: .unknown))
             }
         }
+        program.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
         return .unknown
     }
     
     init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
-        self.name = name
+        self.varName = name
         super.init(parameters: parameters, statements: statements, functions: functions)
     }
     
 }
-
-/*
-class CNStatementLet: CNStatement {
-    
-}
-*/

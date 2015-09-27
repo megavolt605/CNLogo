@@ -156,6 +156,10 @@ class CNExpression: CNBlock {
     
     var source: [CNExpressionParseElement]
     
+    override var name: String {
+        return ""
+    }
+    
     override var description: String {
         return source.reduce("") {
             return $0 + $1.description
