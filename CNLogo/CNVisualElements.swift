@@ -15,12 +15,13 @@ class CNBubble: UIView {
     var text: String
     var color: UIColor
     var size: CGSize = CGSizeZero
+    var bold: Bool
     
     private var strSize: CGSize = CGSizeZero
     
     func textAttrs() -> [String: AnyObject] {
         return [
-            NSFontAttributeName: UIFont.systemFontOfSize(10.0),
+            NSFontAttributeName: bold ? UIFont.boldSystemFontOfSize(10.0) : UIFont.systemFontOfSize(10.0),
             NSForegroundColorAttributeName: UIColor.blackColor()
         ]
     }
@@ -48,14 +49,15 @@ class CNBubble: UIView {
         
         color.setFill()
         rectanglePath.fill()
-        let strOrigin = CGPointMake((size.width - strSize.width) / 2.0, (size.height - strSize.height) / 2.0)
+        let strOrigin = CGPointMake((size.width - strSize.width) / 2.0, (size.height - strSize.height) / 2.0 - 1.0)
         str.drawInRect(CGRect(origin: strOrigin, size: strSize), withAttributes: attrs)
     }
     
-    init(text: String, color: UIColor, height: CGFloat) {
+    init(text: String, color: UIColor, height: CGFloat, bold: Bool) {
         self.text = text
         self.color = color
         self.size.height = height
+        self.bold = bold
         super.init(frame: CGRectZero)
         self.backgroundColor = UIColor.clearColor()
         self.opaque = false

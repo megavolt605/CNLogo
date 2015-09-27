@@ -10,7 +10,7 @@ import UIKit
 
 class CNProgramTableViewCell: UITableViewCell {
     
-    static var defaultHeight: CGFloat = 12.0
+    static var defaultHeight: CGFloat = 16.0
     
     func setup(item: CNProgramTableViewItem, height: CGFloat) {
         var x: CGFloat = 5.0
@@ -25,7 +25,7 @@ class CNProgramTableViewCell: UITableViewCell {
             
             (0..<item.level).forEach { index in
                 if index != 0 || item.startIndex == nil {
-                    let bubble = CNBubbleBlockShift(text: "", color: UIColor.lightGrayColor(), height: height)
+                    let bubble = CNBubbleBlockShift(text: "", color: UIColor.lightGrayColor(), height: height, bold: false)
                     addBubble(bubble)
                 }
             }
@@ -33,9 +33,9 @@ class CNProgramTableViewCell: UITableViewCell {
             if item.block.statements.count > 0 {
                 let bubble: CNBubble
                 if item.startIndex == nil {
-                    bubble = CNBubbleBlockStart(text: "", color: UIColor.lightGrayColor(), height: height)
+                    bubble = CNBubbleBlockStart(text: "", color: UIColor.lightGrayColor(), height: height, bold: false)
                 } else {
-                    bubble = CNBubbleBlockEnd(text: "", color: UIColor.lightGrayColor(), height: height)
+                    bubble = CNBubbleBlockEnd(text: "", color: UIColor.lightGrayColor(), height: height, bold: false)
                 }
                 addBubble(bubble)
             }

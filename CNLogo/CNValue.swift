@@ -24,7 +24,7 @@ enum CNValue {
         case let .bool(value): return "\(value)"
         case let .int(value): return "\(value)"
         case let .double(value): return "\(value)"
-        case let .string(value): return "\(value)"
+        case let .string(value): return "\"\(value)\""
         case let .color(value):
             var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
             value.getRed(&red, green: &green, blue: &blue, alpha: &alpha)

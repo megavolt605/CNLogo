@@ -74,7 +74,7 @@ class ViewController: UIViewController {
                 CNExpressionParseElement.Variable(name: "sides"),
             ])]),
             CNStatementRepeat(
-                parameters: [makeExprFromValue(CNValue.int(value: 19))],
+                parameters: [makeExprFromValue(CNValue.int(value: 20))],
                 statements: [
                     CNStatementPrint(
                         parameters: [CNExpression(source: [
@@ -97,9 +97,7 @@ class ViewController: UIViewController {
                     ),
                     CNStatementRepeat(
                         parameters: [CNExpression(source: [
-                            CNExpressionParseElement.Variable(name: "sides"),
-                            CNExpressionParseElement.Sub,
-                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                            CNExpressionParseElement.Variable(name: "sides")
                         ])],
                         statements: [
                             CNStatementForward(parameters: [CNExpression(source: [

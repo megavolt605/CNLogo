@@ -26,7 +26,7 @@ class CNStatementRepeat: CNStatement {
         program.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
         switch try parameters.first!.execute() {
         case let .int(value):
-            for _ in 1...value {
+            for _ in 1..<value {
                 try statements.forEach {
                     try $0.execute()
                 }
