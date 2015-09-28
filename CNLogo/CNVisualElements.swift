@@ -27,14 +27,11 @@ class CNBubble: UIView {
     }
     
     func calcSize() {
-        
-        let attrs = textAttrs()
-        
-        let str = NSAttributedString(string: text, attributes: attrs)
-        
+        let str = NSString(string: text)
         let strRect = str.boundingRectWithSize(
             CGSizeMake(CGFloat.infinity, 0.0),
-            options: .UsesLineFragmentOrigin, //NSStringDrawingOptions(),
+            options: .UsesLineFragmentOrigin,
+            attributes: textAttrs(),
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)

@@ -24,6 +24,7 @@ public class CNBlock {
     public var variables: [CNVariable] = []
     public var functions: [CNFunction] = []
     private var prepared = false
+
     weak var parentBlock: CNBlock?
 
     public var name: String {

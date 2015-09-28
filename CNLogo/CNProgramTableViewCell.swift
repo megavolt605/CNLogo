@@ -43,7 +43,6 @@ class CNProgramTableViewCell: UITableViewCell {
             for bubble in bubbles {
                 addBubble(bubble)
             }
-            contentView.setNeedsDisplay()
         }
     }
     

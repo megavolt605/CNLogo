@@ -40,7 +40,7 @@ class CNFieldView: UIView {
             playerLayer.contents = image
             playerLayer.anchorPoint = CGPointMake(0.5, 1.0)
             playerLayer.frame = CGRectMake(0.0, 0.0, 20.0, 20.0)
-            playerLayer.position = CGPointMake(program.player.startState.position.x, program.player.startState.position.y)
+            playerLayer.position = CGPointMake(CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.x, CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.y)
             layer.addSublayer(playerLayer)
         }
         

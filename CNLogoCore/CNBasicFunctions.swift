@@ -15,7 +15,7 @@ public class CNStatementForward: CNStatement {
     }
     
     override public var description: String {
-        return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        return super.description + (CNEnviroment.defaultEnviroment.currentProgram.player.state.scale == 1.0 ? "" : ", scale = \(CNEnviroment.defaultEnviroment.currentProgram.player.state.scale)")
     }
     
     override public func prepare() throws {
@@ -27,7 +27,7 @@ public class CNStatementForward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.moveForward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.moveForward(parameters.first!, fromBlock: self)
         return .unknown
     }
 
@@ -48,7 +48,7 @@ public class CNStatementBackward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.moveBackward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.moveBackward(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -69,7 +69,7 @@ public class CNStatementRotate: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.rotate(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.rotate(parameters.first!, fromBlock: self)
         return .unknown
     }
 
@@ -83,7 +83,7 @@ public class CNStatementTailDown: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown(true, fromBlock: self)
+        CNEnviroment.defaultEnviroment.currentProgram.player.tailDown(true, fromBlock: self)
         return .unknown
     }
     
@@ -97,7 +97,7 @@ public class CNStatementTailUp: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        program.player.tailDown(false, fromBlock: self)
+        CNEnviroment.defaultEnviroment.currentProgram.player.tailDown(false, fromBlock: self)
         return .unknown
     }
     
@@ -118,7 +118,7 @@ public class CNStatementColor: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setColor(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.setColor(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -131,7 +131,7 @@ public class CNStatementWidth: CNStatement {
     }
     
     override public var description: String {
-        return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        return super.description + (CNEnviroment.defaultEnviroment.currentProgram.player.state.scale == 1.0 ? "" : ", scale = \(CNEnviroment.defaultEnviroment.currentProgram.player.state.scale)")
     }
     
     override public func prepare() throws {
@@ -143,7 +143,7 @@ public class CNStatementWidth: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setWidth(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.setWidth(parameters.first!, fromBlock: self)
         return .unknown
     }
     
@@ -158,7 +158,7 @@ public class CNStatementClear: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        program.clear()
+        CNEnviroment.defaultEnviroment.currentProgram.clear()
         return .unknown
     }
     
@@ -179,7 +179,7 @@ public class CNStatementScale: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try program.player.setScale(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram.player.setScale(parameters.first!, fromBlock: self)
         return .unknown
     }
     

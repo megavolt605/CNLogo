@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             EndFor
         */
 
-        program = CNProgram(statements: [
+        let program = CNProgram(statements: [
             CNStatementPrint(
                 parameters: [makeExprFromValue(CNValue.string(value: "Started"))]
             ),
@@ -117,6 +117,8 @@ class ViewController: UIViewController {
             )
         ])
 
+        CNEnviroment.defaultEnviroment.currentProgram = program
+
         do {
             try program.prepare()
         } catch let error as CNError {
@@ -139,6 +141,7 @@ class ViewController: UIViewController {
             runState = .Executing
             updateButtons()
             do {
+                let program = CNEnviroment.defaultEnviroment.currentProgram
                 fieldView.clear()
                 program.clear()
                 program.player.startState.position = CGPointMake(CGRectGetMidX(fieldView.bounds), CGRectGetMidY(fieldView.bounds))
@@ -170,7 +173,7 @@ class ViewController: UIViewController {
     func updateButtons() {
         pauseButton.setTitle(runState == CNRunState.Paused ? "Continue" : "Pause", forState: .Normal)
         startButton.setTitle(runState == CNRunState.Stopped ? "Start" : "Stop", forState: .Normal)
-        pauseButton.enabled = runState == .Executing
+        pauseButton.enabled = runState == .Executing || runState == .Paused
 
         startButton.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)
         startButton.layer.borderColor = UIColor(red: 0.0, green: 0.65, blue: 0.0, alpha: 1.0).CGColor
@@ -205,6 +208,7 @@ class ViewController: UIViewController {
     }
     
     func visualizeStep() {
+        let program = CNEnviroment.defaultEnviroment.currentProgram
         if currentIndex < program.executionHistory.history.count {
             if runState == .Executing {
                 fieldView.makeSnapshot()

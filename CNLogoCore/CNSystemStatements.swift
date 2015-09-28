@@ -18,7 +18,7 @@ public class CNStatementPrint: CNStatement {
         try super.execute()
         parameters.forEach {
             if let desc = try? $0.execute().description {
-                program.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
+                CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
             }
         }
         return .unknown
@@ -61,7 +61,7 @@ public class CNStatementVar: CNStatement {
                 parentBlock?.variables.append(CNVariable(name: varName, value: .unknown))
             }
         }
-        program.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
         return .unknown
     }
     

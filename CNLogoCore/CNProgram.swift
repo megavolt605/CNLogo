@@ -10,8 +10,6 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public var program: CNProgram!
-
 public enum CNError: ErrorType {
     case Unknown
     
@@ -29,6 +27,7 @@ public class CNProgram: CNBlock {
     }
     
     public var player = CNPlayer()
+
     public var executionHistory = CNExecutionHistory()
     
     public func clear() {

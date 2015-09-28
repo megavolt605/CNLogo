@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		785CA9D61BB9D0490087EEB0 /* CNEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3921BB9407200CCCE70 /* CNLogoCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C0D3911BB9407200CCCE70 /* CNLogoCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C0D3991BB9407200CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */; settings = {ASSET_TAGS = (); }; };
 		78C0D39E1BB9407200CCCE70 /* CNLogoCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D39D1BB9407200CCCE70 /* CNLogoCoreTests.swift */; };
@@ -37,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNEnviroment.swift; sourceTree = "<group>"; };
 		78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLogoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C0D3911BB9407200CCCE70 /* CNLogoCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLogoCore.h; sourceTree = "<group>"; };
-		78C0D3931BB9407200CCCE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78C0D3931BB9407200CCCE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = CNLogoCore/Info.plist; sourceTree = "<group>"; };
 		78C0D3981BB9407200CCCE70 /* CNLogoCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNLogoCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C0D39D1BB9407200CCCE70 /* CNLogoCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLogoCoreTests.swift; sourceTree = "<group>"; };
 		78C0D39F1BB9407200CCCE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				78C0D3901BB9407200CCCE70 /* CNLogoCore */,
+				78C0D3931BB9407200CCCE70 /* Info.plist */,
 				78C0D39C1BB9407200CCCE70 /* CNLogoCoreTests */,
 				78C0D38F1BB9407200CCCE70 /* Products */,
 			);
@@ -99,9 +102,9 @@
 		78C0D3901BB9407200CCCE70 /* CNLogoCore */ = {
 			isa = PBXGroup;
 			children = (
-				78C0D3CC1BB9424A00CCCE70 /* CNExecutionHistory.swift */,
-				78C0D3B21BB941AC00CCCE70 /* CNBasicFunctions.swift */,
+				78C0D3911BB9407200CCCE70 /* CNLogoCore.h */,
 				78C0D3B31BB941AC00CCCE70 /* CNBlock.swift */,
+				78C0D3B21BB941AC00CCCE70 /* CNBasicFunctions.swift */,
 				78C0D3B41BB941AC00CCCE70 /* CNExpression.swift */,
 				78C0D3B51BB941AC00CCCE70 /* CNFunction.swift */,
 				78C0D3B61BB941AC00CCCE70 /* CNPlayer.swift */,
@@ -113,8 +116,8 @@
 				78C0D3BC1BB941AC00CCCE70 /* CNValue.swift */,
 				78C0D3BD1BB941AC00CCCE70 /* CNVariable.swift */,
 				78C0D3BE1BB941AC00CCCE70 /* CNWorkflow.swift */,
-				78C0D3911BB9407200CCCE70 /* CNLogoCore.h */,
-				78C0D3931BB9407200CCCE70 /* Info.plist */,
+				78C0D3CC1BB9424A00CCCE70 /* CNExecutionHistory.swift */,
+				785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */,
 			);
 			path = CNLogoCore;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				78C0D3C21BB941AC00CCCE70 /* CNFunction.swift in Sources */,
 				78C0D3BF1BB941AC00CCCE70 /* CNBasicFunctions.swift in Sources */,
 				78C0D3C41BB941AC00CCCE70 /* CNProgram.swift in Sources */,
+				785CA9D61BB9D0490087EEB0 /* CNEnviroment.swift in Sources */,
 				78C0D3CA1BB941AC00CCCE70 /* CNVariable.swift in Sources */,
 				78C0D3C51BB941AC00CCCE70 /* CNStack.swift in Sources */,
 			);
