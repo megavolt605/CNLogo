@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
 
     var integerValue: Int {
         return (self as NSString).integerValue

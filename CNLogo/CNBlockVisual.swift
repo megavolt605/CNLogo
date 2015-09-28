@@ -6,6 +6,7 @@
 //  Copyright © 2015 Complex Numbers. All rights reserved.
 //
 
+import CNLogoCore
 import UIKit
 
 extension CNBlock {

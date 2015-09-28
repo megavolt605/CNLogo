@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // lower case (!!!) - intersects with standart swift type names
-enum CNValue {
+public enum CNValue {
     case unknown
     case bool(value: Bool)
     case int(value: Int)
@@ -18,7 +18,7 @@ enum CNValue {
     case string(value: String)
     case color(value: UIColor)
     
-    var description: Swift.String {
+    public var description: Swift.String {
         switch self {
         case .unknown: return ""
         case let .bool(value): return "\(value)"
@@ -32,28 +32,28 @@ enum CNValue {
         }
     }
     
-    func makeMeDouble() {
+    public func makeMeDouble() {
         
     }
+
+    func isEqualTo(value: CNValue) -> Bool {
+        switch (self, value) {
+        case (.bool, .bool): return true
+        case (.int, .int): return true
+        case (.double, .double): return true
+        case (.string, .string): return true
+        case (.color, .color): return true
+        default: return false
+        }
+    }
     
-    func throwValueError() throws {
+    public func throwValueError() throws {
         throw NSError(domain: "Value Error", code: 0, userInfo: nil)
     }
     
 }
 
-infix operator ~= {}
-func ~=(left: CNValue, right: CNValue) throws -> Bool {
-    switch (left, right) {
-    case (.bool, .bool): return true
-    case (.int, .int): return true
-    case (.double, .double): return true
-    case (.string, .string): return true
-    case (.color, .color): return true
-    default: return false
-    }
-}
-
+/*
 infix operator == {}
 infix operator + {}
 infix operator - {}
@@ -66,6 +66,7 @@ infix operator & {}
 infix operator | {}
 infix operator % {}
 infix operator ^ {}
+*/
 
 func ==(left: CNValue, right: CNValue) throws -> CNValue {
     switch (left, right) {
@@ -297,6 +298,7 @@ func /(left: CNValue, right: CNValue) throws -> CNValue {
     return CNValue.unknown
 }
 
+infix operator ^^ {}
 func ^^(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
@@ -337,7 +339,6 @@ func ^^(left: CNValue, right: CNValue) throws -> CNValue {
     }
     return CNValue.unknown
 }
-
 
 func &&(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {

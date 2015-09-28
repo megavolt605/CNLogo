@@ -8,23 +8,23 @@
 
 import Foundation
 
-class CNFunction: CNBlock {
+public class CNFunction: CNBlock {
     
     private var _name: String
-    override var name: String {
+    override public var name: String {
         return _name
     }
     
     var parametersDesc: [CNValue]
     
-    override var description: String {
+    override public var description: String {
         return "\(name)(\(parametersDescription))"
     }
     
     func prepareWithParameters(parameters: [CNExpression]) throws {
         guard parameters.count == parametersDesc.count else { throw NSError(domain: "Parameter count mismatch for function \(name)", code: 0, userInfo: nil) }
         for i in 0..<parameters.count {
-            if !(try parameters[i].execute() ~= parametersDesc[i]) {
+            if !(try parameters[i].execute().isEqualTo(parametersDesc[i])) {
                 throw NSError(domain: "Parameter \(i) type mismatch for function \(name)", code: 0, userInfo: nil)
             }
         }
@@ -42,7 +42,7 @@ class CNFunction: CNBlock {
     
 }
 
-class CNFunctionSin: CNFunction {
+public class CNFunctionSin: CNFunction {
 
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {
@@ -62,7 +62,7 @@ class CNFunctionSin: CNFunction {
     
 }
 
-class CNFunctionCos: CNFunction {
+public class CNFunctionCos: CNFunction {
     
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {

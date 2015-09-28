@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CNBlock {
+public class CNBlock {
     
-    var parameters: [CNExpression]
-    var statements: [CNStatement] {
+    public var parameters: [CNExpression]
+    public var statements: [CNStatement] {
         didSet {
             parameters.forEach {
                 $0.parentBlock = self
@@ -21,16 +21,16 @@ class CNBlock {
             }
         }
     }
-    var variables: [CNVariable] = []
-    var functions: [CNFunction] = []
+    public var variables: [CNVariable] = []
+    public var functions: [CNFunction] = []
     private var prepared = false
     weak var parentBlock: CNBlock?
 
-    var name: String {
+    public var name: String {
         return "Anonymous BLOCK"
     }
     
-    var description: String {
+    public var description: String {
         if parameters.count > 0 {
             return "\(name) \(parametersDescription)"
         } else {
@@ -38,7 +38,7 @@ class CNBlock {
         }
     }
     
-    var parametersDescription: String {
+    public var parametersDescription: String {
         return parameters.reduce("") {
             if $0 == "" {
                 return $1.description
@@ -48,7 +48,7 @@ class CNBlock {
         }
     }
     
-    func prepare() throws -> Void {
+    public func prepare() throws -> Void {
         try parameters.forEach {
             $0.parentBlock = self
             try $0.prepare()
@@ -60,7 +60,7 @@ class CNBlock {
         prepared = true
     }
     
-    func execute() throws -> CNValue {
+    public func execute() throws -> CNValue {
         if !prepared {
             try prepare()
         }
@@ -71,7 +71,7 @@ class CNBlock {
         return CNValue.unknown
     }
     
-    func variableByName(name: String) -> CNVariable? {
+    public func variableByName(name: String) -> CNVariable? {
         for v in variables {
             if v.name == name {
                 return v
@@ -80,7 +80,7 @@ class CNBlock {
         return parentBlock?.variableByName(name)
     }
     
-    func functionByName(name: String) -> CNFunction? {
+    public func functionByName(name: String) -> CNFunction? {
         for f in functions {
             if f.name == name {
                 return f
@@ -89,7 +89,7 @@ class CNBlock {
         return parentBlock?.functionByName(name)
     }
     
-    init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         self.parameters = parameters
         self.statements = statements
         self.functions = functions

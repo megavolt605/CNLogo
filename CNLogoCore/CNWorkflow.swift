@@ -8,20 +8,20 @@
 
 import Foundation
 
-class CNStatementRepeat: CNStatement {
+public class CNStatementRepeat: CNStatement {
     
-    override var name: String {
+    override public var name: String {
         return "REPEAT"
     }
     
-    override func prepare() throws {
+    override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         try super.execute()
         program.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
         switch try parameters.first!.execute() {
@@ -39,20 +39,20 @@ class CNStatementRepeat: CNStatement {
     
 }
 
-class CNStatementWhile: CNStatement {
+public class CNStatementWhile: CNStatement {
 
-    override var name: String {
+    override public var name: String {
         return "WHILE"
     }
     
-    override func prepare() throws {
+    override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         try super.execute()
         program.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
         repeat {
@@ -73,22 +73,22 @@ class CNStatementWhile: CNStatement {
     
 }
 
-class CNStatementIf: CNStatement {
+public class CNStatementIf: CNStatement {
 
-    override var name: String {
+    override public var name: String {
         return "IF"
     }
     
     var statementsElse: [CNStatement] = []
     
-    override func prepare() throws {
+    override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
             try throwError()
         }
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         try super.execute()
         program.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
         switch try parameters.first!.execute() {

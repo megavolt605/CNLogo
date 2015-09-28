@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-struct CNPlayerState {
-    var position: CGPoint = CGPointZero
-    var angle: CGFloat = 0.0
-    var color: CGColor = UIColor.blackColor().CGColor
-    var width: CGFloat = 2.0
-    var tailDown: Bool = true
-    var scale: CGFloat = 1.0
+public struct CNPlayerState {
+    public var position: CGPoint = CGPointZero
+    public var angle: CGFloat = 0.0
+    public var color: CGColor = UIColor.blackColor().CGColor
+    public var width: CGFloat = 2.0
+    public var tailDown: Bool = true
+    public var scale: CGFloat = 1.0
     
-    func snapshot() -> CNPlayerState {
+    public func snapshot() -> CNPlayerState {
         var res = self
         res.color = CGColorCreateCopy(color)!
         return res
@@ -25,17 +25,17 @@ struct CNPlayerState {
     
 }
 
-class CNPlayer {
+public class CNPlayer {
     
-    var state = CNPlayerState()
-    var startState = CNPlayerState()
+    public var state = CNPlayerState()
+    public var startState = CNPlayerState()
     
-    func clear(fromBlock: CNBlock?) {
+    public func clear(fromBlock: CNBlock?) {
         state = startState
         program.executionHistory.append(CNExecutionHistoryItemType.Clear, block: fromBlock)
     }
     
-    func tailDown(isDown: Bool, fromBlock: CNBlock?) {
+    public func tailDown(isDown: Bool, fromBlock: CNBlock?) {
         let oldTailDown = state.tailDown
         state.tailDown = isDown
         program.executionHistory.append(CNExecutionHistoryItemType.TailState(fromState: oldTailDown, toState: isDown), block: fromBlock)
@@ -47,7 +47,7 @@ class CNPlayer {
         program.executionHistory.append(CNExecutionHistoryItemType.Move(fromPoint: oldPosition, toPoint: newPosition, forward: forward), block: fromBlock)
     }
     
-    func moveForward(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func moveForward(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
@@ -67,7 +67,7 @@ class CNPlayer {
         }
     }
     
-    func moveBackward(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func moveBackward(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
@@ -87,7 +87,7 @@ class CNPlayer {
         }
     }
     
-    func rotate(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func rotate(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(angleDelta):
             let oldAngle = state.angle
@@ -103,7 +103,7 @@ class CNPlayer {
         }
     }
     
-    func setColor(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func setColor(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .color(newColor):
             let oldColor = state.color
@@ -113,7 +113,7 @@ class CNPlayer {
         }
     }
     
-    func setWidth(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func setWidth(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(newWidth):
             let oldWidth = state.width
@@ -127,7 +127,7 @@ class CNPlayer {
         }
     }
     
-    func setScale(value: CNExpression, fromBlock: CNBlock?) throws {
+    public func setScale(value: CNExpression, fromBlock: CNBlock?) throws {
         switch try value.execute() {
         case let .double(newScale):
             let oldScale = state.scale

@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreGraphics
+import CNLogoCore
 
-enum CNRunState {
+enum CNRunState: Int {
     case Stopped, Executing, Paused
 }
 
@@ -167,8 +168,8 @@ class ViewController: UIViewController {
     }
     
     func updateButtons() {
-        pauseButton.setTitle(runState == .Paused ? "Continue" : "Pause", forState: .Normal)
-        startButton.setTitle(runState == .Stopped ? "Start" : "Stop", forState: .Normal)
+        pauseButton.setTitle(runState == CNRunState.Paused ? "Continue" : "Pause", forState: .Normal)
+        startButton.setTitle(runState == CNRunState.Stopped ? "Start" : "Stop", forState: .Normal)
         pauseButton.enabled = runState == .Executing
 
         startButton.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)

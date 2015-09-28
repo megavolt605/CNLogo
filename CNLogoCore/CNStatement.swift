@@ -8,9 +8,9 @@
 
 import Foundation
 
-class CNStatement: CNBlock {
+public class CNStatement: CNBlock {
     
-    override var name: String {
+    override public var name: String {
         return "Anonymous STATEMENT \(self)"
     }
     

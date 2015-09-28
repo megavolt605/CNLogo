@@ -52,6 +52,16 @@
                ReferencedContainer = "container:CNLogo.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "78C0D3971BB9407200CCCE70"
+               BuildableName = "CNLogoCoreTests.xctest"
+               BlueprintName = "CNLogoCoreTests"
+               ReferencedContainer = "container:CNLogoCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

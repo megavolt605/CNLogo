@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CNVariable {
+public class CNVariable {
     var name: String
     var value: CNValue
     

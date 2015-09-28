@@ -8,13 +8,13 @@
 
 import Foundation
 
-class CNStatementPrint: CNStatement {
+public class CNStatementPrint: CNStatement {
     
-    override var name: String {
+    override public var name: String {
         return "PRINT"
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         try super.execute()
         parameters.forEach {
             if let desc = try? $0.execute().description {
@@ -26,26 +26,26 @@ class CNStatementPrint: CNStatement {
     
 }
 
-class CNStatementVar: CNStatement {
+public class CNStatementVar: CNStatement {
     
-    override var name: String {
+    override public var name: String {
         return "VAR"
     }
     
-    override var description: String {
+    override public var description: String {
         return "\(name) \"\(varName)\" = " + parametersDescription
     }
     
-    var varName: String
+    public var varName: String
     
-    override func prepare() throws {
+    override public func prepare() throws {
         try super.prepare()
         if parameters.count > 1 {
             try throwError()
         }
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         try super.execute()
         if let value = try parameters.first?.execute() {
             if let variable = variableByName(varName) {
@@ -65,7 +65,7 @@ class CNStatementVar: CNStatement {
         return .unknown
     }
     
-    init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         self.varName = name
         super.init(parameters: parameters, statements: statements, functions: functions)
     }

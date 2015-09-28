@@ -9,30 +9,42 @@
 import Foundation
 import CoreGraphics
 
-class CNExecutionHistory {
+public class CNExecutionHistory {
     
-    var history: [CNExecutionHistoryItem] = []
+    public var history: [CNExecutionHistoryItem] = []
     
-    func append(itemType: CNExecutionHistoryItemType, block: CNBlock?) {
+    public func append(itemType: CNExecutionHistoryItemType, block: CNBlock?) {
         let playerState = program.player.state.snapshot()
         let item = CNExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
         history.append(item)
     }
     
-    func clear() {
+    public func clear() {
         history = []
     }
     
 }
 
+public enum CNExecutionHistoryItemType {
+    case Clear
+    case Move(fromPoint: CGPoint, toPoint: CGPoint, forward: Bool)
+    case Rotate(fromAngle: CGFloat, toAngle: CGFloat)
+    case TailState(fromState: Bool, toState: Bool)
+    case Color(fromColor: CGColor, toColor: CGColor)
+    case Width(fromWidth: CGFloat, toWidth: CGFloat)
+    case Scale(fromScale: CGFloat, toScale: CGFloat)
+    case Step, StepIn, StepOut
+    case Print(value: String)
+}
+
 // TODO: add call stack snapshot with parameters and variables
-struct CNExecutionHistoryItem {
+public struct CNExecutionHistoryItem {
 
-    var type: CNExecutionHistoryItemType
-    var playerState: CNPlayerState
-    weak var block: CNBlock?
+    public var type: CNExecutionHistoryItemType
+    public var playerState: CNPlayerState
+    public weak var block: CNBlock?
 
-    var description: String {
+    public var description: String {
         switch type {
         case .Clear: return "Clear"
         case let .Move(_, toPoint, _): return String(format: "Forward to %.2f - %.2f", toPoint.x, toPoint.y)
@@ -50,14 +62,3 @@ struct CNExecutionHistoryItem {
     
 }
 
-enum CNExecutionHistoryItemType {
-    case Clear
-    case Move(fromPoint: CGPoint, toPoint: CGPoint, forward: Bool)
-    case Rotate(fromAngle: CGFloat, toAngle: CGFloat)
-    case TailState(fromState: Bool, toState: Bool)
-    case Color(fromColor: CGColor, toColor: CGColor)
-    case Width(fromWidth: CGFloat, toWidth: CGFloat)
-    case Scale(fromScale: CGFloat, toScale: CGFloat)
-    case Step, StepIn, StepOut
-    case Print(value: String)
-}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CNStack<T> {
+public struct CNStack<T> {
     
     private var items: [T] = []
     

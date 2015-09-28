@@ -10,38 +10,38 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-var program: CNProgram!
+public var program: CNProgram!
 
-enum CNError: ErrorType {
+public enum CNError: ErrorType {
     case Unknown
     
-    var description: String {
+    public var description: String {
         switch self {
         case .Unknown: return "Unknown error"
         }
     }
 }
 
-class CNProgram: CNBlock {
+public class CNProgram: CNBlock {
 
-    override var name: String {
+    override public var name: String {
         return "PROGRAM"
     }
     
-    var player = CNPlayer()
-    var executionHistory = CNExecutionHistory()
+    public var player = CNPlayer()
+    public var executionHistory = CNExecutionHistory()
     
-    func clear() {
+    public func clear() {
         player.clear(nil)
         executionHistory.clear()
     }
     
-    override func execute() throws -> CNValue {
+    override public func execute() throws -> CNValue {
         clear()
         return try super.execute()
     }
     
-    override init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    override public init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         super.init(parameters: parameters, statements: statements, functions: functions)
         variables.append(CNVariable(name: "PI", value: CNValue.double(value: M_PI)))
         variables.append(CNVariable(name: "2*PI", value: CNValue.double(value: M_2_PI)))

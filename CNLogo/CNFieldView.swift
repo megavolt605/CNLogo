@@ -6,6 +6,7 @@
 //  Copyright © 2015 Complex Numbers. All rights reserved.
 //
 
+import CNLogoCore
 import UIKit
 
 typealias CNAnimationCompletion = (Bool) -> Void
@@ -34,7 +35,7 @@ class CNFieldView: UIView {
         }
         
         if playerLayer.superlayer == nil {
-            let image = UIImage(named: "player")!.CGImage
+            let image = UIImage(named: "Player")!.CGImage
             playerLayer.opaque = false
             playerLayer.contents = image
             playerLayer.anchorPoint = CGPointMake(0.5, 1.0)
