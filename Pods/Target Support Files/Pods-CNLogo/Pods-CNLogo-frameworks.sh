@@ -52,10 +52,8 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'Pods-CNLogo/Realm.framework'
-  install_framework 'Pods-CNLogo/RealmSwift.framework'
+  install_framework 'Pods-CNLogo/Dollar.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'Pods-CNLogo/Realm.framework'
-  install_framework 'Pods-CNLogo/RealmSwift.framework'
+  install_framework 'Pods-CNLogo/Dollar.framework'
 fi

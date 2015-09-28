@@ -9,7 +9,7 @@
 import CNLogoCore
 import UIKit
 
-typealias CNAnimationCompletion = (Bool) -> Void
+typealias CNAnimationCompletion = () -> Void
 
 class CNFieldView: UIView {
     
@@ -79,6 +79,9 @@ class CNFieldView: UIView {
     }
     
     func addStrokeWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setCompletionBlock(completion)
         let layer = CAShapeLayer()
         let path = CGPathCreateMutable()
         CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
@@ -97,13 +100,15 @@ class CNFieldView: UIView {
         strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         strokeAnimation.fillMode = kCAFillModeForwards
         strokeAnimation.removedOnCompletion = false
-        strokeAnimation.completion = completion
         layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
         addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
-
+        CATransaction.commit()
     }
     
     func addPlayerMoveWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setCompletionBlock(completion)
         let playerAnimationX = CABasicAnimation(keyPath: "position.x")
         playerAnimationX.duration = duration
         playerAnimationX.fromValue = fromPoint.x
@@ -111,7 +116,6 @@ class CNFieldView: UIView {
         playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         playerAnimationX.fillMode = kCAFillModeForwards
         playerAnimationX.removedOnCompletion = false
-        playerAnimationX.completion = completion
         playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
         
         let playerAnimationY = CABasicAnimation(keyPath: "position.y")
@@ -122,9 +126,13 @@ class CNFieldView: UIView {
         playerAnimationY.fillMode = kCAFillModeForwards
         playerAnimationY.removedOnCompletion = false
         playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
+        CATransaction.commit()
     }
 
     func addPlayerRotationWithItem(item: CNExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        CATransaction.setCompletionBlock(completion)
         let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         playerAnimation.duration = duration
         playerAnimation.fromValue = fromAngle
@@ -132,8 +140,8 @@ class CNFieldView: UIView {
         playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         playerAnimation.fillMode = kCAFillModeForwards
         playerAnimation.removedOnCompletion = false
-        playerAnimation.completion = completion
         playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
+        CATransaction.commit()
     }
 }
 

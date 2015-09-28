@@ -19,7 +19,6 @@
 		785E7A781BB7F29100998ADB /* CNBlockVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A771BB7F29100998ADB /* CNBlockVisual.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
-		78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		785E7A771BB7F29100998ADB /* CNBlockVisual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBlockVisual.swift; sourceTree = "<group>"; };
 		78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewDataSource.swift; sourceTree = "<group>"; };
 		78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CNLogoCore.xcodeproj; sourceTree = "<group>"; };
-		78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLogo+CAAnimation.swift"; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
 		AC5C8C89A01537ADB22F7FAA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B989B2914AC7026F8A6F03B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			children = (
 				785E7A771BB7F29100998ADB /* CNBlockVisual.swift */,
 				785E7A751BB475FB00998ADB /* CNVisualElements.swift */,
-				78D4FC321BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				785E7A761BB475FB00998ADB /* CNVisualElements.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
 				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,
-				78D4FC331BAEF89F00BC5C1E /* CNLogo+CAAnimation.swift in Sources */,
 				785E7A781BB7F29100998ADB /* CNBlockVisual.swift in Sources */,
 				7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */,
 				7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */,

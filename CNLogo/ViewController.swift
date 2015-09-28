@@ -233,31 +233,23 @@ class ViewController: UIViewController {
                         if item.playerState.tailDown {
                             fieldView.addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
                                 self.currentIndex++
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.visualizeStep()
-                                }
+                                self.visualizeStep()
                             }
                         } else {
                             fieldView.addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
                                 self.currentIndex++
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.visualizeStep()
-                                }
+                                self.visualizeStep()
                             }
                         }
                     case let .Rotate(fromAngle, toAngle):
                         fieldView.addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, duration: duration) { done in
                             self.currentIndex++
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.visualizeStep()
-                            }
+                            self.visualizeStep()
                         }
                     case let .Print(value):
                         print(value)
                         currentIndex++
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.visualizeStep()
-                        }
+                        self.visualizeStep()
                     case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
                         currentIndex++
                         shouldBreak = false
