@@ -94,7 +94,6 @@ class CNFieldView: UIView {
         drawingView.layer.addSublayer(layer)
         layers.append(layer)
         let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        strokeAnimation.duration = duration
         strokeAnimation.fromValue = 0.0
         strokeAnimation.toValue = 1.0
         strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -110,7 +109,6 @@ class CNFieldView: UIView {
         CATransaction.setAnimationDuration(duration)
         CATransaction.setCompletionBlock(completion)
         let playerAnimationX = CABasicAnimation(keyPath: "position.x")
-        playerAnimationX.duration = duration
         playerAnimationX.fromValue = fromPoint.x
         playerAnimationX.toValue = toPoint.x
         playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -134,7 +132,6 @@ class CNFieldView: UIView {
         CATransaction.setAnimationDuration(duration)
         CATransaction.setCompletionBlock(completion)
         let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        playerAnimation.duration = duration
         playerAnimation.fromValue = fromAngle
         playerAnimation.toValue = toAngle
         playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
