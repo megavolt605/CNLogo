@@ -4,7 +4,7 @@
 xcuserdata
 profile
 DerivedData
-xcuserdata/*
+**/xcuserdata/*
 *.ipa
 *.app
 *.dSYM.zip
