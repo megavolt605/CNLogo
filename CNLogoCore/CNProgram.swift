@@ -22,7 +22,7 @@ public enum CNError: ErrorType {
 
 public class CNProgram: CNBlock {
 
-    override public var name: String {
+    override public var identifier: String {
         return "PROGRAM"
     }
     
@@ -41,10 +41,10 @@ public class CNProgram: CNBlock {
     }
     
     override public func commonInit() {
-        variables.append(CNVariable(name: "PI", value: CNValue.double(value: M_PI)))
-        variables.append(CNVariable(name: "2*PI", value: CNValue.double(value: M_2_PI)))
-        variables.append(CNVariable(name: "PI/2", value: CNValue.double(value: M_PI_2)))
-        variables.append(CNVariable(name: "EXP", value:  CNValue.double(value: M_E)))
+        variables.append(CNVariable(variableName: "PI", variableValue: CNValue.double(value: M_PI)))
+        variables.append(CNVariable(variableName: "2*PI", variableValue: CNValue.double(value: M_2_PI)))
+        variables.append(CNVariable(variableName: "PI/2", variableValue: CNValue.double(value: M_PI_2)))
+        variables.append(CNVariable(variableName: "EXP", variableValue:  CNValue.double(value: M_E)))
     }
     
 }

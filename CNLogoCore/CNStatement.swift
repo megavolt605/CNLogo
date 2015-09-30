@@ -10,7 +10,7 @@ import Foundation
 
 public class CNStatement: CNBlock {
     
-    override public var name: String {
+    override public var identifier: String {
         return "Anonymous STATEMENT \(self)"
     }
     

@@ -10,22 +10,22 @@ import Foundation
 
 public class CNFunction: CNBlock {
     
-    private var _name: String
-    override public var name: String {
-        return _name
+    private var _identifier: String
+    override public var identifier: String {
+        return _identifier
     }
     
     var parametersDesc: [CNValue]
     
     override public var description: String {
-        return "\(name)(\(parametersDescription))"
+        return "\(identifier)(\(parametersDescription))"
     }
     
     func prepareWithParameters(parameters: [CNExpression]) throws {
-        guard parameters.count == parametersDesc.count else { throw NSError(domain: "Parameter count mismatch for function \(name)", code: 0, userInfo: nil) }
+        guard parameters.count == parametersDesc.count else { throw NSError(domain: "Parameter count mismatch for function \(identifier)", code: 0, userInfo: nil) }
         for i in 0..<parameters.count {
             if !(try parameters[i].execute().isEqualTo(parametersDesc[i])) {
-                throw NSError(domain: "Parameter \(i) type mismatch for function \(name)", code: 0, userInfo: nil)
+                throw NSError(domain: "Parameter \(i) type mismatch for function \(identifier)", code: 0, userInfo: nil)
             }
         }
     }
@@ -34,8 +34,8 @@ public class CNFunction: CNBlock {
         return CNValue.unknown
     }
     
-    init(name: String, parametersDesc: [CNValue] = []) {
-        self._name = name
+    init(functionIdentifier: String, parametersDesc: [CNValue] = []) {
+        self._identifier = functionIdentifier
         self.parametersDesc = parametersDesc
         super.init(parameters: [], statements: [], functions: [])
     }
@@ -65,7 +65,7 @@ public class CNFunctionSin: CNFunction {
     }
     
     init() {
-        super.init(name: "SIN", parametersDesc: [CNValue.double(value: 0)])
+        super.init(functionIdentifier: "SIN", parametersDesc: [CNValue.double(value: 0)])
     }
 
     public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
@@ -93,7 +93,7 @@ public class CNFunctionCos: CNFunction {
     }
     
     init() {
-        super.init(name: "COS", parametersDesc: [CNValue.double(value: 0)])
+        super.init(functionIdentifier: "COS", parametersDesc: [CNValue.double(value: 0)])
     }
 
     public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {

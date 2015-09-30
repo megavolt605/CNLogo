@@ -10,7 +10,7 @@ import Foundation
 
 public class CNStatementRepeat: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "REPEAT"
     }
     
@@ -41,7 +41,7 @@ public class CNStatementRepeat: CNStatement {
 
 public class CNStatementWhile: CNStatement {
 
-    override public var name: String {
+    override public var identifier: String {
         return "WHILE"
     }
     
@@ -75,7 +75,7 @@ public class CNStatementWhile: CNStatement {
 
 public class CNStatementIf: CNStatement {
 
-    override public var name: String {
+    override public var identifier: String {
         return "IF"
     }
     

@@ -61,51 +61,51 @@ class ViewController: UIViewController {
             CNStatementPrint(
                 parameters: [makeExprFromValue(CNValue.string(value: "Started"))]
             ),
-            CNStatementVar(name: "step", parameters: [makeExprFromValue(CNValue.int(value: 1))]),
-            CNStatementVar(name: "sides", parameters: [makeExprFromValue(CNValue.int(value: 10))]),
-            CNStatementVar(name: "length", parameters: [CNExpression(source: [
+            CNStatementVar(variableName: "step", parameters: [makeExprFromValue(CNValue.int(value: 1))]),
+            CNStatementVar(variableName: "sides", parameters: [makeExprFromValue(CNValue.int(value: 10))]),
+            CNStatementVar(variableName: "length", parameters: [CNExpression(source: [
                 CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
                 CNExpressionParseElement.Div,
-                CNExpressionParseElement.Variable(name: "sides")
+                CNExpressionParseElement.Variable(variableName: "sides")
             ])]),
             CNStatementColor(parameters: [makeExprFromValue(CNValue.color(value: UIColor.orangeColor()))]),
-            CNStatementVar(name: "angle", parameters: [CNExpression(source: [
+            CNStatementVar(variableName: "angle", parameters: [CNExpression(source: [
                 CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
                 CNExpressionParseElement.Div,
-                CNExpressionParseElement.Variable(name: "sides"),
+                CNExpressionParseElement.Variable(variableName: "sides"),
             ])]),
             CNStatementRepeat(
                 parameters: [makeExprFromValue(CNValue.int(value: 20))],
                 statements: [
                     CNStatementPrint(
                         parameters: [CNExpression(source: [
-                            CNExpressionParseElement.Variable(name: "step")
+                            CNExpressionParseElement.Variable(variableName: "step")
                         ])]
                     ),
                     CNStatementWidth(
                         parameters: [CNExpression(source: [
-                            CNExpressionParseElement.Variable(name: "step"),
+                            CNExpressionParseElement.Variable(variableName: "step"),
                             CNExpressionParseElement.Div,
                             CNExpressionParseElement.Value(value: CNValue.double(value: 5.0))
                         ])]
                     ),
                     CNStatementVar(
-                        name: "step", parameters: [CNExpression(source: [
-                            CNExpressionParseElement.Variable(name: "step"),
+                        variableName: "step", parameters: [CNExpression(source: [
+                            CNExpressionParseElement.Variable(variableName: "step"),
                             CNExpressionParseElement.Add,
                             CNExpressionParseElement.Value(value: CNValue.int(value: 1))
                         ])]
                     ),
                     CNStatementRepeat(
                         parameters: [CNExpression(source: [
-                            CNExpressionParseElement.Variable(name: "sides")
+                            CNExpressionParseElement.Variable(variableName: "sides")
                         ])],
                         statements: [
                             CNStatementForward(parameters: [CNExpression(source: [
-                                CNExpressionParseElement.Variable(name: "length")
+                                CNExpressionParseElement.Variable(variableName: "length")
                             ])]),
                             CNStatementRotate(parameters: [CNExpression(source: [
-                                CNExpressionParseElement.Variable(name: "angle")
+                                CNExpressionParseElement.Variable(variableName: "angle")
                             ])])
                         ]
                     ),

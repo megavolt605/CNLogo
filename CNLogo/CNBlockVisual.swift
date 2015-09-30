@@ -13,7 +13,7 @@ extension CNBlock {
     
     @objc func createBubbles(height: CGFloat, prefix: String = "") -> [CNBubble]? {
         var res: [CNBubble] = []
-        let bubbleName = prefix + name
+        let bubbleName = prefix + identifier
         if bubbleName != "" {
             let bubble = CNBubble(text: bubbleName, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
             res.append(bubble)
@@ -36,7 +36,7 @@ extension CNStatement {
     
     @objc override func createBubbles(height: CGFloat, prefix: String = "") -> [CNBubble]? {
         var res: [CNBubble] = []
-        let bubbleName = prefix + name
+        let bubbleName = prefix + identifier
         if bubbleName != "" {
             let bubble = CNBubble(text: bubbleName, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: true)
             res.append(bubble)
@@ -79,13 +79,13 @@ extension CNStatementVar {
     
     @objc override func createBubbles(height: CGFloat, prefix: String = "") -> [CNBubble]? {
         var res: [CNBubble] = []
-        let bubbleName = prefix + name
+        let bubbleName = prefix + identifier
         if bubbleName != "" {
             let bubble = CNBubble(text: bubbleName, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: true)
             res.append(bubble)
         }
 
-        var bubble = CNBubble(text: varName, color: UIColor(red: 1.0, green: 1.0, blue: 0.5, alpha: 1.0), height: height, bold: false)
+        var bubble = CNBubble(text: variableName, color: UIColor(red: 1.0, green: 1.0, blue: 0.5, alpha: 1.0), height: height, bold: false)
         res.append(bubble)
         
         bubble = CNBubble(text: "=", color: UIColor(red: 1.0, green: 0.75, blue: 0.75, alpha: 1.0), height: height, bold: false)

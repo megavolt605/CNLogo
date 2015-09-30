@@ -23,8 +23,8 @@ public enum CNExpressionParseElement {
 
     case BracketOpen, BracketClose
     case Value(value: CNValue)
-    case Variable(name: String)
-    case Function(name: String, parameters: [CNExpression])
+    case Variable(variableName: String)
+    case Function(functionName: String, functionParameters: [CNExpression])
     
     public var description: String {
         switch self {
@@ -44,8 +44,8 @@ public enum CNExpressionParseElement {
         case BracketOpen: return "("
         case BracketClose: return ")"
         case let Value(value): return value.description
-        case let Variable(name): return name
-        case let Function(name, parameters): return "\(name)(\(parameters.description))"
+        case let Variable(variableName): return variableName
+        case let Function(functionName, functionParameters): return "\(functionName)(\(functionParameters.description))"
         }
     }
     
@@ -69,12 +69,12 @@ public enum CNExpressionParseElement {
         case IsEqual: return CNExpressionParseElement.Value(value: try leftValue == rightValue)
         case Assign:
             switch left {
-            case let Variable(name):
-                if let variable = inBlock.variableByName(name) {
-                    variable.value = rightValue
+            case let Variable(variableName):
+                if let variable = inBlock.variableByName(variableName) {
+                    variable.variableValue = rightValue
                     return CNExpressionParseElement.Value(value: rightValue)
                 } else {
-                     throw NSError(domain: "Variable not found \(name)", code: 0, userInfo: nil)
+                     throw NSError(domain: "Variable not found \(variableName)", code: 0, userInfo: nil)
                 }
             default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
             }
@@ -85,17 +85,17 @@ public enum CNExpressionParseElement {
     public func value(inBlock: CNBlock) throws -> CNValue {
         switch self {
         case let Value(value): return value
-        case let Variable(name):
-            if let variable = inBlock.variableByName(name) {
-                return variable.value
+        case let Variable(variableName):
+            if let variable = inBlock.variableByName(variableName) {
+                return variable.variableValue
             } else {
-                throw NSError(domain: "Variable not found \(name)", code: 0, userInfo: nil)
+                throw NSError(domain: "Variable not found \(variableName)", code: 0, userInfo: nil)
             }
-        case let Function(name, parameters):
-            if let function = inBlock.functionByName(name) {
-                return try function.executeWithParameters(parameters)
+        case let Function(functionName, functionParameters):
+            if let function = inBlock.functionByName(functionName) {
+                return try function.executeWithParameters(functionParameters)
             } else {
-                throw NSError(domain: "Function not found \(name)", code: 0, userInfo: nil)
+                throw NSError(domain: "Function not found \(functionName)", code: 0, userInfo: nil)
             }
         default: return CNValue.unknown
         }
@@ -169,14 +169,14 @@ public enum CNExpressionParseElement {
                     return Value(value: CNValue.loadFromData(value))
                 }
             case "variable":
-                if let name = data["name"] as? String {
-                    return Variable(name: name)
+                if let variableName = data["variableName"] as? String {
+                    return Variable(variableName: variableName)
                 }
             case "function":
-                if let function = data["funciton"] as? [String: AnyObject], name = function["name"] as? String {
+                if let function = data["funciton"] as? [String: AnyObject], functionName = function["functionName"] as? String {
                     return Function(
-                        name: name,
-                        parameters: ((function["parameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
+                        functionName: functionName,
+                        functionParameters: ((function["functionParameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
                     )
                 }
             default: break
@@ -191,7 +191,7 @@ public class CNExpression: CNBlock {
     
     public var source: [CNExpressionParseElement]
     
-    override public var name: String {
+    override public var identifier: String {
         return ""
     }
     
@@ -245,7 +245,7 @@ public class CNExpression: CNBlock {
                 case .Value, .Variable:
                     preparedSource.append(element)
                 case let .Function(function):
-                    try function.parameters.forEach {
+                    try function.functionParameters.forEach {
                         try $0.prepare()
                     }
                     preparedSource.append(element)

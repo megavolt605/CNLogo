@@ -27,15 +27,15 @@ public class CNBlock {
 
     weak var parentBlock: CNBlock?
 
-    public var name: String {
+    public var identifier: String {
         return "Anonymous BLOCK"
     }
     
     public var description: String {
         if parameters.count > 0 {
-            return "\(name) \(parametersDescription)"
+            return "\(identifier) \(parametersDescription)"
         } else {
-            return name
+            return identifier
         }
     }
     
@@ -74,7 +74,7 @@ public class CNBlock {
     
     public func variableByName(name: String) -> CNVariable? {
         for v in variables {
-            if v.name == name {
+            if v.variableName == name {
                 return v
             }
         }
@@ -83,7 +83,7 @@ public class CNBlock {
     
     public func functionByName(name: String) -> CNFunction? {
         for f in functions {
-            if f.name == name {
+            if f.identifier == name {
                 return f
             }
         }
@@ -110,14 +110,14 @@ public class CNBlock {
         statements = []
         if let info = data["statements"] as? [[String: AnyObject]] {
             statements = info.map { item in
-                return CNLoader.createStatement(name, info: item["info"] as? [String: AnyObject])!
+                return CNLoader.createStatement(item["statementIdentificator"] as? String, info: item["statementInfo"] as? [String: AnyObject])!
             }
         }
 
         functions = []
         if let info = data["functions"] as? [[String: AnyObject]] {
             functions = info.map { item in
-                return functionByName(name)!
+                return functionByName(item["functionName"] as! String)!
             }
         }
     }

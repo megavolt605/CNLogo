@@ -10,7 +10,7 @@ import Foundation
 
 public class CNStatementForward: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "FORWARD"
     }
     
@@ -35,7 +35,7 @@ public class CNStatementForward: CNStatement {
 
 public class CNStatementBackward: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "BACKWARD"
     }
     
@@ -56,7 +56,7 @@ public class CNStatementBackward: CNStatement {
 
 public class CNStatementRotate: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "ROTATE"
     }
     
@@ -77,7 +77,7 @@ public class CNStatementRotate: CNStatement {
 
 public class CNStatementTailDown: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "TAIL DOWN"
     }
     
@@ -91,7 +91,7 @@ public class CNStatementTailDown: CNStatement {
 
 public class CNStatementTailUp: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "TAIL UP"
     }
     
@@ -105,7 +105,7 @@ public class CNStatementTailUp: CNStatement {
 
 public class CNStatementColor: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "COLOR"
     }
     
@@ -126,7 +126,7 @@ public class CNStatementColor: CNStatement {
 
 public class CNStatementWidth: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "WIDTH"
     }
     
@@ -152,7 +152,7 @@ public class CNStatementWidth: CNStatement {
 
 public class CNStatementClear: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "CLEAR"
     }
     
@@ -166,7 +166,7 @@ public class CNStatementClear: CNStatement {
 
 public class CNStatementScale: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "SCALE"
     }
     

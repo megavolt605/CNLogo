@@ -10,7 +10,7 @@ import Foundation
 
 public class CNStatementPrint: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "PRINT"
     }
     
@@ -28,15 +28,15 @@ public class CNStatementPrint: CNStatement {
 
 public class CNStatementVar: CNStatement {
     
-    override public var name: String {
+    override public var identifier: String {
         return "VAR"
     }
     
     override public var description: String {
-        return "\(name) \"\(varName)\" = " + parametersDescription
+        return "\(identifier) \"\(variableName)\" = " + parametersDescription
     }
     
-    public var varName: String
+    public var variableName: String
     
     override public func prepare() throws {
         try super.prepare()
@@ -48,25 +48,25 @@ public class CNStatementVar: CNStatement {
     override public func execute() throws -> CNValue {
         try super.execute()
         if let value = try parameters.first?.execute() {
-            if let variable = variableByName(varName) {
-                variable.value = value
+            if let variable = variableByName(variableName) {
+                variable.variableValue = value
             } else {
-                parentBlock?.variables.append(CNVariable(name: varName, value: value))
+                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
                 return value
             }
         } else {
-            if let _ = parentBlock?.variableByName(varName) {
-                throw NSError(domain: "Variable \(varName) redeclared", code: 0, userInfo: nil)
+            if let _ = parentBlock?.variableByName(variableName) {
+                throw NSError(domain: "Variable \(variableName) redeclared", code: 0, userInfo: nil)
             } else {
-                parentBlock?.variables.append(CNVariable(name: varName, value: .unknown))
+                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .unknown))
             }
         }
         CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
         return .unknown
     }
     
-    public init(name: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
-        self.varName = name
+    public init(variableName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+        self.variableName = variableName
         super.init(parameters: parameters, statements: statements, functions: functions)
     }
 
@@ -75,8 +75,8 @@ public class CNStatementVar: CNStatement {
     }
 
     required public init(data: [String : AnyObject]) {
-        if let name = data["var-name"] as? String {
-            self.varName = name
+        if let variableName = data["var-name"] as? String {
+            self.variableName = variableName
             super.init(data: data)
         } else {
             fatalError("CNStatementVar.init(data:) variable name not found")

@@ -10,7 +10,7 @@ import Foundation
 
 struct CNLoader {
     
-    static func createStatement(name: String?, info: [String: AnyObject]?) -> CNStatement? {
+    static func createStatement(identifier: String?, info: [String: AnyObject]?) -> CNStatement? {
         
         return nil
     }

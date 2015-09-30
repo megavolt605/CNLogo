@@ -9,11 +9,11 @@
 import Foundation
 
 public class CNVariable {
-    var name: String
-    var value: CNValue
+    var variableName: String
+    var variableValue: CNValue
     
-    init(name: String, value: CNValue) {
-        self.name = name
-        self.value = value
+    init(variableName: String, variableValue: CNValue) {
+        self.variableName = variableName
+        self.variableValue = variableValue
     }
 }
