@@ -113,4 +113,17 @@ public class CNStatementIf: CNStatement {
         super.init(parameters: parameters, statements: statements, functions: functions)
     }
 
+    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNStatementIf.init(parameters:statements:functions:) has not been implemented")
+    }
+
+    required public init(data: [String : AnyObject]) {
+        super.init(data: data)
+        if let info = data["statementsElse"] as? [[String: AnyObject]] {
+            statementsElse = info.map { item in return CNStatement(data: item) }
+        } else {
+            statementsElse = []
+        }
+    }
+
 }

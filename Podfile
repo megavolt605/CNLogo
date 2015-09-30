@@ -5,13 +5,14 @@ xcodeproj 'CNLogo.xcodeproj'
 
 use_frameworks!
 
-pod 'Dollar'
-
 target 'CNLogo' do
 
 end
 
 target 'CNLogoTests' do
+
+pod 'Dollar'
+pod 'LiquidLoader'
 
 end
 

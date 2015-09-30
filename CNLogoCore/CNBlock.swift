@@ -90,10 +90,37 @@ public class CNBlock {
         return parentBlock?.functionByName(name)
     }
     
-    public init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public func commonInit() {
+        
+    }
+    
+    public required init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         self.parameters = parameters
         self.statements = statements
         self.functions = functions
+        commonInit()
     }
+    
+    public required init(data: [String: AnyObject]) {
+        parameters = []
+        if let info = data["parameters"] as? [[String: AnyObject]] {
+            parameters = info.map { item in return CNExpression(data: item) }
+        }
+
+        statements = []
+        if let info = data["statements"] as? [[String: AnyObject]] {
+            statements = info.map { item in
+                return CNLoader.createStatement(name, info: item["info"] as? [String: AnyObject])!
+            }
+        }
+
+        functions = []
+        if let info = data["functions"] as? [[String: AnyObject]] {
+            functions = info.map { item in
+                return functionByName(name)!
+            }
+        }
+    }
+    
     
 }

@@ -69,5 +69,18 @@ public class CNStatementVar: CNStatement {
         self.varName = name
         super.init(parameters: parameters, statements: statements, functions: functions)
     }
+
+    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNStatementVar.init(parameters:statements:functions:) has not been implemented")
+    }
+
+    required public init(data: [String : AnyObject]) {
+        if let name = data["var-name"] as? String {
+            self.varName = name
+            super.init(data: data)
+        } else {
+            fatalError("CNStatementVar.init(data:) variable name not found")
+        }
+    }
     
 }

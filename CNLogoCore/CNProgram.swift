@@ -40,8 +40,7 @@ public class CNProgram: CNBlock {
         return try super.execute()
     }
     
-    override public init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
-        super.init(parameters: parameters, statements: statements, functions: functions)
+    override public func commonInit() {
         variables.append(CNVariable(name: "PI", value: CNValue.double(value: M_PI)))
         variables.append(CNVariable(name: "2*PI", value: CNValue.double(value: M_2_PI)))
         variables.append(CNVariable(name: "PI/2", value: CNValue.double(value: M_PI_2)))

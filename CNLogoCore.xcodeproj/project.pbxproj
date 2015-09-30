@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		785260511BBC19A500AF34A7 /* CNLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785260501BBC19A500AF34A7 /* CNLoader.swift */; settings = {ASSET_TAGS = (); }; };
 		785CA9D61BB9D0490087EEB0 /* CNEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3921BB9407200CCCE70 /* CNLogoCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C0D3911BB9407200CCCE70 /* CNLogoCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C0D3991BB9407200CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */; settings = {ASSET_TAGS = (); }; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		785260501BBC19A500AF34A7 /* CNLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLoader.swift; sourceTree = "<group>"; };
 		785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNEnviroment.swift; sourceTree = "<group>"; };
 		78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLogoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C0D3911BB9407200CCCE70 /* CNLogoCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLogoCore.h; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				78C0D3BE1BB941AC00CCCE70 /* CNWorkflow.swift */,
 				78C0D3CC1BB9424A00CCCE70 /* CNExecutionHistory.swift */,
 				785CA9D51BB9D0490087EEB0 /* CNEnviroment.swift */,
+				785260501BBC19A500AF34A7 /* CNLoader.swift */,
 			);
 			path = CNLogoCore;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C0D3C11BB941AC00CCCE70 /* CNExpression.swift in Sources */,
+				785260511BBC19A500AF34A7 /* CNLoader.swift in Sources */,
 				78C0D3C71BB941AC00CCCE70 /* CNSystemStatements.swift in Sources */,
 				78C0D3C91BB941AC00CCCE70 /* CNValue.swift in Sources */,
 				78C0D3C81BB941AC00CCCE70 /* CNTools.swift in Sources */,

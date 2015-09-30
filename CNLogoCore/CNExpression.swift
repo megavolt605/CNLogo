@@ -144,6 +144,46 @@ public enum CNExpressionParseElement {
     static let operators: [CNExpressionParseElement] = [
         Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
     ]
+
+    public static func loadFromData(data: [String: AnyObject]) -> CNExpressionParseElement {
+        if let type = data["type"] as? String {
+            switch type {
+            case "add": return Add
+            case "sub": return Sub
+            case "mul": return Mul
+            case "div": return Div
+            case "power": return Power
+            case "bool-and": return BoolAnd
+            case "bool-or": return BoolOr
+            case "bit-and": return BitAnd
+            case "bit-or": return BitOr
+            case "bit-xor": return BitXor
+            case "remainder": return Remainder
+            case "equal": return IsEqual
+            case "assign": return Assign
+                
+            case "bracket-open": return BracketOpen
+            case "bracket-close": return BracketClose
+            case "value":
+                if let value = data["value"] as? [String: AnyObject] {
+                    return Value(value: CNValue.loadFromData(value))
+                }
+            case "variable":
+                if let name = data["name"] as? String {
+                    return Variable(name: name)
+                }
+            case "function":
+                if let function = data["funciton"] as? [String: AnyObject], name = function["name"] as? String {
+                    return Function(
+                        name: name,
+                        parameters: ((function["parameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
+                    )
+                }
+            default: break
+            }
+        }
+        fatalError("Invalid element")
+    }
     
 }
 
@@ -260,4 +300,15 @@ public class CNExpression: CNBlock {
         super.init(statements: [])
     }
     
+    public required init(data: [String: AnyObject]) {
+        source = []
+        super.init(data: data)
+        if let info = data["source"] as? [[String: AnyObject]] {
+            source = info.map { item in return CNExpressionParseElement.loadFromData(item) }
+        }
+    }
+
+    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNExpression.init(parameters:statements:functions:) has not been implemented")
+    }
 }

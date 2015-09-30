@@ -39,6 +39,14 @@ public class CNFunction: CNBlock {
         self.parametersDesc = parametersDesc
         super.init(parameters: [], statements: [], functions: [])
     }
+
+    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNFunction.init(parameters:statements:functions:) has not been implemented")
+    }
+
+    public required init(data: [String : AnyObject]) {
+        fatalError("CNFunction.init(data:) has not been implemented")
+    }
     
 }
 
@@ -59,6 +67,14 @@ public class CNFunctionSin: CNFunction {
     init() {
         super.init(name: "SIN", parametersDesc: [CNValue.double(value: 0)])
     }
+
+    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNFunctionSin.init(parameters:statements:functions:) has not been implemented")
+    }
+
+    public required init(data: [String : AnyObject]) {
+        fatalError("CNFunctionSin.init(data:) has not been implemented")
+    }
     
 }
 
@@ -78,6 +94,14 @@ public class CNFunctionCos: CNFunction {
     
     init() {
         super.init(name: "COS", parametersDesc: [CNValue.double(value: 0)])
+    }
+
+    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNFunctionCos.init(parameters:statements:functions:) has not been implemented")
+    }
+
+    public required init(data: [String : AnyObject]) {
+        fatalError("CNFunctionCos.init(data:) has not been implemented")
     }
     
 }
