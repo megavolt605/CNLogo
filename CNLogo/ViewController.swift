@@ -18,10 +18,15 @@ class ViewController: UIViewController {
 
     @IBOutlet var fieldView: CNFieldView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var animationSpeedSlider: UISlider!
 
+    @IBOutlet weak var startMenuButton: CNButton!
+    @IBOutlet weak var pauseMenuButton: CNButton!
+    @IBOutlet weak var optionsMenuButton: CNButton!
+    @IBOutlet weak var editMenuButton: CNButton!
+    @IBOutlet weak var loadMenuButton: CNButton!
+    @IBOutlet weak var likeMenuButton: CNButton!
+    
     var currentIndex = 0
     var duration = 0.001
     var runState = CNRunState.Stopped
@@ -30,8 +35,33 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
+        pauseMenuButton.setupButtonImage(UIImage(named: "pause"))
+        
+        optionsMenuButton.setupButtonImage(UIImage(named: "options"))
+        optionsMenuButton.setupButtonColors(
+            backColor: UIColor(red: 1.0, green: 0.7, blue: 0.2, alpha: 1.0),
+            borderColor: UIColor(red: 1.0, green: 1.0, blue: 0.9, alpha: 1.0)
+        )
+
+        editMenuButton.setupButtonImage(UIImage(named: "edit"))
+        editMenuButton.setupButtonColors(
+            backColor: UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 1.0),
+            borderColor: UIColor(red: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
+        )
+
+        loadMenuButton.setupButtonImage(UIImage(named: "load"))
+        loadMenuButton.setupButtonColors(
+            backColor: UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 1.0),
+            borderColor: UIColor(red: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
+        )
+
+        likeMenuButton.setupButtonImage(UIImage(named: "like"))
+        likeMenuButton.setupButtonColors(
+            backColor: UIColor(red: 1.0, green: 0.2, blue: 0.2, alpha: 1.0),
+            borderColor: UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 1.0)
+        )
+        
         animationSpeedSlider.value = Float(duration)
         
         fieldView.opaque = false
@@ -133,7 +163,7 @@ class ViewController: UIViewController {
         tableView.delegate = tableViewDataSource
     }
 
-    @IBAction func startButtonTouchUpInside(sender: AnyObject) {
+    @IBAction func startMenuButtonTouchUpInside(sender: AnyObject) {
         if runState == .Executing {
             runState = .Stopped
             updateButtons()
@@ -155,7 +185,7 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func pauseButtonTouchUpInside(sender: AnyObject) {
+    @IBAction func pauseMenuButtonTouchUpInside(sender: AnyObject) {
         if runState == .Executing {
             runState = .Paused
         } else {
@@ -165,34 +195,44 @@ class ViewController: UIViewController {
         updateButtons()
     }
     
+    @IBAction func loadMenuButtonTouchUpInside(sender: AnyObject) {
+        let data = CNEnviroment.defaultEnviroment.currentProgram.store()
+        print(data)
+    }
+    
     @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
         duration = Double(animationSpeedSlider.value) / 1000.0
-        print(duration)
     }
     
     func updateButtons() {
-        pauseButton.setTitle(runState == CNRunState.Paused ? "Continue" : "Pause", forState: .Normal)
-        startButton.setTitle(runState == CNRunState.Stopped ? "Start" : "Stop", forState: .Normal)
-        pauseButton.enabled = runState == .Executing || runState == .Paused
+        startMenuButton.setupButtonImage(UIImage(named: runState == CNRunState.Stopped ? "start" : "stop"))
 
-        startButton.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)
-        startButton.layer.borderColor = UIColor(red: 0.0, green: 0.65, blue: 0.0, alpha: 1.0).CGColor
-        startButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        startButton.layer.borderWidth = 2.0
-        startButton.layer.cornerRadius = 4.0
-        
-        if pauseButton.enabled {
-            pauseButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.0, alpha: 1.0)
-            pauseButton.layer.borderColor = UIColor(red: 0.65, green: 0.65, blue: 0.0, alpha: 1.0).CGColor
-            pauseButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        pauseMenuButton.enabled = runState == .Executing || runState == .Paused
+
+        if pauseMenuButton.enabled {
+            pauseMenuButton.setupButtonColors(
+                backColor: UIColor(red: 1.0, green: 0.7, blue: 0.2, alpha: 1.0),
+                borderColor: UIColor(red: 1.0, green: 1.0, blue: 0.9, alpha: 1.0)
+            )
         } else {
-            pauseButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
-            pauseButton.layer.borderColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0).CGColor
-            pauseButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            pauseMenuButton.setupButtonColors(
+                backColor: UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0),
+                borderColor: UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+            )
         }
-        pauseButton.layer.borderWidth = 2.0
-        pauseButton.layer.cornerRadius = 4.0
-        
+
+        if runState == .Stopped {
+            startMenuButton.setupButtonColors(
+                backColor: UIColor(red: 0.2, green: 0.8, blue: 0.2, alpha: 1.0),
+                borderColor: UIColor(red: 0.9, green: 1.0, blue: 0.9, alpha: 1.0)
+            )
+        } else {
+            startMenuButton.setupButtonColors(
+                backColor: UIColor(red: 1.0, green: 0.2, blue: 0.2, alpha: 1.0),
+                borderColor: UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 1.0)
+            )
+        }
+
         animationSpeedSlider.enabled = runState != .Executing
         
     }
@@ -266,6 +306,6 @@ class ViewController: UIViewController {
             updateButtons()
         }
     }
-    
+
 }
 

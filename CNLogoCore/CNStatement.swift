@@ -18,4 +18,8 @@ public class CNStatement: CNBlock {
         throw NSError(domain: "\(self)", code: 0, userInfo: nil)
     }
 
+    override public func store() -> [String: AnyObject] {
+        return ["statement-id": identifier, "statement-info": super.store()]
+    }
+    
 }

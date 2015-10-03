@@ -35,14 +35,25 @@ class CNFieldView: UIView {
         }
         
         if playerLayer.superlayer == nil {
-            let image = UIImage(named: "Player")!.CGImage
+            let image = UIImage(named: "player")!.CGImage
             playerLayer.opaque = false
             playerLayer.contents = image
             playerLayer.anchorPoint = CGPointMake(0.5, 1.0)
             playerLayer.frame = CGRectMake(0.0, 0.0, 20.0, 20.0)
-            playerLayer.position = CGPointMake(CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.x, CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.y)
             layer.addSublayer(playerLayer)
         }
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.0)
+        let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        playerAnimation.fromValue = 0.0
+        playerAnimation.toValue = 0.0
+        playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimation.fillMode = kCAFillModeForwards
+        playerAnimation.removedOnCompletion = false
+        playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
+        CATransaction.commit()
+        
+        playerLayer.position = CGPointMake(CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.x, CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.y)
         
         drawingView.layer.removeAllAnimations()
         layers.forEach {

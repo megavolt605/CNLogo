@@ -65,6 +65,12 @@ public class CNStatementVar: CNStatement {
         return .unknown
     }
     
+    override public func store() -> [String: AnyObject] {
+        var res = super.store()
+        res["variable-name"] = variableName
+        return res
+    }
+    
     public init(variableName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
         self.variableName = variableName
         super.init(parameters: parameters, statements: statements, functions: functions)
@@ -75,7 +81,7 @@ public class CNStatementVar: CNStatement {
     }
 
     required public init(data: [String : AnyObject]) {
-        if let variableName = data["var-name"] as? String {
+        if let variableName = data["variable-name"] as? String {
             self.variableName = variableName
             super.init(data: data)
         } else {

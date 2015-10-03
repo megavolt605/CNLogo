@@ -83,11 +83,25 @@ public class CNBlock {
     
     public func functionByName(name: String) -> CNFunction? {
         for f in functions {
-            if f.identifier == name {
+            if f.funcName == name {
                 return f
             }
         }
         return parentBlock?.functionByName(name)
+    }
+    
+    public func store() -> [String: AnyObject] {
+        var res: [String: AnyObject] = [:]
+        if parameters.count > 0 {
+            res["parameters"] = parameters.map { $0.store() }
+        }
+        if statements.count > 0 {
+            res["statements"] = statements.map { $0.store() }
+        }
+        if functions.count > 0 {
+            res["functions"] = functions.map { $0.store() }
+        }
+        return res
     }
     
     public func commonInit() {
@@ -110,16 +124,17 @@ public class CNBlock {
         statements = []
         if let info = data["statements"] as? [[String: AnyObject]] {
             statements = info.map { item in
-                return CNLoader.createStatement(item["statementIdentificator"] as? String, info: item["statementInfo"] as? [String: AnyObject])!
+                return CNLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: AnyObject])!
             }
         }
 
         functions = []
         if let info = data["functions"] as? [[String: AnyObject]] {
             functions = info.map { item in
-                return functionByName(item["functionName"] as! String)!
+                return functionByName(item["function-name"] as! String)!
             }
         }
+        commonInit()
     }
     
     

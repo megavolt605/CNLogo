@@ -107,6 +107,11 @@ public class CNStatementIf: CNStatement {
         return .unknown
     }
     
+    override public func store() -> [String: AnyObject] {
+        var res = super.store()
+        res["statement-else"] = statementsElse.map { $0.store() }
+        return res
+    }
 
     init(parameters: [CNExpression] = [], statements: [CNStatement] = [], statementsElse: [CNStatement] = [], functions: [CNFunction]) {
         self.statementsElse = statementsElse
@@ -119,7 +124,7 @@ public class CNStatementIf: CNStatement {
 
     required public init(data: [String : AnyObject]) {
         super.init(data: data)
-        if let info = data["statementsElse"] as? [[String: AnyObject]] {
+        if let info = data["statements-else"] as? [[String: AnyObject]] {
             statementsElse = info.map { item in return CNStatement(data: item) }
         } else {
             statementsElse = []

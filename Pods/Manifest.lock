@@ -1,10 +1,23 @@
 PODS:
   - Dollar (4.0.1)
+  - LiquidLoader (0.1.1)
 
 DEPENDENCIES:
   - Dollar
+  - LiquidLoader (from `https://github.com/yoavlt/LiquidLoader.git`, branch `swift-2.0`)
+
+EXTERNAL SOURCES:
+  LiquidLoader:
+    :branch: swift-2.0
+    :git: https://github.com/yoavlt/LiquidLoader.git
+
+CHECKOUT OPTIONS:
+  LiquidLoader:
+    :commit: cb98b96d9f4272baafbeb39e21e64cccd3b5fc94
+    :git: https://github.com/yoavlt/LiquidLoader.git
 
 SPEC CHECKSUMS:
   Dollar: a058e2659e0d3261307c12630dbc2fd8e32f80bf
+  LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
 
 COCOAPODS: 0.38.2

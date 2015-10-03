@@ -50,7 +50,32 @@ public enum CNValue {
     public func throwValueError() throws {
         throw NSError(domain: "Value Error", code: 0, userInfo: nil)
     }
-    
+
+    func store() -> [String: AnyObject] {
+        switch self {
+        case let bool(value): return ["type": "bool", "value": value]
+        case let int(value): return ["type": "int", "value": value]
+        case let double(value): return ["type": "double", "value": value]
+        case let string(value): return ["type": "string", "value": value]
+        case let color(value):
+            var red: CGFloat = 0.0
+            var green: CGFloat = 0.0
+            var blue: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            value.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            return [
+                "type": "color",
+                "value": [
+                    "red": red,
+                    "green": green,
+                    "blue": blue,
+                    "alpha": alpha
+                ]
+            ]
+        default: return [:]
+        }
+    }
+
     public static func loadFromData(data: [String: AnyObject]) -> CNValue {
         if let type = data["type"] as? String {
             switch type {

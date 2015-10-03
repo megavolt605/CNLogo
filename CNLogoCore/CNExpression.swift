@@ -145,6 +145,36 @@ public enum CNExpressionParseElement {
         Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
     ]
 
+    public func store() -> [String: AnyObject] {
+        switch self {
+        case Add: return ["type": "add"]
+        case Sub: return ["type": "sub"]
+        case Mul: return ["type": "mul"]
+        case Div: return ["type": "div"]
+        case Power: return ["type": "power"]
+        case BoolAnd: return ["type": "bool-and"]
+        case BoolOr: return ["type": "bool-or"]
+        case BitAnd: return ["type": "bit-and"]
+        case BitOr: return ["type": "bit-or"]
+        case BitXor: return ["type": "bit-xor"]
+        case Remainder: return ["type": "remainder"]
+        case IsEqual: return ["type": "equal"]
+        case Assign: return ["type": "assign"]
+            
+        case BracketOpen: return ["type": "bracket-open"]
+        case BracketClose: return ["type": "bracket-close"]
+        case let Value(value): return ["type": "value", "value": value.store()]
+        case let Variable(variableName): return ["type": "variable", "variable-name": variableName]
+        case let Function(function): return [
+            "type": "function",
+            "function": [
+                "function-name": function.functionName,
+                "function-params": function.functionParameters.map { $0.store() }
+            ]
+        ]
+        }
+    }
+    
     public static func loadFromData(data: [String: AnyObject]) -> CNExpressionParseElement {
         if let type = data["type"] as? String {
             switch type {
@@ -169,14 +199,14 @@ public enum CNExpressionParseElement {
                     return Value(value: CNValue.loadFromData(value))
                 }
             case "variable":
-                if let variableName = data["variableName"] as? String {
+                if let variableName = data["variable-name"] as? String {
                     return Variable(variableName: variableName)
                 }
             case "function":
-                if let function = data["funciton"] as? [String: AnyObject], functionName = function["functionName"] as? String {
+                if let function = data["funciton"] as? [String: AnyObject], functionName = function["function-name"] as? String {
                     return Function(
                         functionName: functionName,
-                        functionParameters: ((function["functionParameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
+                        functionParameters: ((function["function-parameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
                     )
                 }
             default: break
@@ -192,7 +222,7 @@ public class CNExpression: CNBlock {
     public var source: [CNExpressionParseElement]
     
     override public var identifier: String {
-        return ""
+        return "EXPR"
     }
     
     override public var description: String {
@@ -293,6 +323,12 @@ public class CNExpression: CNBlock {
         }
         
         return try result.pop()!.value(self)
+    }
+
+    override public func store() -> [String: AnyObject] {
+        var res = super.store()
+        res["source"] = source.map { $0.store() }
+        return res
     }
 
     public init(source: [CNExpressionParseElement]) {
