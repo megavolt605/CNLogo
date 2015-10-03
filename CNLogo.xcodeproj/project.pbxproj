@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		33D758473FAFCB353C468933 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5C8C89A01537ADB22F7FAA /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		7825FCF41BBFDF8B004C2903 /* Dollar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7825FCF11BBFDF8B004C2903 /* Dollar.framework */; };
-		7825FCF51BBFDF8B004C2903 /* LiquidFloatingActionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7825FCF21BBFDF8B004C2903 /* LiquidFloatingActionButton.framework */; };
-		7825FCF61BBFDF8B004C2903 /* LiquidLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7825FCF31BBFDF8B004C2903 /* LiquidLoader.framework */; };
 		7825FCFE1BC00C20004C2903 /* CNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FCFD1BC00C20004C2903 /* CNButton.swift */; settings = {ASSET_TAGS = (); }; };
 		7825FD021BC012BA004C2903 /* CNLogo+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */; settings = {ASSET_TAGS = (); }; };
+		7825FD081BC0352D004C2903 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
+		7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7C1B9E01B40037E99F /* AppDelegate.swift */; };
 		7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7E1B9E01B40037E99F /* ViewController.swift */; };
@@ -30,6 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7825FD061BC034E8004C2903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78C0D38D1BB9407200CCCE70;
+			remoteInfo = CNLogoCore;
+		};
+		7825FD0A1BC0352D004C2903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78C0D38D1BB9407200CCCE70;
+			remoteInfo = CNLogoCore;
+		};
 		7856FA8D1B9E01B40037E99F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7856FA6F1B9E01B40037E99F /* Project object */;
@@ -52,6 +65,20 @@
 			remoteInfo = CNLogoCoreTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7825FD0C1BC0352D004C2903 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,12 +118,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7825FCF41BBFDF8B004C2903 /* Dollar.framework in Frameworks */,
-				7825FCF51BBFDF8B004C2903 /* LiquidFloatingActionButton.framework in Frameworks */,
-				7825FCF61BBFDF8B004C2903 /* LiquidLoader.framework in Frameworks */,
 				78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */,
 				33D758473FAFCB353C468933 /* Pods.framework in Frameworks */,
 				46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */,
+				7825FD081BC0352D004C2903 /* CNLogoCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,10 +274,13 @@
 				7856FA751B9E01B40037E99F /* Resources */,
 				76A8D1692B59DECC1443D85D /* Embed Pods Frameworks */,
 				638267E109337074A0201EED /* Copy Pods Resources */,
+				7825FD0C1BC0352D004C2903 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7825FD071BC034E8004C2903 /* PBXTargetDependency */,
+				7825FD0B1BC0352D004C2903 /* PBXTargetDependency */,
 			);
 			name = CNLogo;
 			productName = CNLogo;
@@ -481,6 +509,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7825FD071BC034E8004C2903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CNLogoCore;
+			targetProxy = 7825FD061BC034E8004C2903 /* PBXContainerItemProxy */;
+		};
+		7825FD0B1BC0352D004C2903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CNLogoCore;
+			targetProxy = 7825FD0A1BC0352D004C2903 /* PBXContainerItemProxy */;
+		};
 		7856FA8E1B9E01B40037E99F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7856FA761B9E01B40037E99F /* CNLogo */;
@@ -600,7 +638,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CNLogo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -612,7 +652,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CNLogo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
