@@ -27,16 +27,71 @@ class ViewController: UIViewController {
     @IBOutlet weak var loadMenuButton: CNButton!
     @IBOutlet weak var likeMenuButton: CNButton!
     
+    @IBOutlet weak var tableViewLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var startMenuButtonRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var optionsMenuButtonRightConstraint: NSLayoutConstraint!
+    
     var currentIndex = 0
     var duration = 0.001
     var runState = CNRunState.Stopped
     
+    var buttons: [CNButton] = []
+    
     var tableViewDataSource: CNProgramTableViewDataSource!
+
+    var hideControls: Bool = false {
+        didSet {
+            if hideControls {
+                if hideControls != oldValue {
+                    UIView.animateWithDuration(0.3,
+                        animations: {
+                            self.tableView.frame.origin.x -= self.tableView.frame.width + 20.0 + 10.0
+                            self.buttons.forEach { button in
+                                button.frame.origin.x += button.frame.size.width * 2.0
+                            }
+                        },
+                        completion: { completed in
+                            self.tableViewLeftConstraint.constant = self.tableView.frame.width + 20.0 + 10.0
+                            self.startMenuButtonRightConstraint.constant = -12.0 - self.startMenuButton.bounds.width * 2.0
+                            self.optionsMenuButtonRightConstraint.constant = -12.0 - self.optionsMenuButton.bounds.width * 2.0
+                            self.view.setNeedsLayout()
+                        }
+                    )
+                }
+            } else {
+                if hideControls != oldValue {
+                    UIView.animateWithDuration(0.3,
+                        animations: {
+                            self.tableView.frame.origin.x += self.tableView.frame.width
+                            self.buttons.forEach { button in
+                                button.frame.origin.x -= button.frame.size.width * 2.0
+                            }
+                        },
+                        completion: { completed in
+                            self.tableViewLeftConstraint.constant = 20.0
+                            self.startMenuButtonRightConstraint.constant = -12.0
+                            self.optionsMenuButtonRightConstraint.constant = -12.0
+                            self.view.setNeedsLayout()
+                        }
+                    )
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         pauseMenuButton.setupButtonImage(UIImage(named: "pause"))
+
+        buttons = [
+            startMenuButton,
+            pauseMenuButton,
+            optionsMenuButton,
+            editMenuButton,
+            loadMenuButton,
+            likeMenuButton
+        ]
         
         optionsMenuButton.setupButtonImage(UIImage(named: "options"))
         optionsMenuButton.setupButtonColors(
@@ -161,6 +216,12 @@ class ViewController: UIViewController {
         tableView.reloadData()
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDataSource
+        tableView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
+        tableView.layer.shadowRadius = 3.0
+        tableView.layer.shadowColor = UIColor.blackColor().CGColor
+        tableView.layer.shadowOpacity = 0.5
+        tableView.clipsToBounds = false
+        tableView.layer.masksToBounds = false
     }
 
     @IBAction func startMenuButtonTouchUpInside(sender: AnyObject) {
@@ -202,6 +263,10 @@ class ViewController: UIViewController {
     
     @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
         duration = Double(animationSpeedSlider.value) / 1000.0
+    }
+    
+    @IBAction func fieldViewTap(sender: AnyObject) {
+        hideControls = !hideControls
     }
     
     func updateButtons() {

@@ -24,6 +24,7 @@ class CNFieldView: UIView {
         if snapshotView.superview == nil {
             snapshotView.opaque = false
             snapshotView.frame = UIScreen.mainScreen().bounds
+            snapshotView.contentMode = .ScaleAspectFit
             addSubview(snapshotView)
         }
         snapshotView.image = nil
