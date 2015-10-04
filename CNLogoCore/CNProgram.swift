@@ -10,42 +10,6 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public enum CNError: ErrorType {
-    case Unknown
-    case VariableNotFound(variableName: String)
-    case FunctionNotFound(functionName: String)
-    case AssignToNonVariable
-    case InvalidOperator
-    case InvalidExpression
-    case InvalidParameterCount(functionName: String)
-    case InvalidParameterType(functionName: String, parameterIndex: Int)
-    case NumericValueExpected
-    case IntValueExpected
-    case BoolValueExpected
-    case InvalidValue
-    case VariableAlreadyExists(variableName: String)
-    case StatementParameterCountMismatch(statementIdentifier: String, excpectedCount: Int, actualCount: Int)
-    
-    public var description: String {
-        switch self {
-        case Unknown: return "Unknown error"
-        case let VariableNotFound(variableName): return "Variable not found \(variableName)"
-        case let FunctionNotFound(functionName): return "Function not found \(functionName)"
-        case AssignToNonVariable: return "Assignment allowed to variables only"
-        case InvalidOperator: return "Invalid operator"
-        case InvalidExpression: return "Invalid expression"
-        case let InvalidParameterCount(functionName): return "Parameter count mismatch for function \(functionName)"
-        case let InvalidParameterType(functionName, parameterIndex): return "Parameter \(parameterIndex) type mismatch for function \(functionName)"
-        case NumericValueExpected: return "Numeric value expected"
-        case IntValueExpected: return "Integer value expected"
-        case BoolValueExpected: return "Boolean value expected"
-        case InvalidValue: return "Invalid value"
-        case let VariableAlreadyExists(variableName): return "Variable already exists \(variableName)"
-        case let StatementParameterCountMismatch(statementIdentifier, excpectedCount, actualCount): return "Statement \(statementIdentifier) expects \(excpectedCount) parameters, but found \(actualCount)"
-        }
-    }
-}
-
 public class CNProgram: CNBlock {
 
     override public var identifier: String {
@@ -54,6 +18,8 @@ public class CNProgram: CNBlock {
     
     public var player = CNPlayer()
 
+    public var globalStack = CNStack<CNValue>()
+    
     public var executionHistory = CNExecutionHistory()
     
     public func clear() {

@@ -16,10 +16,9 @@ public class CNStatementPrint: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        parameters.forEach {
-            if let desc = try? $0.execute().description {
-                CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
-            }
+        try parameters.forEach {
+            let desc = try $0.execute().description
+            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
         }
         return .unknown
     }
@@ -52,8 +51,9 @@ public class CNStatementVar: CNStatement {
                 variable.variableValue = value
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
-                return value
             }
+            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+            return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
                 throw CNError.VariableAlreadyExists(variableName: variableName)
@@ -90,3 +90,108 @@ public class CNStatementVar: CNStatement {
     }
     
 }
+
+public class CNStatementPush: CNStatement {
+    
+    override public var identifier: String {
+        return "PUSH"
+    }
+    
+    override public func execute() throws -> CNValue {
+        try super.execute()
+        try parameters.forEach {
+            try parentBlock?.valueStack.push($0.execute())
+        }
+        return .unknown
+    }
+    
+}
+
+public class CNStatementPop: CNStatement {
+    
+    override public var identifier: String {
+        return "POP"
+    }
+    
+    public var variableName: String
+
+    func popValue() -> CNValue? {
+        return parentBlock?.valueStack.pop()
+    }
+    
+    override public func prepare() throws {
+        try super.prepare()
+        if parameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        }
+    }
+    
+    override public func execute() throws -> CNValue {
+        try super.execute()
+        if let value = popValue() {
+            if let variable = variableByName(variableName) {
+                variable.variableValue = value
+            } else {
+                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
+            }
+            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+            return value
+        } else {
+            throw CNError.InvalidValue
+        }
+    }
+
+    override public func store() -> [String: AnyObject] {
+        var res = super.store()
+        res["variable-name"] = variableName
+        return res
+    }
+    
+    public init(variableName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+        self.variableName = variableName
+        super.init(parameters: parameters, statements: statements, functions: functions)
+    }
+    
+    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
+        fatalError("CNStatementVar.init(parameters:statements:functions:) has not been implemented")
+    }
+    
+    required public init(data: [String : AnyObject]) {
+        if let variableName = data["variable-name"] as? String {
+            self.variableName = variableName
+            super.init(data: data)
+        } else {
+            fatalError("CNStatementVar.init(data:) variable name not found")
+        }
+    }
+    
+}
+
+public class CNStatementGlobalPush: CNStatement {
+    
+    override public var identifier: String {
+        return "GPUSH"
+    }
+    
+    override public func execute() throws -> CNValue {
+        try super.execute()
+        try parameters.forEach {
+            try CNEnviroment.defaultEnviroment.currentProgram.globalStack.push($0.execute())
+        }
+        return .unknown
+    }
+    
+}
+
+public class CNStatementGlobalPop: CNStatementPop {
+    
+    override public var identifier: String {
+        return "GPOP"
+    }
+    
+    override func popValue() -> CNValue? {
+        return CNEnviroment.defaultEnviroment.currentProgram.globalStack.pop()
+    }
+}
+
+

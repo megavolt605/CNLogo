@@ -54,6 +54,50 @@ public class CNStatementBackward: CNStatement {
     
 }
 
+public class CNStatementMove: CNStatementForward {
+    
+    override public var identifier: String {
+        return "MOVE"
+    }
+    
+    override public func execute() throws -> CNValue {
+        try super.execute()
+        let player = CNEnviroment.defaultEnviroment.currentProgram.player
+        let tailDown = player.state.tailDown
+        if tailDown {
+            player.tailDown(false, fromBlock: self)
+        }
+        try player.moveForward(parameters.first!, fromBlock: self)
+        if tailDown {
+            player.tailDown(true, fromBlock: self)
+        }
+        return .unknown
+    }
+    
+}
+
+public class CNStatementDRAW: CNStatementForward {
+    
+    override public var identifier: String {
+        return "DRAW"
+    }
+    
+    override public func execute() throws -> CNValue {
+        try super.execute()
+        let player = CNEnviroment.defaultEnviroment.currentProgram.player
+        let tailDown = player.state.tailDown
+        if !tailDown {
+            player.tailDown(true, fromBlock: self)
+        }
+        try player.moveForward(parameters.first!, fromBlock: self)
+        if !tailDown {
+            player.tailDown(false, fromBlock: self)
+        }
+        return .unknown
+    }
+    
+}
+
 public class CNStatementRotate: CNStatement {
     
     override public var identifier: String {

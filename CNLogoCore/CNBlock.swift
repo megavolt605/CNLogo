@@ -23,6 +23,8 @@ public class CNBlock {
     }
     public var variables: [CNVariable] = []
     public var functions: [CNFunction] = []
+    public var valueStack = CNStack<CNValue>()
+    
     private var prepared = false
 
     weak var parentBlock: CNBlock?
