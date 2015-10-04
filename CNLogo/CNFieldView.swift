@@ -11,6 +11,13 @@ import UIKit
 
 typealias CNAnimationCompletion = () -> Void
 
+protocol CNFieldViewDelegate: class {
+    
+    func willExecuteHistoryItem(item: CNExecutionHistoryItem)
+    func didFinishExecution()
+    
+}
+
 class CNFieldView: UIView {
     
     var snapshotView = UIImageView()
@@ -18,8 +25,45 @@ class CNFieldView: UIView {
     var playerLayer = CALayer()
     
     var layers: [CALayer] = []
+
+    var currentIndex = 0
+    var runState = CNRunState.Stopped
+    weak var delegate: CNFieldViewDelegate?
+    
+    func addPlayerAnimation(fromPoint: CGPoint, toPoint: CGPoint) {
+
+        let playerAnimationX = CABasicAnimation(keyPath: "position.x")
+        playerAnimationX.fromValue = fromPoint.x
+        playerAnimationX.toValue = toPoint.x
+        playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimationX.fillMode = kCAFillModeForwards
+        playerAnimationX.removedOnCompletion = false
+        playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
+        
+        let playerAnimationY = CABasicAnimation(keyPath: "position.y")
+        playerAnimationY.fromValue = fromPoint.y
+        playerAnimationY.toValue = toPoint.y
+        playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        playerAnimationY.fillMode = kCAFillModeForwards
+        playerAnimationY.removedOnCompletion = false
+        playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
+        
+    }
+    
+    func updatePlayerPosition() {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.0)// setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        addPlayerAnimation(playerLayer.position, toPoint: CNEnviroment.defaultEnviroment.currentProgram.player.state.position)
+        CATransaction.commit()
+    }
     
     func clear() {
+        
+        drawingView.layer.removeAllAnimations()
+        layers.forEach {
+            $0.removeAllAnimations()
+            $0.removeFromSuperlayer()
+        }
         
         if snapshotView.superview == nil {
             snapshotView.opaque = false
@@ -56,12 +100,6 @@ class CNFieldView: UIView {
         
         playerLayer.position = CGPointMake(CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.x, CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.y)
         
-        drawingView.layer.removeAllAnimations()
-        layers.forEach {
-            $0.removeAllAnimations()
-            $0.removeFromSuperlayer()
-        }
-        
         layers = []
         
         setNeedsDisplay()
@@ -78,7 +116,7 @@ class CNFieldView: UIView {
             UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
             // Render the layer hierarchy to the current context
             snapshotView.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
-            drawingView.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
+            drawingView.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
             let viewImage = UIGraphicsGetImageFromCurrentImageContext()
         
             snapshotView.image = viewImage
@@ -90,67 +128,158 @@ class CNFieldView: UIView {
         }
     }
     
-    func addStrokeWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(duration)
-        CATransaction.setCompletionBlock(completion)
-        let layer = CAShapeLayer()
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
-        CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
-        layer.path = path
-        layer.strokeColor = item.playerState.color
-        layer.lineWidth = item.playerState.width
-        layer.strokeEnd = duration > 0.01 ? 0.0 : 1.0
-        layer.lineCap = kCALineCapRound
-        drawingView.layer.addSublayer(layer)
-        layers.append(layer)
-        let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        strokeAnimation.fromValue = 0.0
-        strokeAnimation.toValue = 1.0
-        strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        strokeAnimation.fillMode = kCAFillModeForwards
-        strokeAnimation.removedOnCompletion = false
-        layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
-        addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration, completion: nil)
-        CATransaction.commit()
+    func addStrokeWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+        if options.shouldAnimate {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(options.duration)
+            CATransaction.setCompletionBlock(completion)
+            let layer = CAShapeLayer()
+            let path = CGPathCreateMutable()
+            CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
+            CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
+            layer.path = path
+            layer.strokeColor = item.playerState.color
+            layer.lineWidth = item.playerState.width
+            layer.strokeEnd = options.shouldAnimate ? 0.0 : 1.0
+            layer.lineCap = kCALineCapRound
+            drawingView.layer.addSublayer(layer)
+            layers.append(layer)
+            let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
+            strokeAnimation.fromValue = 0.0
+            strokeAnimation.toValue = 1.0
+            strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            strokeAnimation.fillMode = kCAFillModeForwards
+            strokeAnimation.removedOnCompletion = false
+            layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
+            addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options, completion: nil)
+            CATransaction.commit()
+        } else {
+            let layer = CAShapeLayer()
+            let path = CGPathCreateMutable()
+            CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
+            CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
+            layer.path = path
+            layer.strokeColor = item.playerState.color
+            layer.lineWidth = item.playerState.width
+            layer.strokeEnd = 1.0
+            layer.lineCap = kCALineCapRound
+            drawingView.layer.addSublayer(layer)
+            layers.append(layer)
+            completion?()
+        }
     }
     
-    func addPlayerMoveWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(duration)
-        CATransaction.setCompletionBlock(completion)
-        let playerAnimationX = CABasicAnimation(keyPath: "position.x")
-        playerAnimationX.fromValue = fromPoint.x
-        playerAnimationX.toValue = toPoint.x
-        playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        playerAnimationX.fillMode = kCAFillModeForwards
-        playerAnimationX.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
-        
-        let playerAnimationY = CABasicAnimation(keyPath: "position.y")
-        playerAnimationY.duration = duration
-        playerAnimationY.fromValue = fromPoint.y
-        playerAnimationY.toValue = toPoint.y
-        playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        playerAnimationY.fillMode = kCAFillModeForwards
-        playerAnimationY.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
-        CATransaction.commit()
+    func addPlayerMoveWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+        if options.shouldAnimate {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(options.duration)
+            CATransaction.setCompletionBlock(completion)
+            addPlayerAnimation(fromPoint, toPoint: toPoint)
+            CATransaction.commit()
+        } else {
+            completion?()
+        }
     }
 
-    func addPlayerRotationWithItem(item: CNExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, duration: CFTimeInterval, completion: CNAnimationCompletion?) {
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(duration)
-        CATransaction.setCompletionBlock(completion)
-        let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        playerAnimation.fromValue = fromAngle
-        playerAnimation.toValue = toAngle
-        playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        playerAnimation.fillMode = kCAFillModeForwards
-        playerAnimation.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
-        CATransaction.commit()
+    func addPlayerRotationWithItem(item: CNExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, options: CNOptions, completion: CNAnimationCompletion?) {
+        if options.shouldAnimate {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(options.duration)
+            CATransaction.setCompletionBlock(completion)
+            let playerAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            playerAnimation.fromValue = fromAngle
+            playerAnimation.toValue = toAngle
+            playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            playerAnimation.fillMode = kCAFillModeForwards
+            playerAnimation.removedOnCompletion = false
+            playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
+            CATransaction.commit()
+        } else {
+            completion?()
+        }
     }
+    
+    func visualizeResult(options: CNOptions) {
+        currentIndex = 0
+        visualizeStep(options)
+    }
+    
+    func visualizeStep(options: CNOptions) {
+        let program = CNEnviroment.defaultEnviroment.currentProgram
+        if currentIndex < program.executionHistory.history.count {
+            if runState == .Executing {
+                makeSnapshot()
+                var shouldBreak = true
+                repeat {
+                    shouldBreak = true
+                    let item = program.executionHistory.history[currentIndex]
+                    delegate?.willExecuteHistoryItem(item)
+                    switch item.type {
+                    case .Clear:
+                        clear()
+                        currentIndex++
+                        shouldBreak = false
+                    case let .Move(fromPoint, toPoint, _):
+                        if item.playerState.tailDown {
+                            addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                self.currentIndex++
+                                if !options.shouldAnimate {
+                                    shouldBreak = false
+                                } else {
+                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                }
+                            }
+                        } else {
+                            addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                self.currentIndex++
+                                if !options.shouldAnimate {
+                                    shouldBreak = false
+                                } else {
+                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                }
+                            }
+                        }
+                    case let .Rotate(fromAngle, toAngle):
+                        addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
+                            self.currentIndex++
+                            if !options.shouldAnimate {
+                                shouldBreak = false
+                            } else {
+                                dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                            }
+                        }
+                    case let .Print(value):
+                        print(value)
+                        currentIndex++
+                        shouldBreak = false
+                    case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
+                        currentIndex++
+                        shouldBreak = false
+                        break
+                    }
+                    
+                } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
+            }
+        }
+        
+        if currentIndex >= program.executionHistory.history.count {
+            makeSnapshot(true)
+            runState = .Stopped
+            delegate?.didFinishExecution()
+        }
+    }
+    
+    func execute(options: CNOptions) throws {
+        let program = CNEnviroment.defaultEnviroment.currentProgram
+        program.clear()
+        program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+        clear()
+        try program.execute()
+        if !options.shouldAnimate {
+            updatePlayerPosition()
+        }
+        visualizeResult(options)
+    }
+    
 }
 

@@ -13,6 +13,7 @@
 		7825FD021BC012BA004C2903 /* CNLogo+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */; settings = {ASSET_TAGS = (); }; };
 		7825FD081BC0352D004C2903 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
 		7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7825FD0E1BC13C82004C2903 /* CNOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD0D1BC13C82004C2903 /* CNOptions.swift */; settings = {ASSET_TAGS = (); }; };
 		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7C1B9E01B40037E99F /* AppDelegate.swift */; };
 		7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7E1B9E01B40037E99F /* ViewController.swift */; };
@@ -89,6 +90,7 @@
 		7825FCF31BBFDF8B004C2903 /* LiquidLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiquidLoader.framework; path = "Pods/../build/Debug-iphoneos/LiquidLoader.framework"; sourceTree = "<group>"; };
 		7825FCFD1BC00C20004C2903 /* CNButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNButton.swift; sourceTree = "<group>"; };
 		7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLogo+UIImage.swift"; sourceTree = "<group>"; };
+		7825FD0D1BC13C82004C2903 /* CNOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOptions.swift; sourceTree = "<group>"; };
 		78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewCell.swift; sourceTree = "<group>"; };
 		78260ECD1BB09FCD006ADF68 /* ScreenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScreenShot.png; path = ../ScreenShot.png; sourceTree = "<group>"; };
 		78260ED21BB0A0F2006ADF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -247,6 +249,7 @@
 			children = (
 				785E7A771BB7F29100998ADB /* CNBlockVisual.swift */,
 				785E7A751BB475FB00998ADB /* CNVisualElements.swift */,
+				7825FD0D1BC13C82004C2903 /* CNOptions.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				785E7A781BB7F29100998ADB /* CNBlockVisual.swift in Sources */,
 				7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */,
 				7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */,
+				7825FD0E1BC13C82004C2903 /* CNOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

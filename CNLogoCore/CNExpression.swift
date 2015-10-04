@@ -74,11 +74,11 @@ public enum CNExpressionParseElement {
                     variable.variableValue = rightValue
                     return CNExpressionParseElement.Value(value: rightValue)
                 } else {
-                     throw NSError(domain: "Variable not found \(variableName)", code: 0, userInfo: nil)
+                    throw CNError.VariableNotFound(variableName: variableName)
                 }
-            default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
+            default: throw CNError.AssignToNonVariable
             }
-        default: throw NSError(domain: "Invalid operator", code: 0, userInfo: nil)
+        default: throw CNError.InvalidOperator
         }
     }
     
@@ -89,13 +89,13 @@ public enum CNExpressionParseElement {
             if let variable = inBlock.variableByName(variableName) {
                 return variable.variableValue
             } else {
-                throw NSError(domain: "Variable not found \(variableName)", code: 0, userInfo: nil)
+                throw CNError.VariableNotFound(variableName: variableName)
             }
         case let Function(functionName, functionParameters):
             if let function = inBlock.functionByName(functionName) {
                 return try function.executeWithParameters(functionParameters)
             } else {
-                throw NSError(domain: "Function not found \(functionName)", code: 0, userInfo: nil)
+                throw CNError.FunctionNotFound(functionName: functionName)
             }
         default: return CNValue.unknown
         }
@@ -289,10 +289,11 @@ public class CNExpression: CNBlock {
                             }
                             preparedSource.append(oper)
                         } else {
-                            throw NSError(domain: "Invalid expression", code: 0, userInfo: nil)
+                            throw CNError.InvalidExpression
                         }
                     } while true
-                default: throw NSError(domain: "Invalid expression", code: 0, userInfo: nil)
+                default:
+                    throw CNError.InvalidExpression
                 }
             }
         }

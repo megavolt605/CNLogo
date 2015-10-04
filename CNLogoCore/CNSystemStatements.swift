@@ -40,8 +40,8 @@ public class CNStatementVar: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count > 1 {
-            try throwError()
+        if parameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -56,7 +56,7 @@ public class CNStatementVar: CNStatement {
             }
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
-                throw NSError(domain: "Variable \(variableName) redeclared", code: 0, userInfo: nil)
+                throw CNError.VariableAlreadyExists(variableName: variableName)
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .unknown))
             }

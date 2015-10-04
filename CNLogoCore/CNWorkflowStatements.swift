@@ -1,5 +1,5 @@
 //
-//  CNWorkflowRepeat.swift
+//  CNWorkflowStatements.swift
 //  CNLogo
 //
 //  Created by Igor Smirnov on 07/09/15.
@@ -17,7 +17,7 @@ public class CNStatementRepeat: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -31,7 +31,7 @@ public class CNStatementRepeat: CNStatement {
                     try $0.execute()
                 }
             }
-        default: throw NSError(domain: "Int expected", code: 0, userInfo: nil)
+        default: throw CNError.IntValueExpected
         }
         CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
         return .unknown
@@ -48,7 +48,7 @@ public class CNStatementWhile: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -66,7 +66,7 @@ public class CNStatementWhile: CNStatement {
                     CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
                     break
                 }
-            default: try throwError()
+            default: throw CNError.BoolValueExpected
             }
         } while true
     }
@@ -84,7 +84,7 @@ public class CNStatementIf: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -102,7 +102,7 @@ public class CNStatementIf: CNStatement {
                     try $0.execute()
                 }
             }
-        default: try throwError()
+        default: throw CNError.BoolValueExpected
         }
         return .unknown
     }

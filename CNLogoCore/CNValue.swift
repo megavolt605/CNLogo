@@ -47,10 +47,6 @@ public enum CNValue {
         }
     }
     
-    public func throwValueError() throws {
-        throw NSError(domain: "Value Error", code: 0, userInfo: nil)
-    }
-
     func store() -> [String: AnyObject] {
         switch self {
         case let bool(value): return ["type": "bool", "value": value]
@@ -113,8 +109,8 @@ infix operator ^ {}
 func ==(left: CNValue, right: CNValue) throws -> CNValue {
     switch (left, right) {
     
-    case (.unknown, _): try left.throwValueError()
-    case (_, .unknown): try right.throwValueError()
+    case (.unknown, _): throw CNError.InvalidValue
+    case (_, .unknown): throw CNError.InvalidValue
     
     case let (.bool(lv), .bool(rv)): return CNValue.bool(value: lv == rv)
 
@@ -123,7 +119,7 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
         case let .double(rv): return CNValue.bool(value: lv == rv)
         case let .int(rv): return CNValue.bool(value: lv == Double(rv))
         case let .string(rv): return CNValue.bool(value: lv == rv.doubleValue)
-        default: try right.throwValueError()
+        default: throw CNError.InvalidValue
         }
     
     case let (_, .double(rv)):
@@ -131,7 +127,7 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
         case let .double(lv): return CNValue.bool(value: lv == rv)
         case let .int(lv): return CNValue.bool(value: Double(lv) == rv)
         case let .string(lv): return CNValue.bool(value: lv.doubleValue == rv)
-        default: try left.throwValueError()
+        default: throw CNError.InvalidValue
         }
         
     case let (.int(lv), _):
@@ -139,7 +135,7 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
         case let .double(rv): return CNValue.bool(value: Double(lv) == rv)
         case let .int(rv): return CNValue.bool(value: lv == rv)
         case let .string(rv): return CNValue.bool(value: lv == rv.integerValue)
-        default: try right.throwValueError()
+        default: throw CNError.InvalidValue
         }
         
     case let (_, .int(rv)):
@@ -147,21 +143,21 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
         case let .double(lv): return CNValue.bool(value: lv == Double(rv))
         case let .int(lv): return CNValue.bool(value: lv == rv)
         case let .string(lv): return CNValue.bool(value: lv.integerValue == rv)
-        default: try left.throwValueError()
+        default: throw CNError.InvalidValue
         }
         
     case let (.string(lv), _):
         switch right {
         case let .int(rv): return CNValue.bool(value: lv == rv.description)
         case let .string(rv): return CNValue.bool(value: lv == rv)
-        default: try right.throwValueError()
+        default: throw CNError.InvalidValue
         }
         
     case let (_, .string(rv)):
         switch left {
         case let .int(lv): return CNValue.bool(value: lv.description == rv)
         case let .string(lv): return CNValue.bool(value: lv == rv)
-        default: try left.throwValueError()
+        default: throw CNError.InvalidValue
         }
 
     // TODO: Color comparision
@@ -170,17 +166,16 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
     }
 
     
-    return CNValue.unknown
 }
 
 func +(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
     
-    case .unknown, .bool, .color: try left.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
     
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue + rightValue)
         case let .int(rightValue):
@@ -191,7 +186,7 @@ func +(left: CNValue, right: CNValue) throws -> CNValue {
 
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: Double(leftValue) + rightValue)
         case let .int(rightValue):
@@ -202,7 +197,7 @@ func +(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.string(value: leftValue + "\(rightValue)")
         case let .int(rightValue):
@@ -212,17 +207,16 @@ func +(left: CNValue, right: CNValue) throws -> CNValue {
         }
         
     }
-    return CNValue.unknown
 }
 
 func -(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .color: try left.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue.doubleValue - rightValue)
         case let .int(rightValue):
@@ -233,7 +227,7 @@ func -(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue - rightValue)
         case let .int(rightValue):
@@ -244,7 +238,7 @@ func -(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: Double(leftValue) - rightValue)
         case let .int(rightValue):
@@ -254,17 +248,16 @@ func -(left: CNValue, right: CNValue) throws -> CNValue {
         }
         
     }
-    return CNValue.unknown
 }
 
 func *(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .color: try right.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue.doubleValue * rightValue)
         case let .int(rightValue):
@@ -275,7 +268,7 @@ func *(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue * rightValue)
         case let .int(rightValue):
@@ -286,7 +279,7 @@ func *(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: Double(leftValue) * rightValue)
         case let .int(rightValue):
@@ -296,17 +289,16 @@ func *(left: CNValue, right: CNValue) throws -> CNValue {
         }
         
     }
-    return CNValue.unknown
 }
 
 func /(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .color: try right.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue.doubleValue / rightValue)
         case let .int(rightValue):
@@ -317,7 +309,7 @@ func /(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue / rightValue)
         case let .int(rightValue):
@@ -328,7 +320,7 @@ func /(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: Double(leftValue) / rightValue)
         case let .int(rightValue):
@@ -337,18 +329,17 @@ func /(left: CNValue, right: CNValue) throws -> CNValue {
             return CNValue.double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
         }
     }
-    return CNValue.unknown
 }
 
 infix operator ^^ {}
 func ^^(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .color: try right.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: pow(leftValue.doubleValue, rightValue))
         case let .int(rightValue):
@@ -359,7 +350,7 @@ func ^^(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: pow(leftValue, rightValue))
         case let .int(rightValue):
@@ -370,7 +361,7 @@ func ^^(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: pow(Double(leftValue), rightValue))
         case let .int(rightValue):
@@ -379,47 +370,44 @@ func ^^(left: CNValue, right: CNValue) throws -> CNValue {
             return CNValue.double(value: pow(Double(leftValue), (rightValue as NSString).doubleValue))
         }
     }
-    return CNValue.unknown
 }
 
 func &&(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .int, .string, .double, .color: try right.throwValueError()
+    case .unknown, .int, .string, .double, .color: throw CNError.InvalidValue
         
     case let .bool(leftValue):
         switch right {
-        case .unknown, .int, .string, .double, .color: try right.throwValueError()
+        case .unknown, .int, .string, .double, .color: throw CNError.InvalidValue
         case let .bool(rightValue):
             return CNValue.bool(value: leftValue && rightValue)
         }
     }
-    return CNValue.unknown
 }
 
 func ||(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .int, .string, .double, .color: try right.throwValueError()
+    case .unknown, .int, .string, .double, .color: throw CNError.InvalidValue
         
     case let .bool(leftValue):
         switch right {
-        case .unknown, .int, .string, .double, .color: try right.throwValueError()
+        case .unknown, .int, .string, .double, .color: throw CNError.InvalidValue
         case let .bool(rightValue):
             return CNValue.bool(value: leftValue || rightValue)
         }
     }
-    return CNValue.unknown
 }
 
 func &(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .double, .color: try right.throwValueError()
+    case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue.integerValue & rightValue)
         case let .string(rightValue):
@@ -428,24 +416,23 @@ func &(left: CNValue, right: CNValue) throws -> CNValue {
 
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue & rightValue)
         case let .string(rightValue):
             return CNValue.int(value: leftValue & rightValue.integerValue)
         }
     }
-    return CNValue.unknown
 }
 
 func |(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .double, .color: try right.throwValueError()
+    case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue.integerValue | rightValue)
         case let .string(rightValue):
@@ -454,24 +441,23 @@ func |(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue | rightValue)
         case let .string(rightValue):
             return CNValue.int(value: leftValue | rightValue.integerValue)
         }
     }
-    return CNValue.unknown
 }
 
 func %(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .color: try right.throwValueError()
+    case .unknown, .bool, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue.doubleValue % rightValue)
         case let .int(rightValue):
@@ -482,7 +468,7 @@ func %(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .double(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: leftValue % rightValue)
         case let .int(rightValue):
@@ -493,7 +479,7 @@ func %(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .color: try right.throwValueError()
+        case .unknown, .bool, .color: throw CNError.InvalidValue
         case let .double(rightValue):
             return CNValue.double(value: Double(leftValue) / rightValue)
         case let .int(rightValue):
@@ -502,17 +488,16 @@ func %(left: CNValue, right: CNValue) throws -> CNValue {
             return CNValue.double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
         }
     }
-    return CNValue.unknown
 }
 
 func ^(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
         
-    case .unknown, .bool, .double, .color: try right.throwValueError()
+    case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         
     case let .string(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue.integerValue ^ rightValue)
         case let .string(rightValue):
@@ -521,13 +506,12 @@ func ^(left: CNValue, right: CNValue) throws -> CNValue {
         
     case let .int(leftValue):
         switch right {
-        case .unknown, .bool, .double, .color: try right.throwValueError()
+        case .unknown, .bool, .double, .color: throw CNError.InvalidValue
         case let .int(rightValue):
             return CNValue.int(value: leftValue ^ rightValue)
         case let .string(rightValue):
             return CNValue.int(value: leftValue ^ rightValue.integerValue)
         }
     }
-    return CNValue.unknown
 }
 

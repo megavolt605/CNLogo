@@ -63,7 +63,7 @@ public class CNPlayer {
                 state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: true, fromBlock: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     
@@ -83,7 +83,7 @@ public class CNPlayer {
                 state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: false, fromBlock: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     
@@ -99,7 +99,7 @@ public class CNPlayer {
             let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
             state.angle = newAngle
             CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), block: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     
@@ -109,7 +109,7 @@ public class CNPlayer {
             let oldColor = state.color
             state.color = newColor.CGColor
             CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color), block: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     
@@ -123,7 +123,7 @@ public class CNPlayer {
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
             CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), block: fromBlock)
-        default: throw NSError(domain: "Numeric expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     
@@ -133,7 +133,7 @@ public class CNPlayer {
             let oldScale = state.scale
             state.scale = CGFloat(newScale)
             CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale), block: fromBlock)
-        default: throw NSError(domain: "Float expected", code: 0, userInfo: nil)
+        default: throw CNError.NumericValueExpected
         }
     }
     

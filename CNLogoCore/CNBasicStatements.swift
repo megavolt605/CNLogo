@@ -1,5 +1,5 @@
 //
-//  CNBasicFunctions.swift
+//  CNBasicStatements.swift
 //  CNLogo
 //
 //  Created by Igor Smirnov on 07/09/15.
@@ -21,7 +21,7 @@ public class CNStatementForward: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -42,7 +42,7 @@ public class CNStatementBackward: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -63,7 +63,7 @@ public class CNStatementRotate: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -81,6 +81,13 @@ public class CNStatementTailDown: CNStatement {
         return "TAIL DOWN"
     }
     
+    override public func prepare() throws {
+        try super.prepare()
+        if parameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        }
+    }
+    
     override public func execute() throws -> CNValue {
         try super.execute()
         CNEnviroment.defaultEnviroment.currentProgram.player.tailDown(true, fromBlock: self)
@@ -93,6 +100,13 @@ public class CNStatementTailUp: CNStatement {
     
     override public var identifier: String {
         return "TAIL UP"
+    }
+    
+    override public func prepare() throws {
+        try super.prepare()
+        if parameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        }
     }
     
     override public func execute() throws -> CNValue {
@@ -112,7 +126,7 @@ public class CNStatementColor: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -137,7 +151,7 @@ public class CNStatementWidth: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     
@@ -154,6 +168,13 @@ public class CNStatementClear: CNStatement {
     
     override public var identifier: String {
         return "CLEAR"
+    }
+    
+    override public func prepare() throws {
+        try super.prepare()
+        if parameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        }
     }
     
     override public func execute() throws -> CNValue {
@@ -173,7 +194,7 @@ public class CNStatementScale: CNStatement {
     override public func prepare() throws {
         try super.prepare()
         if parameters.count != 1 {
-            try throwError()
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
         }
     }
     

@@ -22,10 +22,12 @@ public class CNFunction: CNBlock {
     }
     
     func prepareWithParameters(parameters: [CNExpression]) throws {
-        guard parameters.count == parametersDesc.count else { throw NSError(domain: "Parameter count mismatch for function \(funcName)", code: 0, userInfo: nil) }
+        guard parameters.count == parametersDesc.count else {
+            throw CNError.InvalidParameterCount(functionName: funcName)
+        }
         for i in 0..<parameters.count {
             if !(try parameters[i].execute().isEqualTo(parametersDesc[i])) {
-                throw NSError(domain: "Parameter \(i) type mismatch for function \(funcName)", code: 0, userInfo: nil)
+                throw CNError.InvalidParameterType(functionName: funcName, parameterIndex: i)
             }
         }
     }

@@ -14,11 +14,10 @@ enum CNRunState: Int {
     case Stopped, Executing, Paused
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CNFieldViewDelegate {
 
     @IBOutlet var fieldView: CNFieldView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var animationSpeedSlider: UISlider!
+    @IBOutlet weak var programTableView: UITableView!
 
     @IBOutlet weak var startMenuButton: CNButton!
     @IBOutlet weak var pauseMenuButton: CNButton!
@@ -31,13 +30,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var startMenuButtonRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var optionsMenuButtonRightConstraint: NSLayoutConstraint!
     
-    var currentIndex = 0
-    var duration = 0.001
-    var runState = CNRunState.Stopped
-    
     var buttons: [CNButton] = []
     
     var tableViewDataSource: CNProgramTableViewDataSource!
+    var options = CNOptions()
 
     var hideControls: Bool = false {
         didSet {
@@ -45,13 +41,13 @@ class ViewController: UIViewController {
                 if hideControls != oldValue {
                     UIView.animateWithDuration(0.3,
                         animations: {
-                            self.tableView.frame.origin.x -= self.tableView.frame.width + 20.0 + 10.0
+                            self.programTableView.frame.origin.x -= self.programTableView.frame.width + 20.0 + 10.0
                             self.buttons.forEach { button in
                                 button.frame.origin.x += button.frame.size.width * 2.0
                             }
                         },
                         completion: { completed in
-                            self.tableViewLeftConstraint.constant = self.tableView.frame.width + 20.0 + 10.0
+                            self.tableViewLeftConstraint.constant = self.programTableView.frame.width + 20.0 + 10.0
                             self.startMenuButtonRightConstraint.constant = -12.0 - self.startMenuButton.bounds.width * 2.0
                             self.optionsMenuButtonRightConstraint.constant = -12.0 - self.optionsMenuButton.bounds.width * 2.0
                             self.view.setNeedsLayout()
@@ -62,7 +58,7 @@ class ViewController: UIViewController {
                 if hideControls != oldValue {
                     UIView.animateWithDuration(0.3,
                         animations: {
-                            self.tableView.frame.origin.x += self.tableView.frame.width
+                            self.programTableView.frame.origin.x += self.programTableView.frame.width
                             self.buttons.forEach { button in
                                 button.frame.origin.x -= button.frame.size.width * 2.0
                             }
@@ -82,6 +78,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBarHidden = true
+        
         pauseMenuButton.setupButtonImage(UIImage(named: "pause"))
 
         buttons = [
@@ -117,10 +115,9 @@ class ViewController: UIViewController {
             borderColor: UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 1.0)
         )
         
-        animationSpeedSlider.value = Float(duration)
-        
         fieldView.opaque = false
         fieldView.backgroundColor = UIColor.clearColor()
+        fieldView.delegate = self
         
         updateButtons()
 
@@ -213,31 +210,26 @@ class ViewController: UIViewController {
         }
 
         tableViewDataSource = CNProgramTableViewDataSource(program: program)
-        tableView.reloadData()
-        tableView.dataSource = tableViewDataSource
-        tableView.delegate = tableViewDataSource
-        tableView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
-        tableView.layer.shadowRadius = 3.0
-        tableView.layer.shadowColor = UIColor.blackColor().CGColor
-        tableView.layer.shadowOpacity = 0.5
-        tableView.clipsToBounds = false
-        tableView.layer.masksToBounds = false
+        programTableView.dataSource = tableViewDataSource
+        programTableView.delegate = tableViewDataSource
+        programTableView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
+        programTableView.layer.shadowRadius = 3.0
+        programTableView.layer.shadowColor = UIColor.blackColor().CGColor
+        programTableView.layer.shadowOpacity = 0.5
+        programTableView.clipsToBounds = false
+        programTableView.layer.masksToBounds = false
+        programTableView.reloadData()
     }
 
     @IBAction func startMenuButtonTouchUpInside(sender: AnyObject) {
-        if runState == .Executing {
-            runState = .Stopped
+        if fieldView.runState == .Executing {
+            fieldView.runState = .Stopped
             updateButtons()
         } else {
-            runState = .Executing
+            fieldView.runState = .Executing
             updateButtons()
             do {
-                let program = CNEnviroment.defaultEnviroment.currentProgram
-                fieldView.clear()
-                program.clear()
-                program.player.startState.position = CGPointMake(CGRectGetMidX(fieldView.bounds), CGRectGetMidY(fieldView.bounds))
-                try program.execute()
-                visualizeResult()
+                try fieldView.execute(options)
             } catch let error as CNError {
                 print("Execute ERROR: \(error.description)")
             } catch {
@@ -247,11 +239,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pauseMenuButtonTouchUpInside(sender: AnyObject) {
-        if runState == .Executing {
-            runState = .Paused
+        if fieldView.runState == .Executing {
+            fieldView.runState = .Paused
         } else {
-            runState = .Executing
-            visualizeStep()
+            fieldView.runState = .Executing
+            fieldView.visualizeStep(options)
         }
         updateButtons()
     }
@@ -261,18 +253,14 @@ class ViewController: UIViewController {
         print(data)
     }
     
-    @IBAction func animationSurationSliderValueChanged(sender: AnyObject) {
-        duration = Double(animationSpeedSlider.value) / 1000.0
-    }
-    
     @IBAction func fieldViewTap(sender: AnyObject) {
         hideControls = !hideControls
     }
     
     func updateButtons() {
-        startMenuButton.setupButtonImage(UIImage(named: runState == CNRunState.Stopped ? "start" : "stop"))
+        startMenuButton.setupButtonImage(UIImage(named: fieldView.runState == CNRunState.Stopped ? "start" : "stop"))
 
-        pauseMenuButton.enabled = runState == .Executing || runState == .Paused
+        pauseMenuButton.enabled = fieldView.runState == .Executing || fieldView.runState == .Paused
 
         if pauseMenuButton.enabled {
             pauseMenuButton.setupButtonColors(
@@ -286,7 +274,7 @@ class ViewController: UIViewController {
             )
         }
 
-        if runState == .Stopped {
+        if fieldView.runState == .Stopped {
             startMenuButton.setupButtonColors(
                 backColor: UIColor(red: 0.2, green: 0.8, blue: 0.2, alpha: 1.0),
                 borderColor: UIColor(red: 0.9, green: 1.0, blue: 0.9, alpha: 1.0)
@@ -298,79 +286,22 @@ class ViewController: UIViewController {
             )
         }
 
-        animationSpeedSlider.enabled = runState != .Executing
-        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func visualizeResult() {
-        currentIndex = 0
-        visualizeStep()
-    }
-    
-    func visualizeStep() {
-        let program = CNEnviroment.defaultEnviroment.currentProgram
-        if currentIndex < program.executionHistory.history.count {
-            if runState == .Executing {
-                fieldView.makeSnapshot()
-                var shouldBreak = true
-                var rect = CGRectZero
-                repeat {
-                    shouldBreak = true
-                    let item = program.executionHistory.history[currentIndex]
-                    if let block = item.block {
-                        if let cellRow = tableViewDataSource.indexOfBlock(block) {
-                            tableView.selectRowAtIndexPath(NSIndexPath(forRow: cellRow, inSection: 0), animated: true, scrollPosition: .Middle)
-                        }
-                    }
-                    switch item.type {
-                    case .Clear:
-                        fieldView.clear()
-                        currentIndex++
-                        shouldBreak = false
-                    case let .Move(fromPoint, toPoint, _):
-                        rect.origin = CGPointMake(min(fromPoint.x, toPoint.x), min(fromPoint.y, toPoint.y))
-                        rect.size = CGSizeMake(max(fromPoint.x, toPoint.x), max(fromPoint.y, toPoint.y))
-                        if item.playerState.tailDown {
-                            fieldView.addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
-                                self.currentIndex++
-                                self.visualizeStep()
-                            }
-                        } else {
-                            fieldView.addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, duration: duration) { done in
-                                self.currentIndex++
-                                self.visualizeStep()
-                            }
-                        }
-                    case let .Rotate(fromAngle, toAngle):
-                        fieldView.addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, duration: duration) { done in
-                            self.currentIndex++
-                            self.visualizeStep()
-                        }
-                    case let .Print(value):
-                        print(value)
-                        currentIndex++
-                        self.visualizeStep()
-                    case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
-                        currentIndex++
-                        shouldBreak = false
-                        break
-                    }
-                    
-                } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
+    // CNFieldViewDelegate protocol
+    func willExecuteHistoryItem(item: CNExecutionHistoryItem) {
+        if options.shouldAnimate {
+            if let block = item.block {
+                if let cellRow = tableViewDataSource.indexOfBlock(block) {
+                    programTableView.selectRowAtIndexPath(NSIndexPath(forRow: cellRow, inSection: 0), animated: true, scrollPosition: .Middle)
+                }
             }
         }
-
-        if currentIndex >= program.executionHistory.history.count {
-            fieldView.makeSnapshot(true)
-            runState = .Stopped
-            updateButtons()
-        }
     }
-
+    
+    func didFinishExecution() {
+        updateButtons()
+    }
+    
 }
 
