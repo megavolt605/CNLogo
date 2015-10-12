@@ -14,9 +14,10 @@ public class CNExecutionHistory {
     public var history: [CNExecutionHistoryItem] = []
     
     public func append(itemType: CNExecutionHistoryItemType, block: CNBlock?) {
-        let playerState = CNEnviroment.defaultEnviroment.currentProgram.player.state.snapshot()
-        let item = CNExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
-        history.append(item)
+        if let playerState = CNEnviroment.defaultEnviroment.currentProgram?.player.state.snapshot() {
+            let item = CNExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
+            history.append(item)
+        }
     }
     
     public func clear() {

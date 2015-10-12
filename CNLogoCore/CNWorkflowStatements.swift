@@ -23,7 +23,7 @@ public class CNStatementRepeat: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
         switch try parameters.first!.execute() {
         case let .int(value):
             for _ in 1..<value {
@@ -33,7 +33,7 @@ public class CNStatementRepeat: CNStatement {
             }
         default: throw CNError.IntValueExpected
         }
-        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
         return .unknown
     }
     
@@ -54,7 +54,7 @@ public class CNStatementWhile: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepIn, block: self)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
         repeat {
             switch try parameters.first!.execute() {
             case let .bool(value):
@@ -63,7 +63,7 @@ public class CNStatementWhile: CNStatement {
                         try $0.execute()
                     }
                 } else {
-                    CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.StepOut, block: self)
+                    CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
                     break
                 }
             default: throw CNError.BoolValueExpected
@@ -90,7 +90,7 @@ public class CNStatementIf: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
         switch try parameters.first!.execute() {
         case let .bool(value):
             if value {

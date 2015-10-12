@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LiquidLoader:
-    :commit: cb98b96d9f4272baafbeb39e21e64cccd3b5fc94
+    :commit: 3b9ba8f14369c710cdf7660e328324fef814b6c4
     :git: https://github.com/yoavlt/LiquidLoader.git
 
 SPEC CHECKSUMS:

@@ -8,7 +8,6 @@ inhibit_all_warnings!
 
 pod 'Dollar'
 pod 'LiquidLoader', :git => 'https://github.com/yoavlt/LiquidLoader.git', :branch => 'swift-2.0'
-# pod 'LiquidFloatingActionButton', :git => 'https://github.com/yoavlt/LiquidFloatingActionButton.git', :branch => 'swift-2.0'
 
 target 'CNLogo' do
 

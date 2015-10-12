@@ -51,10 +51,12 @@ class CNFieldView: UIView {
     }
     
     func updatePlayerPosition() {
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0.0)// setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        addPlayerAnimation(playerLayer.position, toPoint: CNEnviroment.defaultEnviroment.currentProgram.player.state.position)
-        CATransaction.commit()
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(0.0)// setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+            addPlayerAnimation(playerLayer.position, toPoint: program.player.state.position)
+            CATransaction.commit()
+        }
     }
     
     func clear() {
@@ -98,7 +100,12 @@ class CNFieldView: UIView {
         playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
         CATransaction.commit()
         
-        playerLayer.position = CGPointMake(CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.x, CNEnviroment.defaultEnviroment.currentProgram.player.startState.position.y)
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            playerLayer.position = CGPointMake(
+                program.player.startState.position.x,
+                program.player.startState.position.y
+            )
+        }
         
         layers = []
         
@@ -205,80 +212,83 @@ class CNFieldView: UIView {
     }
     
     func visualizeStep(options: CNOptions) {
-        let program = CNEnviroment.defaultEnviroment.currentProgram
-        if currentIndex < program.executionHistory.history.count {
-            if runState == .Executing {
-                makeSnapshot()
-                var shouldBreak = true
-                repeat {
-                    shouldBreak = true
-                    let item = program.executionHistory.history[currentIndex]
-                    delegate?.willExecuteHistoryItem(item)
-                    switch item.type {
-                    case .Clear:
-                        clear()
-                        currentIndex++
-                        shouldBreak = false
-                    case let .Move(fromPoint, toPoint, _):
-                        if item.playerState.tailDown {
-                            addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
-                                self.currentIndex++
-                                if !options.shouldAnimate {
-                                    shouldBreak = false
-                                } else {
-                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            let history = program.executionHistory
+            if currentIndex < history.history.count {
+                if runState == .Executing {
+                    makeSnapshot()
+                    var shouldBreak = true
+                    repeat {
+                        shouldBreak = true
+                        let item = history.history[currentIndex]
+                        delegate?.willExecuteHistoryItem(item)
+                        switch item.type {
+                        case .Clear:
+                            clear()
+                            currentIndex++
+                            shouldBreak = false
+                        case let .Move(fromPoint, toPoint, _):
+                            if item.playerState.tailDown {
+                                addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                    self.currentIndex++
+                                    if !options.shouldAnimate {
+                                        shouldBreak = false
+                                    } else {
+                                        dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                    }
                                 }
-                            }
-                        } else {
-                            addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
-                                self.currentIndex++
-                                if !options.shouldAnimate {
-                                    shouldBreak = false
-                                } else {
-                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
-                                }
-                            }
-                        }
-                    case let .Rotate(fromAngle, toAngle):
-                        addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
-                            self.currentIndex++
-                            if !options.shouldAnimate {
-                                shouldBreak = false
                             } else {
-                                dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                    self.currentIndex++
+                                    if !options.shouldAnimate {
+                                        shouldBreak = false
+                                    } else {
+                                        dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                    }
+                                }
                             }
+                        case let .Rotate(fromAngle, toAngle):
+                            addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
+                                self.currentIndex++
+                                if !options.shouldAnimate {
+                                    shouldBreak = false
+                                } else {
+                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                }
+                            }
+                        case let .Print(value):
+                            print(value)
+                            currentIndex++
+                            shouldBreak = false
+                        case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
+                            currentIndex++
+                            shouldBreak = false
+                            break
                         }
-                    case let .Print(value):
-                        print(value)
-                        currentIndex++
-                        shouldBreak = false
-                    case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
-                        currentIndex++
-                        shouldBreak = false
-                        break
-                    }
-                    
-                } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
+                        
+                    } while !shouldBreak && (currentIndex < program.executionHistory.history.count)
+                }
             }
-        }
-        
-        if currentIndex >= program.executionHistory.history.count {
-            makeSnapshot(true)
-            runState = .Stopped
-            delegate?.didFinishExecution()
+            
+            if currentIndex >= history.history.count {
+                makeSnapshot(true)
+                runState = .Stopped
+                delegate?.didFinishExecution()
+            }
         }
     }
     
     func execute(options: CNOptions) throws {
-        let program = CNEnviroment.defaultEnviroment.currentProgram
-        program.clear()
-        program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
-        clear()
-        try program.execute()
-        if !options.shouldAnimate {
-            updatePlayerPosition()
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.clear()
+            program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+            clear()
+            try program.execute()
+            if !options.shouldAnimate {
+                updatePlayerPosition()
+            }
+            visualizeResult(options)
         }
-        visualizeResult(options)
     }
     
 }

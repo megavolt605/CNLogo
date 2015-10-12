@@ -155,7 +155,6 @@
 				7825FCF11BBFDF8B004C2903 /* Dollar.framework */,
 				7825FCF21BBFDF8B004C2903 /* LiquidFloatingActionButton.framework */,
 				7825FCF31BBFDF8B004C2903 /* LiquidLoader.framework */,
-				78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */,
 				AC5C8C89A01537ADB22F7FAA /* Pods.framework */,
 				3B77F37B10D0E486DE96676D /* Pods_CNLogoTests.framework */,
 				1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */,
@@ -167,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				7856FA791B9E01B40037E99F /* CNLogo */,
+				78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */,
 				7856FA8F1B9E01B40037E99F /* CNLogoTests */,
 				7856FA781B9E01B40037E99F /* Products */,
 				5B8A64F6A97A6B62BC6AE2F0 /* Pods */,

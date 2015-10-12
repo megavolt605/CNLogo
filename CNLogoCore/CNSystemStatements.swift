@@ -18,7 +18,7 @@ public class CNStatementPrint: CNStatement {
         try super.execute()
         try parameters.forEach {
             let desc = try $0.execute().description
-            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Print(value: desc), block: self)
+            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: desc), fromBlock: self)
         }
         return .unknown
     }
@@ -52,7 +52,7 @@ public class CNStatementVar: CNStatement {
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
             }
-            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
@@ -61,7 +61,7 @@ public class CNStatementVar: CNStatement {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .unknown))
             }
         }
-        CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
         return .unknown
     }
     
@@ -134,7 +134,7 @@ public class CNStatementPop: CNStatement {
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
             }
-            CNEnviroment.defaultEnviroment.currentProgram.executionHistory.append(CNExecutionHistoryItemType.Step, block: self)
+            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
             throw CNError.InvalidValue
@@ -176,7 +176,7 @@ public class CNStatementGlobalPush: CNStatement {
     override public func execute() throws -> CNValue {
         try super.execute()
         try parameters.forEach {
-            try CNEnviroment.defaultEnviroment.currentProgram.globalStack.push($0.execute())
+            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.execute())
         }
         return .unknown
     }
@@ -190,7 +190,7 @@ public class CNStatementGlobalPop: CNStatementPop {
     }
     
     override func popValue() -> CNValue? {
-        return CNEnviroment.defaultEnviroment.currentProgram.globalStack.pop()
+        return CNEnviroment.defaultEnviroment.currentProgram?.globalStack.pop()
     }
 }
 

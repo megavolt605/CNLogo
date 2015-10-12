@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Description:    Move player forward from current position, with current angle
+///                 If tail is down, draw line with current color and width
+/// Arguments:      Distance(Numeric)
 public class CNStatementForward: CNStatement {
     
     override public var identifier: String {
@@ -15,7 +18,11 @@ public class CNStatementForward: CNStatement {
     }
     
     override public var description: String {
-        return super.description + (CNEnviroment.defaultEnviroment.currentProgram.player.state.scale == 1.0 ? "" : ", scale = \(CNEnviroment.defaultEnviroment.currentProgram.player.state.scale)")
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        } else {
+            return "No program"
+        }
     }
     
     override public func prepare() throws {
@@ -27,12 +34,15 @@ public class CNStatementForward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.moveForward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(parameters.first!, fromBlock: self)
         return .unknown
     }
 
 }
 
+/// Description:    Move player backward from current position, with current angle
+///                 If tail is down, draw line with current color and width
+/// Arguments:      Distance(Numeric)
 public class CNStatementBackward: CNStatement {
     
     override public var identifier: String {
@@ -48,12 +58,16 @@ public class CNStatementBackward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.moveBackward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(parameters.first!, fromBlock: self)
         return .unknown
     }
     
 }
 
+/// Description:    Move player forward from current position, with current angle
+///                 Nothing is drawn
+///                 Preserve tail state
+/// Arguments:      Distance(Numeric)
 public class CNStatementMove: CNStatementForward {
     
     override public var identifier: String {
@@ -62,20 +76,25 @@ public class CNStatementMove: CNStatementForward {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        let player = CNEnviroment.defaultEnviroment.currentProgram.player
-        let tailDown = player.state.tailDown
-        if tailDown {
-            player.tailDown(false, fromBlock: self)
-        }
-        try player.moveForward(parameters.first!, fromBlock: self)
-        if tailDown {
-            player.tailDown(true, fromBlock: self)
+        if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
+            let tailDown = player.state.tailDown
+            if tailDown {
+                player.tailDown(false, fromBlock: self)
+            }
+            try player.moveForward(parameters.first!, fromBlock: self)
+            if tailDown {
+                player.tailDown(true, fromBlock: self)
+            }
         }
         return .unknown
     }
     
 }
 
+/// Description:    Move player forward from current position, with current angle
+///                 Movement is drawn as line with current color and width
+///                 Preserve tail state
+/// Arguments:      Distance(Numeric)
 public class CNStatementDRAW: CNStatementForward {
     
     override public var identifier: String {
@@ -84,20 +103,23 @@ public class CNStatementDRAW: CNStatementForward {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        let player = CNEnviroment.defaultEnviroment.currentProgram.player
-        let tailDown = player.state.tailDown
-        if !tailDown {
-            player.tailDown(true, fromBlock: self)
-        }
-        try player.moveForward(parameters.first!, fromBlock: self)
-        if !tailDown {
-            player.tailDown(false, fromBlock: self)
+        if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
+            let tailDown = player.state.tailDown
+            if !tailDown {
+                player.tailDown(true, fromBlock: self)
+            }
+            try player.moveForward(parameters.first!, fromBlock: self)
+            if !tailDown {
+                player.tailDown(false, fromBlock: self)
+            }
         }
         return .unknown
     }
     
 }
 
+/// Description:    Rotate player by argument
+/// Arguments:      Angle delta(Double), in degrees. Positive - clockwise
 public class CNStatementRotate: CNStatement {
     
     override public var identifier: String {
@@ -113,12 +135,14 @@ public class CNStatementRotate: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.rotate(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(parameters.first!, fromBlock: self)
         return .unknown
     }
 
 }
 
+/// Description:    Set tail state to Down (FORWARD and BACKWARD statements will draw)
+/// Arguments:      nope
 public class CNStatementTailDown: CNStatement {
     
     override public var identifier: String {
@@ -134,12 +158,14 @@ public class CNStatementTailDown: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.player.tailDown(true, fromBlock: self)
+        CNEnviroment.defaultEnviroment.currentProgram?.player.tailDown(true, fromBlock: self)
         return .unknown
     }
     
 }
 
+/// Description:    Set tail state to Up (no drawing with FORWARD and BACKWARD statements)
+/// Arguments:      nope
 public class CNStatementTailUp: CNStatement {
     
     override public var identifier: String {
@@ -155,12 +181,14 @@ public class CNStatementTailUp: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.player.tailDown(false, fromBlock: self)
+        CNEnviroment.defaultEnviroment.currentProgram?.player.tailDown(false, fromBlock: self)
         return .unknown
     }
     
 }
 
+/// Description:    Set player drawing line color
+/// Arguments:      New color(Color)
 public class CNStatementColor: CNStatement {
     
     override public var identifier: String {
@@ -176,12 +204,14 @@ public class CNStatementColor: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.setColor(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(parameters.first!, fromBlock: self)
         return .unknown
     }
     
 }
 
+/// Description:    Set player drawing line width
+/// Arguments:      Width(Numeric)
 public class CNStatementWidth: CNStatement {
     
     override public var identifier: String {
@@ -189,7 +219,11 @@ public class CNStatementWidth: CNStatement {
     }
     
     override public var description: String {
-        return super.description + (CNEnviroment.defaultEnviroment.currentProgram.player.state.scale == 1.0 ? "" : ", scale = \(CNEnviroment.defaultEnviroment.currentProgram.player.state.scale)")
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
+        } else {
+            return "No program"
+        }
     }
     
     override public func prepare() throws {
@@ -201,13 +235,15 @@ public class CNStatementWidth: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.setWidth(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(parameters.first!, fromBlock: self)
         return .unknown
     }
     
     
 }
 
+/// Description:    Clears drawing field, return player to initial state
+/// Arguments:      nope
 public class CNStatementClear: CNStatement {
     
     override public var identifier: String {
@@ -223,12 +259,14 @@ public class CNStatementClear: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram.clear()
+        CNEnviroment.defaultEnviroment.currentProgram?.clear()
         return .unknown
     }
     
 }
 
+/// Description:    Set player drawing scale (affecs to all movement distances, drawing line width)
+/// Arguments:      New scale(Numeric)
 public class CNStatementScale: CNStatement {
     
     override public var identifier: String {
@@ -244,7 +282,7 @@ public class CNStatementScale: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram.player.setScale(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(parameters.first!, fromBlock: self)
         return .unknown
     }
     
