@@ -17,7 +17,7 @@ public class CNStatementPrint: CNStatement {
     override public func execute() throws -> CNValue {
         try super.execute()
         try parameters.forEach {
-            let desc = try $0.execute().description
+            let desc = try $0.value.execute().description
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: desc), fromBlock: self)
         }
         return .unknown
@@ -46,7 +46,7 @@ public class CNStatementVar: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        if let value = try parameters.first?.execute() {
+        if let value = try parameters.first?.value.execute() {
             if let variable = variableByName(variableName) {
                 variable.variableValue = value
             } else {
@@ -71,7 +71,7 @@ public class CNStatementVar: CNStatement {
         return res
     }
     
-    public init(variableName: String, parameters: [CNExpression]) {
+    public init(variableName: String, parameters: [CNExecutableParameter]) {
         self.variableName = variableName
         super.init(parameters: parameters)
     }
@@ -96,7 +96,7 @@ public class CNStatementPush: CNStatement {
     override public func execute() throws -> CNValue {
         try super.execute()
         try parameters.forEach {
-            try parentBlock?.valueStack.push($0.execute())
+            try parentBlock?.valueStack.push($0.value.execute())
         }
         return .unknown
     }
@@ -168,7 +168,7 @@ public class CNStatementGlobalPush: CNStatement {
     override public func execute() throws -> CNValue {
         try super.execute()
         try parameters.forEach {
-            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.execute())
+            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.value.execute())
         }
         return .unknown
     }

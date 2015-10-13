@@ -74,6 +74,20 @@ extension CNExpression {
     
 }
 
+extension CNExecutableParameter {
+    
+    func createBubbles(height: CGFloat, prefix: String = "") -> [CNBubble]? {
+        var res: [CNBubble] = []
+        if prefix != "" {
+            let bubble = CNBubble(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
+            res.append(bubble)
+        }
+        return res
+    }
+    
+    
+}
+
 
 extension CNStatementVar {
     

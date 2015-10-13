@@ -34,7 +34,7 @@ public class CNStatementForward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(parameters.first!.value, fromBlock: self)
         return .unknown
     }
 
@@ -58,7 +58,7 @@ public class CNStatementBackward: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(parameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -81,7 +81,7 @@ public class CNStatementMove: CNStatementForward {
             if tailDown {
                 player.tailDown(false, fromBlock: self)
             }
-            try player.moveForward(parameters.first!, fromBlock: self)
+            try player.moveForward(parameters.first!.value, fromBlock: self)
             if tailDown {
                 player.tailDown(true, fromBlock: self)
             }
@@ -108,7 +108,7 @@ public class CNStatementDRAW: CNStatementForward {
             if !tailDown {
                 player.tailDown(true, fromBlock: self)
             }
-            try player.moveForward(parameters.first!, fromBlock: self)
+            try player.moveForward(parameters.first!.value, fromBlock: self)
             if !tailDown {
                 player.tailDown(false, fromBlock: self)
             }
@@ -135,7 +135,7 @@ public class CNStatementRotate: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(parameters.first!.value, fromBlock: self)
         return .unknown
     }
 
@@ -204,7 +204,7 @@ public class CNStatementColor: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(parameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -235,7 +235,7 @@ public class CNStatementWidth: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(parameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -282,7 +282,7 @@ public class CNStatementScale: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(parameters.first!, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(parameters.first!.value, fromBlock: self)
         return .unknown
     }
     

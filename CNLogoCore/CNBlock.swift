@@ -8,18 +8,33 @@
 
 import Foundation
 
+public struct CNFormalParameter {
+    var name: String?
+    var value: CNValue.Type
+}
+
 public struct CNExecutableParameter {
     var name: String?
     var value: CNExpression
+    
+    public init(value: CNExpression) {
+        self.value = value
+    }
+    
+    public init(name: String, value: CNExpression) {
+        self.name = name
+        self.value = value
+    }
+    
 }
 
 public class CNBlock {
     
-    public var parameters: [CNExpression] = []
+    public var parameters: [CNExecutableParameter] = []
     public var statements: [CNStatement] = [] {
         didSet {
             parameters.forEach {
-                $0.parentBlock = self
+                $0.value.parentBlock = self
             }
             statements.forEach {
                 $0.parentBlock = self
@@ -49,17 +64,17 @@ public class CNBlock {
     public var parametersDescription: String {
         return parameters.reduce("") {
             if $0 == "" {
-                return $1.description
+                return $1.name ?? "" + $1.value.description
             } else {
-                return $0 + "," + $1.description
+                return $0 + "," + ($1.name ?? "") + $1.value.description
             }
         }
     }
     
     public func prepare() throws -> Void {
         try parameters.forEach {
-            $0.parentBlock = self
-            try $0.prepare()
+            $0.value.parentBlock = self
+            try $0.value.prepare()
         }
         try statements.forEach {
             $0.parentBlock = self
@@ -100,7 +115,9 @@ public class CNBlock {
     public func store() -> [String: AnyObject] {
         var res: [String: AnyObject] = [:]
         if parameters.count > 0 {
-            res["parameters"] = parameters.map { $0.store() }
+            res["parameters"] = parameters.enumerate().map { (index: Int, param: CNExecutableParameter) -> [String: AnyObject] in
+                return [param.name ?? "\(index)": param.value.store()]
+            }
         }
         if statements.count > 0 {
             res["statements"] = statements.map { $0.store() }
@@ -115,7 +132,7 @@ public class CNBlock {
         
     }
     
-    public init(parameters: [CNExpression]) {
+    public init(parameters: [CNExecutableParameter]) {
         self.parameters = parameters
     }
     
@@ -123,15 +140,17 @@ public class CNBlock {
         self.statements = statements
     }
     
-    public init(parameters: [CNExpression], statements: [CNStatement]) {
+    public init(parameters: [CNExecutableParameter], statements: [CNStatement]) {
         self.parameters = parameters
         self.statements = statements
     }
     
     public required init(data: [String: AnyObject]) {
         parameters = []
-        if let info = data["parameters"] as? [[String: AnyObject]] {
-            parameters = info.map { item in return CNExpression(data: item) }
+        if let info = data["parameters"] as? [String: [String: AnyObject]] {
+            parameters = info.map { name, value in
+                return CNExecutableParameter(name: name, value: CNExpression(data: value))
+            }
         }
 
         statements = []
