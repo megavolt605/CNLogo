@@ -334,7 +334,7 @@ public class CNExpression: CNBlock {
 
     public init(source: [CNExpressionParseElement]) {
         self.source = source
-        super.init(statements: [])
+        super.init()
     }
     
     public required init(data: [String: AnyObject]) {
@@ -345,7 +345,4 @@ public class CNExpression: CNBlock {
         }
     }
 
-    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNExpression.init(parameters:statements:functions:) has not been implemented")
-    }
 }

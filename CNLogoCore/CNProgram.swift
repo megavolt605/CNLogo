@@ -33,27 +33,29 @@ public class CNProgram: CNBlock {
         clear()
         return try super.execute()
     }
-    
-    override public func commonInit() {
+
+    private func internalInit() {
         variables.append(CNVariable(variableName: "PI", variableValue: CNValue.double(value: M_PI)))
         variables.append(CNVariable(variableName: "2_PI", variableValue: CNValue.double(value: M_2_PI)))
         variables.append(CNVariable(variableName: "PI_2", variableValue: CNValue.double(value: M_PI_2)))
         variables.append(CNVariable(variableName: "EXP", variableValue:  CNValue.double(value: M_E)))
     }
     
-    required public init(data: [String : AnyObject]) {
+    public override init() {
+        self.programName = "Unnamed program"
+        super.init()
+    }
+    
+    public required init(data: [String : AnyObject]) {
         programName = data["program-name"] as! String
         super.init(data: data["program-body"] as! [String : AnyObject])
+        internalInit()
     }
 
-    required public init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
-        programName = "Unnamed program"
-        super.init(parameters: parameters, statements: statements, functions: functions)
-    }
-
-    required public convenience init(programName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
-        self.init(parameters: parameters, statements: statements, functions: functions)
+    public init(programName: String, statements: [CNStatement]) {
         self.programName = programName
+        super.init(statements: statements)
+        internalInit()
     }
     
 }

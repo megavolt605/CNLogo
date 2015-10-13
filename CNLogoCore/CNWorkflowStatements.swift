@@ -113,13 +113,9 @@ public class CNStatementIf: CNStatement {
         return res
     }
 
-    init(parameters: [CNExpression] = [], statements: [CNStatement] = [], statementsElse: [CNStatement] = [], functions: [CNFunction]) {
+    convenience init(statements: [CNStatement] = [], statementsElse: [CNStatement] = []) {
+        self.init(statements: statements)
         self.statementsElse = statementsElse
-        super.init(parameters: parameters, statements: statements, functions: functions)
-    }
-
-    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNStatementIf.init(parameters:statements:functions:) has not been implemented")
     }
 
     required public init(data: [String : AnyObject]) {

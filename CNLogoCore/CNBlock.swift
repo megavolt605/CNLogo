@@ -8,10 +8,15 @@
 
 import Foundation
 
+public struct CNExecutableParameter {
+    var name: String?
+    var value: CNExpression
+}
+
 public class CNBlock {
     
-    public var parameters: [CNExpression]
-    public var statements: [CNStatement] {
+    public var parameters: [CNExpression] = []
+    public var statements: [CNStatement] = [] {
         didSet {
             parameters.forEach {
                 $0.parentBlock = self
@@ -105,16 +110,22 @@ public class CNBlock {
         }
         return res
     }
-    
-    public func commonInit() {
+
+    public init() {
         
     }
     
-    public required init(parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public init(parameters: [CNExpression]) {
+        self.parameters = parameters
+    }
+    
+    public init(statements: [CNStatement]) {
+        self.statements = statements
+    }
+    
+    public init(parameters: [CNExpression], statements: [CNStatement]) {
         self.parameters = parameters
         self.statements = statements
-        self.functions = functions
-        commonInit()
     }
     
     public required init(data: [String: AnyObject]) {
@@ -136,7 +147,6 @@ public class CNBlock {
                 return functionByName(item["function-name"] as! String)!
             }
         }
-        commonInit()
     }
     
     

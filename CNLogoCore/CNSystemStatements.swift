@@ -71,13 +71,9 @@ public class CNStatementVar: CNStatement {
         return res
     }
     
-    public init(variableName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public init(variableName: String, parameters: [CNExpression]) {
         self.variableName = variableName
-        super.init(parameters: parameters, statements: statements, functions: functions)
-    }
-
-    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNStatementVar.init(parameters:statements:functions:) has not been implemented")
+        super.init(parameters: parameters)
     }
 
     required public init(data: [String : AnyObject]) {
@@ -147,13 +143,9 @@ public class CNStatementPop: CNStatement {
         return res
     }
     
-    public init(variableName: String, parameters: [CNExpression] = [], statements: [CNStatement] = [], functions: [CNFunction] = []) {
+    public init(variableName: String) {
         self.variableName = variableName
-        super.init(parameters: parameters, statements: statements, functions: functions)
-    }
-    
-    required public init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNStatementVar.init(parameters:statements:functions:) has not been implemented")
+        super.init()
     }
     
     required public init(data: [String : AnyObject]) {

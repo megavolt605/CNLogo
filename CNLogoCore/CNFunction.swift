@@ -39,17 +39,13 @@ public class CNFunction: CNBlock {
     init(funcName: String, parametersDesc: [CNValue] = []) {
         self.funcName = funcName
         self.parametersDesc = parametersDesc
-        super.init(parameters: [], statements: [], functions: [])
-    }
-
-    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNFunction.init(parameters:statements:functions:) has not been implemented")
+        super.init()
     }
 
     public required init(data: [String : AnyObject]) {
-        fatalError("CNFunction.init(data:) has not been implemented")
+        fatalError("init(data:) has not been implemented")
     }
-    
+
 }
 
 public class CNFunctionSin: CNFunction {
@@ -70,14 +66,10 @@ public class CNFunctionSin: CNFunction {
         super.init(funcName: "SIN", parametersDesc: [CNValue.double(value: 0)])
     }
 
-    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNFunctionSin.init(parameters:statements:functions:) has not been implemented")
+    public required init(data: [String : AnyObject]) {
+        fatalError("init(data:) has not been implemented")
     }
 
-    public required init(data: [String : AnyObject]) {
-        fatalError("CNFunctionSin.init(data:) has not been implemented")
-    }
-    
 }
 
 public class CNFunctionCos: CNFunction {
@@ -98,12 +90,8 @@ public class CNFunctionCos: CNFunction {
         super.init(funcName: "COS", parametersDesc: [CNValue.double(value: 0)])
     }
 
-    public required init(parameters: [CNExpression], statements: [CNStatement], functions: [CNFunction]) {
-        fatalError("CNFunctionCos.init(parameters:statements:functions:) has not been implemented")
+    public required init(data: [String : AnyObject]) {
+        fatalError("init(data:) has not been implemented")
     }
 
-    public required init(data: [String : AnyObject]) {
-        fatalError("CNFunctionCos.init(data:) has not been implemented")
-    }
-    
 }
