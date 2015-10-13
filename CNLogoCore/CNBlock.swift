@@ -11,11 +11,22 @@ import Foundation
 public struct CNFormalParameter {
     var name: String?
     var value: CNValue.Type
+    var isOptional = false /// TODO: !!!
+
+    public init(value: CNValue.Type) {
+        self.value = value
+    }
+    
+    public init(name: String, value: CNValue.Type) {
+        self.name = name
+        self.value = value
+    }
+    
 }
 
 public struct CNExecutableParameter {
-    var name: String?
-    var value: CNExpression
+    public var name: String?
+    public var value: CNExpression
     
     public init(value: CNExpression) {
         self.value = value
@@ -30,10 +41,10 @@ public struct CNExecutableParameter {
 
 public class CNBlock {
     
-    public var parameters: [CNExecutableParameter] = []
+    public var execuableParameters: [CNExecutableParameter] = []
     public var statements: [CNStatement] = [] {
         didSet {
-            parameters.forEach {
+            execuableParameters.forEach {
                 $0.value.parentBlock = self
             }
             statements.forEach {
@@ -54,7 +65,7 @@ public class CNBlock {
     }
     
     public var description: String {
-        if parameters.count > 0 {
+        if execuableParameters.count > 0 {
             return "\(identifier) \(parametersDescription)"
         } else {
             return identifier
@@ -62,7 +73,7 @@ public class CNBlock {
     }
     
     public var parametersDescription: String {
-        return parameters.reduce("") {
+        return execuableParameters.reduce("") {
             if $0 == "" {
                 return $1.name ?? "" + $1.value.description
             } else {
@@ -72,7 +83,7 @@ public class CNBlock {
     }
     
     public func prepare() throws -> Void {
-        try parameters.forEach {
+        try execuableParameters.forEach {
             $0.value.parentBlock = self
             try $0.value.prepare()
         }
@@ -114,8 +125,8 @@ public class CNBlock {
     
     public func store() -> [String: AnyObject] {
         var res: [String: AnyObject] = [:]
-        if parameters.count > 0 {
-            res["parameters"] = parameters.enumerate().map { (index: Int, param: CNExecutableParameter) -> [String: AnyObject] in
+        if execuableParameters.count > 0 {
+            res["parameters"] = execuableParameters.enumerate().map { (index: Int, param: CNExecutableParameter) -> [String: AnyObject] in
                 return [param.name ?? "\(index)": param.value.store()]
             }
         }
@@ -132,23 +143,23 @@ public class CNBlock {
         
     }
     
-    public init(parameters: [CNExecutableParameter]) {
-        self.parameters = parameters
+    public init(execuableParameters: [CNExecutableParameter]) {
+        self.execuableParameters = execuableParameters
     }
     
     public init(statements: [CNStatement]) {
         self.statements = statements
     }
     
-    public init(parameters: [CNExecutableParameter], statements: [CNStatement]) {
-        self.parameters = parameters
+    public init(execuableParameters: [CNExecutableParameter], statements: [CNStatement]) {
+        self.execuableParameters = execuableParameters
         self.statements = statements
     }
     
     public required init(data: [String: AnyObject]) {
-        parameters = []
+        execuableParameters = []
         if let info = data["parameters"] as? [String: [String: AnyObject]] {
-            parameters = info.map { name, value in
+            execuableParameters = info.map { name, value in
                 return CNExecutableParameter(name: name, value: CNExpression(data: value))
             }
         }

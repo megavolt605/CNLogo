@@ -27,14 +27,14 @@ public class CNStatementForward: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
 
@@ -51,14 +51,14 @@ public class CNStatementBackward: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -81,7 +81,7 @@ public class CNStatementMove: CNStatementForward {
             if tailDown {
                 player.tailDown(false, fromBlock: self)
             }
-            try player.moveForward(parameters.first!.value, fromBlock: self)
+            try player.moveForward(execuableParameters.first!.value, fromBlock: self)
             if tailDown {
                 player.tailDown(true, fromBlock: self)
             }
@@ -108,7 +108,7 @@ public class CNStatementDRAW: CNStatementForward {
             if !tailDown {
                 player.tailDown(true, fromBlock: self)
             }
-            try player.moveForward(parameters.first!.value, fromBlock: self)
+            try player.moveForward(execuableParameters.first!.value, fromBlock: self)
             if !tailDown {
                 player.tailDown(false, fromBlock: self)
             }
@@ -128,14 +128,14 @@ public class CNStatementRotate: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
 
@@ -151,8 +151,8 @@ public class CNStatementTailDown: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        if execuableParameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: execuableParameters.count)
         }
     }
     
@@ -174,8 +174,8 @@ public class CNStatementTailUp: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        if execuableParameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: execuableParameters.count)
         }
     }
     
@@ -197,14 +197,14 @@ public class CNStatementColor: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -228,14 +228,14 @@ public class CNStatementWidth: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
     
@@ -252,8 +252,8 @@ public class CNStatementClear: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        if execuableParameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: execuableParameters.count)
         }
     }
     
@@ -275,14 +275,14 @@ public class CNStatementScale: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(parameters.first!.value, fromBlock: self)
+        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(execuableParameters.first!.value, fromBlock: self)
         return .unknown
     }
     

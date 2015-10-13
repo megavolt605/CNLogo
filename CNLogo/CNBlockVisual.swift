@@ -20,7 +20,7 @@ extension CNBlock {
         }
         
         if prefix == "" {
-            for param in parameters {
+            for param in execuableParameters {
                 if let bubbles = param.createBubbles(height) {
                     res += bubbles
                 }
@@ -43,7 +43,7 @@ extension CNStatement {
         }
         
         if prefix == "" {
-            for param in parameters {
+            for param in execuableParameters {
                 if let bubbles = param.createBubbles(height) {
                     res += bubbles
                 }
@@ -71,7 +71,6 @@ extension CNExpression {
         return res
     }
     
-    
 }
 
 extension CNExecutableParameter {
@@ -82,9 +81,13 @@ extension CNExecutableParameter {
             let bubble = CNBubble(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
             res.append(bubble)
         }
+        if let n = name where n != "" {
+            let bubble = CNBubble(text: n, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
+            res.append(bubble)
+        }
+        res += (value.createBubbles(height) ?? [])
         return res
     }
-    
     
 }
 
@@ -105,7 +108,7 @@ extension CNStatementVar {
         bubble = CNBubble(text: "=", color: UIColor(red: 1.0, green: 0.75, blue: 0.75, alpha: 1.0), height: height, bold: false)
         res.append(bubble)
         
-        for param in parameters {
+        for param in execuableParameters {
             if let bubbles = param.createBubbles(height) {
                 res += bubbles
             }

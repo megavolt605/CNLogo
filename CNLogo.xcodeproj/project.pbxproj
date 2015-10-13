@@ -188,7 +188,6 @@
 			children = (
 				78C0D3CE1BB95E1900CCCE70 /* Classes */,
 				78C0D35F1BB03D2B00CCCE70 /* User Interface */,
-				78C0D3CF1BB95E2800CCCE70 /* Resources */,
 				7856FA7A1B9E01B40037E99F /* Supporting Files */,
 			);
 			path = CNLogo;
@@ -229,6 +228,7 @@
 				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
 				78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */,
 				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
+				78C0D3CF1BB95E2800CCCE70 /* Resources */,
 				7825FCFD1BC00C20004C2903 /* CNButton.swift */,
 				7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */,
 			);

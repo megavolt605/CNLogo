@@ -16,7 +16,7 @@ public class CNStatementPrint: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try parameters.forEach {
+        try execuableParameters.forEach {
             let desc = try $0.value.execute().description
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: desc), fromBlock: self)
         }
@@ -39,14 +39,14 @@ public class CNStatementVar: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: parameters.count)
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        if let value = try parameters.first?.value.execute() {
+        if let value = try execuableParameters.first?.value.execute() {
             if let variable = variableByName(variableName) {
                 variable.variableValue = value
             } else {
@@ -71,9 +71,9 @@ public class CNStatementVar: CNStatement {
         return res
     }
     
-    public init(variableName: String, parameters: [CNExecutableParameter]) {
+    public init(variableName: String, execuableParameters: [CNExecutableParameter]) {
         self.variableName = variableName
-        super.init(parameters: parameters)
+        super.init(execuableParameters: execuableParameters)
     }
 
     required public init(data: [String : AnyObject]) {
@@ -95,7 +95,7 @@ public class CNStatementPush: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try parameters.forEach {
+        try execuableParameters.forEach {
             try parentBlock?.valueStack.push($0.value.execute())
         }
         return .unknown
@@ -117,8 +117,8 @@ public class CNStatementPop: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if parameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: parameters.count)
+        if execuableParameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: execuableParameters.count)
         }
     }
     
@@ -167,7 +167,7 @@ public class CNStatementGlobalPush: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try parameters.forEach {
+        try execuableParameters.forEach {
             try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.value.execute())
         }
         return .unknown
