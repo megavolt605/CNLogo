@@ -10,14 +10,14 @@ import Foundation
 
 public struct CNFormalParameter {
     var name: String?
-    var value: CNValue.Type
+    var value: CNValue
     var isOptional = false /// TODO: !!!
 
-    public init(value: CNValue.Type) {
+    public init(value: CNValue) {
         self.value = value
     }
     
-    public init(name: String, value: CNValue.Type) {
+    public init(name: String, value: CNValue) {
         self.name = name
         self.value = value
     }
@@ -41,6 +41,7 @@ public struct CNExecutableParameter {
 
 public class CNBlock {
     
+    public var formalParameters: [CNFormalParameter] = []
     public var execuableParameters: [CNExecutableParameter] = []
     public var statements: [CNStatement] = [] {
         didSet {

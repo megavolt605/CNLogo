@@ -23,7 +23,7 @@ public class CNFunctionSin: CNFunction {
     }
     
     init() {
-        super.init(funcName: "SIN", parametersDesc: [CNValue.double(value: 0)])
+        super.init(funcName: "SIN", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
     }
 
     public required init(data: [String : AnyObject]) {
@@ -47,7 +47,7 @@ public class CNFunctionCos: CNFunction {
     }
     
     init() {
-        super.init(funcName: "COS", parametersDesc: [CNValue.double(value: 0)])
+        super.init(funcName: "COS", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
     }
 
     public required init(data: [String : AnyObject]) {

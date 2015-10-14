@@ -24,11 +24,11 @@ public class CNFunction: CNStatement {
         guard parameters.count == formalParameters.count else {
             throw CNError.InvalidParameterCount(functionName: funcName)
         }
-        for i in 0..<parameters.count {
+        /*for i in 0..<parameters.count {
             if !(try parameters[i].prepare().isEqualTo(formalParameters[i])) {
                 throw CNError.InvalidParameterType(functionName: funcName, parameterIndex: i)
             }
-        }
+        }*/
     }
     
     func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
@@ -37,8 +37,8 @@ public class CNFunction: CNStatement {
     
     init(funcName: String, formalParameters: [CNFormalParameter] = []) {
         self.funcName = funcName
-        self.formalParameters = parametersDesc
         super.init()
+        self.formalParameters = formalParameters
     }
     
     public required init(data: [String : AnyObject]) {
