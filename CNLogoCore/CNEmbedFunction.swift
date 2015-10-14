@@ -8,47 +8,7 @@
 
 import Foundation
 
-public class CNEmbedFunction: CNBlock {
-    
-    override public var identifier: String {
-        return "FUNC"
-    }
-
-    var funcName: String
-    var parametersDesc: [CNValue]
-    
-    override public var description: String {
-        return "\(identifier) \(funcName)(\(parametersDescription))"
-    }
-    
-    func prepareWithParameters(parameters: [CNExpression]) throws {
-        guard parameters.count == parametersDesc.count else {
-            throw CNError.InvalidParameterCount(functionName: funcName)
-        }
-        for i in 0..<parameters.count {
-            if !(try parameters[i].execute().isEqualTo(parametersDesc[i])) {
-                throw CNError.InvalidParameterType(functionName: funcName, parameterIndex: i)
-            }
-        }
-    }
-    
-    func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
-        return CNValue.unknown
-    }
-    
-    init(funcName: String, parametersDesc: [CNValue] = []) {
-        self.funcName = funcName
-        self.parametersDesc = parametersDesc
-        super.init()
-    }
-
-    public required init(data: [String : AnyObject]) {
-        fatalError("init(data:) has not been implemented")
-    }
-
-}
-
-public class CNFunctionSin: CNEmbedFunction {
+public class CNFunctionSin: CNFunction {
 
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {
@@ -72,7 +32,7 @@ public class CNFunctionSin: CNEmbedFunction {
 
 }
 
-public class CNFunctionCos: CNEmbedFunction {
+public class CNFunctionCos: CNFunction {
     
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {

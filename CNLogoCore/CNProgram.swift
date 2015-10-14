@@ -20,7 +20,7 @@ public class CNProgram: CNBlock {
     public var player = CNPlayer()
     public var globalStack = CNStack<CNValue>()
     public var executionHistory = CNExecutionHistory()
-    public var embedFunctions: [CNEmbedFunction] = [
+    public var embedFunctions: [CNFunction] = [
         CNFunctionSin(),
         CNFunctionCos()
     ]

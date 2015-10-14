@@ -27,6 +27,8 @@
 		78C0D3CA1BB941AC00CCCE70 /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3BD1BB941AC00CCCE70 /* CNVariable.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3CB1BB941AC00CCCE70 /* CNWorkflowStatements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3BE1BB941AC00CCCE70 /* CNWorkflowStatements.swift */; settings = {ASSET_TAGS = (); }; };
 		78C0D3CD1BB9424A00CCCE70 /* CNExecutionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3CC1BB9424A00CCCE70 /* CNExecutionHistory.swift */; settings = {ASSET_TAGS = (); }; };
+		78D67D181BCEE350001841E5 /* CNSystemStackStatements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D67D171BCEE350001841E5 /* CNSystemStackStatements.swift */; settings = {ASSET_TAGS = (); }; };
+		78D67D1A1BCEE388001841E5 /* CNFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D67D191BCEE388001841E5 /* CNFunction.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		78C0D3BD1BB941AC00CCCE70 /* CNVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVariable.swift; sourceTree = "<group>"; };
 		78C0D3BE1BB941AC00CCCE70 /* CNWorkflowStatements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNWorkflowStatements.swift; sourceTree = "<group>"; };
 		78C0D3CC1BB9424A00CCCE70 /* CNExecutionHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExecutionHistory.swift; sourceTree = "<group>"; };
+		78D67D171BCEE350001841E5 /* CNSystemStackStatements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSystemStackStatements.swift; sourceTree = "<group>"; };
+		78D67D191BCEE388001841E5 /* CNFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				78C0D3BC1BB941AC00CCCE70 /* CNValue.swift */,
 				78C0D3BD1BB941AC00CCCE70 /* CNVariable.swift */,
 				78C0D3B31BB941AC00CCCE70 /* CNBlock.swift */,
+				78D67D191BCEE388001841E5 /* CNFunction.swift */,
 				78C0D3B41BB941AC00CCCE70 /* CNExpression.swift */,
 				78C0D3B51BB941AC00CCCE70 /* CNEmbedFunction.swift */,
 				78C0D3B61BB941AC00CCCE70 /* CNPlayer.swift */,
@@ -118,6 +123,7 @@
 				78C0D3B81BB941AC00CCCE70 /* CNStack.swift */,
 				78C0D3B91BB941AC00CCCE70 /* CNStatement.swift */,
 				78C0D3BA1BB941AC00CCCE70 /* CNSystemStatements.swift */,
+				78D67D171BCEE350001841E5 /* CNSystemStackStatements.swift */,
 				78C0D3B21BB941AC00CCCE70 /* CNBasicStatements.swift */,
 				78C0D3BE1BB941AC00CCCE70 /* CNWorkflowStatements.swift */,
 				78C0D3BB1BB941AC00CCCE70 /* CNTools.swift */,
@@ -245,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D67D181BCEE350001841E5 /* CNSystemStackStatements.swift in Sources */,
 				78C0D3C11BB941AC00CCCE70 /* CNExpression.swift in Sources */,
 				785260511BBC19A500AF34A7 /* CNLoader.swift in Sources */,
 				78C0D3C71BB941AC00CCCE70 /* CNSystemStatements.swift in Sources */,
@@ -257,6 +264,7 @@
 				78C0D3C31BB941AC00CCCE70 /* CNPlayer.swift in Sources */,
 				78C0D3CD1BB9424A00CCCE70 /* CNExecutionHistory.swift in Sources */,
 				78C0D3C21BB941AC00CCCE70 /* CNEmbedFunction.swift in Sources */,
+				78D67D1A1BCEE388001841E5 /* CNFunction.swift in Sources */,
 				78C0D3BF1BB941AC00CCCE70 /* CNBasicStatements.swift in Sources */,
 				78C0D3C41BB941AC00CCCE70 /* CNProgram.swift in Sources */,
 				785CA9D61BB9D0490087EEB0 /* CNEnviroment.swift in Sources */,
