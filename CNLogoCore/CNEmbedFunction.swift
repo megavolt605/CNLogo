@@ -1,5 +1,5 @@
 //
-//  CNFunction.swift
+//  CNEmbedFunction.swift
 //  CNLogo
 //
 //  Created by Igor Smirnov on 07/09/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CNFunction: CNBlock {
+public class CNEmbedFunction: CNBlock {
     
     override public var identifier: String {
         return "FUNC"
@@ -48,7 +48,7 @@ public class CNFunction: CNBlock {
 
 }
 
-public class CNFunctionSin: CNFunction {
+public class CNFunctionSin: CNEmbedFunction {
 
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {
@@ -72,7 +72,7 @@ public class CNFunctionSin: CNFunction {
 
 }
 
-public class CNFunctionCos: CNFunction {
+public class CNFunctionCos: CNEmbedFunction {
     
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {

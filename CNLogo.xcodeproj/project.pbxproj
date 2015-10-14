@@ -11,7 +11,6 @@
 		46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7825FCFE1BC00C20004C2903 /* CNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FCFD1BC00C20004C2903 /* CNButton.swift */; settings = {ASSET_TAGS = (); }; };
 		7825FD021BC012BA004C2903 /* CNLogo+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */; settings = {ASSET_TAGS = (); }; };
-		7825FD081BC0352D004C2903 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
 		7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7825FD0E1BC13C82004C2903 /* CNOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD0D1BC13C82004C2903 /* CNOptions.swift */; settings = {ASSET_TAGS = (); }; };
 		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -123,7 +122,6 @@
 				78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */,
 				33D758473FAFCB353C468933 /* Pods.framework in Frameworks */,
 				46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */,
-				7825FD081BC0352D004C2903 /* CNLogoCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

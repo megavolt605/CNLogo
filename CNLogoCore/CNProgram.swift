@@ -17,12 +17,13 @@ public class CNProgram: CNBlock {
     }
     
     public var programName: String
-    
     public var player = CNPlayer()
-
     public var globalStack = CNStack<CNValue>()
-    
     public var executionHistory = CNExecutionHistory()
+    public var embedFunctions: [CNEmbedFunction] = [
+        CNFunctionSin(),
+        CNFunctionCos()
+    ]
     
     public func clear() {
         player.clear(nil)

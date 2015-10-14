@@ -159,7 +159,7 @@ public class CNStatementPop: CNStatement {
     
 }
 
-public class CNStatementGlobalPush: CNStatement {
+public class CNStatementGlobalPush: CNStatementPush {
     
     override public var identifier: String {
         return "GPUSH"
