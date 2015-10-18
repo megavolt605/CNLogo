@@ -19,7 +19,7 @@ public enum CNExpressionParseElementAssociativity {
 public enum CNExpressionParseElement {
     case Add, Sub, Mul, Div, Power
     case BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
-    case IsEqual, Assign
+    case IsEqual, IsNotEqual, Assign
 
     case BracketOpen, BracketClose
     case Value(value: CNValue)
@@ -40,6 +40,7 @@ public enum CNExpressionParseElement {
         case BitXor: return "^"
         case Remainder: return "%"
         case IsEqual: return "=="
+        case IsNotEqual: return "!="
         case Assign: return "="
         case BracketOpen: return "("
         case BracketClose: return ")"
@@ -67,6 +68,7 @@ public enum CNExpressionParseElement {
         case BitXor: return CNExpressionParseElement.Value(value: try leftValue ^ rightValue)
         case Remainder: return CNExpressionParseElement.Value(value: try leftValue % rightValue)
         case IsEqual: return CNExpressionParseElement.Value(value: try leftValue == rightValue)
+        case IsNotEqual: return CNExpressionParseElement.Value(value: try leftValue != rightValue)
         case Assign:
             switch left {
             case let Variable(variableName):
@@ -116,6 +118,8 @@ public enum CNExpressionParseElement {
         case (.Remainder, .Remainder): return true
         case (.BracketOpen, .BracketOpen): return true
         case (.BracketClose, .BracketClose): return true
+        case (.IsEqual, .IsEqual): return true
+        case (.IsNotEqual, .IsNotEqual): return true
         default: return false
         }
     }
@@ -142,7 +146,7 @@ public enum CNExpressionParseElement {
     }
     
     static let operators: [CNExpressionParseElement] = [
-        Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
+        Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder, IsEqual, IsNotEqual
     ]
 
     public func store() -> [String: AnyObject] {
@@ -159,6 +163,7 @@ public enum CNExpressionParseElement {
         case BitXor: return ["type": "bit-xor"]
         case Remainder: return ["type": "remainder"]
         case IsEqual: return ["type": "equal"]
+        case IsNotEqual: return ["type": "not-equal"]
         case Assign: return ["type": "assign"]
             
         case BracketOpen: return ["type": "bracket-open"]
@@ -190,6 +195,7 @@ public enum CNExpressionParseElement {
             case "bit-xor": return BitXor
             case "remainder": return Remainder
             case "equal": return IsEqual
+            case "not-equal": return IsNotEqual
             case "assign": return Assign
                 
             case "bracket-open": return BracketOpen

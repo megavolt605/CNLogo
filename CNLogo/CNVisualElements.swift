@@ -16,6 +16,7 @@ class CNBubble: UIView {
     var color: UIColor
     var size: CGSize = CGSizeZero
     var bold: Bool
+    var tiny = false
     
     private var strSize: CGSize = CGSizeZero
     
@@ -35,7 +36,7 @@ class CNBubble: UIView {
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + 10.0, size.height - 1.0)
+        size = CGSizeMake(strRect.width + (tiny ? -2.0 : 10.0), size.height - 1.0)
     }
     
     override func drawRect(rect: CGRect) {
@@ -60,7 +61,19 @@ class CNBubble: UIView {
         self.opaque = false
         self.calcSize()
     }
-
+    
+    init(text: String, color: UIColor, height: CGFloat, bold: Bool, tiny: Bool) {
+        self.text = text
+        self.color = color
+        self.size.height = height
+        self.bold = bold
+        self.tiny = tiny
+        super.init(frame: CGRectZero)
+        self.backgroundColor = UIColor.clearColor()
+        self.opaque = false
+        self.calcSize()
+    }
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -179,6 +179,69 @@ func ==(left: CNValue, right: CNValue) throws -> CNValue {
     
 }
 
+func !=(left: CNValue, right: CNValue) throws -> CNValue {
+    switch (left, right) {
+        
+    case (.unknown, _): throw CNError.InvalidValue
+    case (_, .unknown): throw CNError.InvalidValue
+        
+    case let (.bool(lv), .bool(rv)): return CNValue.bool(value: lv != rv)
+        
+    case let (.double(lv), _):
+        switch right {
+        case let .double(rv): return CNValue.bool(value: lv != rv)
+        case let .int(rv): return CNValue.bool(value: lv != Double(rv))
+        case let .string(rv): return CNValue.bool(value: lv != rv.doubleValue)
+        default: throw CNError.InvalidValue
+        }
+        
+    case let (_, .double(rv)):
+        switch left {
+        case let .double(lv): return CNValue.bool(value: lv != rv)
+        case let .int(lv): return CNValue.bool(value: Double(lv) != rv)
+        case let .string(lv): return CNValue.bool(value: lv.doubleValue != rv)
+        default: throw CNError.InvalidValue
+        }
+        
+    case let (.int(lv), _):
+        switch right {
+        case let .double(rv): return CNValue.bool(value: Double(lv) != rv)
+        case let .int(rv): return CNValue.bool(value: lv != rv)
+        case let .string(rv): return CNValue.bool(value: lv != rv.integerValue)
+        default: throw CNError.InvalidValue
+        }
+        
+    case let (_, .int(rv)):
+        switch left {
+        case let .double(lv): return CNValue.bool(value: lv != Double(rv))
+        case let .int(lv): return CNValue.bool(value: lv != rv)
+        case let .string(lv): return CNValue.bool(value: lv.integerValue != rv)
+        default: throw CNError.InvalidValue
+        }
+        
+    case let (.string(lv), _):
+        switch right {
+        case let .int(rv): return CNValue.bool(value: lv != rv.description)
+        case let .string(rv): return CNValue.bool(value: lv != rv)
+        default: throw CNError.InvalidValue
+        }
+        
+    case let (_, .string(rv)):
+        switch left {
+        case let .int(lv): return CNValue.bool(value: lv.description != rv)
+        case let .string(lv): return CNValue.bool(value: lv != rv)
+        default: throw CNError.InvalidValue
+        }
+        
+        // TODO: Color comparision
+        
+    default: return CNValue.unknown
+    }
+    
+    
+}
+
+
 func +(left: CNValue, right: CNValue) throws -> CNValue {
     switch left {
     

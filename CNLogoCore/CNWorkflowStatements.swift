@@ -88,6 +88,11 @@ public class CNStatementIf: CNStatement {
         }
     }
     
+    public override func executeStatements() throws -> CNValue {
+        ///
+        return .unknown
+    }
+    
     override public func execute() throws -> CNValue {
         try super.execute()
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
@@ -113,8 +118,8 @@ public class CNStatementIf: CNStatement {
         return res
     }
 
-    convenience init(statements: [CNStatement] = [], statementsElse: [CNStatement] = []) {
-        self.init(statements: statements)
+    public init(executableParameters: [CNVariable], statements: [CNStatement] = [], statementsElse: [CNStatement] = []) {
+        super.init(executableParameters: executableParameters, statements: statements)
         self.statementsElse = statementsElse
     }
 

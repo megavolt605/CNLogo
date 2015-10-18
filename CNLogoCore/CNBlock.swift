@@ -56,6 +56,7 @@ import Foundation
     }
 
     public func executeStatements() throws -> CNValue {
+        print(self)
         try statements.forEach {
             try $0.execute()
         }

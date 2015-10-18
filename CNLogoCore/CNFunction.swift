@@ -69,10 +69,24 @@ public class CNStatementCall: CNStatement {
         }*/
     }*/
     
+    override public func variableByName(name: String) -> CNVariable? {
+        for v in variables {
+            if v.variableName == name {
+                return v
+            }
+        }
+        return parentBlock?.variableByName(name)
+    }
+    
     public override func execute() throws -> CNValue {
         try super.execute()
         if let function = functionByName(funcName) {
-            function.executableParameters = executableParameters
+            function.executableParameters = try executableParameters.map { parameter in
+                return CNVariable(
+                    variableName: parameter.variableName,
+                    variableValue: try parameter.variableValue.execute()
+                )
+            }
             return try function.executeStatements()
         }
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)

@@ -125,6 +125,10 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             return CNExpression(source: [CNExpressionParseElement.Value(value: value)])
         }
         
+        func makeParamFromValue(value: CNValue) -> CNParameter {
+            return CNParameter(value: CNExpression(source: [CNExpressionParseElement.Value(value: value)]))
+        }
+        
         /*
             sides = 20
             length = 400 / sides
@@ -209,9 +213,10 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                 )
             ]
         )*/
-        
+
+        /*
         let program = CNProgram(
-            programName: "Example 1",
+            programName: "Example 2",
             statements: [
                 CNStatementPrint(
                     executableParameters: [CNParameter(value: CNValue.string(value: "Started"))]
@@ -236,18 +241,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                 ),
                 
                 CNStatementVar(variableName: "step", executableParameters: [CNParameter(value: CNValue.int(value: 1))]),
-                CNStatementVar(variableName: "sides", executableParameters: [CNParameter(value: CNValue.int(value: 10))]),
-                CNStatementVar(variableName: "length", executableParameters: [CNParameter(value: CNExpression(source: [
-                    CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
-                    CNExpressionParseElement.Div,
-                    CNExpressionParseElement.Variable(variableName: "sides")
-                    ]))]),
                 CNStatementColor(executableParameters: [CNParameter(value: CNValue.color(value: UIColor.orangeColor()))]),
-                CNStatementVar(variableName: "angle", executableParameters: [CNParameter(value: CNExpression(source: [
-                    CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
-                    CNExpressionParseElement.Div,
-                    CNExpressionParseElement.Variable(variableName: "sides"),
-                    ]))]),
                 CNStatementRepeat(
                     executableParameters: [CNParameter(value: CNValue.int(value: 20))],
                     statements: [
@@ -270,20 +264,6 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                                 CNExpressionParseElement.Value(value: CNValue.int(value: 1))
                                 ]))]
                         ),
-                        /*
-                        CNStatementRepeat(
-                            executableParameters: [CNParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "sides")
-                                ]))],
-                            statements: [
-                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Variable(variableName: "length")
-                                    ]))]),
-                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Variable(variableName: "angle")
-                                    ]))])
-                            ]
-                        ),*/
                         CNStatementCall(funcName: "drawSquare", executableParameters: [CNVariable(variableName: "sideLength", variableValue: CNValue.double(value: 100.0))]),
                         CNStatementRotate(executableParameters: [CNParameter(value: CNValue.double(value: 18.0))])
                     ]
@@ -292,8 +272,99 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                     executableParameters: [CNParameter(value: CNValue.string(value: "Finished"))]
                 )
             ]
-        )
+        )*/
         
+        let program = CNProgram(
+            programName: "Example 3",
+            statements: [
+                CNStatementPrint(
+                    executableParameters: [CNParameter(value: CNValue.string(value: "Started"))]
+                ),
+                
+                CNStatementFunction(
+                    funcName: "spiral",
+                    formalParameters: [
+                        CNVariable(variableName: "w", variableValue: CNValue.int(value: 0)),
+                        CNVariable(variableName: "a", variableValue: CNValue.int(value: 0)),
+                        CNVariable(variableName: "x", variableValue: CNValue.double(value: 0.0)),
+                        CNVariable(variableName: "c", variableValue: CNValue.int(value: 0)),
+                        CNVariable(variableName: "ww", variableValue: CNValue.double(value: 0.0))
+                    ],
+                    statements: [
+                        CNStatementIf(
+                            executableParameters: [ CNParameter(value: CNExpression(source: [
+                                CNExpressionParseElement.Variable(variableName: "c"),
+                                CNExpressionParseElement.IsNotEqual,
+                                CNExpressionParseElement.Value(value: CNValue.int(value: 0))
+                            ]))],
+                            statements: [
+                                CNStatementWidth(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "ww")]))]),
+                                // TODO: parametred color (color [255-w*2, 0, w*2])
+                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [
+                                    CNExpressionParseElement.Value(value: CNValue.double(value: 0.0)),
+                                    CNExpressionParseElement.Sub,
+                                    CNExpressionParseElement.Variable(variableName: "x")
+                                ]))]),
+                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNStatementTailUp(),
+                                CNStatementBackward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "x")]))]),
+                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNStatementTailDown(),
+                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "a")]))]),
+                                CNStatementCall(funcName: "spiral", executableParameters: [
+                                    CNVariable(
+                                        variableName: "w",
+                                        variableValue: CNExpression(source: [
+                                            CNExpressionParseElement.Variable(variableName: "w"),
+                                            CNExpressionParseElement.Add,
+                                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                                        ])
+                                    ),
+                                    CNVariable(variableName: "a", variableValue: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "a")])),
+                                    CNVariable(
+                                        variableName: "x",
+                                        variableValue: CNExpression(source: [
+                                            CNExpressionParseElement.Variable(variableName: "x"),
+                                            CNExpressionParseElement.Add,
+                                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.7))
+                                        ])
+                                    ),
+                                    CNVariable(
+                                        variableName: "c",
+                                        variableValue: CNExpression(source: [
+                                            CNExpressionParseElement.Variable(variableName: "c"),
+                                            CNExpressionParseElement.Sub,
+                                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                                        ])
+                                    ),
+                                    CNVariable(
+                                        variableName: "ww",
+                                        variableValue: CNExpression(source: [
+                                            CNExpressionParseElement.Variable(variableName: "ww"),
+                                            CNExpressionParseElement.Add,
+                                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.1))
+                                        ])
+                                    ),
+                                    
+                                ])
+                            ]
+                        )
+                    ]
+                ),
+                
+                CNStatementCall(funcName: "spiral", executableParameters: [
+                    CNVariable(variableName: "w", variableValue: CNValue.int(value: 1)),
+                    CNVariable(variableName: "a", variableValue: CNValue.int(value: 30)),
+                    CNVariable(variableName: "x", variableValue: CNValue.double(value: 10.0)),
+                    CNVariable(variableName: "c", variableValue: CNValue.int(value: 90)),
+                    CNVariable(variableName: "ww", variableValue: CNValue.double(value: 1.0))
+                ]),
+                CNStatementPrint(
+                    executableParameters: [CNParameter(value: CNValue.string(value: "Finished"))]
+                )
+            ]
+        )
 
         CNEnviroment.defaultEnviroment.currentProgram = program
 

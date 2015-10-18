@@ -185,11 +185,11 @@ extension CNStatementFunction {
             res.append(CNBubble(text: "\(funcName) (", color: UIColor.orangeColor(), height: height, bold: false))
             try formalParameters.enumerate().forEach { index, parameter in
                 if index > 0 {
-                    res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
+                    res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false, tiny: true))
                 }
                 res += try createBubblesForParameter(parameter, inBlock: inBlock, height: height) ?? []
             }
-            res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
+            res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: true))
         } else {
             res.append(CNBubble(text: "\(funcName)", color: UIColor.orangeColor(), height: height, bold: false))
         }
@@ -200,8 +200,10 @@ extension CNStatementFunction {
 extension CNStatementCall {
     
     func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) throws -> [CNBubble]  {
-        let value = try parameter.variableValue.execute()
+        let value = parameter.variableValue
         return [CNBubble(text: "\(parameter.variableName): \(value.description)", color: UIColor.cyanColor(), height: height, bold: false)]
+//        let value = try parameter.variableValue.execute()
+//        return [CNBubble(text: "\(parameter.variableName): \(value.description)", color: UIColor.cyanColor(), height: height, bold: false)]
     }
     
     @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
@@ -211,12 +213,12 @@ extension CNStatementCall {
 
         try executableParameters.enumerate().forEach { index, parameter in
             if index > 0 {
-                res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
+                res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false, tiny: true))
             }
             res += try createBubblesForParameter(parameter, inBlock: inBlock, height: height) ?? []
         }
 
-        res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
+        res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: true))
         return res
     }
 }
