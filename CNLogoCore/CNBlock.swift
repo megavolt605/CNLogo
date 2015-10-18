@@ -8,10 +8,10 @@
 
 import Foundation
 
-public struct CNFormalParameter {
-    var name: String?
-    var value: CNValue
-    var isOptional = false /// TODO: !!!
+@objc public class CNFormalParameter: NSObject {
+    public var name: String?
+    public var value: CNValue
+    public var isOptional = false /// TODO: !!!
 
     public init(value: CNValue) {
         self.value = value
@@ -24,7 +24,7 @@ public struct CNFormalParameter {
     
 }
 
-public struct CNExecutableParameter {
+@objc public class CNExecutableParameter: NSObject {
     public var name: String?
     public var value: CNExpression
     
@@ -39,7 +39,7 @@ public struct CNExecutableParameter {
     
 }
 
-public class CNBlock {
+@objc public class CNBlock: NSObject {
     
     public var formalParameters: [CNFormalParameter] = []
     public var execuableParameters: [CNExecutableParameter] = []
@@ -65,7 +65,7 @@ public class CNBlock {
         return "Anonymous BLOCK"
     }
     
-    public var description: String {
+    override public var description: String {
         if execuableParameters.count > 0 {
             return "\(identifier) \(parametersDescription)"
         } else {
@@ -140,8 +140,11 @@ public class CNBlock {
         return res
     }
 
-    public init() {
-        
+    override public init() {
+        super.init()
+    }
+    
+    deinit {
     }
     
     public init(execuableParameters: [CNExecutableParameter]) {
@@ -158,6 +161,7 @@ public class CNBlock {
     }
     
     public required init(data: [String: AnyObject]) {
+        super.init()
         execuableParameters = []
         if let info = data["parameters"] as? [String: [String: AnyObject]] {
             execuableParameters = info.map { name, value in

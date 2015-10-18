@@ -148,6 +148,13 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             programName: "Example 1",
             statements: [
                 CNStatementPrint(
+                    execuableParameters: [CNExecutableParameter(value: CNExpression(source: [
+                        CNExpressionParseElement.Function(functionName: "SIN", functionParameters: [CNExpression(source: [
+                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.2))
+                        ])])
+                    ]))]
+                ),
+                CNStatementPrint(
                     execuableParameters: [makeParamFromValue(CNValue.string(value: "Started"))]
                 ),
                 CNStatementVar(variableName: "step", execuableParameters: [makeParamFromValue(CNValue.int(value: 1))]),

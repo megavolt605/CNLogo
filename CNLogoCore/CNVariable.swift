@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CNVariable {
+@objc public class CNVariable: NSObject {
     var variableName: String
     var variableValue: CNValue
     

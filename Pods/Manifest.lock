@@ -1,8 +1,10 @@
 PODS:
+  - BetweenKit (2.0.1)
   - Dollar (4.0.1)
   - LiquidLoader (0.1.1)
 
 DEPENDENCIES:
+  - BetweenKit
   - Dollar
   - LiquidLoader (from `https://github.com/yoavlt/LiquidLoader.git`, branch `swift-2.0`)
 
@@ -17,6 +19,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/yoavlt/LiquidLoader.git
 
 SPEC CHECKSUMS:
+  BetweenKit: 89edc0c6dd96eb33ea02c097bb99a9b1c14880f0
   Dollar: a058e2659e0d3261307c12630dbc2fd8e32f80bf
   LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
 

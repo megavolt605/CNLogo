@@ -52,10 +52,12 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods-CNLogoTests/BetweenKit.framework'
   install_framework 'Pods-CNLogoTests/Dollar.framework'
   install_framework 'Pods-CNLogoTests/LiquidLoader.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods-CNLogoTests/BetweenKit.framework'
   install_framework 'Pods-CNLogoTests/Dollar.framework'
   install_framework 'Pods-CNLogoTests/LiquidLoader.framework'
 fi

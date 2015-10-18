@@ -35,6 +35,15 @@ public class CNProgram: CNBlock {
         return try super.execute()
     }
 
+    override public func functionByName(name: String) -> CNFunction? {
+        for f in embedFunctions {
+            if f.funcName == name {
+                return f
+            }
+        }
+        return super.functionByName(name)
+    }
+    
     private func internalInit() {
         variables.append(CNVariable(variableName: "PI", variableValue: CNValue.double(value: M_PI)))
         variables.append(CNVariable(variableName: "2_PI", variableValue: CNValue.double(value: M_2_PI)))

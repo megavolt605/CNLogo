@@ -1,0 +1,6 @@
+framework module BetweenKit {
+  umbrella header "BetweenKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

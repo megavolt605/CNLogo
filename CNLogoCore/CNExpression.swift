@@ -45,7 +45,7 @@ public enum CNExpressionParseElement {
         case BracketClose: return ")"
         case let Value(value): return value.description
         case let Variable(variableName): return variableName
-        case let Function(functionName, functionParameters): return "\(functionName)(\(functionParameters.description))"
+        case let Function(functionName, _): return "\(functionName)"//(\(functionParameters.description))"
         }
     }
     

@@ -22,6 +22,13 @@ public class CNFunctionSin: CNFunction {
         return try super.executeWithParameters(parameters)
     }
     
+    override public func prepare() throws {
+        try super.prepare()
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        }
+    }
+
     init() {
         super.init(funcName: "SIN", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
     }
@@ -46,6 +53,13 @@ public class CNFunctionCos: CNFunction {
         return try super.executeWithParameters(parameters)
     }
     
+    override public func prepare() throws {
+        try super.prepare()
+        if execuableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        }
+    }
+
     init() {
         super.init(funcName: "COS", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
     }
