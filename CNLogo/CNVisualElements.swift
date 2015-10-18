@@ -42,7 +42,7 @@ class CNBubble: UIView {
         
         let attrs = textAttrs()
         let str = NSString(string: text)
-        let rectanglePath = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: size.height / 2.0)
+        let rectanglePath = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: size.height / 4.0)
         
         color.setFill()
         rectanglePath.fill()
@@ -91,8 +91,16 @@ class CNBubbleBlockStart: CNBubble {
         let str = NSString(string: text)
 
         
-        let rectangleRect = CGRect(origin: CGPointZero, size: size)
-        let rectanglePath = UIBezierPath(roundedRect: rectangleRect, byRoundingCorners: [UIRectCorner.TopLeft, UIRectCorner.TopRight, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(size.height / 2.0, size.height / 2.0))
+        let rectangleRect = CGRectMake(0.0, 5.0, size.width, size.height - 10.0)
+        let rectanglePath = UIBezierPath(
+            roundedRect: rectangleRect,
+            byRoundingCorners: [UIRectCorner.TopLeft, UIRectCorner.TopRight, UIRectCorner.BottomRight],
+            cornerRadii: CGSizeMake(size.height / 4.0, size.height / 4.0))
+        rectanglePath.closePath()
+        rectanglePath.moveToPoint(CGPointMake(0.0, size.height / 2.0))
+        rectanglePath.addLineToPoint(CGPointMake(4.0, size.height / 2.0))
+        rectanglePath.addLineToPoint(CGPointMake(4.0, size.height))
+        rectanglePath.addLineToPoint(CGPointMake(0.0, size.height))
         rectanglePath.closePath()
         color.setFill()
         rectanglePath.fill()
@@ -116,7 +124,7 @@ class CNBubbleBlockEnd: CNBubble {
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + 20.0, size.height - 1.0)
+        size = CGSizeMake(strRect.width + 20.0, size.height)
     }
     
     override func drawRect(rect: CGRect) {
@@ -125,8 +133,17 @@ class CNBubbleBlockEnd: CNBubble {
         let str = NSString(string: text)
         
         
-        let rectangleRect = CGRect(origin: CGPointZero, size: size)
-        let rectanglePath = UIBezierPath(roundedRect: rectangleRect, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.TopRight, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(size.height / 2.0, size.height / 2.0))
+        let rectangleRect = CGRectMake(0.0, 5.0, size.width, size.height - 10.0)
+        let rectanglePath = UIBezierPath(
+            roundedRect: rectangleRect,
+            byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.TopRight, UIRectCorner.BottomRight],
+            cornerRadii: CGSizeMake(size.height / 4.0, size.height / 4.0)
+        )
+        rectanglePath.closePath()
+        rectanglePath.moveToPoint(CGPointZero)
+        rectanglePath.addLineToPoint(CGPointMake(4.0, 0.0))
+        rectanglePath.addLineToPoint(CGPointMake(4.0, size.height / 2.0))
+        rectanglePath.addLineToPoint(CGPointMake(0.0, size.height / 2.0))
         rectanglePath.closePath()
         color.setFill()
         rectanglePath.fill()
@@ -149,7 +166,7 @@ class CNBubbleBlockShift: CNBubble {
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + 10.0, size.height)
+        size = CGSizeMake(strRect.width + 4.0, size.height)
     }
     
     override func drawRect(rect: CGRect) {

@@ -11,19 +11,22 @@ import UIKit
 
 extension CNBlock {
     
-    @objc func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble]? {
+    func createBlockBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "", bold: Bool = false) throws -> [CNBubble] {
         var res: [CNBubble] = []
         let bubbleName = prefix + identifier
         if bubbleName != "" {
-            let bubble = CNBubble(text: bubbleName, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
+            let bubble = CNBubble(text: bubbleName, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: bold)
             res.append(bubble)
         }
         
+        return res
+    }
+    
+    @objc func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
+        var res = try createBlockBubbles(inBlock, height: height)
         if prefix == "" {
-            for param in execuableParameters {
-                if let bubbles = param.createBubbles(inBlock, height: height) {
-                    res += bubbles
-                }
+            for param in executableParameters {
+                res += try param.createBubbles(inBlock, height: height)
             }
         }
         return res
@@ -34,7 +37,7 @@ extension CNBlock {
 
 extension CNStatement {
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble]? {
+    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
         var res: [CNBubble] = []
         let bubbleName = prefix + identifier
         if bubbleName != "" {
@@ -43,10 +46,8 @@ extension CNStatement {
         }
         
         if prefix == "" {
-            for param in execuableParameters {
-                if let bubbles = param.createBubbles(inBlock, height: height) {
-                    res += bubbles
-                }
+            for param in executableParameters {
+                res += try param.createBubbles(inBlock, height: height)
             }
         }
         return res
@@ -55,27 +56,35 @@ extension CNStatement {
     
 }
 
+extension CNVariable {
+    
+    func createBubbles(inBlock: CNBlock, height: CGFloat) throws -> [CNBubble] {
+        return try self.variableValue.createBubbles(inBlock, height: height)
+    }
+    
+}
+
+
 extension CNExpression {
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble]? {
+    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
         var res: [CNBubble] = []
         if prefix != "" {
             let bubble = CNBubble(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
             res.append(bubble)
         }
         for item in source {
-            if let bubbles = item.createBubbles(inBlock, height: height) {
-                res += bubbles
-            }
+            res += try item.createBubbles(inBlock, height: height)
         }
         return res
     }
     
 }
 
+/*
 extension CNExecutableParameter {
     
-    func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble]? {
+    func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble] {
         var res: [CNBubble] = []
         if prefix != "" {
             let bubble = CNBubble(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
@@ -90,11 +99,11 @@ extension CNExecutableParameter {
     }
     
 }
-
+*/
 
 extension CNStatementVar {
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubble]? {
+    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
         var res: [CNBubble] = []
         let bubbleName = prefix + identifier
         if bubbleName != "" {
@@ -108,10 +117,8 @@ extension CNStatementVar {
         bubble = CNBubble(text: "=", color: UIColor(red: 1.0, green: 0.75, blue: 0.75, alpha: 1.0), height: height, bold: false)
         res.append(bubble)
         
-        for param in execuableParameters {
-            if let bubbles = param.createBubbles(inBlock, height: height) {
-                res += bubbles
-            }
+        for param in executableParameters {
+            res += try param.createBubbles(inBlock, height: height)
         }
         return res
     }
@@ -121,7 +128,7 @@ extension CNStatementVar {
 
 extension CNExpressionParseElement {
 
-    func createBubbles(inBlock: CNBlock, height: CGFloat) -> [CNBubble]? {
+    func createBubbles(inBlock: CNBlock, height: CGFloat) throws -> [CNBubble] {
         switch self {
         case let .Value(value):
             switch value {
@@ -139,18 +146,18 @@ extension CNExpressionParseElement {
                 color: UIColor(red: 1.0, green: 1.0, blue: 0.5, alpha: 1.0), height: height, bold: false
                 )]
         case let .Function(functionName, functionParameters):
+            let function = inBlock.functionByName(functionName)
             var res: [CNBubble] = [
                 CNBubble(text: "\(description) (", color: UIColor.orangeColor(), height: height, bold: false)
             ]
-            let function = inBlock.functionByName(functionName)
-            functionParameters.enumerate().forEach { index, parameter in
+            try functionParameters.enumerate().forEach { index, parameter in
                 if index > 0 {
                     res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
                 }
-                if let parameterName = function?.formalParameters[index].name {
+                if let parameterName = function?.formalParameters[index].variableName {
                     res.append(CNBubble(text: parameterName, color: UIColor.cyanColor(), height: height, bold: false))
                 }
-                res += parameter.createBubbles(inBlock, height: height) ?? []
+                res += (try parameter.createBubbles(inBlock, height: height)) ?? []
             }
             res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
             return res
@@ -163,3 +170,55 @@ extension CNExpressionParseElement {
     }
     
 }
+
+extension CNStatementFunction {
+
+    func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) throws -> [CNBubble]  {
+        let typeDescription = try parameter.variableValue.execute().typeDescription
+        return [CNBubble(text: "\(parameter.variableName): \(typeDescription)", color: UIColor.cyanColor(), height: height, bold: false)]
+    }
+
+    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
+        var res: [CNBubble] = (try createBlockBubbles(inBlock, height: height, prefix: prefix, bold: true)) ?? []
+        
+        if prefix == "" {
+            res.append(CNBubble(text: "\(funcName) (", color: UIColor.orangeColor(), height: height, bold: false))
+            try formalParameters.enumerate().forEach { index, parameter in
+                if index > 0 {
+                    res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
+                }
+                res += try createBubblesForParameter(parameter, inBlock: inBlock, height: height) ?? []
+            }
+            res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
+        } else {
+            res.append(CNBubble(text: "\(funcName)", color: UIColor.orangeColor(), height: height, bold: false))
+        }
+        return res
+    }
+}
+
+extension CNStatementCall {
+    
+    func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) throws -> [CNBubble]  {
+        let value = try parameter.variableValue.execute()
+        return [CNBubble(text: "\(parameter.variableName): \(value.description)", color: UIColor.cyanColor(), height: height, bold: false)]
+    }
+    
+    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
+        var res: [CNBubble] = (try createBlockBubbles(inBlock, height: height, prefix: prefix, bold: true)) ?? []
+        
+        res.append(CNBubble(text: "\(funcName) (", color: UIColor.orangeColor(), height: height, bold: false))
+
+        try executableParameters.enumerate().forEach { index, parameter in
+            if index > 0 {
+                res.append(CNBubble(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
+            }
+            res += try createBubblesForParameter(parameter, inBlock: inBlock, height: height) ?? []
+        }
+
+        res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
+        return res
+    }
+}
+
+

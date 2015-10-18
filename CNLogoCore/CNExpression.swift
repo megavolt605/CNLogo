@@ -71,7 +71,7 @@ public enum CNExpressionParseElement {
             switch left {
             case let Variable(variableName):
                 if let variable = inBlock.variableByName(variableName) {
-                    variable.variableValue = rightValue
+                    variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: rightValue)])
                     return CNExpressionParseElement.Value(value: rightValue)
                 } else {
                     throw CNError.VariableNotFound(variableName: variableName)
@@ -87,7 +87,7 @@ public enum CNExpressionParseElement {
         case let Value(value): return value
         case let Variable(variableName):
             if let variable = inBlock.variableByName(variableName) {
-                return variable.variableValue
+                return try variable.variableValue.execute()
             } else {
                 throw CNError.VariableNotFound(variableName: variableName)
             }

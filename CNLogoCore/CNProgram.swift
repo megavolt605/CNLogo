@@ -20,7 +20,7 @@ public class CNProgram: CNBlock {
     public var player = CNPlayer()
     public var globalStack = CNStack<CNValue>()
     public var executionHistory = CNExecutionHistory()
-    public var embedFunctions: [CNFunction] = [
+    public var embedFunctions: [CNStatementFunction] = [
         CNFunctionSin(),
         CNFunctionCos()
     ]
@@ -35,7 +35,7 @@ public class CNProgram: CNBlock {
         return try super.execute()
     }
 
-    override public func functionByName(name: String) -> CNFunction? {
+    override public func functionByName(name: String) -> CNStatementFunction? {
         for f in embedFunctions {
             if f.funcName == name {
                 return f

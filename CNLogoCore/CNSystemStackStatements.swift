@@ -16,8 +16,8 @@ public class CNStatementPush: CNStatement {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try execuableParameters.forEach {
-            try parentBlock?.valueStack.push($0.value.execute())
+        try executableParameters.forEach {
+            try parentBlock?.valueStack.push($0.variableValue.execute())
         }
         return .unknown
     }
@@ -38,8 +38,8 @@ public class CNStatementPop: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: execuableParameters.count)
+        if executableParameters.count != 0 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count)
         }
     }
     
@@ -47,7 +47,7 @@ public class CNStatementPop: CNStatement {
         try super.execute()
         if let value = popValue() {
             if let variable = variableByName(variableName) {
-                variable.variableValue = value
+                variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: value)])
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
             }
@@ -88,8 +88,8 @@ public class CNStatementGlobalPush: CNStatementPush {
     
     override public func execute() throws -> CNValue {
         try super.execute()
-        try execuableParameters.forEach {
-            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.value.execute())
+        try executableParameters.forEach {
+            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.variableValue.execute())
         }
         return .unknown
     }

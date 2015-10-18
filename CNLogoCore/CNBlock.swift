@@ -8,65 +8,25 @@
 
 import Foundation
 
-@objc public class CNFormalParameter: NSObject {
-    public var name: String?
-    public var value: CNValue
-    public var isOptional = false /// TODO: !!!
-
-    public init(value: CNValue) {
-        self.value = value
-    }
-    
-    public init(name: String, value: CNValue) {
-        self.name = name
-        self.value = value
-    }
-    
-}
-
-@objc public class CNExecutableParameter: NSObject {
-    public var name: String?
-    public var value: CNExpression
-    
-    public init(value: CNExpression) {
-        self.value = value
-    }
-    
-    public init(name: String, value: CNExpression) {
-        self.name = name
-        self.value = value
-    }
-    
-}
-
 @objc public class CNBlock: NSObject {
     
-    public var formalParameters: [CNFormalParameter] = []
-    public var execuableParameters: [CNExecutableParameter] = []
-    public var statements: [CNStatement] = [] {
-        didSet {
-            execuableParameters.forEach {
-                $0.value.parentBlock = self
-            }
-            statements.forEach {
-                $0.parentBlock = self
-            }
-        }
-    }
+    public var formalParameters: [CNVariable] = []
+    public var executableParameters: [CNVariable] = []
+    public var statements: [CNStatement] = []
     public var variables: [CNVariable] = []
-    public var functions: [CNFunction] = []
+    public var functions: [CNStatementFunction] = []
     public var valueStack = CNStack<CNValue>()
     
     private var prepared = false
 
-    weak var parentBlock: CNBlock?
+    weak public var parentBlock: CNBlock?
 
     public var identifier: String {
         return "Anonymous BLOCK"
     }
     
     override public var description: String {
-        if execuableParameters.count > 0 {
+        if executableParameters.count > 0 {
             return "\(identifier) \(parametersDescription)"
         } else {
             return identifier
@@ -74,19 +34,19 @@ import Foundation
     }
     
     public var parametersDescription: String {
-        return execuableParameters.reduce("") {
+        return executableParameters.reduce("") {
             if $0 == "" {
-                return $1.name ?? "" + $1.value.description
+                return $1.variableName ?? "" + $1.variableValue.description
             } else {
-                return $0 + "," + ($1.name ?? "") + $1.value.description
+                return $0 + "," + ($1.variableName ?? "") + $1.variableValue.description
             }
         }
     }
     
     public func prepare() throws -> Void {
-        try execuableParameters.forEach {
-            $0.value.parentBlock = self
-            try $0.value.prepare()
+        try executableParameters.forEach {
+            $0.variableValue.parentBlock = self
+            try $0.variableValue.prepare()
         }
         try statements.forEach {
             $0.parentBlock = self
@@ -94,16 +54,20 @@ import Foundation
         }
         prepared = true
     }
+
+    public func executeStatements() throws -> CNValue {
+        try statements.forEach {
+            try $0.execute()
+        }
+        return CNValue.unknown
+    }
     
     public func execute() throws -> CNValue {
         if !prepared {
             try prepare()
         }
-        
-        try statements.forEach {
-            try $0.execute()
-        }
-        return CNValue.unknown
+
+        return try executeStatements()
     }
     
     public func variableByName(name: String) -> CNVariable? {
@@ -112,10 +76,16 @@ import Foundation
                 return v
             }
         }
+        for v in executableParameters {
+            if v.variableName == name {
+                return v
+            }
+        }
+        
         return parentBlock?.variableByName(name)
     }
     
-    public func functionByName(name: String) -> CNFunction? {
+    public func functionByName(name: String) -> CNStatementFunction? {
         for f in functions {
             if f.funcName == name {
                 return f
@@ -126,9 +96,9 @@ import Foundation
     
     public func store() -> [String: AnyObject] {
         var res: [String: AnyObject] = [:]
-        if execuableParameters.count > 0 {
-            res["parameters"] = execuableParameters.enumerate().map { (index: Int, param: CNExecutableParameter) -> [String: AnyObject] in
-                return [param.name ?? "\(index)": param.value.store()]
+        if executableParameters.count > 0 {
+            res["parameters"] = executableParameters.enumerate().map { (index: Int, param: CNVariable) -> [String: AnyObject] in
+                return [param.variableName ?? "\(index)": param.variableValue.store()]
             }
         }
         if statements.count > 0 {
@@ -147,25 +117,25 @@ import Foundation
     deinit {
     }
     
-    public init(execuableParameters: [CNExecutableParameter]) {
-        self.execuableParameters = execuableParameters
+    public init(executableParameters: [CNVariable]) {
+        self.executableParameters = executableParameters
     }
     
     public init(statements: [CNStatement]) {
         self.statements = statements
     }
     
-    public init(execuableParameters: [CNExecutableParameter], statements: [CNStatement]) {
-        self.execuableParameters = execuableParameters
+    public init(executableParameters: [CNVariable], statements: [CNStatement]) {
+        self.executableParameters = executableParameters
         self.statements = statements
     }
     
     public required init(data: [String: AnyObject]) {
         super.init()
-        execuableParameters = []
+        executableParameters = []
         if let info = data["parameters"] as? [String: [String: AnyObject]] {
-            execuableParameters = info.map { name, value in
-                return CNExecutableParameter(name: name, value: CNExpression(data: value))
+            executableParameters = info.map { name, value in
+                return CNVariable(variableName: name, variableValue: CNExpression(data: value))
             }
         }
 

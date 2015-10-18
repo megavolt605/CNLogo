@@ -10,7 +10,7 @@ import Foundation
 
 struct CNOptions {
     
-    var duration: CFTimeInterval = 0.1
+    var duration: CFTimeInterval = 0.01
     
     var shouldAnimate: Bool {
         return duration >= 0.01

@@ -20,29 +20,40 @@ public enum CNValue {
     
     public var description: Swift.String {
         switch self {
-        case .unknown: return ""
-        case let .bool(value): return "\(value)"
-        case let .int(value): return "\(value)"
-        case let .double(value): return "\(value)"
-        case let .string(value): return "\"\(value)\""
-        case let .color(value):
+        case unknown: return ""
+        case let bool(value): return "\(value)"
+        case let int(value): return "\(value)"
+        case let double(value): return "\(value)"
+        case let string(value): return "\"\(value)\""
+        case let color(value):
             var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
             value.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
             return "COLOR(red=\(red), green=\(green), blue=\(blue), alpha=\(alpha))"
         }
     }
-    
+
+    public var typeDescription: Swift.String {
+        switch self {
+        case unknown: return "unknown"
+        case bool: return "bool"
+        case int: return "int"
+        case double: return "double"
+        case string: return "string"
+        case color: return "color"
+        }
+    }
+
     public func makeMeDouble() {
         
     }
 
     func isEqualTo(value: CNValue) -> Bool {
         switch (self, value) {
-        case (.bool, .bool): return true
-        case (.int, .int): return true
-        case (.double, .double): return true
-        case (.string, .string): return true
-        case (.color, .color): return true
+        case (bool, bool): return true
+        case (int, int): return true
+        case (double, double): return true
+        case (string, string): return true
+        case (color, color): return true
         default: return false
         }
     }

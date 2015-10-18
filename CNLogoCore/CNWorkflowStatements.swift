@@ -16,15 +16,15 @@ public class CNStatementRepeat: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        if executableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
-        switch try execuableParameters.first!.value.execute() {
+        switch try executableParameters.first!.variableValue.execute() {
         case let .int(value):
             for _ in 1..<value {
                 try statements.forEach {
@@ -47,8 +47,8 @@ public class CNStatementWhile: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        if executableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
         }
     }
     
@@ -56,7 +56,7 @@ public class CNStatementWhile: CNStatement {
         try super.execute()
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
         repeat {
-            switch try execuableParameters.first!.value.execute() {
+            switch try executableParameters.first!.variableValue.execute() {
             case let .bool(value):
                 if value {
                     try statements.forEach {
@@ -83,15 +83,15 @@ public class CNStatementIf: CNStatement {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        if executableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
         }
     }
     
     override public func execute() throws -> CNValue {
         try super.execute()
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
-        switch try execuableParameters.first!.value.execute() {
+        switch try executableParameters.first!.variableValue.execute() {
         case let .bool(value):
             if value {
                 try statements.forEach {

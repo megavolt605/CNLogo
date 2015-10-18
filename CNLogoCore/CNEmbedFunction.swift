@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CNFunctionSin: CNFunction {
+public class CNFunctionSin: CNStatementFunction {
 
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {
@@ -24,13 +24,17 @@ public class CNFunctionSin: CNFunction {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        if executableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
         }
     }
 
     init() {
-        super.init(funcName: "SIN", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
+        super.init(
+            funcName: "SIN",
+            formalParameters: [CNVariable(variableName: "angle", variableValue: CNValue.double(value: 0.0))],
+            statements: []
+        )
     }
 
     public required init(data: [String : AnyObject]) {
@@ -39,7 +43,7 @@ public class CNFunctionSin: CNFunction {
 
 }
 
-public class CNFunctionCos: CNFunction {
+public class CNFunctionCos: CNStatementFunction {
     
     override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
         if let firstValue = try parameters.first?.execute() {
@@ -55,13 +59,17 @@ public class CNFunctionCos: CNFunction {
     
     override public func prepare() throws {
         try super.prepare()
-        if execuableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: execuableParameters.count)
+        if executableParameters.count != 1 {
+            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
         }
     }
 
     init() {
-        super.init(funcName: "COS", formalParameters: [CNFormalParameter(name: "angle", value: CNValue.double(value: 0.0))])
+        super.init(
+            funcName: "COS",
+            formalParameters: [CNVariable(variableName: "angle", variableValue: CNValue.double(value: 0.0))],
+            statements: []
+        )
     }
 
     public required init(data: [String : AnyObject]) {

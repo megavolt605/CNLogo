@@ -9,11 +9,30 @@
 import Foundation
 
 @objc public class CNVariable: NSObject {
-    var variableName: String
-    var variableValue: CNValue
+    public var variableName: String
+    public var variableValue: CNExpression
+    public var parentBlock: CNBlock?
     
-    init(variableName: String, variableValue: CNValue) {
+    public init(variableName: String, variableValue: CNExpression) {
         self.variableName = variableName
         self.variableValue = variableValue
     }
+    
+    public init(variableName: String, variableValue: CNValue) {
+        self.variableName = variableName
+        self.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: variableValue)])
+    }
+    
+}
+
+public class CNParameter: CNVariable {
+
+    public init(value: CNExpression) {
+        super.init(variableName: "", variableValue: value)
+    }
+    
+    public init(value: CNValue) {
+        super.init(variableName: "", variableValue: value)
+    }
+    
 }
