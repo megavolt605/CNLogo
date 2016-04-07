@@ -278,30 +278,30 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             programName: "Example 3",
             statements: [
                 CNStatementPrint(
-                    executableParameters: [CNParameter(value: CNValue.string(value: "Started"))]
+                    executableParameters: [CNParameter(value: .String(value: "Started"))]
                 ),
                 
                 CNStatementFunction(
                     funcName: "spiral",
                     formalParameters: [
-                        CNVariable(variableName: "w", variableValue: CNValue.int(value: 0)),
-                        CNVariable(variableName: "a", variableValue: CNValue.int(value: 0)),
-                        CNVariable(variableName: "x", variableValue: CNValue.double(value: 0.0)),
-                        CNVariable(variableName: "c", variableValue: CNValue.int(value: 0)),
-                        CNVariable(variableName: "ww", variableValue: CNValue.double(value: 0.0))
+                        CNVariable(variableName: "w", variableValue: .Int(value: 0)),
+                        CNVariable(variableName: "a", variableValue: .Int(value: 0)),
+                        CNVariable(variableName: "x", variableValue: .Double(value: 0.0)),
+                        CNVariable(variableName: "c", variableValue: .Int(value: 0)),
+                        CNVariable(variableName: "ww", variableValue: .Double(value: 0.0))
                     ],
                     statements: [
                         CNStatementIf(
                             executableParameters: [ CNParameter(value: CNExpression(source: [
                                 CNExpressionParseElement.Variable(variableName: "c"),
                                 CNExpressionParseElement.IsNotEqual,
-                                CNExpressionParseElement.Value(value: CNValue.int(value: 0))
+                                CNExpressionParseElement.Value(value: .Int(value: 0))
                             ]))],
                             statements: [
                                 CNStatementWidth(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "ww")]))]),
                                 // TODO: parametred color (color [255-w*2, 0, w*2])
                                 CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Value(value: CNValue.double(value: 0.0)),
+                                    CNExpressionParseElement.Value(value: .Double(value: 0.0)),
                                     CNExpressionParseElement.Sub,
                                     CNExpressionParseElement.Variable(variableName: "x")
                                 ]))]),
@@ -318,7 +318,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                                         variableValue: CNExpression(source: [
                                             CNExpressionParseElement.Variable(variableName: "w"),
                                             CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                                            CNExpressionParseElement.Value(value: .Int(value: 1))
                                         ])
                                     ),
                                     CNVariable(variableName: "a", variableValue: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "a")])),
@@ -327,7 +327,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                                         variableValue: CNExpression(source: [
                                             CNExpressionParseElement.Variable(variableName: "x"),
                                             CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.7))
+                                            CNExpressionParseElement.Value(value: .Double(value: 0.7))
                                         ])
                                     ),
                                     CNVariable(
@@ -335,7 +335,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                                         variableValue: CNExpression(source: [
                                             CNExpressionParseElement.Variable(variableName: "c"),
                                             CNExpressionParseElement.Sub,
-                                            CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                                            CNExpressionParseElement.Value(value: .Int(value: 1))
                                         ])
                                     ),
                                     CNVariable(
@@ -343,7 +343,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                                         variableValue: CNExpression(source: [
                                             CNExpressionParseElement.Variable(variableName: "ww"),
                                             CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.1))
+                                            CNExpressionParseElement.Value(value: .Double(value: 0.1))
                                         ])
                                     ),
                                     
@@ -354,14 +354,14 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                 ),
                 
                 CNStatementCall(funcName: "spiral", executableParameters: [
-                    CNVariable(variableName: "w", variableValue: CNValue.int(value: 1)),
-                    CNVariable(variableName: "a", variableValue: CNValue.int(value: 30)),
-                    CNVariable(variableName: "x", variableValue: CNValue.double(value: 10.0)),
-                    CNVariable(variableName: "c", variableValue: CNValue.int(value: 90)),
-                    CNVariable(variableName: "ww", variableValue: CNValue.double(value: 1.0))
+                    CNVariable(variableName: "w", variableValue: .Int(value: 1)),
+                    CNVariable(variableName: "a", variableValue: .Int(value: 30)),
+                    CNVariable(variableName: "x", variableValue: .Double(value: 10.0)),
+                    CNVariable(variableName: "c", variableValue: .Int(value: 90)),
+                    CNVariable(variableName: "ww", variableValue: .Double(value: 1.0))
                 ]),
                 CNStatementPrint(
-                    executableParameters: [CNParameter(value: CNValue.string(value: "Finished"))]
+                    executableParameters: [CNParameter(value: .String(value: "Finished"))]
                 )
             ]
         )

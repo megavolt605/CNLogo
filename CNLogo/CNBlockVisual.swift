@@ -132,7 +132,7 @@ extension CNExpressionParseElement {
         switch self {
         case let .Value(value):
             switch value {
-            case let .color(color):
+            case let .Color(color):
                 return [CNBubble(text: "  ", color: color, height: height, bold: false)]
             default:
                 return [CNBubble(

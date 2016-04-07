@@ -9,70 +9,69 @@
 import Foundation
 import UIKit
 
-// lower case (!!!) - intersects with standart swift type names
 public enum CNValue {
-    case error(block: CNBlock?, error: CNError)
-    case unknown
-    case bool(value: Bool)
-    case int(value: Int)
-    case double(value: Double)
-    case string(value: String)
-    case color(value: UIColor)
+    case Error(block: CNBlock?, error: CNError)
+    case Unknown
+    case Bool(value: Swift.Bool)
+    case Int(value: Swift.Int)
+    case Double(value: Swift.Double)
+    case String(value: Swift.String)
+    case Color(value: UIColor)
     
-    public var isError: Bool {
+    public var isError: Swift.Bool {
         switch self {
-        case .error: return true
+        case Error: return true
         default: return false
         }
     }
     
     public var description: Swift.String {
         switch self {
-        case unknown: return ""
-        case let bool(value): return "\(value)"
-        case let int(value): return "\(value)"
-        case let double(value): return "\(value)"
-        case let string(value): return "\"\(value)\""
-        case let color(value):
+        case Unknown: return ""
+        case let Bool(value): return "\(value)"
+        case let Int(value): return "\(value)"
+        case let Double(value): return "\(value)"
+        case let String(value): return "\"\(value)\""
+        case let Color(value):
             var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
             value.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
             return "COLOR(red=\(red), green=\(green), blue=\(blue), alpha=\(alpha))"
-        case let error(_, anError): return anError.description
+        case let Error(_, anError): return anError.description
         }
     }
 
     public var typeDescription: Swift.String {
         switch self {
-        case unknown: return "unknown"
-        case bool: return "bool"
-        case int: return "int"
-        case double: return "double"
-        case string: return "string"
-        case color: return "color"
-        case error: return "error"
+        case Unknown: return "Unknown"
+        case Bool: return "bool"
+        case Int: return "int"
+        case Double: return "double"
+        case String: return "string"
+        case Color: return "color"
+        case Error: return "error"
         }
     }
 
     @warn_unused_result
-    func isEqualTo(value: CNValue) -> Bool {
+    func isEqualTo(value: CNValue) -> Swift.Bool {
         switch (self, value) {
-        case (bool, bool): return true
-        case (int, int): return true
-        case (double, double): return true
-        case (string, string): return true
-        case (color, color): return true
+        case (Bool, Bool): return true
+        case (Int, Int): return true
+        case (Double, Double): return true
+        case (String, String): return true
+        case (Color, Color): return true
         default: return false
         }
     }
     
     @warn_unused_result
-    func store() -> [String: AnyObject] {
+    func store() -> [Swift.String: AnyObject] {
         switch self {
-        case let bool(value): return ["type": "bool", "value": value]
-        case let int(value): return ["type": "int", "value": value]
-        case let double(value): return ["type": "double", "value": value]
-        case let string(value): return ["type": "string", "value": value]
-        case let color(value):
+        case let Bool(value): return ["type": "bool", "value": value]
+        case let Int(value): return ["type": "int", "value": value]
+        case let Double(value): return ["type": "double", "value": value]
+        case let String(value): return ["type": "string", "value": value]
+        case let Color(value):
             var red: CGFloat = 0.0
             var green: CGFloat = 0.0
             var blue: CGFloat = 0.0
@@ -92,21 +91,21 @@ public enum CNValue {
     }
 
     @warn_unused_result
-    public static func loadFromData(data: [String: AnyObject]) -> CNValue {
-        if let type = data["type"] as? String {
+    public static func loadFromData(data: [Swift.String: AnyObject]) -> CNValue {
+        if let type = data["type"] as? Swift.String {
             switch type {
-            case "bool": return bool(value: (data["value"] as? Bool) ?? false)
-            case "int": return int(value: (data["value"] as? Int) ?? 0)
-            case "double": return double(value: (data["value"] as? Double) ?? 0.0)
-            case "string": return string(value: (data["value"] as? String) ?? "")
+            case "bool": return Bool(value: (data["value"] as? Swift.Bool) ?? false)
+            case "int": return Int(value: (data["value"] as? Swift.Int) ?? 0)
+            case "double": return Double(value: (data["value"] as? Swift.Double) ?? 0.0)
+            case "string": return String(value: (data["value"] as? Swift.String) ?? "")
             case "color":
                 if let red = data["red"] as? CGFloat, green = data["green"] as? CGFloat, blue = data["blue"] as? CGFloat, alpha = data["alpha"] as? CGFloat {
-                    return color(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
+                    return Color(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
                 }
             default: break
             }
         }
-        return unknown
+        return Unknown
     }
     
 }
@@ -129,60 +128,60 @@ infix operator ^ {}
 func ==(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
     
-    case (.unknown, _): return CNValue.error(block: nil, error: CNError.InvalidValue)
-    case (_, .unknown): return CNValue.error(block: nil, error: .InvalidValue)
+    case (.Unknown, _): return CNValue.Error(block: nil, error: CNError.InvalidValue)
+    case (_, .Unknown): return CNValue.Error(block: nil, error: .InvalidValue)
     
-    case let (.bool(lv), .bool(rv)): return CNValue.bool(value: lv == rv)
+    case let (.Bool(lv), .Bool(rv)): return CNValue.Bool(value: lv == rv)
 
-    case let (.double(lv), _):
+    case let (.Double(lv), _):
         switch right {
-        case let .double(rv): return CNValue.bool(value: lv == rv)
-        case let .int(rv): return CNValue.bool(value: lv == Double(rv))
-        case let .string(rv): return CNValue.bool(value: lv == rv.doubleValue)
-        default: return CNValue.error(block: nil, error: .InvalidValue)
+        case let .Double(rv): return CNValue.Bool(value: lv == rv)
+        case let .Int(rv): return CNValue.Bool(value: lv == Double(rv))
+        case let .String(rv): return CNValue.Bool(value: lv == rv.doubleValue)
+        default: return CNValue.Error(block: nil, error: .InvalidValue)
         }
     
-    case let (_, .double(rv)):
+    case let (_, .Double(rv)):
         switch left {
-        case let .double(lv): return CNValue.bool(value: lv == rv)
-        case let .int(lv): return CNValue.bool(value: Double(lv) == rv)
-        case let .string(lv): return CNValue.bool(value: lv.doubleValue == rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(lv): return CNValue.Bool(value: lv == rv)
+        case let .Int(lv): return CNValue.Bool(value: Double(lv) == rv)
+        case let .String(lv): return CNValue.Bool(value: lv.doubleValue == rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (.int(lv), _):
+    case let (.Int(lv), _):
         switch right {
-        case let .double(rv): return CNValue.bool(value: Double(lv) == rv)
-        case let .int(rv): return CNValue.bool(value: lv == rv)
-        case let .string(rv): return CNValue.bool(value: lv == rv.integerValue)
-        default: return  CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rv): return CNValue.Bool(value: Double(lv) == rv)
+        case let .Int(rv): return CNValue.Bool(value: lv == rv)
+        case let .String(rv): return CNValue.Bool(value: lv == rv.integerValue)
+        default: return  CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (_, .int(rv)):
+    case let (_, .Int(rv)):
         switch left {
-        case let .double(lv): return CNValue.bool(value: lv == Double(rv))
-        case let .int(lv): return CNValue.bool(value: lv == rv)
-        case let .string(lv): return CNValue.bool(value: lv.integerValue == rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(lv): return CNValue.Bool(value: lv == Double(rv))
+        case let .Int(lv): return CNValue.Bool(value: lv == rv)
+        case let .String(lv): return CNValue.Bool(value: lv.integerValue == rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (.string(lv), _):
+    case let (.String(lv), _):
         switch right {
-        case let .int(rv): return CNValue.bool(value: lv == rv.description)
-        case let .string(rv): return CNValue.bool(value: lv == rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rv): return CNValue.Bool(value: lv == rv.description)
+        case let .String(rv): return CNValue.Bool(value: lv == rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (_, .string(rv)):
+    case let (_, .String(rv)):
         switch left {
-        case let .int(lv): return CNValue.bool(value: lv.description == rv)
-        case let .string(lv): return CNValue.bool(value: lv == rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(lv): return CNValue.Bool(value: lv.description == rv)
+        case let .String(lv): return CNValue.Bool(value: lv == rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
     // TODO: Color comparision
 
-    default: return CNValue.unknown
+    default: return CNValue.Unknown
     }
 
     
@@ -191,57 +190,57 @@ func ==(left: CNValue, right: CNValue) -> CNValue {
 func !=(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
         
-    case let (.bool(lv), .bool(rv)): return CNValue.bool(value: lv != rv)
+    case let (.Bool(lv), .Bool(rv)): return CNValue.Bool(value: lv != rv)
         
-    case let (.double(lv), _):
+    case let (.Double(lv), _):
         switch right {
-        case let .double(rv): return CNValue.bool(value: lv != rv)
-        case let .int(rv): return CNValue.bool(value: lv != Double(rv))
-        case let .string(rv): return CNValue.bool(value: lv != rv.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rv): return CNValue.Bool(value: lv != rv)
+        case let .Int(rv): return CNValue.Bool(value: lv != Double(rv))
+        case let .String(rv): return CNValue.Bool(value: lv != rv.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (_, .double(rv)):
+    case let (_, .Double(rv)):
         switch left {
-        case let .double(lv): return CNValue.bool(value: lv != rv)
-        case let .int(lv): return CNValue.bool(value: Double(lv) != rv)
-        case let .string(lv): return CNValue.bool(value: lv.doubleValue != rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(lv): return CNValue.Bool(value: lv != rv)
+        case let .Int(lv): return CNValue.Bool(value: Double(lv) != rv)
+        case let .String(lv): return CNValue.Bool(value: lv.doubleValue != rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (.int(lv), _):
+    case let (.Int(lv), _):
         switch right {
-        case let .double(rv): return CNValue.bool(value: Double(lv) != rv)
-        case let .int(rv): return CNValue.bool(value: lv != rv)
-        case let .string(rv): return CNValue.bool(value: lv != rv.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rv): return CNValue.Bool(value: Double(lv) != rv)
+        case let .Int(rv): return CNValue.Bool(value: lv != rv)
+        case let .String(rv): return CNValue.Bool(value: lv != rv.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (_, .int(rv)):
+    case let (_, .Int(rv)):
         switch left {
-        case let .double(lv): return CNValue.bool(value: lv != Double(rv))
-        case let .int(lv): return CNValue.bool(value: lv != rv)
-        case let .string(lv): return CNValue.bool(value: lv.integerValue != rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(lv): return CNValue.Bool(value: lv != Double(rv))
+        case let .Int(lv): return CNValue.Bool(value: lv != rv)
+        case let .String(lv): return CNValue.Bool(value: lv.integerValue != rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (.string(lv), _):
+    case let (.String(lv), _):
         switch right {
-        case let .int(rv): return CNValue.bool(value: lv != rv.description)
-        case let .string(rv): return CNValue.bool(value: lv != rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rv): return CNValue.Bool(value: lv != rv.description)
+        case let .String(rv): return CNValue.Bool(value: lv != rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let (_, .string(rv)):
+    case let (_, .String(rv)):
         switch left {
-        case let .int(lv): return CNValue.bool(value: lv.description != rv)
-        case let .string(lv): return CNValue.bool(value: lv != rv)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(lv): return CNValue.Bool(value: lv.description != rv)
+        case let .String(lv): return CNValue.Bool(value: lv != rv)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
         // TODO: Color comparision
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
     
     
@@ -251,124 +250,124 @@ func !=(left: CNValue, right: CNValue) -> CNValue {
 func +(left: CNValue, right: CNValue) -> CNValue {
     switch left {
     
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue + rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue + Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue + rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue + rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue + Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue + rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: Double(leftValue) + rightValue)
-        case let .int(rightValue): return CNValue.int(value: leftValue + rightValue)
-        case let .string(rightValue): return CNValue.double(value: Double(leftValue) + rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: Double(leftValue) + rightValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue + rightValue)
+        case let .String(rightValue): return CNValue.Double(value: Double(leftValue) + rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.string(value: leftValue + "\(rightValue)")
-        case let .int(rightValue): return CNValue.string(value: leftValue + "\(rightValue)")
-        case let .string(rightValue): return CNValue.string(value: leftValue + rightValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.String(value: leftValue + "\(rightValue)")
+        case let .Int(rightValue): return CNValue.String(value: leftValue + "\(rightValue)")
+        case let .String(rightValue): return CNValue.String(value: leftValue + rightValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func -(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue.doubleValue - rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue.doubleValue - Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue.doubleValue - rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue.doubleValue - rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue.doubleValue - Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue.doubleValue - rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue - rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue - Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue - rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue - rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue - Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue - rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: Double(leftValue) - rightValue)
-        case let .int(rightValue): return CNValue.int(value: leftValue - rightValue)
-        case let .string(rightValue): return CNValue.double(value: Double(leftValue) - rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: Double(leftValue) - rightValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue - rightValue)
+        case let .String(rightValue): return CNValue.Double(value: Double(leftValue) - rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func *(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue.doubleValue * rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue.doubleValue * Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue.doubleValue * rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue.doubleValue * rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue.doubleValue * Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue.doubleValue * rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue * rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue * Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue * (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue * rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue * Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue * (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: Double(leftValue) * rightValue)
-        case let .int(rightValue): return CNValue.int(value: leftValue * rightValue)
-        case let .string(rightValue): return CNValue.double(value: Double(leftValue) * (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: Double(leftValue) * rightValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue * rightValue)
+        case let .String(rightValue): return CNValue.Double(value: Double(leftValue) * (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func /(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue.doubleValue / rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue.doubleValue / Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue.doubleValue / rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue.doubleValue / rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue.doubleValue / Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue.doubleValue / rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue / rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue / Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue / (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue / rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue / Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue / (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: Double(leftValue) / rightValue)
-        case let .int(rightValue): return CNValue.double(value: Double(leftValue) / Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: Double(leftValue) / rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: Double(leftValue) / Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
@@ -376,139 +375,139 @@ infix operator ^^ {}
 func ^^(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: pow(leftValue.doubleValue, rightValue))
-        case let .int(rightValue): return CNValue.double(value: pow(leftValue.doubleValue, Double(rightValue)))
-        case let .string(rightValue): return CNValue.double(value: pow(leftValue.doubleValue, rightValue.doubleValue))
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: pow(leftValue.doubleValue, rightValue))
+        case let .Int(rightValue): return CNValue.Double(value: pow(leftValue.doubleValue, Double(rightValue)))
+        case let .String(rightValue): return CNValue.Double(value: pow(leftValue.doubleValue, rightValue.doubleValue))
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: pow(leftValue, rightValue))
-        case let .int(rightValue): return CNValue.double(value: pow(leftValue, Double(rightValue)))
-        case let .string(rightValue): return CNValue.double(value: pow(leftValue, (rightValue as NSString).doubleValue))
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: pow(leftValue, rightValue))
+        case let .Int(rightValue): return CNValue.Double(value: pow(leftValue, Double(rightValue)))
+        case let .String(rightValue): return CNValue.Double(value: pow(leftValue, (rightValue as NSString).doubleValue))
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: pow(Double(leftValue), rightValue))
-        case let .int(rightValue): return CNValue.int(value: Int(pow(Double(leftValue), Double(rightValue))))
-        case let .string(rightValue): return CNValue.double(value: pow(Double(leftValue), (rightValue as NSString).doubleValue))
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: pow(Double(leftValue), rightValue))
+        case let .Int(rightValue): return CNValue.Int(value: Int(pow(Double(leftValue), Double(rightValue))))
+        case let .String(rightValue): return CNValue.Double(value: pow(Double(leftValue), (rightValue as NSString).doubleValue))
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func &&(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
-    case let (.bool(leftValue), .bool(rightValue)): return CNValue.bool(value: leftValue && rightValue)
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    case let (.Bool(leftValue), .Bool(rightValue)): return CNValue.Bool(value: leftValue && rightValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func ||(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
-    case let (.bool(leftValue), .bool(rightValue)): return CNValue.bool(value: leftValue || rightValue)
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    case let (.Bool(leftValue), .Bool(rightValue)): return CNValue.Bool(value: leftValue || rightValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func &(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue.integerValue & rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue.integerValue & rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue.integerValue & rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue.integerValue & rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
 
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue & rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue & rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue & rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue & rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func |(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue.integerValue | rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue.integerValue | rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue.integerValue | rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue.integerValue | rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue | rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue | rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue | rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue | rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func %(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue.doubleValue % rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue.doubleValue % Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue.doubleValue % rightValue.doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue.doubleValue % rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue.doubleValue % Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue.doubleValue % rightValue.doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .double(leftValue):
+    case let .Double(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: leftValue % rightValue)
-        case let .int(rightValue): return CNValue.double(value: leftValue % Double(rightValue))
-        case let .string(rightValue): return CNValue.double(value: leftValue % (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: leftValue % rightValue)
+        case let .Int(rightValue): return CNValue.Double(value: leftValue % Double(rightValue))
+        case let .String(rightValue): return CNValue.Double(value: leftValue % (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .double(rightValue): return CNValue.double(value: Double(leftValue) / rightValue)
-        case let .int(rightValue): return CNValue.int(value: leftValue % rightValue)
-        case let .string(rightValue): return CNValue.double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Double(rightValue): return CNValue.Double(value: Double(leftValue) / rightValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue % rightValue)
+        case let .String(rightValue): return CNValue.Double(value: Double(leftValue) / (rightValue as NSString).doubleValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
 func ^(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
-    case let .string(leftValue):
+    case let .String(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue.integerValue ^ rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue.integerValue ^ rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue.integerValue ^ rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue.integerValue ^ rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    case let .int(leftValue):
+    case let .Int(leftValue):
         switch right {
-        case let .int(rightValue): return CNValue.int(value: leftValue ^ rightValue)
-        case let .string(rightValue): return CNValue.int(value: leftValue ^ rightValue.integerValue)
-        default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+        case let .Int(rightValue): return CNValue.Int(value: leftValue ^ rightValue)
+        case let .String(rightValue): return CNValue.Int(value: leftValue ^ rightValue.integerValue)
+        default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
         }
         
-    default: return CNValue.error(block: nil, error: CNError.InvalidValue)
+    default: return CNValue.Error(block: nil, error: CNError.InvalidValue)
     }
 }
 
