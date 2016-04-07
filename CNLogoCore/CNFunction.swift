@@ -26,13 +26,13 @@ public class CNStatementFunction: CNStatement {
         return result
     }
     
-    public override func execute() -> CNValue {
+    public override func execute(parameters: [CNExpression] = []) -> CNValue {
         // dummy
         return .unknown
     }
     
-    func executeWithParameters(parameters: [CNExpression]) -> CNValue {
-        return CNValue.unknown
+    func execute() -> CNValue {
+        return .unknown
     }
     
     public init(funcName: String, formalParameters: [CNVariable] = [], statements: [CNStatement]) {
@@ -79,8 +79,10 @@ public class CNStatementCall: CNStatement {
         return parentBlock?.variableByName(name)
     }
     
-    public override func execute() -> CNValue {
-        super.execute()
+    public override func execute(parameters: [CNExpression] = []) -> CNValue {
+        let result = super.execute(parameters)
+        if result.isError { return result }
+        
         if let function = functionByName(funcName) {
             function.executableParameters = executableParameters.map { parameter in
                 return CNVariable(
@@ -91,7 +93,7 @@ public class CNStatementCall: CNStatement {
             return function.executeStatements()
         }
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
-        return .unknown
+        return result
     }
     
     public init(funcName: String, executableParameters: [CNVariable] = []) {

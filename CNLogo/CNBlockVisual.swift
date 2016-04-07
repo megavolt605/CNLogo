@@ -174,8 +174,8 @@ extension CNExpressionParseElement {
 extension CNStatementFunction {
 
     func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) throws -> [CNBubble]  {
-        let typeDescription = try parameter.variableValue.execute().typeDescription
-        return [CNBubble(text: "\(parameter.variableName): \(typeDescription)", color: UIColor.cyanColor(), height: height, bold: false)]
+        //let typeDescription = try parameter.variableValue.typeDescription
+        return [CNBubble(text: "\(parameter.variableName)", color: UIColor.cyanColor(), height: height, bold: false)]
     }
 
     @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") throws -> [CNBubble] {
@@ -189,7 +189,7 @@ extension CNStatementFunction {
                 }
                 res += try createBubblesForParameter(parameter, inBlock: inBlock, height: height) ?? []
             }
-            res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: true))
+            res.append(CNBubble(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: false))
         } else {
             res.append(CNBubble(text: "\(funcName)", color: UIColor.orangeColor(), height: height, bold: false))
         }

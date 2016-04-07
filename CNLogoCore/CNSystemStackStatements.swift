@@ -14,9 +14,9 @@ public class CNStatementPush: CNStatement {
         return "PUSH"
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        var result = super.execute()
+        var result = super.execute(parameters)
         if result.isError { return result }
 
         for parameter in executableParameters {
@@ -51,8 +51,8 @@ public class CNStatementPop: CNStatement {
         return result
     }
     
-    override public func execute() -> CNValue {
-        let result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let value = popValue() {
@@ -96,8 +96,8 @@ public class CNStatementGlobalPush: CNStatementPush {
         return "GPUSH"
     }
     
-    override public func execute() -> CNValue {
-        var result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        var result = super.execute(parameters)
         if result.isError { return result }
 
         for parameter in executableParameters {

@@ -24,8 +24,8 @@ public class CNStatementRepeat: CNStatement {
         return result
     }
     
-    override public func execute() -> CNValue {
-        var result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        var result = super.execute(parameters)
         if result.isError { return result }
 
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
@@ -63,8 +63,8 @@ public class CNStatementWhile: CNStatement {
         return result
     }
     
-    override public func execute() -> CNValue {
-        var result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        var result = super.execute(parameters)
         if result.isError { return result }
 
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
@@ -113,8 +113,8 @@ public class CNStatementIf: CNStatement {
         return .unknown
     }
     
-    override public func execute() -> CNValue {
-        var result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        var result = super.execute(parameters)
         if result.isError { return result }
 
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)

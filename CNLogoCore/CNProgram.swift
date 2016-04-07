@@ -32,7 +32,7 @@ public class CNProgram: CNBlock {
         return executionHistory.clear()
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         let result = clear()
         if result.isError { return result }
         

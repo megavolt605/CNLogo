@@ -110,7 +110,7 @@ public enum CNExpressionParseElement {
             }
         case let Function(functionName, functionParameters):
             if let function = inBlock.functionByName(functionName) {
-                return function.executeWithParameters(functionParameters)
+                return function.execute(functionParameters)
             } else {
                 return CNValue.error(block: inBlock, error: .FunctionNotFound(functionName: functionName))
             }
@@ -193,6 +193,7 @@ public enum CNExpressionParseElement {
                 "function-params": function.functionParameters.map { $0.store() }
             ]
         ]
+        case .Error: return [:]
         }
     }
     
@@ -326,10 +327,11 @@ public class CNExpression: CNBlock {
             preparedSource.append(operatorStack.pop()!)
         }
         //preparedSource = preparedSource.reverse()
+        return result
     }
     
-    override public func execute() -> CNValue {
-        let result = super.execute()
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         var resultStack = CNStack<CNExpressionParseElement>()

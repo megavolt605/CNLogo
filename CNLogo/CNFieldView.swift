@@ -283,7 +283,7 @@ class CNFieldView: UIView {
             program.clear()
             program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
             clear()
-            try program.execute()
+            program.execute()
             if !options.shouldAnimate {
                 updatePlayerPosition()
             }

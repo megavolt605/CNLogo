@@ -32,11 +32,12 @@ public class CNStatementForward: CNStatement {
         if executableParameters.count != 1 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
        
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram{
@@ -44,6 +45,7 @@ public class CNStatementForward: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
 
 }
@@ -66,9 +68,9 @@ public class CNStatementBackward: CNStatement {
         return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -90,9 +92,9 @@ public class CNStatementMove: CNStatementForward {
         return "MOVE"
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        var result = super.execute()
+        var result = super.execute(parameters)
         if result.isError { return result }
         
         if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
@@ -122,9 +124,9 @@ public class CNStatementDRAW: CNStatementForward {
         return "DRAW"
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        var result = super.execute()
+        var result = super.execute(parameters)
         if result.isError { return result }
         
         if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
@@ -160,11 +162,12 @@ public class CNStatementRotate: CNStatement {
         if executableParameters.count != 1 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -172,6 +175,7 @@ public class CNStatementRotate: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
 
 }
@@ -191,11 +195,12 @@ public class CNStatementTailDown: CNStatement {
         if executableParameters.count != 0 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -203,6 +208,7 @@ public class CNStatementTailDown: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
 }
@@ -224,15 +230,16 @@ public class CNStatementTailUp: CNStatement {
         return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.tailDown(false, fromBlock: self)
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
 }
@@ -251,11 +258,12 @@ public class CNStatementColor: CNStatement {
         if executableParameters.count != 1 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -263,6 +271,7 @@ public class CNStatementColor: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
 }
@@ -289,11 +298,12 @@ public class CNStatementWidth: CNStatement {
         if executableParameters.count != 1 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
 
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -301,6 +311,7 @@ public class CNStatementWidth: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
     
@@ -321,11 +332,12 @@ public class CNStatementClear: CNStatement {
         if executableParameters.count != 0 {
             CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
         
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -333,6 +345,7 @@ public class CNStatementClear: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
 }
@@ -351,11 +364,12 @@ public class CNStatementScale: CNStatement {
         if executableParameters.count != 1 {
             return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() -> CNValue {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
 
-        let result = super.execute()
+        let result = super.execute(parameters)
         if result.isError { return result }
         
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
@@ -363,6 +377,7 @@ public class CNStatementScale: CNStatement {
         } else {
             return CNValue.error(block: self, error: .NoProgram)
         }
+        return result
     }
     
     

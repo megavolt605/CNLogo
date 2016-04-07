@@ -10,8 +10,8 @@ import Foundation
 
 public class CNFunctionSin: CNStatementFunction {
 
-    override func executeWithParameters(parameters: [CNExpression]) -> CNValue {
-        if let value = parameters.first?.execute() {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        if let value = parameters.first?.execute(parameters) {
             switch value {
             case let .double(doubleValue): return CNValue.double(value: sin(doubleValue))
             case let .int(intValue): return CNValue.double(value: sin(Double(intValue)))
@@ -20,7 +20,7 @@ public class CNFunctionSin: CNStatementFunction {
             default: break
             }
         }
-        return super.executeWithParameters(parameters)
+        return super.execute(parameters)
     }
     
     override public func prepare() -> CNBlockPrepareResult {
@@ -49,8 +49,8 @@ public class CNFunctionSin: CNStatementFunction {
 
 public class CNFunctionCos: CNStatementFunction {
     
-    override func executeWithParameters(parameters: [CNExpression]) -> CNValue {
-        if let value = parameters.first?.execute() {
+    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+        if let value = parameters.first?.execute(parameters) {
             switch value {
             case let .double(doubleValue): return CNValue.double(value: cos(doubleValue))
             case let .int(intValue): return CNValue.double(value: cos(Double(intValue)))
@@ -59,7 +59,7 @@ public class CNFunctionCos: CNStatementFunction {
             default: break
             }
         }
-        return super.executeWithParameters(parameters)
+        return super.execute(parameters)
     }
     
     override public func prepare() -> CNBlockPrepareResult {

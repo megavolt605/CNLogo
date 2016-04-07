@@ -368,12 +368,9 @@ class ViewController: UIViewController, CNFieldViewDelegate {
 
         CNEnviroment.defaultEnviroment.currentProgram = program
 
-        do {
-            try program.prepare()
-        } catch let error as CNError {
-            print("Prepare ERROR: \(error.description)")
-        } catch {
-            print("Unknown error")
+        switch program.prepare() {
+        case let .Error(block, error): print("Prepare ERROR: \(error.description) in block: \(block)")
+        default: break
         }
 
         tableViewDataSource = CNProgramTableViewDataSource(program: program)
