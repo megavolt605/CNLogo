@@ -255,7 +255,7 @@ public class CNExpression: CNBlock {
     }
     
     // akslop notation:
-    // A + B * C / (D - E) => A B C * D E - / +
+    // A+B*C/(D-E) => ABC*DE-/+
     // 
     // A                A
     // +    +           A

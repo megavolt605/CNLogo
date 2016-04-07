@@ -7,8 +7,18 @@
 //
 
 import Foundation
-import UIKit
+import UIKit // needs for UIColor, CoreGraphics
 
+/// Represents a value of some type.
+/// 
+/// Possible types: 
+/// - Error: error value
+/// - Unknown: null value
+/// - Bool: boolean value
+/// - Int: integer value
+/// - Double: floating point value
+/// - String: string value
+/// - Color: color value
 public enum CNValue {
     case Error(block: CNBlock?, error: CNError)
     case Unknown
@@ -110,21 +120,7 @@ public enum CNValue {
     
 }
 
-/*
-infix operator == {}
-infix operator + {}
-infix operator - {}
-infix operator * {}
-infix operator / {}
-infix operator ^^ {}
-infix operator && {}
-infix operator || {}
-infix operator & {}
-infix operator | {}
-infix operator % {}
-infix operator ^ {}
-*/
-
+@warn_unused_result
 func ==(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
     
@@ -187,6 +183,7 @@ func ==(left: CNValue, right: CNValue) -> CNValue {
     
 }
 
+@warn_unused_result
 func !=(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
         
@@ -246,7 +243,7 @@ func !=(left: CNValue, right: CNValue) -> CNValue {
     
 }
 
-
+@warn_unused_result
 func +(left: CNValue, right: CNValue) -> CNValue {
     switch left {
     
@@ -278,6 +275,7 @@ func +(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func -(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -309,6 +307,7 @@ func -(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func *(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -340,6 +339,7 @@ func *(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func /(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -372,6 +372,8 @@ func /(left: CNValue, right: CNValue) -> CNValue {
 }
 
 infix operator ^^ {}
+
+@warn_unused_result
 func ^^(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -403,6 +405,7 @@ func ^^(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func &&(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
     case let (.Bool(leftValue), .Bool(rightValue)): return CNValue.Bool(value: leftValue && rightValue)
@@ -410,6 +413,7 @@ func &&(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func ||(left: CNValue, right: CNValue) -> CNValue {
     switch (left, right) {
     case let (.Bool(leftValue), .Bool(rightValue)): return CNValue.Bool(value: leftValue || rightValue)
@@ -417,6 +421,7 @@ func ||(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func &(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -438,6 +443,7 @@ func &(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func |(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -459,6 +465,7 @@ func |(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func %(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         
@@ -490,6 +497,7 @@ func %(left: CNValue, right: CNValue) -> CNValue {
     }
 }
 
+@warn_unused_result
 func ^(left: CNValue, right: CNValue) -> CNValue {
     switch left {
         

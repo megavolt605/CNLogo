@@ -55,6 +55,8 @@ private func _savePrograms(key: String, programs: [CNProgram]) {
 
 public class CNEnviroment {
     
+    public static let defaultEnviroment = CNEnviroment()
+
     let kSystemPrograms = "systemPrograms"
     let kUserPrograms = "userPrograms"
     
@@ -75,17 +77,5 @@ public class CNEnviroment {
         systemPrograms = _loadPrograms(kSystemPrograms)
         userPrograms = _loadPrograms(kUserPrograms)
     }
-    
-    class public var defaultEnviroment: CNEnviroment {
-        get {
-            struct Static {
-                static var instance: CNEnviroment? = nil
-                static var token: dispatch_once_t = 0
-            }
-            dispatch_once(&Static.token) { Static.instance = CNEnviroment() }
-            return Static.instance!
-        }
-    }
-    
     
 }

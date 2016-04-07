@@ -8,16 +8,26 @@
 
 import Foundation
 
+/// Result of preparing CNBlock
+///
+/// Values:
+/// - Error: there is some error
+/// - Unprepared: block is unprepared yet
+/// - Success: preparing completed with success
 public enum CNBlockPrepareResult {
     case Error(block: CNBlock?, error: CNError)
     case Unprepared
     case Success
+    
+    /// Check for error state
     public var isError: Bool {
         switch self {
         case .Error: return true
         default: return false
         }
     }
+    
+    /// Check for success state
     public var isSuccess: Bool {
         switch self {
         case .Success: return true
@@ -26,6 +36,7 @@ public enum CNBlockPrepareResult {
     }
 }
 
+/// Abstract code block with (or without) parameters
 @objc public class CNBlock: NSObject {
     
     public var formalParameters: [CNVariable] = []
@@ -61,6 +72,7 @@ public enum CNBlockPrepareResult {
         }
     }
     
+    /// Preparing statements within the block (recursively)
     @warn_unused_result
     public func prepare() -> CNBlockPrepareResult {
         prepared = .Unprepared

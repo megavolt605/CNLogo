@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Variable of any type with value
 @objc public class CNVariable: NSObject {
     public var variableName: String
     public var variableValue: CNExpression
@@ -25,6 +26,7 @@ import Foundation
     
 }
 
+// TODO: Anonymous parameter
 public class CNParameter: CNVariable {
 
     public init(value: CNExpression) {
