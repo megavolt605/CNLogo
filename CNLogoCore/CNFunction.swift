@@ -20,17 +20,18 @@ public class CNStatementFunction: CNStatement {
         return "\(identifier) \(funcName)(\(parametersDescription))"
     }
     
-    public override func prepare() throws {
-        try super.prepare()
+    public override func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
         parentBlock?.functions.append(self)
+        return result
     }
     
-    public override func execute() throws -> CNValue {
+    public override func execute() -> CNValue {
         // dummy
         return .unknown
     }
     
-    func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
+    func executeWithParameters(parameters: [CNExpression]) -> CNValue {
         return CNValue.unknown
     }
     
@@ -78,16 +79,16 @@ public class CNStatementCall: CNStatement {
         return parentBlock?.variableByName(name)
     }
     
-    public override func execute() throws -> CNValue {
-        try super.execute()
+    public override func execute() -> CNValue {
+        super.execute()
         if let function = functionByName(funcName) {
-            function.executableParameters = try executableParameters.map { parameter in
+            function.executableParameters = executableParameters.map { parameter in
                 return CNVariable(
                     variableName: parameter.variableName,
-                    variableValue: try parameter.variableValue.execute()
+                    variableValue: parameter.variableValue.execute()
                 )
             }
-            return try function.executeStatements()
+            return function.executeStatements()
         }
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
         return .unknown

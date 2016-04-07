@@ -8,8 +8,9 @@
 
 import Foundation
 
-public enum CNError: ErrorType {
+public enum CNError {
     case Unknown
+    case NoProgram
     case VariableNotFound(variableName: String)
     case FunctionNotFound(functionName: String)
     case AssignToNonVariable
@@ -27,6 +28,7 @@ public enum CNError: ErrorType {
     public var description: String {
         switch self {
         case Unknown: return "Unknown error"
+        case .NoProgram: return "No program"
         case let VariableNotFound(variableName): return "Variable not found \(variableName)"
         case let FunctionNotFound(functionName): return "Function not found \(functionName)"
         case AssignToNonVariable: return "Assignment allowed to variables only"

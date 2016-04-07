@@ -14,13 +14,16 @@ public class CNStatementPrint: CNStatement {
         return "PRINT"
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try executableParameters.forEach {
-            let desc = try $0.variableValue.execute().description
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: desc), fromBlock: self)
+    override public func execute() -> CNValue {
+        var result = super.execute()
+        if result.isError { return result }
+
+        for parameter in executableParameters {
+            result = parameter.variableValue.execute()
+            if result.isError { return result }
+            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: result.description), fromBlock: self)
         }
-        return .unknown
+        return result
     }
     
 }
@@ -37,16 +40,21 @@ public class CNStatementVar: CNStatement {
     
     public var variableName: String
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        if let value = try executableParameters.first?.variableValue.execute() {
+    override public func execute() -> CNValue {
+        let result = super.execute()
+        if result.isError { return result }
+
+        if let value = executableParameters.first?.variableValue.execute() {
+            if value.isError { return result }
             if let variable = variableByName(variableName) {
                 variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: value)])
             } else {
@@ -56,13 +64,13 @@ public class CNStatementVar: CNStatement {
             return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
-                throw CNError.VariableAlreadyExists(variableName: variableName)
+                return CNValue.error(block: self, error: .VariableAlreadyExists(variableName: variableName))
             } else {
                 parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .unknown))
             }
         }
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
-        return .unknown
+        return result
     }
     
     override public func store() -> [String: AnyObject] {

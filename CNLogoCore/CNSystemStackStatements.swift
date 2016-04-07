@@ -14,10 +14,15 @@ public class CNStatementPush: CNStatement {
         return "PUSH"
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try executableParameters.forEach {
-            try parentBlock?.valueStack.push($0.variableValue.execute())
+    override public func execute() -> CNValue {
+        
+        var result = super.execute()
+        if result.isError { return result }
+
+        for parameter in executableParameters {
+            result = parameter.variableValue.execute()
+            if result.isError { return result }
+            parentBlock?.valueStack.push(result)
         }
         return .unknown
     }
@@ -36,15 +41,20 @@ public class CNStatementPop: CNStatement {
         return parentBlock?.valueStack.pop()
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+
         if executableParameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        let result = super.execute()
+        if result.isError { return result }
+        
         if let value = popValue() {
             if let variable = variableByName(variableName) {
                 variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: value)])
@@ -54,7 +64,7 @@ public class CNStatementPop: CNStatement {
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
-            throw CNError.InvalidValue
+            return CNValue.error(block: self, error: .InvalidValue)
         }
     }
     
@@ -86,12 +96,16 @@ public class CNStatementGlobalPush: CNStatementPush {
         return "GPUSH"
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try executableParameters.forEach {
-            try CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push($0.variableValue.execute())
+    override public func execute() -> CNValue {
+        var result = super.execute()
+        if result.isError { return result }
+
+        for parameter in executableParameters {
+            result = parameter.variableValue.execute()
+            if result.isError { return result }
+            CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push(result)
         }
-        return .unknown
+        return result
     }
     
 }

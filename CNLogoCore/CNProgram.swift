@@ -25,14 +25,18 @@ public class CNProgram: CNBlock {
         CNFunctionCos()
     ]
     
-    public func clear() {
-        player.clear(nil)
-        executionHistory.clear()
+    public func clear() -> CNValue {
+        let result = player.clear(nil)
+        if result.isError { return result }
+
+        return executionHistory.clear()
     }
     
-    override public func execute() throws -> CNValue {
-        clear()
-        return try super.execute()
+    override public func execute() -> CNValue {
+        let result = clear()
+        if result.isError { return result }
+        
+        return super.execute()
     }
 
     override public func functionByName(name: String) -> CNStatementFunction? {

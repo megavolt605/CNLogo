@@ -20,8 +20,9 @@ public class CNExecutionHistory {
         }
     }
     
-    public func clear() {
+    public func clear() -> CNValue {
         history = []
+        return .unknown
     }
     
 }

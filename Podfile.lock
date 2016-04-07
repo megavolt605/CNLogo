@@ -1,26 +1,13 @@
 PODS:
   - BetweenKit (2.0.1)
-  - Dollar (4.0.1)
-  - LiquidLoader (0.1.1)
+  - RATreeView (2.1.0)
 
 DEPENDENCIES:
   - BetweenKit
-  - Dollar
-  - LiquidLoader (from `https://github.com/yoavlt/LiquidLoader.git`, branch `swift-2.0`)
-
-EXTERNAL SOURCES:
-  LiquidLoader:
-    :branch: swift-2.0
-    :git: https://github.com/yoavlt/LiquidLoader.git
-
-CHECKOUT OPTIONS:
-  LiquidLoader:
-    :commit: 3b9ba8f14369c710cdf7660e328324fef814b6c4
-    :git: https://github.com/yoavlt/LiquidLoader.git
+  - RATreeView
 
 SPEC CHECKSUMS:
   BetweenKit: 89edc0c6dd96eb33ea02c097bb99a9b1c14880f0
-  Dollar: a058e2659e0d3261307c12630dbc2fd8e32f80bf
-  LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
+  RATreeView: fc82ec26b8be18cfa0f5f99a5abbe6be68edb21f
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

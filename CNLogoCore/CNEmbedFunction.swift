@@ -10,23 +10,27 @@ import Foundation
 
 public class CNFunctionSin: CNStatementFunction {
 
-    override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
-        if let firstValue = try parameters.first?.execute() {
-            switch firstValue {
-            case let .double(value): return CNValue.double(value: sin(value))
-            case let .int(value): return CNValue.double(value: sin(Double(value)))
-            case let .string(value): return CNValue.double(value: sin(value.doubleValue))
+    override func executeWithParameters(parameters: [CNExpression]) -> CNValue {
+        if let value = parameters.first?.execute() {
+            switch value {
+            case let .double(doubleValue): return CNValue.double(value: sin(doubleValue))
+            case let .int(intValue): return CNValue.double(value: sin(Double(intValue)))
+            case let .string(stringValue): return CNValue.double(value: sin(stringValue.doubleValue))
+            case .error: return value
             default: break
             }
         }
-        return try super.executeWithParameters(parameters)
+        return super.executeWithParameters(parameters)
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+        
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
 
     init() {
@@ -45,23 +49,26 @@ public class CNFunctionSin: CNStatementFunction {
 
 public class CNFunctionCos: CNStatementFunction {
     
-    override func executeWithParameters(parameters: [CNExpression]) throws -> CNValue {
-        if let firstValue = try parameters.first?.execute() {
-            switch firstValue {
-            case let .double(value): return CNValue.double(value: cos(value))
-            case let .int(value): return CNValue.double(value: cos(Double(value)))
-            case let .string(value): return CNValue.double(value: cos(value.doubleValue))
+    override func executeWithParameters(parameters: [CNExpression]) -> CNValue {
+        if let value = parameters.first?.execute() {
+            switch value {
+            case let .double(doubleValue): return CNValue.double(value: cos(doubleValue))
+            case let .int(intValue): return CNValue.double(value: cos(Double(intValue)))
+            case let .string(stringValue): return CNValue.double(value: cos(stringValue.doubleValue))
+            case .error: return value
             default: break
             }
         }
-        return try super.executeWithParameters(parameters)
+        return super.executeWithParameters(parameters)
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
 
     init() {

@@ -6,9 +6,11 @@ platform :ios, '8.4'
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'Dollar'
-pod 'LiquidLoader', :git => 'https://github.com/yoavlt/LiquidLoader.git', :branch => 'swift-2.0'
+#pod 'Dollar'
+#pod 'LiquidLoader', :git => 'https://github.com/yoavlt/LiquidLoader.git', :branch => 'swift-2.0'
+
 pod 'BetweenKit'
+pod "RATreeView"#, "~> 2.1.0"
 
 target 'CNLogo' do
 

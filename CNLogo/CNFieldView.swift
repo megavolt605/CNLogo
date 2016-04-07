@@ -225,12 +225,12 @@ class CNFieldView: UIView {
                         switch item.type {
                         case .Clear:
                             clear()
-                            currentIndex++
+                            currentIndex += 1
                             shouldBreak = false
                         case let .Move(fromPoint, toPoint, _):
                             if item.playerState.tailDown {
                                 addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
-                                    self.currentIndex++
+                                    self.currentIndex += 1
                                     if !options.shouldAnimate {
                                         shouldBreak = false
                                     } else {
@@ -239,7 +239,7 @@ class CNFieldView: UIView {
                                 }
                             } else {
                                 addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
-                                    self.currentIndex++
+                                    self.currentIndex += 1
                                     if !options.shouldAnimate {
                                         shouldBreak = false
                                     } else {
@@ -249,7 +249,7 @@ class CNFieldView: UIView {
                             }
                         case let .Rotate(fromAngle, toAngle):
                             addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
-                                self.currentIndex++
+                                self.currentIndex += 1
                                 if !options.shouldAnimate {
                                     shouldBreak = false
                                 } else {
@@ -258,10 +258,10 @@ class CNFieldView: UIView {
                             }
                         case let .Print(value):
                             print(value)
-                            currentIndex++
+                            currentIndex += 1
                             shouldBreak = false
                         case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
-                            currentIndex++
+                            currentIndex += 1
                             shouldBreak = false
                             break
                         }

@@ -30,25 +30,29 @@ public class CNPlayer {
     public var state = CNPlayerState()
     public var startState = CNPlayerState()
     
-    public func clear(fromBlock: CNBlock?) {
+    public func clear(fromBlock: CNBlock?) -> CNValue {
         state = startState
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Clear, fromBlock: fromBlock)
+        return .unknown
     }
     
-    public func tailDown(isDown: Bool, fromBlock: CNBlock?) {
+    public func tailDown(isDown: Bool, fromBlock: CNBlock?) -> CNValue {
         let oldTailDown = state.tailDown
         state.tailDown = isDown
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.TailState(fromState: oldTailDown, toState: isDown), fromBlock: fromBlock)
+        return .unknown
     }
     
-    private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNBlock?) {
+    private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNBlock?) -> CNValue {
         let oldPosition = state.position
         state.position = newPosition
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Move(fromPoint: oldPosition, toPoint: newPosition, forward: forward), fromBlock: fromBlock)
+        return .unknown
     }
     
-    public func moveForward(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func moveForward(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPointMake(
@@ -63,12 +67,15 @@ public class CNPlayer {
                 state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: true, fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
-    public func moveBackward(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func moveBackward(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPointMake(
@@ -83,12 +90,15 @@ public class CNPlayer {
                 state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
             moveTo(newPosition, forward: false, fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
-    public func rotate(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func rotate(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .double(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(angleDelta * M_PI / 180.0)
@@ -99,22 +109,28 @@ public class CNPlayer {
             let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
             state.angle = newAngle
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
-    public func setColor(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func setColor(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .color(newColor):
             let oldColor = state.color
             state.color = newColor.CGColor
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color), fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
-    public func setWidth(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func setWidth(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .double(newWidth):
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
@@ -123,18 +139,23 @@ public class CNPlayer {
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
-    public func setScale(value: CNExpression, fromBlock: CNBlock?) throws {
-        switch try value.execute() {
+    public func setScale(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+        let result = value.execute()
+        switch result {
         case let .double(newScale):
             let oldScale = state.scale
             state.scale = CGFloat(newScale)
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale), fromBlock: fromBlock)
-        default: throw CNError.NumericValueExpected
+        case .error: return result
+        default: return CNValue.error(block: fromBlock, error: .NumericValueExpected)
         }
+        return .unknown
     }
     
 }

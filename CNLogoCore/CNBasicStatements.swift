@@ -25,17 +25,25 @@ public class CNStatementForward: CNStatement {
         }
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+       
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram{
+            program.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
 
 }
@@ -49,17 +57,25 @@ public class CNStatementBackward: CNStatement {
         return "BACKWARD"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.moveBackward(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            return program.player.moveBackward(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
 }
@@ -74,19 +90,24 @@ public class CNStatementMove: CNStatementForward {
         return "MOVE"
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        
+        var result = super.execute()
+        if result.isError { return result }
+        
         if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
             let tailDown = player.state.tailDown
             if tailDown {
-                player.tailDown(false, fromBlock: self)
+                result = player.tailDown(false, fromBlock: self)
+                if result.isError { return result }
             }
-            try player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+            player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
             if tailDown {
-                player.tailDown(true, fromBlock: self)
+                result = player.tailDown(true, fromBlock: self)
+                if result.isError { return result }
             }
         }
-        return .unknown
+        return result
     }
     
 }
@@ -101,19 +122,25 @@ public class CNStatementDRAW: CNStatementForward {
         return "DRAW"
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        
+        var result = super.execute()
+        if result.isError { return result }
+        
         if let player = CNEnviroment.defaultEnviroment.currentProgram?.player {
             let tailDown = player.state.tailDown
             if !tailDown {
-                player.tailDown(true, fromBlock: self)
+                result = player.tailDown(true, fromBlock: self)
+                if result.isError { return result }
             }
-            try player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+            result = player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+            if result.isError { return result }
             if !tailDown {
-                player.tailDown(false, fromBlock: self)
+                result = player.tailDown(false, fromBlock: self)
+                if result.isError { return result }
             }
         }
-        return .unknown
+        return result
     }
     
 }
@@ -126,17 +153,25 @@ public class CNStatementRotate: CNStatement {
         return "ROTATE"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+        
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
 
 }
@@ -149,17 +184,25 @@ public class CNStatementTailDown: CNStatement {
         return "TAIL DOWN"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+        
         if executableParameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram?.player.tailDown(true, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.tailDown(true, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
 }
@@ -172,17 +215,24 @@ public class CNStatementTailUp: CNStatement {
         return "TAIL UP"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram?.player.tailDown(false, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.tailDown(false, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
 }
@@ -195,17 +245,24 @@ public class CNStatementColor: CNStatement {
         return "COLOR"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setColor(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.setColor(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
 }
@@ -226,17 +283,24 @@ public class CNStatementWidth: CNStatement {
         }
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult{
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setWidth(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.setWidth(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
     
@@ -250,17 +314,25 @@ public class CNStatementClear: CNStatement {
         return "CLEAR"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+        
         if executableParameters.count != 0 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count)
+            CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        CNEnviroment.defaultEnviroment.currentProgram?.clear()
-        return .unknown
+    override public func execute() -> CNValue {
+        
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.clear()
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
 }
@@ -273,17 +345,24 @@ public class CNStatementScale: CNStatement {
         return "SCALE"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
-        try CNEnviroment.defaultEnviroment.currentProgram?.player.setScale(executableParameters.first!.variableValue, fromBlock: self)
-        return .unknown
+    override public func execute() -> CNValue {
+
+        let result = super.execute()
+        if result.isError { return result }
+        
+        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+            program.player.setScale(executableParameters.first!.variableValue, fromBlock: self)
+        } else {
+            return CNValue.error(block: self, error: .NoProgram)
+        }
     }
     
     

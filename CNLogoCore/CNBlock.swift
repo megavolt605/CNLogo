@@ -8,6 +8,24 @@
 
 import Foundation
 
+public enum CNBlockPrepareResult {
+    case Error(block: CNBlock?, error: CNError)
+    case Unprepared
+    case Success
+    var isError: Bool {
+        switch self {
+        case .Error: return true
+        default: return false
+        }
+    }
+    var isSuccess: Bool {
+        switch self {
+        case .Success: return true
+        default: return false
+        }
+    }
+}
+
 @objc public class CNBlock: NSObject {
     
     public var formalParameters: [CNVariable] = []
@@ -17,7 +35,7 @@ import Foundation
     public var functions: [CNStatementFunction] = []
     public var valueStack = CNStack<CNValue>()
     
-    private var prepared = false
+    public var prepared: CNBlockPrepareResult = .Unprepared
 
     weak public var parentBlock: CNBlock?
 
@@ -43,34 +61,45 @@ import Foundation
         }
     }
     
-    public func prepare() throws -> Void {
-        try executableParameters.forEach {
-            $0.variableValue.parentBlock = self
-            try $0.variableValue.prepare()
+    @warn_unused_result
+    public func prepare() -> CNBlockPrepareResult {
+        prepared = .Unprepared
+        // prepare parameters
+        for parameter in executableParameters {
+            parameter.variableValue.parentBlock = self
+            prepared = parameter.variableValue.prepare()
+            if prepared.isError { return prepared }
         }
-        try statements.forEach {
-            $0.parentBlock = self
-            try $0.prepare()
+        
+        // prepare statements
+        for statement in statements {
+            statement.parentBlock = self
+            prepared = statement.prepare()
+            if prepared.isError { return prepared }
         }
-        prepared = true
+        return prepared
     }
 
-    public func executeStatements() throws -> CNValue {
+    @warn_unused_result
+    public func executeStatements() -> CNValue {
         print(self)
-        try statements.forEach {
-            try $0.execute()
+        var lastValue: CNValue = CNValue.unknown
+        statements.forEach {
+            lastValue = $0.execute()
         }
-        return CNValue.unknown
+        return lastValue
     }
     
-    public func execute() throws -> CNValue {
-        if !prepared {
-            try prepare()
+    @warn_unused_result
+    public func execute() -> CNValue {
+        if prepared.isSuccess {
+            prepare()
         }
 
-        return try executeStatements()
+        return executeStatements()
     }
     
+    @warn_unused_result
     public func variableByName(name: String) -> CNVariable? {
         for v in variables {
             if v.variableName == name {
@@ -86,6 +115,7 @@ import Foundation
         return parentBlock?.variableByName(name)
     }
     
+    @warn_unused_result
     public func functionByName(name: String) -> CNStatementFunction? {
         for f in functions {
             if f.funcName == name {
@@ -95,6 +125,7 @@ import Foundation
         return parentBlock?.functionByName(name)
     }
     
+    @warn_unused_result
     public func store() -> [String: AnyObject] {
         var res: [String: AnyObject] = [:]
         if executableParameters.count > 0 {

@@ -14,27 +14,36 @@ public class CNStatementRepeat: CNStatement {
         return "REPEAT"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+        
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        var result = super.execute()
+        if result.isError { return result }
+
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
-        switch try executableParameters.first!.variableValue.execute() {
-        case let .int(value):
-            for _ in 1..<value {
-                try statements.forEach {
-                    try $0.execute()
+        if let value = executableParameters.first?.variableValue.execute() {
+            switch value {
+            case let .int(value):
+                for _ in 1..<value {
+                    for statement in statements {
+                        result = statement.execute()
+                        if result.isError { return result }
+                    }
                 }
+            case .error: return value
+            default: return CNValue.error(block: self, error: .IntValueExpected)
             }
-        default: throw CNError.IntValueExpected
+            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
         }
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
-        return .unknown
+        return result
     }
     
 }
@@ -45,28 +54,36 @@ public class CNStatementWhile: CNStatement {
         return "WHILE"
     }
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        var result = super.execute()
+        if result.isError { return result }
+
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
         repeat {
-            switch try executableParameters.first!.variableValue.execute() {
-            case let .bool(value):
-                if value {
-                    try statements.forEach {
-                        try $0.execute()
+            if let value = executableParameters.first?.variableValue.execute() {
+                switch value {
+                case let .bool(value):
+                    if value {
+                        for statement in statements {
+                            result = statement.execute()
+                            if result.isError { return result }
+                        }
+                    } else {
+                        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
+                        break
                     }
-                } else {
-                    CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
-                    break
+                case .error: return value
+                default: return CNValue.error(block: self, error: .BoolValueExpected)
                 }
-            default: throw CNError.BoolValueExpected
             }
         } while true
     }
@@ -81,35 +98,38 @@ public class CNStatementIf: CNStatement {
     
     var statementsElse: [CNStatement] = []
     
-    override public func prepare() throws {
-        try super.prepare()
+    override public func prepare() -> CNBlockPrepareResult {
+        let result = super.prepare()
+        if result.isError { return result }
+
         if executableParameters.count != 1 {
-            throw CNError.StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count)
+            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
+        return result
     }
     
-    public override func executeStatements() throws -> CNValue {
+    public override func executeStatements() -> CNValue {
         ///
         return .unknown
     }
     
-    override public func execute() throws -> CNValue {
-        try super.execute()
+    override public func execute() -> CNValue {
+        var result = super.execute()
+        if result.isError { return result }
+
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
-        switch try executableParameters.first!.variableValue.execute() {
-        case let .bool(value):
-            if value {
-                try statements.forEach {
-                    try $0.execute()
+        if let value = executableParameters.first?.variableValue.execute() {
+            switch value {
+            case let .bool(condition):
+                let statementsToExecute = condition ? statements : statementsElse
+                for statement in statementsToExecute {
+                    result = statement.execute()
+                    if result.isError { return result }
                 }
-            } else {
-                try statementsElse.forEach {
-                    try $0.execute()
-                }
+            default: return CNValue.error(block: self, error: .BoolValueExpected)
             }
-        default: throw CNError.BoolValueExpected
         }
-        return .unknown
+        return result
     }
     
     override public func store() -> [String: AnyObject] {
