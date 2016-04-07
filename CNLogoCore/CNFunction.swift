@@ -59,7 +59,7 @@ public class CNStatementCall: CNStatement {
     }
 
     /*
-    func prepareWithParameters(parameters: [CNExpression]) throws {
+    func prepareWithParameters(parameters: [CNExpression]) {
         guard parameters.count == formalParameters.count else {
             throw CNError.InvalidParameterCount(functionName: funcName)
         }

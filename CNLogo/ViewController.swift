@@ -145,77 +145,6 @@ class ViewController: UIViewController, CNFieldViewDelegate {
 
         /*
         let program = CNProgram(
-            programName: "Example 1",
-            statements: [
-                CNStatementPrint(
-                    executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                        CNExpressionParseElement.Function(functionName: "SIN", functionParameters: [CNExpression(source: [
-                            CNExpressionParseElement.Value(value: CNValue.double(value: 0.2))
-                        ])])
-                    ]))]
-                ),
-                CNStatementPrint(
-                    executableParameters: [makeParamFromValue(CNValue.string(value: "Started"))]
-                ),
-                CNStatementVar(variableName: "step", executableParameters: [makeParamFromValue(CNValue.int(value: 1))]),
-                CNStatementVar(variableName: "sides", executableParameters: [makeParamFromValue(CNValue.int(value: 10))]),
-                CNStatementVar(variableName: "length", executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                    CNExpressionParseElement.Value(value: CNValue.double(value: 400.0)),
-                    CNExpressionParseElement.Div,
-                    CNExpressionParseElement.Variable(variableName: "sides")
-                ]))]),
-                CNStatementColor(executableParameters: [makeParamFromValue(CNValue.color(value: UIColor.orangeColor()))]),
-                CNStatementVar(variableName: "angle", executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                    CNExpressionParseElement.Value(value: CNValue.double(value: 360.0)),
-                    CNExpressionParseElement.Div,
-                    CNExpressionParseElement.Variable(variableName: "sides"),
-                ]))]),
-                CNStatementRepeat(
-                    executableParameters: [makeParamFromValue(CNValue.int(value: 20))],
-                    statements: [
-                        CNStatementPrint(
-                            executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step")
-                            ]))]
-                        ),
-                        CNStatementWidth(
-                            executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step"),
-                                CNExpressionParseElement.Div,
-                                CNExpressionParseElement.Value(value: CNValue.double(value: 5.0))
-                            ]))]
-                        ),
-                        CNStatementVar(
-                            variableName: "step", executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step"),
-                                CNExpressionParseElement.Add,
-                                CNExpressionParseElement.Value(value: CNValue.int(value: 1))
-                            ]))]
-                        ),
-                        CNStatementRepeat(
-                            executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "sides")
-                            ]))],
-                            statements: [
-                                CNStatementForward(executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Variable(variableName: "length")
-                                ]))]),
-                                CNStatementRotate(executableParameters: [CNExecutableParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Variable(variableName: "angle")
-                                ]))])
-                            ]
-                        ),
-                        CNStatementRotate(executableParameters: [makeParamFromValue(CNValue.double(value: 18.0))])
-                    ]
-                ),
-                CNStatementPrint(
-                    executableParameters: [makeParamFromValue(CNValue.string(value: "Finished"))]
-                )
-            ]
-        )*/
-
-        /*
-        let program = CNProgram(
             programName: "Example 2",
             statements: [
                 CNStatementPrint(
@@ -392,12 +321,9 @@ class ViewController: UIViewController, CNFieldViewDelegate {
         } else {
             fieldView.runState = .Executing
             updateButtons()
-            do {
-                try fieldView.execute(options)
-            } catch let error as CNError {
-                print("Execute ERROR: \(error.description)")
-            } catch {
-                print("Unknown error")
+            switch fieldView.execute(options) {
+            case let .Error(block, error): print("Execute ERROR: \(error.description) in block \(block)")
+            default: break
             }
         }
     }

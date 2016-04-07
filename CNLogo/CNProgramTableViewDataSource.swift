@@ -33,11 +33,7 @@ class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableView
     
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CNProgramTableViewCell
-        do {
-            try cell.setup(tableList[indexPath.row], height: CNProgramTableViewCell.defaultHeight)
-        } catch {
-            /// TODO
-        }
+        cell.setup(tableList[indexPath.row], height: CNProgramTableViewCell.defaultHeight)
         return cell
     }
 

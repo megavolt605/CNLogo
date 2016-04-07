@@ -278,17 +278,19 @@ class CNFieldView: UIView {
         }
     }
     
-    func execute(options: CNOptions) throws {
+    func execute(options: CNOptions) -> CNValue {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.clear()
             program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
             clear()
-            program.execute()
+            let result = program.execute()
             if !options.shouldAnimate {
                 updatePlayerPosition()
             }
             visualizeResult(options)
+            return result
         }
+        return CNValue.Error(block: nil, error: .NoProgram)
     }
     
 }
