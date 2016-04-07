@@ -31,15 +31,15 @@ public class CNStatementRepeat: CNStatement {
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepIn, fromBlock: self)
         if let value = executableParameters.first?.variableValue.execute() {
             switch value {
-            case let .int(value):
+            case let .Int(value):
                 for _ in 1..<value {
                     for statement in statements {
                         result = statement.execute()
                         if result.isError { return result }
                     }
                 }
-            case .error: return value
-            default: return CNValue.error(block: self, error: .IntValueExpected)
+            case .Error: return value
+            default: return .Error(block: self, error: .IntValueExpected)
             }
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
         }
@@ -71,7 +71,7 @@ public class CNStatementWhile: CNStatement {
         repeat {
             if let value = executableParameters.first?.variableValue.execute() {
                 switch value {
-                case let .bool(value):
+                case let .Bool(value):
                     if value {
                         for statement in statements {
                             result = statement.execute()
@@ -81,8 +81,8 @@ public class CNStatementWhile: CNStatement {
                         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.StepOut, fromBlock: self)
                         break
                     }
-                case .error: return value
-                default: return CNValue.error(block: self, error: .BoolValueExpected)
+                case .Error: return value
+                default: return .Error(block: self, error: .BoolValueExpected)
                 }
             }
         } while true
@@ -110,7 +110,7 @@ public class CNStatementIf: CNStatement {
     
     public override func executeStatements() -> CNValue {
         ///
-        return .unknown
+        return .Unknown
     }
     
     override public func execute(parameters: [CNExpression] = []) -> CNValue {
@@ -120,13 +120,13 @@ public class CNStatementIf: CNStatement {
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
         if let value = executableParameters.first?.variableValue.execute() {
             switch value {
-            case let .bool(condition):
+            case let .Bool(condition):
                 let statementsToExecute = condition ? statements : statementsElse
                 for statement in statementsToExecute {
                     result = statement.execute()
                     if result.isError { return result }
                 }
-            default: return CNValue.error(block: self, error: .BoolValueExpected)
+            default: return .Error(block: self, error: .BoolValueExpected)
             }
         }
         return result

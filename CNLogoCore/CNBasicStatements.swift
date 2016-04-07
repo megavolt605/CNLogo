@@ -43,7 +43,7 @@ public class CNStatementForward: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram{
             program.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -76,7 +76,7 @@ public class CNStatementBackward: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             return program.player.moveBackward(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
     }
     
@@ -173,7 +173,7 @@ public class CNStatementRotate: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -206,7 +206,7 @@ public class CNStatementTailDown: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.tailDown(true, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -237,7 +237,7 @@ public class CNStatementTailUp: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.tailDown(false, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -269,7 +269,7 @@ public class CNStatementColor: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.setColor(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -309,7 +309,7 @@ public class CNStatementWidth: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.setWidth(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -343,7 +343,7 @@ public class CNStatementClear: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.clear()
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }
@@ -375,7 +375,7 @@ public class CNStatementScale: CNStatement {
         if let program = CNEnviroment.defaultEnviroment.currentProgram {
             program.player.setScale(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return CNValue.error(block: self, error: .NoProgram)
+            return .Error(block: self, error: .NoProgram)
         }
         return result
     }

@@ -49,10 +49,10 @@ public class CNProgram: CNBlock {
     }
     
     private func internalInit() {
-        variables.append(CNVariable(variableName: "PI", variableValue: CNValue.double(value: M_PI)))
-        variables.append(CNVariable(variableName: "2_PI", variableValue: CNValue.double(value: M_2_PI)))
-        variables.append(CNVariable(variableName: "PI_2", variableValue: CNValue.double(value: M_PI_2)))
-        variables.append(CNVariable(variableName: "EXP", variableValue:  CNValue.double(value: M_E)))
+        variables.append(CNVariable(variableName: "PI", variableValue: CNValue.Double(value: M_PI)))
+        variables.append(CNVariable(variableName: "2_PI", variableValue: CNValue.Double(value: M_2_PI)))
+        variables.append(CNVariable(variableName: "PI_2", variableValue: CNValue.Double(value: M_PI_2)))
+        variables.append(CNVariable(variableName: "EXP", variableValue:  CNValue.Double(value: M_E)))
     }
     
     public override init() {

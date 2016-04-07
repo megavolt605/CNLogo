@@ -24,7 +24,7 @@ public class CNStatementPush: CNStatement {
             if result.isError { return result }
             parentBlock?.valueStack.push(result)
         }
-        return .unknown
+        return .Unknown
     }
     
 }
@@ -64,7 +64,7 @@ public class CNStatementPop: CNStatement {
             CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
-            return CNValue.error(block: self, error: .InvalidValue)
+            return .Error(block: self, error: .InvalidValue)
         }
     }
     

@@ -32,21 +32,37 @@ public class CNPlayer {
     
     public func clear(fromBlock: CNBlock?) -> CNValue {
         state = startState
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Clear, fromBlock: fromBlock)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNExecutionHistoryItemType.Clear,
+            fromBlock: fromBlock
+        )
         return .Unknown
     }
     
     public func tailDown(isDown: Bool, fromBlock: CNBlock?) -> CNValue {
         let oldTailDown = state.tailDown
         state.tailDown = isDown
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.TailState(fromState: oldTailDown, toState: isDown), fromBlock: fromBlock)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNExecutionHistoryItemType.TailState(
+                fromState: oldTailDown,
+                toState: isDown
+            ),
+            fromBlock: fromBlock
+        )
         return .Unknown
     }
     
     private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNBlock?) -> CNValue {
         let oldPosition = state.position
         state.position = newPosition
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Move(fromPoint: oldPosition, toPoint: newPosition, forward: forward), fromBlock: fromBlock)
+        CNEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNExecutionHistoryItemType.Move(
+                fromPoint: oldPosition,
+                toPoint: newPosition,
+                forward: forward
+            ),
+            fromBlock: fromBlock
+        )
         return .Unknown
     }
     

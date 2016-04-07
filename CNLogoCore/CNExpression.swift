@@ -85,15 +85,15 @@ public enum CNExpressionParseElement {
                     variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: rightValue)])
                     return CNExpressionParseElement.Value(value: rightValue)
                 } else {
-                    result = CNValue.error(block: nil, error: .VariableNotFound(variableName: variableName))
+                    result = .Error(block: nil, error: .VariableNotFound(variableName: variableName))
                 }
-            default: result = CNValue.error(block: nil, error: .AssignToNonVariable)
+            default: result = .Error(block: nil, error: .AssignToNonVariable)
             }
-        default: result = CNValue.error(block: nil, error: .InvalidOperator)
+        default: result = .Error(block: nil, error: .InvalidOperator)
         }
         switch result {
-        case let .error(_, error):
-            result = CNValue.error(block: inBlock, error: error)
+        case let .Error(_, error):
+            result = .Error(block: inBlock, error: error)
         default: break
         }
         return CNExpressionParseElement.Value(value: result)
@@ -106,16 +106,16 @@ public enum CNExpressionParseElement {
             if let variable = inBlock.variableByName(variableName) {
                 return variable.variableValue.execute()
             } else {
-                return CNValue.error(block: inBlock, error: .VariableNotFound(variableName: variableName))
+                return .Error(block: inBlock, error: .VariableNotFound(variableName: variableName))
             }
         case let Function(functionName, functionParameters):
             if let function = inBlock.functionByName(functionName) {
                 return function.execute(functionParameters)
             } else {
-                return CNValue.error(block: inBlock, error: .FunctionNotFound(functionName: functionName))
+                return .Error(block: inBlock, error: .FunctionNotFound(functionName: functionName))
             }
-        case let .Error(error): return CNValue.error(block: inBlock, error: error)
-        default: return CNValue.unknown
+        case let .Error(error): return .Error(block: inBlock, error: error)
+        default: return .Unknown
         }
     }
     
@@ -345,7 +345,7 @@ public class CNExpression: CNBlock {
                     let value = element.getValue(left, right, self)
                     if value.isError { return value.value(self) }
                     resultStack.push(value)
-                default: return .unknown
+                default: return .Unknown
                 }
             } else {
                 resultStack.push(element)
@@ -356,7 +356,7 @@ public class CNExpression: CNBlock {
         if let finalResult = resultStack.pop() {
             return finalResult.value(self)
         } else {
-            return CNValue.error(block: self, error: .InvalidExpression)
+            return .Error(block: self, error: .InvalidExpression)
         }
     }
 

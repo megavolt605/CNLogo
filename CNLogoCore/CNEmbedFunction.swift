@@ -13,10 +13,10 @@ public class CNFunctionSin: CNStatementFunction {
     override public func execute(parameters: [CNExpression] = []) -> CNValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
-            case let .double(doubleValue): return CNValue.double(value: sin(doubleValue))
-            case let .int(intValue): return CNValue.double(value: sin(Double(intValue)))
-            case let .string(stringValue): return CNValue.double(value: sin(stringValue.doubleValue))
-            case .error: return value
+            case let .Double(doubleValue): return .Double(value: sin(doubleValue))
+            case let .Int(intValue): return .Double(value: sin(Double(intValue)))
+            case let .String(stringValue): return .Double(value: sin(stringValue.doubleValue))
+            case .Error: return value
             default: break
             }
         }
@@ -36,7 +36,7 @@ public class CNFunctionSin: CNStatementFunction {
     init() {
         super.init(
             funcName: "SIN",
-            formalParameters: [CNVariable(variableName: "angle", variableValue: CNValue.double(value: 0.0))],
+            formalParameters: [CNVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
             statements: []
         )
     }
@@ -52,10 +52,10 @@ public class CNFunctionCos: CNStatementFunction {
     override public func execute(parameters: [CNExpression] = []) -> CNValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
-            case let .double(doubleValue): return CNValue.double(value: cos(doubleValue))
-            case let .int(intValue): return CNValue.double(value: cos(Double(intValue)))
-            case let .string(stringValue): return CNValue.double(value: cos(stringValue.doubleValue))
-            case .error: return value
+            case let .Double(doubleValue): return .Double(value: cos(doubleValue))
+            case let .Int(intValue): return .Double(value: cos(Double(intValue)))
+            case let .String(stringValue): return .Double(value: cos(stringValue.doubleValue))
+            case .Error: return value
             default: break
             }
         }
@@ -74,7 +74,7 @@ public class CNFunctionCos: CNStatementFunction {
     init() {
         super.init(
             funcName: "COS",
-            formalParameters: [CNVariable(variableName: "angle", variableValue: CNValue.double(value: 0.0))],
+            formalParameters: [CNVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
             statements: []
         )
     }

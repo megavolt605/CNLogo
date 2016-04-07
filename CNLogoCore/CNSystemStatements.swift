@@ -64,9 +64,9 @@ public class CNStatementVar: CNStatement {
             return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
-                return CNValue.error(block: self, error: .VariableAlreadyExists(variableName: variableName))
+                return .Error(block: self, error: .VariableAlreadyExists(variableName: variableName))
             } else {
-                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .unknown))
+                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .Unknown))
             }
         }
         CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)

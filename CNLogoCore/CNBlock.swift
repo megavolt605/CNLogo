@@ -83,7 +83,7 @@ public enum CNBlockPrepareResult {
     @warn_unused_result
     public func executeStatements() -> CNValue {
         //print(self)
-        var lastValue: CNValue = CNValue.unknown
+        var lastValue: CNValue = .Unknown
         statements.forEach {
             lastValue = $0.execute()
         }
@@ -94,7 +94,7 @@ public enum CNBlockPrepareResult {
     public func execute(parameters: [CNExpression] = []) -> CNValue {
         if !prepared.isSuccess {
             switch prepare() {
-            case let .Error(block, error): return CNValue.error(block: block, error: error)
+            case let .Error(block, error): return .Error(block: block, error: error)
             default: break
             }
         }

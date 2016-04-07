@@ -28,11 +28,11 @@ public class CNStatementFunction: CNStatement {
     
     public override func execute(parameters: [CNExpression] = []) -> CNValue {
         // dummy
-        return .unknown
+        return .Unknown
     }
     
     func execute() -> CNValue {
-        return .unknown
+        return .Unknown
     }
     
     public init(funcName: String, formalParameters: [CNVariable] = [], statements: [CNStatement]) {
