@@ -9,14 +9,14 @@
 import UIKit
 import CNLogoCore
 
-extension CNStatementFunction {
+extension CNLCStatementFunction {
     
-    func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) -> [CNBubbleView]  {
+    func createBubblesForParameter(parameter: CNLCVariable, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView]  {
         //let typeDescription = try parameter.variableValue.typeDescription
         return [CNBubbleView(text: "\(parameter.variableName)", color: UIColor.cyanColor(), height: height, bold: false)]
     }
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    @objc override func createBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = (createBlockBubbles(inBlock, height: height, prefix: prefix, bold: true)) ?? []
         
         if prefix == "" {

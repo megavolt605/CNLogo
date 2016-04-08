@@ -9,14 +9,14 @@
 import CNLogoCore
 import UIKit
 
-typealias CNProgramTableViewItem = (block: CNBlock, level: Int, startIndex: Int?)
+typealias CNProgramTableViewItem = (block: CNLCBlock, level: Int, startIndex: Int?)
 
 class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    private var program: CNProgram
+    private var program: CNLCProgram
     private var tableList: [CNProgramTableViewItem] = []
     
-    func indexOfBlock(block: CNBlock) -> Int? {
+    func indexOfBlock(block: CNLCBlock) -> Int? {
         return tableList.indexOf { item in
             return item.block === block
         }
@@ -41,7 +41,7 @@ class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableView
         return CNProgramTableViewCell.defaultHeight
     }
     
-    func scanBlock(block: CNBlock, level: Int) {
+    func scanBlock(block: CNLCBlock, level: Int) {
         block.statements.forEach {
             let startIndex = tableList.count
             tableList.append((block: $0, level: level, startIndex: nil))
@@ -52,7 +52,7 @@ class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableView
         }
     }
     
-    init(program: CNProgram) {
+    init(program: CNLCProgram) {
         self.program = program
         super.init()
         scanBlock(program, level: 0)

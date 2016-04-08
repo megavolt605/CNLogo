@@ -1,6 +1,6 @@
 //
-//  CNProgram.swift
-//  CNLogo
+//  CNLCProgram.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 07/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -10,36 +10,36 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public class CNProgram: CNBlock {
+public class CNLCProgram: CNLCBlock {
 
     override public var identifier: String {
         return "PROGRAM"
     }
     
     public var programName: String
-    public var player = CNPlayer()
-    public var globalStack = CNStack<CNValue>()
-    public var executionHistory = CNExecutionHistory()
-    public var embedFunctions: [CNStatementFunction] = [
-        CNFunctionSin(),
-        CNFunctionCos()
+    public var player = CNLCPlayer()
+    public var globalStack = CNLCStack<CNLCValue>()
+    public var executionHistory = CNLCExecutionHistory()
+    public var embedFunctions: [CNLCStatementFunction] = [
+        CNLCFunctionSin(),
+        CNLCFunctionCos()
     ]
     
-    public func clear() -> CNValue {
+    public func clear() -> CNLCValue {
         let result = player.clear(nil)
         if result.isError { return result }
 
         return executionHistory.clear()
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = clear()
         if result.isError { return result }
         
         return super.execute()
     }
 
-    override public func functionByName(name: String) -> CNStatementFunction? {
+    override public func functionByName(name: String) -> CNLCStatementFunction? {
         for f in embedFunctions {
             if f.funcName == name {
                 return f
@@ -49,10 +49,10 @@ public class CNProgram: CNBlock {
     }
     
     private func internalInit() {
-        variables.append(CNVariable(variableName: "PI", variableValue: CNValue.Double(value: M_PI)))
-        variables.append(CNVariable(variableName: "2_PI", variableValue: CNValue.Double(value: M_2_PI)))
-        variables.append(CNVariable(variableName: "PI_2", variableValue: CNValue.Double(value: M_PI_2)))
-        variables.append(CNVariable(variableName: "EXP", variableValue:  CNValue.Double(value: M_E)))
+        variables.append(CNLCVariable(variableName: "PI", variableValue: CNLCValue.Double(value: M_PI)))
+        variables.append(CNLCVariable(variableName: "2_PI", variableValue: CNLCValue.Double(value: M_2_PI)))
+        variables.append(CNLCVariable(variableName: "PI_2", variableValue: CNLCValue.Double(value: M_PI_2)))
+        variables.append(CNLCVariable(variableName: "EXP", variableValue:  CNLCValue.Double(value: M_E)))
     }
     
     public override init() {
@@ -66,7 +66,7 @@ public class CNProgram: CNBlock {
         internalInit()
     }
 
-    public init(programName: String, statements: [CNStatement]) {
+    public init(programName: String, statements: [CNLCStatement]) {
         self.programName = programName
         super.init(statements: statements)
         internalInit()

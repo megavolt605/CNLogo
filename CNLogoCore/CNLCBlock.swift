@@ -1,6 +1,6 @@
 //
-//  CNBlock.swift
-//  CNLogo
+//  CNLCBlock.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 07/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -14,8 +14,8 @@ import Foundation
 /// - Error: there is some error
 /// - Unprepared: block is unprepared yet
 /// - Success: preparing completed with success
-public enum CNBlockPrepareResult {
-    case Error(block: CNBlock?, error: CNError)
+public enum CNLCBlockPrepareResult {
+    case Error(block: CNLCBlock?, error: CNLCError)
     case Unprepared
     case Success
     
@@ -37,18 +37,18 @@ public enum CNBlockPrepareResult {
 }
 
 /// Abstract code block with (or without) parameters
-@objc public class CNBlock: NSObject {
+@objc public class CNLCBlock: NSObject {
     
-    public var formalParameters: [CNVariable] = []
-    public var executableParameters: [CNVariable] = []
-    public var statements: [CNStatement] = []
-    public var variables: [CNVariable] = []
-    public var functions: [CNStatementFunction] = []
-    public var valueStack = CNStack<CNValue>()
+    public var formalParameters: [CNLCVariable] = []
+    public var executableParameters: [CNLCVariable] = []
+    public var statements: [CNLCStatement] = []
+    public var variables: [CNLCVariable] = []
+    public var functions: [CNLCStatementFunction] = []
+    public var valueStack = CNLCStack<CNLCValue>()
     
-    public var prepared: CNBlockPrepareResult = .Unprepared
+    public var prepared: CNLCBlockPrepareResult = .Unprepared
 
-    weak public var parentBlock: CNBlock?
+    weak public var parentBlock: CNLCBlock?
 
     public var identifier: String {
         return "Anonymous BLOCK"
@@ -74,7 +74,7 @@ public enum CNBlockPrepareResult {
     
     /// Preparing statements within the block (recursively)
     @warn_unused_result
-    public func prepare() -> CNBlockPrepareResult {
+    public func prepare() -> CNLCBlockPrepareResult {
         prepared = .Unprepared
         // prepare parameters
         for parameter in executableParameters {
@@ -93,9 +93,9 @@ public enum CNBlockPrepareResult {
     }
 
     @warn_unused_result
-    public func executeStatements() -> CNValue {
+    public func executeStatements() -> CNLCValue {
         //print(self)
-        var lastValue: CNValue = .Unknown
+        var lastValue: CNLCValue = .Unknown
         statements.forEach {
             lastValue = $0.execute()
         }
@@ -103,7 +103,7 @@ public enum CNBlockPrepareResult {
     }
     
     @warn_unused_result
-    public func execute(parameters: [CNExpression] = []) -> CNValue {
+    public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         if !prepared.isSuccess {
             switch prepare() {
             case let .Error(block, error): return .Error(block: block, error: error)
@@ -115,7 +115,7 @@ public enum CNBlockPrepareResult {
     }
     
     @warn_unused_result
-    public func variableByName(name: String) -> CNVariable? {
+    public func variableByName(name: String) -> CNLCVariable? {
         for v in variables {
             if v.variableName == name {
                 return v
@@ -131,7 +131,7 @@ public enum CNBlockPrepareResult {
     }
     
     @warn_unused_result
-    public func functionByName(name: String) -> CNStatementFunction? {
+    public func functionByName(name: String) -> CNLCStatementFunction? {
         for f in functions {
             if f.funcName == name {
                 return f
@@ -144,7 +144,7 @@ public enum CNBlockPrepareResult {
     public func store() -> [String: AnyObject] {
         var res: [String: AnyObject] = [:]
         if executableParameters.count > 0 {
-            res["parameters"] = executableParameters.enumerate().map { (index: Int, param: CNVariable) -> [String: AnyObject] in
+            res["parameters"] = executableParameters.enumerate().map { (index: Int, param: CNLCVariable) -> [String: AnyObject] in
                 return [param.variableName ?? "\(index)": param.variableValue.store()]
             }
         }
@@ -164,15 +164,15 @@ public enum CNBlockPrepareResult {
     deinit {
     }
     
-    public init(executableParameters: [CNVariable]) {
+    public init(executableParameters: [CNLCVariable]) {
         self.executableParameters = executableParameters
     }
     
-    public init(statements: [CNStatement]) {
+    public init(statements: [CNLCStatement]) {
         self.statements = statements
     }
     
-    public init(executableParameters: [CNVariable], statements: [CNStatement]) {
+    public init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
         self.executableParameters = executableParameters
         self.statements = statements
     }
@@ -182,14 +182,14 @@ public enum CNBlockPrepareResult {
         executableParameters = []
         if let info = data["parameters"] as? [String: [String: AnyObject]] {
             executableParameters = info.map { name, value in
-                return CNVariable(variableName: name, variableValue: CNExpression(data: value))
+                return CNLCVariable(variableName: name, variableValue: CNLCExpression(data: value))
             }
         }
 
         statements = []
         if let info = data["statements"] as? [[String: AnyObject]] {
             statements = info.map { item in
-                return CNLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: AnyObject])!
+                return CNLCLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: AnyObject])!
             }
         }
 

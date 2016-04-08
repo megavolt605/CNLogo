@@ -1,31 +1,31 @@
 //
-//  CNExpression.swift
-//  CNLogo
+//  CNLCExpressionParseElement.swift
+//  CNLogoCore
 //
-//  Created by Igor Smirnov on 08/09/15.
-//  Copyright © 2015 Complex Numbers. All rights reserved.
+//  Created by Igor Smirnov on 08/04/16.
+//  Copyright © 2016 Complex Number. All rights reserved.
 //
 
 import Foundation
 
-public enum CNExpressionParseElementKind {
+public enum CNLCExpressionParseElementKind {
     case Prefix, Suffix, Infix
 }
 
-public enum CNExpressionParseElementAssociativity {
+public enum CNLCExpressionParseElementAssociativity {
     case Left, Right
 }
 
-public enum CNExpressionParseElement {
-    case Error(error: CNError)
+public enum CNLCExpressionParseElement {
+    case Error(error: CNLCError)
     case Add, Sub, Mul, Div, Power
     case BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
     case IsEqual, IsNotEqual, Assign
-
+    
     case BracketOpen, BracketClose
-    case Value(value: CNValue)
+    case Value(value: CNLCValue)
     case Variable(variableName: String)
-    case Function(functionName: String, functionParameters: [CNExpression])
+    case Function(functionName: String, functionParameters: [CNLCExpression])
     
     public var isError: Bool {
         switch self {
@@ -59,11 +59,11 @@ public enum CNExpressionParseElement {
         }
     }
     
-    public func getValue(left: CNExpressionParseElement, _ right: CNExpressionParseElement, _ inBlock: CNBlock) -> CNExpressionParseElement {
+    public func getValue(left: CNLCExpressionParseElement, _ right: CNLCExpressionParseElement, _ inBlock: CNLCBlock) -> CNLCExpressionParseElement {
         
         let rightValue = left.value(inBlock)
         let leftValue = right.value(inBlock)
-        var result: CNValue
+        var result: CNLCValue
         switch self {
         case Add: result = leftValue + rightValue
         case Sub: result = leftValue - rightValue
@@ -82,8 +82,8 @@ public enum CNExpressionParseElement {
             switch left {
             case let Variable(variableName):
                 if let variable = inBlock.variableByName(variableName) {
-                    variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: rightValue)])
-                    return CNExpressionParseElement.Value(value: rightValue)
+                    variable.variableValue = CNLCExpression(source: [CNLCExpressionParseElement.Value(value: rightValue)])
+                    return CNLCExpressionParseElement.Value(value: rightValue)
                 } else {
                     result = .Error(block: nil, error: .VariableNotFound(variableName: variableName))
                 }
@@ -96,10 +96,10 @@ public enum CNExpressionParseElement {
             result = .Error(block: inBlock, error: error)
         default: break
         }
-        return CNExpressionParseElement.Value(value: result)
+        return CNLCExpressionParseElement.Value(value: result)
     }
     
-    public func value(inBlock: CNBlock) -> CNValue {
+    public func value(inBlock: CNLCBlock) -> CNLCValue {
         switch self {
         case let Value(value): return value
         case let Variable(variableName):
@@ -119,7 +119,7 @@ public enum CNExpressionParseElement {
         }
     }
     
-    func isEqualTo(value: CNExpressionParseElement) -> Bool {
+    func isEqualTo(value: CNLCExpressionParseElement) -> Bool {
         switch (self, value) {
         case (.Add, .Add): return true
         case (.Sub, .Sub): return true
@@ -153,18 +153,18 @@ public enum CNExpressionParseElement {
         }
     }
     
-    var kind: CNExpressionParseElementKind {
+    var kind: CNLCExpressionParseElementKind {
         return .Infix
     }
     
-    var associativity: CNExpressionParseElementAssociativity {
+    var associativity: CNLCExpressionParseElementAssociativity {
         return .Left
     }
     
-    static let operators: [CNExpressionParseElement] = [
+    static let operators: [CNLCExpressionParseElement] = [
         Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder, IsEqual, IsNotEqual
     ]
-
+    
     public func store() -> [String: AnyObject] {
         switch self {
         case Add: return ["type": "add"]
@@ -192,12 +192,12 @@ public enum CNExpressionParseElement {
                 "function-name": function.functionName,
                 "function-params": function.functionParameters.map { $0.store() }
             ]
-        ]
+            ]
         case .Error: return [:]
         }
     }
     
-    public static func loadFromData(data: [String: AnyObject]) -> CNExpressionParseElement {
+    public static func loadFromData(data: [String: AnyObject]) -> CNLCExpressionParseElement {
         if let type = data["type"] as? String {
             switch type {
             case "add": return Add
@@ -219,7 +219,7 @@ public enum CNExpressionParseElement {
             case "bracket-close": return BracketClose
             case "value":
                 if let value = data["value"] as? [String: AnyObject] {
-                    return Value(value: CNValue.loadFromData(value))
+                    return Value(value: CNLCValue.loadFromData(value))
                 }
             case "variable":
                 if let variableName = data["variable-name"] as? String {
@@ -229,7 +229,7 @@ public enum CNExpressionParseElement {
                 if let function = data["funciton"] as? [String: AnyObject], functionName = function["function-name"] as? String {
                     return Function(
                         functionName: functionName,
-                        functionParameters: ((function["function-parameters"] as? [[String: AnyObject]])?.map { item in return CNExpression(data: item) }) ?? []
+                        functionParameters: ((function["function-parameters"] as? [[String: AnyObject]])?.map { item in return CNLCExpression(data: item) }) ?? []
                     )
                 }
             default: break
@@ -238,145 +238,4 @@ public enum CNExpressionParseElement {
         fatalError("Invalid element")
     }
     
-}
-
-public class CNExpression: CNBlock {
-    
-    public var source: [CNExpressionParseElement]
-    
-    override public var identifier: String {
-        return "EXPR"
-    }
-    
-    override public var description: String {
-        return source.reduce("") {
-            return $0 + $1.description
-        }
-    }
-    
-    // akslop notation:
-    // A+B*C/(D-E) => ABC*DE-/+
-    // 
-    // A                A
-    // +    +           A
-    // B    +           A B
-    // *    * +         A B
-    // C    * +         A B C
-    // /    / +         A B C *
-    // (    ( / +       A B C *
-    // D    ( / +       A B C * D
-    // +    -( / +      A B C * D
-    // E    -( / +      A B C * D E
-    // )    / +         A B C * D E -
-    // fin              A B C * D E - / +
-    
-    private var preparedSource: [CNExpressionParseElement] = []
-    override public func prepare() -> CNBlockPrepareResult {
-        let result = super.prepare()
-        if result.isError { return result }
-        
-        var operatorStack = CNStack<CNExpressionParseElement>()
-        preparedSource = []
-        for element in source {
-            if CNExpressionParseElement.operators.contains({ $0.isEqualTo(element) }) {
-                // operator
-                repeat {
-                    if let oper = operatorStack.peek() {
-                        let c1 = ((element.associativity == .Right) && (element.weight < oper.weight))
-                        let c2 = ((element.associativity == .Left) && (element.weight <= oper.weight))
-                        if CNExpressionParseElement.operators.contains({ $0.isEqualTo(oper) }) && (c1 || c2) {
-                            preparedSource.append(operatorStack.pop()!)
-                        } else {
-                            break
-                        }
-                    } else {
-                        break
-                    }
-                } while true
-                operatorStack.push(element)
-            } else {
-                // not operator
-                switch element {
-                case .Value, .Variable:
-                    preparedSource.append(element)
-                case let .Function(function):
-                    for parameter in function.functionParameters {
-                        prepared = parameter.prepare()
-                        if prepared.isError { return prepared }
-                    }
-                    preparedSource.append(element)
-                case .BracketOpen:
-                    operatorStack.push(element)
-                case .BracketClose:
-                    repeat {
-                        if let oper = operatorStack.pop() {
-                            if oper.isEqualTo(CNExpressionParseElement.BracketOpen) {
-                                break
-                            }
-                            preparedSource.append(oper)
-                        } else {
-                            return CNBlockPrepareResult.Error(block: self, error: .InvalidExpression)
-                        }
-                    } while true
-                default:
-                    return CNBlockPrepareResult.Error(block: self, error: .InvalidExpression)
-                }
-            }
-        }
-        while operatorStack.count > 0 {
-            preparedSource.append(operatorStack.pop()!)
-        }
-        //preparedSource = preparedSource.reverse()
-        return result
-    }
-    
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
-        let result = super.execute(parameters)
-        if result.isError { return result }
-        
-        var resultStack = CNStack<CNExpressionParseElement>()
-        for element in preparedSource {
-            if CNExpressionParseElement.operators.contains({ $0.isEqualTo(element) }) {
-                // operator
-                switch element.kind {
-                case .Infix:
-                    let left = resultStack.pop()!
-                    let right = resultStack.pop()!
-                    let value = element.getValue(left, right, self)
-                    if value.isError { return value.value(self) }
-                    resultStack.push(value)
-                default: return .Unknown
-                }
-            } else {
-                resultStack.push(element)
-            }
-            
-        }
-        
-        if let finalResult = resultStack.pop() {
-            return finalResult.value(self)
-        } else {
-            return .Error(block: self, error: .InvalidExpression)
-        }
-    }
-
-    override public func store() -> [String: AnyObject] {
-        var res = super.store()
-        res["source"] = source.map { $0.store() }
-        return res
-    }
-
-    public init(source: [CNExpressionParseElement]) {
-        self.source = source
-        super.init()
-    }
-    
-    public required init(data: [String: AnyObject]) {
-        source = []
-        super.init(data: data)
-        if let info = data["source"] as? [[String: AnyObject]] {
-            source = info.map { item in return CNExpressionParseElement.loadFromData(item) }
-        }
-    }
-
 }

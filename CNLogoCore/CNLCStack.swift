@@ -1,6 +1,6 @@
 //
-//  CNStack.swift
-//  CNLogo
+//  CNLCStack.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 08/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CNStack<T> {
+public struct CNLCStack<T> {
     
     private var items: [T] = []
     

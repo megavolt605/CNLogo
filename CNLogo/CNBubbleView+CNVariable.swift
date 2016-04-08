@@ -9,9 +9,9 @@
 import UIKit
 import CNLogoCore
 
-extension CNVariable {
+extension CNLCVariable {
     
-    func createBubbles(inBlock: CNBlock, height: CGFloat) -> [CNBubbleView] {
+    func createBubbles(inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView] {
         return self.variableValue.createBubbles(inBlock, height: height)
     }
     

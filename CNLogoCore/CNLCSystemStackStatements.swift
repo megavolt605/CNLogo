@@ -1,5 +1,5 @@
 //
-//  CNSystemStackStatements.swift
+//  CNLCSystemStackStatements.swift
 //  CNLogoCore
 //
 //  Created by Igor Smirnov on 14/10/15.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class CNStatementPush: CNStatement {
+public class CNLCStatementPush: CNLCStatement {
     
     override public var identifier: String {
         return "PUSH"
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         
         var result = super.execute(parameters)
         if result.isError { return result }
@@ -29,7 +29,7 @@ public class CNStatementPush: CNStatement {
     
 }
 
-public class CNStatementPop: CNStatement {
+public class CNLCStatementPop: CNLCStatement {
     
     override public var identifier: String {
         return "POP"
@@ -37,31 +37,31 @@ public class CNStatementPop: CNStatement {
     
     public var variableName: String
     
-    func popValue() -> CNValue? {
+    func popValue() -> CNLCValue? {
         return parentBlock?.valueStack.pop()
     }
     
-    override public func prepare() -> CNBlockPrepareResult {
+    override public func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
 
         if executableParameters.count != 0 {
-            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
         
         if let value = popValue() {
             if let variable = variableByName(variableName) {
-                variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: value)])
+                variable.variableValue = CNLCExpression(source: [CNLCExpressionParseElement.Value(value: value)])
             } else {
-                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
+                parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: value))
             }
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
             return .Error(block: self, error: .InvalidValue)
@@ -90,34 +90,34 @@ public class CNStatementPop: CNStatement {
     
 }
 
-public class CNStatementGlobalPush: CNStatementPush {
+public class CNLCStatementGlobalPush: CNLCStatementPush {
     
     override public var identifier: String {
         return "GPUSH"
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         var result = super.execute(parameters)
         if result.isError { return result }
 
         for parameter in executableParameters {
             result = parameter.variableValue.execute()
             if result.isError { return result }
-            CNEnviroment.defaultEnviroment.currentProgram?.globalStack.push(result)
+            CNLCEnviroment.defaultEnviroment.currentProgram?.globalStack.push(result)
         }
         return result
     }
     
 }
 
-public class CNStatementGlobalPop: CNStatementPop {
+public class CNLCStatementGlobalPop: CNLCStatementPop {
     
     override public var identifier: String {
         return "GPOP"
     }
     
-    override func popValue() -> CNValue? {
-        return CNEnviroment.defaultEnviroment.currentProgram?.globalStack.pop()
+    override func popValue() -> CNLCValue? {
+        return CNLCEnviroment.defaultEnviroment.currentProgram?.globalStack.pop()
     }
 }
 

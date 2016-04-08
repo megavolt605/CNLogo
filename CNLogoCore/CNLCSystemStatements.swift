@@ -1,6 +1,6 @@
 //
-//  CNSystemFunctions.swift
-//  CNLogo
+//  CNLCSystemFunctions.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 07/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -8,27 +8,27 @@
 
 import Foundation
 
-public class CNStatementPrint: CNStatement {
+public class CNLCStatementPrint: CNLCStatement {
     
     override public var identifier: String {
         return "PRINT"
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         var result = super.execute(parameters)
         if result.isError { return result }
 
         for parameter in executableParameters {
             result = parameter.variableValue.execute()
             if result.isError { return result }
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Print(value: result.description), fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Print(value: result.description), fromBlock: self)
         }
         return result
     }
     
 }
 
-public class CNStatementVar: CNStatement {
+public class CNLCStatementVar: CNLCStatement {
     
     override public var identifier: String {
         return "VAR"
@@ -40,36 +40,36 @@ public class CNStatementVar: CNStatement {
     
     public var variableName: String
     
-    override public func prepare() -> CNBlockPrepareResult {
+    override public func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
 
         if let value = executableParameters.first?.variableValue.execute() {
             if value.isError { return result }
             if let variable = variableByName(variableName) {
-                variable.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: value)])
+                variable.variableValue = CNLCExpression(source: [CNLCExpressionParseElement.Value(value: value)])
             } else {
-                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: value))
+                parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: value))
             }
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
             return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
                 return .Error(block: self, error: .VariableAlreadyExists(variableName: variableName))
             } else {
-                parentBlock?.variables.append(CNVariable(variableName: variableName, variableValue: .Unknown))
+                parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: .Unknown))
             }
         }
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Step, fromBlock: self)
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
         return result
     }
     
@@ -79,7 +79,7 @@ public class CNStatementVar: CNStatement {
         return res
     }
     
-    public init(variableName: String, executableParameters: [CNVariable]) {
+    public init(variableName: String, executableParameters: [CNLCVariable]) {
         self.variableName = variableName
         super.init(executableParameters: executableParameters)
     }

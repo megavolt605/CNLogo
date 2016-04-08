@@ -121,12 +121,12 @@ class ViewController: UIViewController, CNFieldViewDelegate {
         
         updateButtons()
 
-        func makeExprFromValue(value: CNValue) -> CNExpression {
-            return CNExpression(source: [CNExpressionParseElement.Value(value: value)])
+        func makeExprFromValue(value: CNLCValue) -> CNLCExpression {
+            return CNLCExpression(source: [CNLCExpressionParseElement.Value(value: value)])
         }
         
-        func makeParamFromValue(value: CNValue) -> CNParameter {
-            return CNParameter(value: CNExpression(source: [CNExpressionParseElement.Value(value: value)]))
+        func makeParamFromValue(value: CNLCValue) -> CNLCParameter {
+            return CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Value(value: value)]))
         }
         
         /*
@@ -203,76 +203,76 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             ]
         )*/
         
-        let program = CNProgram(
+        let program = CNLCProgram(
             programName: "Example 3",
             statements: [
-                CNStatementPrint(
-                    executableParameters: [CNParameter(value: .String(value: "Started"))]
+                CNLCStatementPrint(
+                    executableParameters: [CNLCParameter(value: .String(value: "Started"))]
                 ),
                 
-                CNStatementFunction(
+                CNLCStatementFunction(
                     funcName: "spiral",
                     formalParameters: [
-                        CNVariable(variableName: "w", variableValue: .Int(value: 0)),
-                        CNVariable(variableName: "a", variableValue: .Int(value: 0)),
-                        CNVariable(variableName: "x", variableValue: .Double(value: 0.0)),
-                        CNVariable(variableName: "c", variableValue: .Int(value: 0)),
-                        CNVariable(variableName: "ww", variableValue: .Double(value: 0.0))
+                        CNLCVariable(variableName: "w", variableValue: .Int(value: 0)),
+                        CNLCVariable(variableName: "a", variableValue: .Int(value: 0)),
+                        CNLCVariable(variableName: "x", variableValue: .Double(value: 0.0)),
+                        CNLCVariable(variableName: "c", variableValue: .Int(value: 0)),
+                        CNLCVariable(variableName: "ww", variableValue: .Double(value: 0.0))
                     ],
                     statements: [
-                        CNStatementIf(
-                            executableParameters: [ CNParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "c"),
-                                CNExpressionParseElement.IsNotEqual,
-                                CNExpressionParseElement.Value(value: .Int(value: 0))
+                        CNLCStatementIf(
+                            executableParameters: [ CNLCParameter(value: CNLCExpression(source: [
+                                CNLCExpressionParseElement.Variable(variableName: "c"),
+                                CNLCExpressionParseElement.IsNotEqual,
+                                CNLCExpressionParseElement.Value(value: .Int(value: 0))
                             ]))],
                             statements: [
-                                CNStatementWidth(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "ww")]))]),
+                                CNLCStatementWidth(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "ww")]))]),
                                 // TODO: parametred color (color [255-w*2, 0, w*2])
-                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Value(value: .Double(value: 0.0)),
-                                    CNExpressionParseElement.Sub,
-                                    CNExpressionParseElement.Variable(variableName: "x")
+                                CNLCStatementRotate(executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                    CNLCExpressionParseElement.Value(value: .Double(value: 0.0)),
+                                    CNLCExpressionParseElement.Sub,
+                                    CNLCExpressionParseElement.Variable(variableName: "x")
                                 ]))]),
-                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
-                                CNStatementTailUp(),
-                                CNStatementBackward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
-                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "x")]))]),
-                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "w")]))]),
-                                CNStatementTailDown(),
-                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "a")]))]),
-                                CNStatementCall(funcName: "spiral", executableParameters: [
-                                    CNVariable(
+                                CNLCStatementForward(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNLCStatementTailUp(),
+                                CNLCStatementBackward(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNLCStatementRotate(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "x")]))]),
+                                CNLCStatementForward(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "w")]))]),
+                                CNLCStatementTailDown(),
+                                CNLCStatementRotate(executableParameters: [CNLCParameter(value: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "a")]))]),
+                                CNLCStatementCall(funcName: "spiral", executableParameters: [
+                                    CNLCVariable(
                                         variableName: "w",
-                                        variableValue: CNExpression(source: [
-                                            CNExpressionParseElement.Variable(variableName: "w"),
-                                            CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: .Int(value: 1))
+                                        variableValue: CNLCExpression(source: [
+                                            CNLCExpressionParseElement.Variable(variableName: "w"),
+                                            CNLCExpressionParseElement.Add,
+                                            CNLCExpressionParseElement.Value(value: .Int(value: 1))
                                         ])
                                     ),
-                                    CNVariable(variableName: "a", variableValue: CNExpression(source: [CNExpressionParseElement.Variable(variableName: "a")])),
-                                    CNVariable(
+                                    CNLCVariable(variableName: "a", variableValue: CNLCExpression(source: [CNLCExpressionParseElement.Variable(variableName: "a")])),
+                                    CNLCVariable(
                                         variableName: "x",
-                                        variableValue: CNExpression(source: [
-                                            CNExpressionParseElement.Variable(variableName: "x"),
-                                            CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: .Double(value: 0.7))
+                                        variableValue: CNLCExpression(source: [
+                                            CNLCExpressionParseElement.Variable(variableName: "x"),
+                                            CNLCExpressionParseElement.Add,
+                                            CNLCExpressionParseElement.Value(value: .Double(value: 0.7))
                                         ])
                                     ),
-                                    CNVariable(
+                                    CNLCVariable(
                                         variableName: "c",
-                                        variableValue: CNExpression(source: [
-                                            CNExpressionParseElement.Variable(variableName: "c"),
-                                            CNExpressionParseElement.Sub,
-                                            CNExpressionParseElement.Value(value: .Int(value: 1))
+                                        variableValue: CNLCExpression(source: [
+                                            CNLCExpressionParseElement.Variable(variableName: "c"),
+                                            CNLCExpressionParseElement.Sub,
+                                            CNLCExpressionParseElement.Value(value: .Int(value: 1))
                                         ])
                                     ),
-                                    CNVariable(
+                                    CNLCVariable(
                                         variableName: "ww",
-                                        variableValue: CNExpression(source: [
-                                            CNExpressionParseElement.Variable(variableName: "ww"),
-                                            CNExpressionParseElement.Add,
-                                            CNExpressionParseElement.Value(value: .Double(value: 0.1))
+                                        variableValue: CNLCExpression(source: [
+                                            CNLCExpressionParseElement.Variable(variableName: "ww"),
+                                            CNLCExpressionParseElement.Add,
+                                            CNLCExpressionParseElement.Value(value: .Double(value: 0.1))
                                         ])
                                     ),
                                     
@@ -282,20 +282,20 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                     ]
                 ),
                 
-                CNStatementCall(funcName: "spiral", executableParameters: [
-                    CNVariable(variableName: "w", variableValue: .Int(value: 1)),
-                    CNVariable(variableName: "a", variableValue: .Int(value: 30)),
-                    CNVariable(variableName: "x", variableValue: .Double(value: 10.0)),
-                    CNVariable(variableName: "c", variableValue: .Int(value: 90)),
-                    CNVariable(variableName: "ww", variableValue: .Double(value: 1.0))
+                CNLCStatementCall(funcName: "spiral", executableParameters: [
+                    CNLCVariable(variableName: "w", variableValue: .Int(value: 1)),
+                    CNLCVariable(variableName: "a", variableValue: .Int(value: 30)),
+                    CNLCVariable(variableName: "x", variableValue: .Double(value: 10.0)),
+                    CNLCVariable(variableName: "c", variableValue: .Int(value: 90)),
+                    CNLCVariable(variableName: "ww", variableValue: .Double(value: 1.0))
                 ]),
-                CNStatementPrint(
-                    executableParameters: [CNParameter(value: .String(value: "Finished"))]
+                CNLCStatementPrint(
+                    executableParameters: [CNLCParameter(value: .String(value: "Finished"))]
                 )
             ]
         )
 
-        CNEnviroment.defaultEnviroment.currentProgram = program
+        CNLCEnviroment.defaultEnviroment.currentProgram = program
 
         switch program.prepare() {
         case let .Error(block, error): print("Prepare ERROR: \(error.description) in block: \(block)")
@@ -339,7 +339,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
     }
     
     @IBAction func loadMenuButtonTouchUpInside(sender: AnyObject) {
-        if let data = CNEnviroment.defaultEnviroment.currentProgram?.store() {
+        if let data = CNLCEnviroment.defaultEnviroment.currentProgram?.store() {
             print(data)
         }
     }
@@ -380,7 +380,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
     }
     
     // CNFieldViewDelegate protocol
-    func willExecuteHistoryItem(item: CNExecutionHistoryItem) {
+    func willExecuteHistoryItem(item: CNLCExecutionHistoryItem) {
         if options.shouldAnimate {
             if let block = item.block {
                 if let cellRow = tableViewDataSource.indexOfBlock(block) {

@@ -1,5 +1,5 @@
 //
-//  CNError.swift
+//  CNLCError.swift
 //  CNLogoCore
 //
 //  Created by Igor Smirnov on 04/10/15.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Error enum
-public enum CNError {
+public enum CNLCError {
     
     /// Not a error
     case Unknown

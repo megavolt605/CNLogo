@@ -9,16 +9,16 @@
 import UIKit
 import CNLogoCore
 
-extension CNStatementCall {
+extension CNLCStatementCall {
     
-    func createBubblesForParameter(parameter: CNVariable, inBlock: CNBlock, height: CGFloat) -> [CNBubbleView]  {
+    func createBubblesForParameter(parameter: CNLCVariable, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView]  {
         let value = parameter.variableValue
         return [CNBubbleView(text: "\(parameter.variableName): \(value.description)", color: UIColor.cyanColor(), height: height, bold: false)]
         //        let value = try parameter.variableValue.execute()
         //        return [CNBubbleView(text: "\(parameter.variableName): \(value.description)", color: UIColor.cyanColor(), height: height, bold: false)]
     }
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    @objc override func createBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = (createBlockBubbles(inBlock, height: height, prefix: prefix, bold: true)) ?? []
         
         res.append(CNBubbleView(text: "\(funcName) (", color: UIColor.orangeColor(), height: height, bold: false))

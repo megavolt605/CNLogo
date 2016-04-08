@@ -9,9 +9,9 @@
 import UIKit
 import CNLogoCore
 
-extension CNExpression {
+extension CNLCExpression {
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    @objc override func createBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         if prefix != "" {
             let bubble = CNBubbleView(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)

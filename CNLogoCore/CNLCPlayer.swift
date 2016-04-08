@@ -1,6 +1,6 @@
 //
-//  CNPlayer.swift
-//  CNLogo
+//  CNLCPlayer.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 13/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct CNPlayerState {
+public struct CNLCPlayerState {
     public var position: CGPoint = CGPointZero
     public var angle: CGFloat = 0.0
     public var color: CGColor = UIColor.blackColor().CGColor
@@ -17,7 +17,7 @@ public struct CNPlayerState {
     public var tailDown: Bool = true
     public var scale: CGFloat = 1.0
     
-    public func snapshot() -> CNPlayerState {
+    public func snapshot() -> CNLCPlayerState {
         var res = self
         res.color = CGColorCreateCopy(color)!
         return res
@@ -25,25 +25,25 @@ public struct CNPlayerState {
     
 }
 
-public class CNPlayer {
+public class CNLCPlayer {
     
-    public var state = CNPlayerState()
-    public var startState = CNPlayerState()
+    public var state = CNLCPlayerState()
+    public var startState = CNLCPlayerState()
     
-    public func clear(fromBlock: CNBlock?) -> CNValue {
+    public func clear(fromBlock: CNLCBlock?) -> CNLCValue {
         state = startState
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(
-            CNExecutionHistoryItemType.Clear,
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNLCExecutionHistoryItemType.Clear,
             fromBlock: fromBlock
         )
         return .Unknown
     }
     
-    public func tailDown(isDown: Bool, fromBlock: CNBlock?) -> CNValue {
+    public func tailDown(isDown: Bool, fromBlock: CNLCBlock?) -> CNLCValue {
         let oldTailDown = state.tailDown
         state.tailDown = isDown
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(
-            CNExecutionHistoryItemType.TailState(
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNLCExecutionHistoryItemType.TailState(
                 fromState: oldTailDown,
                 toState: isDown
             ),
@@ -52,11 +52,11 @@ public class CNPlayer {
         return .Unknown
     }
     
-    private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNBlock?) -> CNValue {
+    private func moveTo(newPosition: CGPoint, forward: Bool, fromBlock: CNLCBlock?) -> CNLCValue {
         let oldPosition = state.position
         state.position = newPosition
-        CNEnviroment.defaultEnviroment.appendExecutionHistory(
-            CNExecutionHistoryItemType.Move(
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(
+            CNLCExecutionHistoryItemType.Move(
                 fromPoint: oldPosition,
                 toPoint: newPosition,
                 forward: forward
@@ -66,7 +66,7 @@ public class CNPlayer {
         return .Unknown
     }
     
-    public func moveForward(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func moveForward(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Double(distance):
@@ -89,7 +89,7 @@ public class CNPlayer {
         return .Unknown
     }
     
-    public func moveBackward(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func moveBackward(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Double(distance):
@@ -112,62 +112,62 @@ public class CNPlayer {
         return .Unknown
     }
     
-    public func rotate(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func rotate(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Double(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(angleDelta * M_PI / 180.0)
             state.angle = newAngle
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
         case let .Int(angleDelta):
             let oldAngle = state.angle
             let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
             state.angle = newAngle
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
         case .Error: return result
         default: return .Error(block: fromBlock, error: .NumericValueExpected)
         }
         return .Unknown
     }
     
-    public func setColor(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func setColor(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Color(newColor):
             let oldColor = state.color
             state.color = newColor.CGColor
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Color(fromColor: oldColor, toColor: state.color), fromBlock: fromBlock)
         case .Error: return result
         default: return .Error(block: fromBlock, error: .NumericValueExpected)
         }
         return .Unknown
     }
     
-    public func setWidth(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func setWidth(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Double(newWidth):
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), fromBlock: fromBlock)
         case let .Int(newWidth):
             let oldWidth = state.width
             state.width = CGFloat(newWidth) * state.scale
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Width(fromWidth: oldWidth, toWidth: state.width), fromBlock: fromBlock)
         case .Error: return result
         default: return .Error(block: fromBlock, error: .NumericValueExpected)
         }
         return .Unknown
     }
     
-    public func setScale(value: CNExpression, fromBlock: CNBlock?) -> CNValue {
+    public func setScale(value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
         let result = value.execute()
         switch result {
         case let .Double(newScale):
             let oldScale = state.scale
             state.scale = CGFloat(newScale)
-            CNEnviroment.defaultEnviroment.appendExecutionHistory(CNExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale), fromBlock: fromBlock)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Scale(fromScale: oldScale, toScale: state.scale), fromBlock: fromBlock)
         case .Error: return result
         default: return .Error(block: fromBlock, error: .NumericValueExpected)
         }

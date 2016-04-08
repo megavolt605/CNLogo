@@ -1,5 +1,5 @@
 //
-//  CNEnviroment.swift
+//  CNLCEnviroment.swift
 //  CNLogoCore
 //
 //  Created by Igor Smirnov on 28/09/15.
@@ -30,12 +30,12 @@ private func _urlForKey(keyName: String) -> NSURL? {
     }
 }
 
-private func _loadPrograms(key: String) -> [CNProgram] {
-    let res: [CNProgram]
+private func _loadPrograms(key: String) -> [CNLCProgram] {
+    let res: [CNLCProgram]
     if let storageURL = _urlForKey(key), programs = NSArray(contentsOfURL: storageURL) {
          res = programs.flatMap { item in
             if let programData = item as? [String: AnyObject] {
-                return CNProgram(data: programData)
+                return CNLCProgram(data: programData)
             }
             return nil
         }
@@ -46,25 +46,25 @@ private func _loadPrograms(key: String) -> [CNProgram] {
     return res
 }
 
-private func _savePrograms(key: String, programs: [CNProgram]) {
+private func _savePrograms(key: String, programs: [CNLCProgram]) {
     if let storageURL = _urlForKey(key) {
         let data = NSArray(array: programs, copyItems: false)
         data.writeToURL(storageURL, atomically: true)
     }
 }
 
-public class CNEnviroment {
+public class CNLCEnviroment {
     
-    public static let defaultEnviroment = CNEnviroment()
+    public static let defaultEnviroment = CNLCEnviroment()
 
     let kSystemPrograms = "systemPrograms"
     let kUserPrograms = "userPrograms"
     
-    public var systemPrograms: [CNProgram]
-    public var userPrograms: [CNProgram]
-    public var currentProgram: CNProgram?
+    public var systemPrograms: [CNLCProgram]
+    public var userPrograms: [CNLCProgram]
+    public var currentProgram: CNLCProgram?
 
-    func appendExecutionHistory(itemType: CNExecutionHistoryItemType, fromBlock: CNBlock?) {
+    func appendExecutionHistory(itemType: CNLCExecutionHistoryItemType, fromBlock: CNLCBlock?) {
         currentProgram?.executionHistory.append(itemType, block: fromBlock)
     }
     

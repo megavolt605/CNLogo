@@ -1,6 +1,6 @@
 //
-//  CNEmbedFunction.swift
-//  CNLogo
+//  CNLCFunctions.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 07/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class CNFunctionSin: CNStatementFunction {
+public class CNLCFunctionSin: CNLCStatementFunction {
 
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
             case let .Double(doubleValue): return .Double(value: sin(doubleValue))
@@ -23,12 +23,12 @@ public class CNFunctionSin: CNStatementFunction {
         return super.execute(parameters)
     }
     
-    override public func prepare() -> CNBlockPrepareResult {
+    override public func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 1 {
-            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
@@ -36,7 +36,7 @@ public class CNFunctionSin: CNStatementFunction {
     init() {
         super.init(
             funcName: "SIN",
-            formalParameters: [CNVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
+            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
             statements: []
         )
     }
@@ -47,9 +47,9 @@ public class CNFunctionSin: CNStatementFunction {
 
 }
 
-public class CNFunctionCos: CNStatementFunction {
+public class CNLCFunctionCos: CNLCStatementFunction {
     
-    override public func execute(parameters: [CNExpression] = []) -> CNValue {
+    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
             case let .Double(doubleValue): return .Double(value: cos(doubleValue))
@@ -62,11 +62,11 @@ public class CNFunctionCos: CNStatementFunction {
         return super.execute(parameters)
     }
     
-    override public func prepare() -> CNBlockPrepareResult {
+    override public func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
@@ -74,7 +74,7 @@ public class CNFunctionCos: CNStatementFunction {
     init() {
         super.init(
             funcName: "COS",
-            formalParameters: [CNVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
+            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
             statements: []
         )
     }

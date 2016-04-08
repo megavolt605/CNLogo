@@ -1,6 +1,6 @@
 //
-//  CNVariable.swift
-//  CNLogo
+//  CNLCVariable.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 13/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -9,32 +9,19 @@
 import Foundation
 
 /// Variable of any type with value
-@objc public class CNVariable: NSObject {
+@objc public class CNLCVariable: NSObject {
     public var variableName: String
-    public var variableValue: CNExpression
-    public var parentBlock: CNBlock?
+    public var variableValue: CNLCExpression
+    public var parentBlock: CNLCBlock?
     
-    public init(variableName: String, variableValue: CNExpression) {
+    public init(variableName: String, variableValue: CNLCExpression) {
         self.variableName = variableName
         self.variableValue = variableValue
     }
     
-    public init(variableName: String, variableValue: CNValue) {
+    public init(variableName: String, variableValue: CNLCValue) {
         self.variableName = variableName
-        self.variableValue = CNExpression(source: [CNExpressionParseElement.Value(value: variableValue)])
-    }
-    
-}
-
-// TODO: Anonymous parameter
-public class CNParameter: CNVariable {
-
-    public init(value: CNExpression) {
-        super.init(variableName: "", variableValue: value)
-    }
-    
-    public init(value: CNValue) {
-        super.init(variableName: "", variableValue: value)
+        self.variableValue = CNLCExpression(source: [CNLCExpressionParseElement.Value(value: variableValue)])
     }
     
 }

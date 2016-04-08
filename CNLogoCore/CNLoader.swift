@@ -1,5 +1,5 @@
 //
-//  CNLoader.swift
+//  CNLCLoader.swift
 //  CNLogoCore
 //
 //  Created by Igor Smirnov on 30/09/15.
@@ -8,26 +8,26 @@
 
 import Foundation
 
-struct CNLoader {
+struct CNLCLoader {
     
-    static let knownStatements: [String: CNStatement.Type] = [
-        "FORWARD": CNStatementForward.self,
-        "BACKWARD": CNStatementBackward.self,
-        "CLEAR": CNStatementClear.self,
-        "COLOR": CNStatementColor.self,
-        "IF": CNStatementIf.self,
-        "PRINT": CNStatementPrint.self,
-        "REPEAT": CNStatementRepeat.self,
-        "ROTATE": CNStatementRotate.self,
-        "SCALE": CNStatementScale.self,
-        "TAIL DOWN": CNStatementTailDown.self,
-        "TAIL UP": CNStatementTailUp.self,
-        "VAR": CNStatementVar.self,
-        "WHILE": CNStatementWhile.self,
-        "WIDTH": CNStatementWidth.self
+    static let knownStatements: [String: CNLCStatement.Type] = [
+        "FORWARD": CNLCStatementForward.self,
+        "BACKWARD": CNLCStatementBackward.self,
+        "CLEAR": CNLCStatementClear.self,
+        "COLOR": CNLCStatementColor.self,
+        "IF": CNLCStatementIf.self,
+        "PRINT": CNLCStatementPrint.self,
+        "REPEAT": CNLCStatementRepeat.self,
+        "ROTATE": CNLCStatementRotate.self,
+        "SCALE": CNLCStatementScale.self,
+        "TAIL DOWN": CNLCStatementTailDown.self,
+        "TAIL UP": CNLCStatementTailUp.self,
+        "VAR": CNLCStatementVar.self,
+        "WHILE": CNLCStatementWhile.self,
+        "WIDTH": CNLCStatementWidth.self
     ]
     
-    static func createStatement(identifier: String?, info: [String: AnyObject]?) -> CNStatement? {
+    static func createStatement(identifier: String?, info: [String: AnyObject]?) -> CNLCStatement? {
         if let id = identifier, data = info, statement = knownStatements[id] {
             let res = statement.init(data: data)
             if res.identifier == id {

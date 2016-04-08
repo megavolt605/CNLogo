@@ -13,7 +13,7 @@ typealias CNAnimationCompletion = () -> Void
 
 protocol CNFieldViewDelegate: class {
     
-    func willExecuteHistoryItem(item: CNExecutionHistoryItem)
+    func willExecuteHistoryItem(item: CNLCExecutionHistoryItem)
     func didFinishExecution()
     
 }
@@ -51,7 +51,7 @@ class CNFieldView: UIView {
     }
     
     func updatePlayerPosition() {
-        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+        if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             CATransaction.begin()
             CATransaction.setAnimationDuration(0.0)// setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
             addPlayerAnimation(playerLayer.position, toPoint: program.player.state.position)
@@ -100,7 +100,7 @@ class CNFieldView: UIView {
         playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
         CATransaction.commit()
         
-        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+        if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             playerLayer.position = CGPointMake(
                 program.player.startState.position.x,
                 program.player.startState.position.y
@@ -135,7 +135,7 @@ class CNFieldView: UIView {
         }
     }
     
-    func addStrokeWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addStrokeWithItem(item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
@@ -176,7 +176,7 @@ class CNFieldView: UIView {
         }
     }
     
-    func addPlayerMoveWithItem(item: CNExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addPlayerMoveWithItem(item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
@@ -188,7 +188,7 @@ class CNFieldView: UIView {
         }
     }
 
-    func addPlayerRotationWithItem(item: CNExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addPlayerRotationWithItem(item: CNLCExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
@@ -212,7 +212,7 @@ class CNFieldView: UIView {
     }
     
     func visualizeStep(options: CNOptions) {
-        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+        if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             let history = program.executionHistory
             if currentIndex < history.history.count {
                 if runState == .Executing {
@@ -278,8 +278,8 @@ class CNFieldView: UIView {
         }
     }
     
-    func execute(options: CNOptions) -> CNValue {
-        if let program = CNEnviroment.defaultEnviroment.currentProgram {
+    func execute(options: CNOptions) -> CNLCValue {
+        if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.clear()
             program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
             clear()
@@ -290,7 +290,7 @@ class CNFieldView: UIView {
             visualizeResult(options)
             return result
         }
-        return CNValue.Error(block: nil, error: .NoProgram)
+        return CNLCValue.Error(block: nil, error: .NoProgram)
     }
     
 }

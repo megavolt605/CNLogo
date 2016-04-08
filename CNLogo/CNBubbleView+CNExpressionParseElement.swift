@@ -9,9 +9,9 @@
 import UIKit
 import CNLogoCore
 
-extension CNExpressionParseElement {
+extension CNLCExpressionParseElement {
     
-    func createBubbles(inBlock: CNBlock, height: CGFloat) -> [CNBubbleView] {
+    func createBubbles(inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView] {
         switch self {
         case let .Value(value):
             switch value {

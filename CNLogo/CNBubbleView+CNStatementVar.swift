@@ -9,9 +9,9 @@
 import UIKit
 import CNLogoCore
 
-extension CNStatementVar {
+extension CNLCStatementVar {
     
-    @objc override func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    @objc override func createBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         let bubbleName = prefix + identifier
         if bubbleName != "" {

@@ -1,33 +1,14 @@
 //
-//  CNExecutionHistory.swift
-//  CNLogo
+//  CNLCExecutionHistoryItem.swift
+//  CNLogoCore
 //
-//  Created by Igor Smirnov on 20/09/15.
-//  Copyright © 2015 Complex Numbers. All rights reserved.
+//  Created by Igor Smirnov on 08/04/16.
+//  Copyright © 2016 Complex Number. All rights reserved.
 //
 
 import Foundation
-import CoreGraphics
 
-public class CNExecutionHistory {
-    
-    public var history: [CNExecutionHistoryItem] = []
-    
-    public func append(itemType: CNExecutionHistoryItemType, block: CNBlock?) {
-        if let playerState = CNEnviroment.defaultEnviroment.currentProgram?.player.state.snapshot() {
-            let item = CNExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
-            history.append(item)
-        }
-    }
-    
-    public func clear() -> CNValue {
-        history = []
-        return .Unknown
-    }
-    
-}
-
-public enum CNExecutionHistoryItemType {
+public enum CNLCExecutionHistoryItemType {
     case Clear
     case Move(fromPoint: CGPoint, toPoint: CGPoint, forward: Bool)
     case Rotate(fromAngle: CGFloat, toAngle: CGFloat)
@@ -40,12 +21,12 @@ public enum CNExecutionHistoryItemType {
 }
 
 // TODO: add call stack snapshot with parameters and variables
-public struct CNExecutionHistoryItem {
-
-    public var type: CNExecutionHistoryItemType
-    public var playerState: CNPlayerState
-    public weak var block: CNBlock?
-
+public struct CNLCExecutionHistoryItem {
+    
+    public var type: CNLCExecutionHistoryItemType
+    public var playerState: CNLCPlayerState
+    public weak var block: CNLCBlock?
+    
     public var description: String {
         switch type {
         case .Clear: return "Clear"
@@ -63,4 +44,3 @@ public struct CNExecutionHistoryItem {
     }
     
 }
-

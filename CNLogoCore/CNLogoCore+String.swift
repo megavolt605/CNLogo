@@ -1,6 +1,6 @@
 //
-//  CNTools.swift
-//  CNLogo
+//  CNLogoCore+String.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 12/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.

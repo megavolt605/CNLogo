@@ -9,9 +9,9 @@
 import CNLogoCore
 import UIKit
 
-extension CNBlock {
+extension CNLCBlock {
     
-    func createBlockBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "", bold: Bool = false) -> [CNBubbleView] {
+    func createBlockBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "", bold: Bool = false) -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         let bubbleName = prefix + identifier
         if bubbleName != "" {
@@ -22,7 +22,7 @@ extension CNBlock {
         return res
     }
     
-    @objc func createBubbles(inBlock: CNBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    @objc func createBubbles(inBlock: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res = createBlockBubbles(inBlock, height: height)
         if prefix == "" {
             for param in executableParameters {

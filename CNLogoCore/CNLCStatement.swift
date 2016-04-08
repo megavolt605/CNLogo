@@ -1,6 +1,6 @@
 //
-//  CNStatement.swift
-//  CNLogo
+//  CNLCStatement.swift
+//  CNLogoCore
 //
 //  Created by Igor Smirnov on 07/09/15.
 //  Copyright © 2015 Complex Numbers. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CNStatement: CNBlock {
+public class CNLCStatement: CNLCBlock {
     
     override public var identifier: String {
         return "Anonymous STATEMENT \(self)"
