@@ -23,7 +23,7 @@ class CNProgramTableViewCell: UITableViewCell {
             contentView.addSubview(bubble)
         }
         
-        (0..<item.level).forEach { index in
+        for index in 0..<item.level {
             if index != 0 || item.startIndex == nil {
                 let bubble = CNBubbleBlockShiftView(text: "", color: UIColor.lightGrayColor(), height: height, bold: false)
                 addBubble(bubble)
@@ -40,9 +40,7 @@ class CNProgramTableViewCell: UITableViewCell {
             addBubble(bubble)
         }
         
-        for bubble in bubbles {
-            addBubble(bubble)
-        }
+        bubbles.forEach { addBubble($0) }
     }
     
     override func prepareForReuse() {

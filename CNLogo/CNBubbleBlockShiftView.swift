@@ -22,13 +22,14 @@ class CNBubbleBlockShiftView: CNBubbleView {
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + 4.0, size.height)
+        size = CGSizeMake(strRect.width + 12.0, size.height)
     }
     
     override func drawRect(rect: CGRect) {
         
         let attrs = textAttrs()
         let str = NSString(string: text)
+        let size = CGSizeMake(self.size.width - 8.0, self.size.height)
         
         let rectangleRect = CGRect(origin: CGPointZero, size: size)
         let rectanglePath = UIBezierPath(rect: rectangleRect)

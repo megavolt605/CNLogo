@@ -13,23 +13,20 @@ class CNBubbleBlockEndView: CNBubbleView {
     override func calcSize() {
         
         let attrs = textAttrs()
-        
         let str = NSAttributedString(string: text, attributes: attrs)
-        
         let strRect = str.boundingRectWithSize(
             CGSizeMake(CGFloat.infinity, 0.0),
             options: .UsesLineFragmentOrigin, //NSStringDrawingOptions(),
             context: nil
         )
         strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + 20.0, size.height)
+        size = CGSizeMake(strRect.width + 8.0, size.height)
     }
     
     override func drawRect(rect: CGRect) {
         
         let attrs = textAttrs()
         let str = NSString(string: text)
-        
         
         let rectangleRect = CGRectMake(0.0, 5.0, size.width, size.height - 10.0)
         let rectanglePath = UIBezierPath(
