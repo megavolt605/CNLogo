@@ -60,7 +60,7 @@ public class CNLCProgram: CNLCBlock {
         super.init()
     }
     
-    public required init(data: [String : AnyObject]) {
+    override public init(data: [String : AnyObject]) {
         programName = data["program-name"] as! String
         super.init(data: data["program-body"] as! [String : AnyObject])
         internalInit()

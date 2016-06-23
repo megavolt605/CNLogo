@@ -139,7 +139,7 @@ public class CNLCExpression: CNLCBlock {
         super.init()
     }
     
-    public required init(data: [String: AnyObject]) {
+    override public init(data: [String: AnyObject]) {
         source = []
         super.init(data: data)
         if let info = data["source"] as? [[String: AnyObject]] {

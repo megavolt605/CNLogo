@@ -9,7 +9,7 @@
 import Foundation
 
 /// Variable of any type with value
-@objc public class CNLCVariable: NSObject {
+public class CNLCVariable {
     public var variableName: String
     public var variableValue: CNLCExpression
     public var parentBlock: CNLCBlock?

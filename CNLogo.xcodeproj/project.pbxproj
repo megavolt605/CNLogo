@@ -21,19 +21,11 @@
 		7856FA871B9E01B40037E99F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA851B9E01B40037E99F /* LaunchScreen.xib */; };
 		7856FA931B9E01B40037E99F /* CNExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNExpressionTests.swift */; };
 		785E7A761BB475FB00998ADB /* CNBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A751BB475FB00998ADB /* CNBubbleView.swift */; };
-		785E7A781BB7F29100998ADB /* CNBubbleView+CNBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A771BB7F29100998ADB /* CNBubbleView+CNBlock.swift */; };
 		78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */; };
 		78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
 		78CA6F6A1CB7231900BB8F16 /* CNBubbleBlockStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F691CB7231900BB8F16 /* CNBubbleBlockStartView.swift */; };
 		78CA6F6C1CB7233800BB8F16 /* CNBubbleBlockEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F6B1CB7233800BB8F16 /* CNBubbleBlockEndView.swift */; };
 		78CA6F6E1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F6D1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift */; };
-		78CA6F711CB7259400BB8F16 /* CNBubbleView+CNStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F701CB7259400BB8F16 /* CNBubbleView+CNStatement.swift */; };
-		78CA6F731CB725C300BB8F16 /* CNBubbleView+CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F721CB725C300BB8F16 /* CNBubbleView+CNVariable.swift */; };
-		78CA6F751CB725D300BB8F16 /* CNBubbleView+CNExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F741CB725D300BB8F16 /* CNBubbleView+CNExpression.swift */; };
-		78CA6F771CB725E500BB8F16 /* CNBubbleView+CNStatementVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F761CB725E500BB8F16 /* CNBubbleView+CNStatementVar.swift */; };
-		78CA6F791CB725FB00BB8F16 /* CNBubbleView+CNExpressionParseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F781CB725FB00BB8F16 /* CNBubbleView+CNExpressionParseElement.swift */; };
-		78CA6F7B1CB7261100BB8F16 /* CNBubbleView+CNStatementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F7A1CB7261100BB8F16 /* CNBubbleView+CNStatementFunction.swift */; };
-		78CA6F7D1CB7262B00BB8F16 /* CNBubbleView+CNStatementCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F7C1CB7262B00BB8F16 /* CNBubbleView+CNStatementCall.swift */; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; };
 		84EC1A43D33EC1E3F7FE3104 /* Pods_CNLogoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B77F37B10D0E486DE96676D /* Pods_CNLogoTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -114,19 +106,11 @@
 		7856FA911B9E01B40037E99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7856FA921B9E01B40037E99F /* CNExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNExpressionTests.swift; sourceTree = "<group>"; };
 		785E7A751BB475FB00998ADB /* CNBubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleView.swift; sourceTree = "<group>"; };
-		785E7A771BB7F29100998ADB /* CNBubbleView+CNBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNBlock.swift"; sourceTree = "<group>"; };
 		78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewDataSource.swift; sourceTree = "<group>"; };
 		78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CNLogoCore.xcodeproj; sourceTree = "<group>"; };
 		78CA6F691CB7231900BB8F16 /* CNBubbleBlockStartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockStartView.swift; sourceTree = "<group>"; };
 		78CA6F6B1CB7233800BB8F16 /* CNBubbleBlockEndView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockEndView.swift; sourceTree = "<group>"; };
 		78CA6F6D1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockShiftView.swift; sourceTree = "<group>"; };
-		78CA6F701CB7259400BB8F16 /* CNBubbleView+CNStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNStatement.swift"; sourceTree = "<group>"; };
-		78CA6F721CB725C300BB8F16 /* CNBubbleView+CNVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNVariable.swift"; sourceTree = "<group>"; };
-		78CA6F741CB725D300BB8F16 /* CNBubbleView+CNExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNExpression.swift"; sourceTree = "<group>"; };
-		78CA6F761CB725E500BB8F16 /* CNBubbleView+CNStatementVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNStatementVar.swift"; sourceTree = "<group>"; };
-		78CA6F781CB725FB00BB8F16 /* CNBubbleView+CNExpressionParseElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNExpressionParseElement.swift"; sourceTree = "<group>"; };
-		78CA6F7A1CB7261100BB8F16 /* CNBubbleView+CNStatementFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNStatementFunction.swift"; sourceTree = "<group>"; };
-		78CA6F7C1CB7262B00BB8F16 /* CNBubbleView+CNStatementCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNBubbleView+CNStatementCall.swift"; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
 		AC5C8C89A01537ADB22F7FAA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B989B2914AC7026F8A6F03B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,9 +230,9 @@
 				78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */,
 				78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */,
 				78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */,
-				78C0D3CF1BB95E2800CCCE70 /* Resources */,
 				7825FCFD1BC00C20004C2903 /* CNButton.swift */,
 				7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */,
+				78C0D3CF1BB95E2800CCCE70 /* Resources */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -296,14 +280,6 @@
 		78CA6F7E1CB726C700BB8F16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				785E7A771BB7F29100998ADB /* CNBubbleView+CNBlock.swift */,
-				78CA6F701CB7259400BB8F16 /* CNBubbleView+CNStatement.swift */,
-				78CA6F721CB725C300BB8F16 /* CNBubbleView+CNVariable.swift */,
-				78CA6F741CB725D300BB8F16 /* CNBubbleView+CNExpression.swift */,
-				78CA6F761CB725E500BB8F16 /* CNBubbleView+CNStatementVar.swift */,
-				78CA6F781CB725FB00BB8F16 /* CNBubbleView+CNExpressionParseElement.swift */,
-				78CA6F7A1CB7261100BB8F16 /* CNBubbleView+CNStatementFunction.swift */,
-				78CA6F7C1CB7262B00BB8F16 /* CNBubbleView+CNStatementCall.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -537,22 +513,14 @@
 				78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */,
 				785E7A761BB475FB00998ADB /* CNBubbleView.swift in Sources */,
 				78CA6F6A1CB7231900BB8F16 /* CNBubbleBlockStartView.swift in Sources */,
-				78CA6F711CB7259400BB8F16 /* CNBubbleView+CNStatement.swift in Sources */,
-				78CA6F7B1CB7261100BB8F16 /* CNBubbleView+CNStatementFunction.swift in Sources */,
 				78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */,
 				78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */,
 				7825FCFE1BC00C20004C2903 /* CNButton.swift in Sources */,
-				78CA6F771CB725E500BB8F16 /* CNBubbleView+CNStatementVar.swift in Sources */,
-				78CA6F791CB725FB00BB8F16 /* CNBubbleView+CNExpressionParseElement.swift in Sources */,
 				7825FD021BC012BA004C2903 /* CNLogo+UIImage.swift in Sources */,
-				785E7A781BB7F29100998ADB /* CNBubbleView+CNBlock.swift in Sources */,
 				7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */,
-				78CA6F7D1CB7262B00BB8F16 /* CNBubbleView+CNStatementCall.swift in Sources */,
 				78CA6F6E1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift in Sources */,
 				7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */,
 				7825FD0E1BC13C82004C2903 /* CNOptions.swift in Sources */,
-				78CA6F751CB725D300BB8F16 /* CNBubbleView+CNExpression.swift in Sources */,
-				78CA6F731CB725C300BB8F16 /* CNBubbleView+CNVariable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,7 +37,7 @@ public enum CNLCBlockPrepareResult {
 }
 
 /// Abstract code block with (or without) parameters
-@objc public class CNLCBlock: NSObject {
+public class CNLCBlock {
     
     public var formalParameters: [CNLCVariable] = []
     public var executableParameters: [CNLCVariable] = []
@@ -54,7 +54,7 @@ public enum CNLCBlockPrepareResult {
         return "Anonymous BLOCK"
     }
     
-    override public var description: String {
+    public var description: String {
         if executableParameters.count > 0 {
             return "\(identifier) \(parametersDescription)"
         } else {
@@ -64,11 +64,8 @@ public enum CNLCBlockPrepareResult {
     
     public var parametersDescription: String {
         return executableParameters.reduce("") {
-            if $0 == "" {
-                return $1.variableName ?? "" + $1.variableValue.description
-            } else {
-                return $0 + "," + ($1.variableName ?? "") + $1.variableValue.description
-            }
+            let variableName = $1.variableName ?? ""
+            return ($0 == "" ? "" : "\($0),") + "\(variableName)\($1.variableValue.description)"
         }
     }
     
@@ -157,11 +154,8 @@ public enum CNLCBlockPrepareResult {
         return res
     }
 
-    override public init() {
-        super.init()
-    }
-    
-    deinit {
+    public init() {
+        //
     }
     
     public init(executableParameters: [CNLCVariable]) {
@@ -177,8 +171,7 @@ public enum CNLCBlockPrepareResult {
         self.statements = statements
     }
     
-    public required init(data: [String: AnyObject]) {
-        super.init()
+    public init(data: [String: AnyObject]) {
         executableParameters = []
         if let info = data["parameters"] as? [String: [String: AnyObject]] {
             executableParameters = info.map { name, value in

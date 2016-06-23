@@ -41,7 +41,19 @@ public class CNLCStatementFunction: CNLCStatement {
         self.formalParameters = formalParameters
     }
 
-    public required init(data: [String : AnyObject]) {
+    required public init(data: [String : AnyObject]) {
         fatalError("init(data:) has not been implemented")
+    }
+    
+    public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+        fatalError("init(executableParameters:statements:) has not been implemented")
+    }
+    
+    public required init(executableParameters: [CNLCVariable]) {
+        fatalError("init(executableParameters:) has not been implemented")
+    }
+    
+    public required init(statements: [CNLCStatement]) {
+        fatalError("init(statements:) has not been implemented")
     }
 }

@@ -34,7 +34,8 @@ class CNBubbleBlockStartView: CNBubbleView {
         let rectanglePath = UIBezierPath(
             roundedRect: rectangleRect,
             byRoundingCorners: [UIRectCorner.TopLeft, UIRectCorner.TopRight, UIRectCorner.BottomRight],
-            cornerRadii: CGSizeMake(size.height / 4.0, size.height / 4.0))
+            cornerRadii: CGSizeMake(size.height / 4.0, size.height / 4.0)
+        )
         rectanglePath.closePath()
         rectanglePath.moveToPoint(CGPointMake(0.0, size.height / 2.0))
         rectanglePath.addLineToPoint(CGPointMake(4.0, size.height / 2.0))

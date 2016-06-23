@@ -18,4 +18,20 @@ public class CNLCStatement: CNLCBlock {
         return ["statement-id": identifier, "statement-info": super.store()]
     }
     
+    override public required init(data: [String: AnyObject]) {
+        super.init()
+    }
+    
+    override public required init(statements: [CNLCStatement]) {
+        super.init(statements: statements)
+    }
+
+    override public required init(executableParameters: [CNLCVariable]) {
+        super.init(executableParameters: executableParameters)
+    }
+    
+    override public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+        super.init(executableParameters: executableParameters, statements: statements)
+    }
+    
 }

@@ -143,66 +143,66 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             EndFor
         */
 
-        /*
-        let program = CNProgram(
+        
+        let program = CNLCProgram(
             programName: "Example 2",
             statements: [
-                CNStatementPrint(
-                    executableParameters: [CNParameter(value: CNValue.string(value: "Started"))]
+                CNLCStatementPrint(
+                    executableParameters: [CNLCParameter(value: CNLCValue.String(value: "Started"))]
                 ),
                 
-                CNStatementFunction(
+                CNLCStatementFunction(
                     funcName: "drawSquare",
-                    formalParameters: [CNVariable(variableName: "sideLength", variableValue: CNValue.double(value: 0.0))],
+                    formalParameters: [CNLCVariable(variableName: "sideLength", variableValue: CNLCValue.Double(value: 0.0))],
                     statements: [
-                        CNStatementRepeat(
-                            executableParameters: [CNParameter(value: CNValue.int(value: 4))],
+                        CNLCStatementRepeat(
+                            executableParameters: [CNLCParameter(value: CNLCValue.Int(value: 4))],
                             statements: [
-                                CNStatementForward(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Variable(variableName: "sideLength")
+                                CNLCStatementForward(executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                    CNLCExpressionParseElement.Variable(variableName: "sideLength")
                                 ]))]),
-                                CNStatementRotate(executableParameters: [CNParameter(value: CNExpression(source: [
-                                    CNExpressionParseElement.Value(value: CNValue.double(value: 90.0))
+                                CNLCStatementRotate(executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                    CNLCExpressionParseElement.Value(value: CNLCValue.Double(value: 90.0))
                                 ]))])
                             ]
                         )
                     ]
                 ),
                 
-                CNStatementVar(variableName: "step", executableParameters: [CNParameter(value: CNValue.int(value: 1))]),
-                CNStatementColor(executableParameters: [CNParameter(value: CNValue.color(value: UIColor.orangeColor()))]),
-                CNStatementRepeat(
-                    executableParameters: [CNParameter(value: CNValue.int(value: 20))],
+                CNLCStatementVar(variableName: "step", executableParameters: [CNLCParameter(value: CNLCValue.Int(value: 1))]),
+                CNLCStatementColor(executableParameters: [CNLCParameter(value: CNLCValue.Color(value: UIColor.orangeColor()))]),
+                CNLCStatementRepeat(
+                    executableParameters: [CNLCParameter(value: CNLCValue.Int(value: 20))],
                     statements: [
-                        CNStatementPrint(
-                            executableParameters: [CNParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step")
+                        CNLCStatementPrint(
+                            executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                CNLCExpressionParseElement.Variable(variableName: "step")
                                 ]))]
                         ),
-                        CNStatementWidth(
-                            executableParameters: [CNParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step"),
-                                CNExpressionParseElement.Div,
-                                CNExpressionParseElement.Value(value: CNValue.double(value: 10.0))
+                        CNLCStatementWidth(
+                            executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                CNLCExpressionParseElement.Variable(variableName: "step"),
+                                CNLCExpressionParseElement.Div,
+                                CNLCExpressionParseElement.Value(value: CNLCValue.Double(value: 10.0))
                                 ]))]
                         ),
-                        CNStatementVar(
-                            variableName: "step", executableParameters: [CNParameter(value: CNExpression(source: [
-                                CNExpressionParseElement.Variable(variableName: "step"),
-                                CNExpressionParseElement.Add,
-                                CNExpressionParseElement.Value(value: CNValue.int(value: 1))
+                        CNLCStatementVar(
+                            variableName: "step", executableParameters: [CNLCParameter(value: CNLCExpression(source: [
+                                CNLCExpressionParseElement.Variable(variableName: "step"),
+                                CNLCExpressionParseElement.Add,
+                                CNLCExpressionParseElement.Value(value: CNLCValue.Int(value: 1))
                                 ]))]
                         ),
-                        CNStatementCall(funcName: "drawSquare", executableParameters: [CNVariable(variableName: "sideLength", variableValue: CNValue.double(value: 100.0))]),
-                        CNStatementRotate(executableParameters: [CNParameter(value: CNValue.double(value: 18.0))])
+                        CNLCStatementCall(funcName: "drawSquare", executableParameters: [CNLCVariable(variableName: "sideLength", variableValue: CNLCValue.Double(value: 100.0))]),
+                        CNLCStatementRotate(executableParameters: [CNLCParameter(value: CNLCValue.Double(value: 18.0))])
                     ]
                 ),
-                CNStatementPrint(
-                    executableParameters: [CNParameter(value: CNValue.string(value: "Finished"))]
+                CNLCStatementPrint(
+                    executableParameters: [CNLCParameter(value: CNLCValue.String(value: "Finished"))]
                 )
             ]
-        )*/
-        
+        )
+        /*
         let program = CNLCProgram(
             programName: "Example 3",
             statements: [
@@ -294,7 +294,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
                 )
             ]
         )
-
+        */
         CNLCEnviroment.defaultEnviroment.currentProgram = program
 
         switch program.prepare() {
