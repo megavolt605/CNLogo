@@ -74,11 +74,6 @@ public class CNLCStatementPop: CNLCStatement {
         return res
     }
     
-    public init(variableName: String) {
-        self.variableName = variableName
-        super.init()
-    }
-    
     required public init(data: [String : AnyObject]) {
         if let variableName = data["variable-name"] as? String {
             self.variableName = variableName
@@ -86,6 +81,18 @@ public class CNLCStatementPop: CNLCStatement {
         } else {
             fatalError("CNStatementVar.init(data:) variable name not found")
         }
+    }
+    
+    public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+        fatalError("init(executableParameters:statements:) has not been implemented")
+    }
+    
+    public required init(statements: [CNLCStatement]) {
+        fatalError("init(statements:) has not been implemented")
+    }
+    
+    public required init(executableParameters: [CNLCVariable]) {
+        fatalError("init(executableParameters:) has not been implemented")
     }
     
 }

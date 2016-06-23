@@ -70,4 +70,16 @@ public class CNLCStatementIf: CNLCStatement {
         }
     }
     
+    public required init(statements: [CNLCStatement]) {
+        fatalError("init(statements:) has not been implemented")
+    }
+    
+    public required init(executableParameters: [CNLCVariable]) {
+        fatalError("init(executableParameters:) has not been implemented")
+    }
+    
+    public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+        fatalError("init(executableParameters:statements:) has not been implemented")
+    }
+    
 }

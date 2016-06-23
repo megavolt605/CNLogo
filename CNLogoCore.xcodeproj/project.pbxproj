@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7825FD101BC14A51004C2903 /* CNLCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD0F1BC14A51004C2903 /* CNLCError.swift */; };
 		785260511BBC19A500AF34A7 /* CNLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785260501BBC19A500AF34A7 /* CNLoader.swift */; };
+		785BFF841CBA65F600318E76 /* CNLCValueOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BFF831CBA65F600318E76 /* CNLCValueOperators.swift */; };
 		785CA9D61BB9D0490087EEB0 /* CNLCEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CA9D51BB9D0490087EEB0 /* CNLCEnviroment.swift */; };
 		78C0D3921BB9407200CCCE70 /* CNLogoCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C0D3911BB9407200CCCE70 /* CNLogoCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C0D3991BB9407200CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		7825FD0F1BC14A51004C2903 /* CNLCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCError.swift; sourceTree = "<group>"; };
 		785260501BBC19A500AF34A7 /* CNLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLoader.swift; sourceTree = "<group>"; };
+		785BFF831CBA65F600318E76 /* CNLCValueOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCValueOperators.swift; sourceTree = "<group>"; };
 		785CA9D51BB9D0490087EEB0 /* CNLCEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCEnviroment.swift; sourceTree = "<group>"; };
 		78C0D38E1BB9407200CCCE70 /* CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLogoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C0D3911BB9407200CCCE70 /* CNLogoCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLogoCore.h; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				78C0D3911BB9407200CCCE70 /* CNLogoCore.h */,
 				7825FD0F1BC14A51004C2903 /* CNLCError.swift */,
 				78C0D3BC1BB941AC00CCCE70 /* CNLCValue.swift */,
+				785BFF831CBA65F600318E76 /* CNLCValueOperators.swift */,
 				78C0D3BD1BB941AC00CCCE70 /* CNVariable.swift */,
 				78CA6F7F1CB7294D00BB8F16 /* CNLCParameter.swift */,
 				78C0D3B31BB941AC00CCCE70 /* CNLCBlock.swift */,
@@ -328,6 +331,7 @@
 				78CA6F8A1CB732CA00BB8F16 /* CNLCStatementMove.swift in Sources */,
 				78CA6F981CB7337900BB8F16 /* CNLCStatementScale.swift in Sources */,
 				78CA6F821CB729A800BB8F16 /* CNLCStatementCall.swift in Sources */,
+				785BFF841CBA65F600318E76 /* CNLCValueOperators.swift in Sources */,
 				78C0D3CD1BB9424A00CCCE70 /* CNLCExecutionHistory.swift in Sources */,
 				78CA6F841CB729D500BB8F16 /* CNLCExpressionParseElement.swift in Sources */,
 				78C0D3C21BB941AC00CCCE70 /* CNLCFunctions.swift in Sources */,

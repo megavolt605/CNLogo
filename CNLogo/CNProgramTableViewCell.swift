@@ -15,7 +15,7 @@ class CNProgramTableViewCell: UITableViewCell {
     func setup(item: CNProgramTableViewItem, height: CGFloat) {
         var x: CGFloat = 5.0
         
-        let bubbles = item.block.createBubbles(item.block, height: height, prefix: item.startIndex == nil ? "" : "End of ")
+        let bubbles = CNBubbleView.bubbleFor(item.block, height: height, prefix: item.startIndex == nil ? "" : "End of ")
 
         func addBubble(bubble: CNBubbleView) {
             bubble.frame = CGRect(origin: CGPointMake(x, 0), size: bubble.size)
