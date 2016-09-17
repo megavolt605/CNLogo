@@ -10,36 +10,36 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-public class CNLCProgram: CNLCBlock {
+open class CNLCProgram: CNLCBlock {
 
-    override public var identifier: String {
+    override open var identifier: String {
         return "PROGRAM"
     }
     
-    public var programName: String
-    public var player = CNLCPlayer()
-    public var globalStack = CNLCStack<CNLCValue>()
-    public var executionHistory = CNLCExecutionHistory()
-    public var embedFunctions: [CNLCStatementFunction] = [
+    open var programName: String
+    open var player = CNLCPlayer()
+    open var globalStack = CNLCStack<CNLCValue>()
+    open var executionHistory = CNLCExecutionHistory()
+    open var embedFunctions: [CNLCStatementFunction] = [
         CNLCFunctionSin(),
         CNLCFunctionCos()
     ]
     
-    public func clear() -> CNLCValue {
+    open func clear() -> CNLCValue {
         let result = player.clear(nil)
         if result.isError { return result }
 
         return executionHistory.clear()
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = clear()
         if result.isError { return result }
         
         return super.execute()
     }
 
-    override public func functionByName(name: String) -> CNLCStatementFunction? {
+    override open func functionByName(_ name: String) -> CNLCStatementFunction? {
         for f in embedFunctions {
             if f.funcName == name {
                 return f
@@ -48,11 +48,11 @@ public class CNLCProgram: CNLCBlock {
         return super.functionByName(name)
     }
     
-    private func internalInit() {
-        variables.append(CNLCVariable(variableName: "PI", variableValue: CNLCValue.Double(value: M_PI)))
-        variables.append(CNLCVariable(variableName: "2_PI", variableValue: CNLCValue.Double(value: M_2_PI)))
-        variables.append(CNLCVariable(variableName: "PI_2", variableValue: CNLCValue.Double(value: M_PI_2)))
-        variables.append(CNLCVariable(variableName: "EXP", variableValue:  CNLCValue.Double(value: M_E)))
+    fileprivate func internalInit() {
+        variables.append(CNLCVariable(variableName: "PI", variableValue: CNLCValue.double(value: M_PI)))
+        variables.append(CNLCVariable(variableName: "2_PI", variableValue: CNLCValue.double(value: M_2_PI)))
+        variables.append(CNLCVariable(variableName: "PI_2", variableValue: CNLCValue.double(value: M_PI_2)))
+        variables.append(CNLCVariable(variableName: "EXP", variableValue:  CNLCValue.double(value: M_E)))
     }
     
     public override init() {
@@ -60,7 +60,7 @@ public class CNLCProgram: CNLCBlock {
         super.init()
     }
     
-    override public init(data: [String : AnyObject]) {
+    override public init(data: [String : Any]) {
         programName = data["program-name"] as! String
         super.init(data: data["program-body"] as! [String : AnyObject])
         internalInit()

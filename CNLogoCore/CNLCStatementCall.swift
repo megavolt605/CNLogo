@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class CNLCStatementCall: CNLCStatement {
+open class CNLCStatementCall: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "CALL"
     }
     
-    public var funcName: String
+    open var funcName: String
     
-    override public var description: String {
+    override open var description: String {
         return "\(identifier) \(funcName)(\(parametersDescription))"
     }
     
@@ -32,7 +32,7 @@ public class CNLCStatementCall: CNLCStatement {
      }*/
      }*/
     
-    override public func variableByName(name: String) -> CNLCVariable? {
+    override open func variableByName(_ name: String) -> CNLCVariable? {
         for v in variables {
             if v.variableName == name {
                 return v
@@ -41,7 +41,7 @@ public class CNLCStatementCall: CNLCStatement {
         return parentBlock?.variableByName(name)
     }
     
-    public override func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    open override func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
         
@@ -54,7 +54,7 @@ public class CNLCStatementCall: CNLCStatement {
             }
             return function.executeStatements()
         }
-        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.step, fromBlock: self)
         return result
     }
     
@@ -77,6 +77,10 @@ public class CNLCStatementCall: CNLCStatement {
     
     public required init(executableParameters: [CNLCVariable]) {
         fatalError("init(executableParameters:) has not been implemented")
+    }
+    
+    override public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
     }
     
 }

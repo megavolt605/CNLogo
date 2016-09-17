@@ -9,227 +9,227 @@
 import Foundation
 
 public enum CNLCExpressionParseElementKind {
-    case Prefix, Suffix, Infix
+    case prefix, suffix, infix
 }
 
 public enum CNLCExpressionParseElementAssociativity {
-    case Left, Right
+    case left, right
 }
 
 public enum CNLCExpressionParseElement {
-    case Error(error: CNLCError)
-    case Add, Sub, Mul, Div, Power
-    case BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder
-    case IsEqual, IsNotEqual, Assign
+    case error(error: CNLCError)
+    case add, sub, mul, div, power
+    case boolAnd, boolOr, bitAnd, bitOr, bitXor, remainder
+    case isEqual, isNotEqual, assign
     
-    case BracketOpen, BracketClose
+    case bracketOpen, bracketClose
     case Value(value: CNLCValue)
-    case Variable(variableName: String)
-    case Function(functionName: String, functionParameters: [CNLCExpression])
+    case variable(variableName: String)
+    case function(functionName: String, functionParameters: [CNLCExpression])
     
     public var isError: Bool {
         switch self {
-        case .Error: return true
+        case .error: return true
         default: return true
         }
     }
     
     public var description: String {
         switch self {
-        case Add: return "+"
-        case Sub: return "-"
-        case Mul: return "*"
-        case Div: return "/"
-        case Power: return "^^"
-        case BoolAnd: return "&&"
-        case BoolOr: return "||"
-        case BitAnd: return "&"
-        case BitOr: return "|"
-        case BitXor: return "^"
-        case Remainder: return "%"
-        case IsEqual: return "=="
-        case IsNotEqual: return "!="
-        case Assign: return "="
-        case BracketOpen: return "("
-        case BracketClose: return ")"
-        case let Value(value): return value.description
-        case let Variable(variableName): return variableName
-        case let Function(functionName, _): return "\(functionName)"//(\(functionParameters.description))"
-        case let Error(error): return error.description
+        case .add: return "+"
+        case .sub: return "-"
+        case .mul: return "*"
+        case .div: return "/"
+        case .power: return "^^"
+        case .boolAnd: return "&&"
+        case .boolOr: return "||"
+        case .bitAnd: return "&"
+        case .bitOr: return "|"
+        case .bitXor: return "^"
+        case .remainder: return "%"
+        case .isEqual: return "=="
+        case .isNotEqual: return "!="
+        case .assign: return "="
+        case .bracketOpen: return "("
+        case .bracketClose: return ")"
+        case let .Value(value): return value.description
+        case let .variable(variableName): return variableName
+        case let .function(functionName, _): return "\(functionName)"//(\(functionParameters.description))"
+        case let .error(error): return error.description
         }
     }
     
-    public func getValue(left: CNLCExpressionParseElement, _ right: CNLCExpressionParseElement, _ inBlock: CNLCBlock) -> CNLCExpressionParseElement {
+    public func getValue(_ left: CNLCExpressionParseElement, _ right: CNLCExpressionParseElement, _ inBlock: CNLCBlock) -> CNLCExpressionParseElement {
         
         let rightValue = left.value(inBlock)
         let leftValue = right.value(inBlock)
         var result: CNLCValue
         switch self {
-        case Add: result = leftValue + rightValue
-        case Sub: result = leftValue - rightValue
-        case Mul: result = leftValue * rightValue
-        case Div: result = leftValue / rightValue
-        case Power: result = leftValue ^^ rightValue
-        case BoolAnd: result = leftValue && rightValue
-        case BoolOr: result = leftValue || rightValue
-        case BitAnd: result = leftValue & rightValue
-        case BitOr: result = leftValue | rightValue
-        case BitXor: result = leftValue ^ rightValue
-        case Remainder: result = leftValue % rightValue
-        case IsEqual: result = leftValue == rightValue
-        case IsNotEqual: result = leftValue != rightValue
-        case Assign:
+        case .add: result = leftValue + rightValue
+        case .sub: result = leftValue - rightValue
+        case .mul: result = leftValue * rightValue
+        case .div: result = leftValue / rightValue
+        case .power: result = leftValue ^^ rightValue
+        case .boolAnd: result = leftValue && rightValue
+        case .boolOr: result = leftValue || rightValue
+        case .bitAnd: result = leftValue & rightValue
+        case .bitOr: result = leftValue | rightValue
+        case .bitXor: result = leftValue ^ rightValue
+        case .remainder: result = leftValue % rightValue
+        case .isEqual: result = leftValue == rightValue
+        case .isNotEqual: result = leftValue != rightValue
+        case .assign:
             switch left {
-            case let Variable(variableName):
+            case let .variable(variableName):
                 if let variable = inBlock.variableByName(variableName) {
                     variable.variableValue = CNLCExpression(source: [CNLCExpressionParseElement.Value(value: rightValue)])
                     return CNLCExpressionParseElement.Value(value: rightValue)
                 } else {
-                    result = .Error(block: nil, error: .VariableNotFound(variableName: variableName))
+                    result = .error(block: nil, error: .variableNotFound(variableName: variableName))
                 }
-            default: result = .Error(block: nil, error: .AssignToNonVariable)
+            default: result = .error(block: nil, error: .assignToNonVariable)
             }
-        default: result = .Error(block: nil, error: .InvalidOperator)
+        default: result = .error(block: nil, error: .invalidOperator)
         }
         switch result {
-        case let .Error(_, error):
-            result = .Error(block: inBlock, error: error)
+        case let .error(_, error):
+            result = .error(block: inBlock, error: error)
         default: break
         }
         return CNLCExpressionParseElement.Value(value: result)
     }
     
-    public func value(inBlock: CNLCBlock) -> CNLCValue {
+    public func value(_ inBlock: CNLCBlock) -> CNLCValue {
         switch self {
-        case let Value(value): return value
-        case let Variable(variableName):
+        case let .Value(value): return value
+        case let .variable(variableName):
             if let variable = inBlock.variableByName(variableName) {
                 return variable.variableValue.execute()
             } else {
-                return .Error(block: inBlock, error: .VariableNotFound(variableName: variableName))
+                return .error(block: inBlock, error: .variableNotFound(variableName: variableName))
             }
-        case let Function(functionName, functionParameters):
+        case let .function(functionName, functionParameters):
             if let function = inBlock.functionByName(functionName) {
                 return function.execute(functionParameters)
             } else {
-                return .Error(block: inBlock, error: .FunctionNotFound(functionName: functionName))
+                return .error(block: inBlock, error: .functionNotFound(functionName: functionName))
             }
-        case let .Error(error): return .Error(block: inBlock, error: error)
-        default: return .Unknown
+        case let .error(error): return .error(block: inBlock, error: error)
+        default: return .unknown
         }
     }
     
-    func isEqualTo(value: CNLCExpressionParseElement) -> Bool {
+    func isEqualTo(_ value: CNLCExpressionParseElement) -> Bool {
         switch (self, value) {
-        case (.Add, .Add): return true
-        case (.Sub, .Sub): return true
-        case (.Mul, .Mul): return true
-        case (.Div, .Div): return true
-        case (.Power, .Power): return true
-        case (.BoolAnd, .BoolAnd): return true
-        case (.BoolOr, .BoolOr): return true
-        case (.BitAnd, .BitAnd): return true
-        case (.BitOr, .BitOr): return true
-        case (.BitXor, .BitXor): return true
-        case (.Remainder, .Remainder): return true
-        case (.BracketOpen, .BracketOpen): return true
-        case (.BracketClose, .BracketClose): return true
-        case (.IsEqual, .IsEqual): return true
-        case (.IsNotEqual, .IsNotEqual): return true
+        case (.add, .add): return true
+        case (.sub, .sub): return true
+        case (.mul, .mul): return true
+        case (.div, .div): return true
+        case (.power, .power): return true
+        case (.boolAnd, .boolAnd): return true
+        case (.boolOr, .boolOr): return true
+        case (.bitAnd, .bitAnd): return true
+        case (.bitOr, .bitOr): return true
+        case (.bitXor, .bitXor): return true
+        case (.remainder, .remainder): return true
+        case (.bracketOpen, .bracketOpen): return true
+        case (.bracketClose, .bracketClose): return true
+        case (.isEqual, .isEqual): return true
+        case (.isNotEqual, .isNotEqual): return true
         default: return false
         }
     }
     
     var weight: Int {
         switch self {
-        case BoolAnd, BoolOr: return 100
-        case Add, Sub: return 200
-        case BitOr: return 250
-        case Mul, Div: return 300
-        case BitAnd: return 350
-        case BitXor, Remainder: return 375
-        case Power: return 400
+        case .boolAnd, .boolOr: return 100
+        case .add, .sub: return 200
+        case .bitOr: return 250
+        case .mul, .div: return 300
+        case .bitAnd: return 350
+        case .bitXor, .remainder: return 375
+        case .power: return 400
         default: return 0
         }
     }
     
     var kind: CNLCExpressionParseElementKind {
-        return .Infix
+        return .infix
     }
     
     var associativity: CNLCExpressionParseElementAssociativity {
-        return .Left
+        return .left
     }
     
     static let operators: [CNLCExpressionParseElement] = [
-        Add, Sub, Mul, Div, Power, BoolAnd, BoolOr, BitAnd, BitOr, BitXor, Remainder, IsEqual, IsNotEqual
+        add, sub, mul, div, power, boolAnd, boolOr, bitAnd, bitOr, bitXor, remainder, isEqual, isNotEqual
     ]
     
-    public func store() -> [String: AnyObject] {
+    public func store() -> [String: Any] {
         switch self {
-        case Add: return ["type": "add"]
-        case Sub: return ["type": "sub"]
-        case Mul: return ["type": "mul"]
-        case Div: return ["type": "div"]
-        case Power: return ["type": "power"]
-        case BoolAnd: return ["type": "bool-and"]
-        case BoolOr: return ["type": "bool-or"]
-        case BitAnd: return ["type": "bit-and"]
-        case BitOr: return ["type": "bit-or"]
-        case BitXor: return ["type": "bit-xor"]
-        case Remainder: return ["type": "remainder"]
-        case IsEqual: return ["type": "equal"]
-        case IsNotEqual: return ["type": "not-equal"]
-        case Assign: return ["type": "assign"]
+        case .add: return ["type": "add" as AnyObject]
+        case .sub: return ["type": "sub" as AnyObject]
+        case .mul: return ["type": "mul" as AnyObject]
+        case .div: return ["type": "div" as AnyObject]
+        case .power: return ["type": "power" as AnyObject]
+        case .boolAnd: return ["type": "bool-and" as AnyObject]
+        case .boolOr: return ["type": "bool-or" as AnyObject]
+        case .bitAnd: return ["type": "bit-and" as AnyObject]
+        case .bitOr: return ["type": "bit-or" as AnyObject]
+        case .bitXor: return ["type": "bit-xor" as AnyObject]
+        case .remainder: return ["type": "remainder" as AnyObject]
+        case .isEqual: return ["type": "equal" as AnyObject]
+        case .isNotEqual: return ["type": "not-equal" as AnyObject]
+        case .assign: return ["type": "assign" as AnyObject]
             
-        case BracketOpen: return ["type": "bracket-open"]
-        case BracketClose: return ["type": "bracket-close"]
-        case let Value(value): return ["type": "value", "value": value.store()]
-        case let Variable(variableName): return ["type": "variable", "variable-name": variableName]
-        case let Function(function): return [
-            "type": "function",
+        case .bracketOpen: return ["type": "bracket-open" as AnyObject]
+        case .bracketClose: return ["type": "bracket-close" as AnyObject]
+        case let .Value(value): return ["type": "value" as AnyObject, "value": value.store() as AnyObject]
+        case let .variable(variableName): return ["type": "variable" as AnyObject, "variable-name": variableName as AnyObject]
+        case let .function(function): return [
+            "type": "function" as AnyObject,
             "function": [
                 "function-name": function.functionName,
                 "function-params": function.functionParameters.map { $0.store() }
             ]
             ]
-        case .Error: return [:]
+        case .error: return [:]
         }
     }
     
-    public static func loadFromData(data: [String: AnyObject]) -> CNLCExpressionParseElement {
+    public static func loadFromData(_ data: [String: Any]) -> CNLCExpressionParseElement {
         if let type = data["type"] as? String {
             switch type {
-            case "add": return Add
-            case "sub": return Sub
-            case "mul": return Mul
-            case "div": return Div
-            case "power": return Power
-            case "bool-and": return BoolAnd
-            case "bool-or": return BoolOr
-            case "bit-and": return BitAnd
-            case "bit-or": return BitOr
-            case "bit-xor": return BitXor
-            case "remainder": return Remainder
-            case "equal": return IsEqual
-            case "not-equal": return IsNotEqual
-            case "assign": return Assign
+            case "add": return add
+            case "sub": return sub
+            case "mul": return mul
+            case "div": return div
+            case "power": return power
+            case "bool-and": return boolAnd
+            case "bool-or": return boolOr
+            case "bit-and": return bitAnd
+            case "bit-or": return bitOr
+            case "bit-xor": return bitXor
+            case "remainder": return remainder
+            case "equal": return isEqual
+            case "not-equal": return isNotEqual
+            case "assign": return assign
                 
-            case "bracket-open": return BracketOpen
-            case "bracket-close": return BracketClose
+            case "bracket-open": return bracketOpen
+            case "bracket-close": return bracketClose
             case "value":
-                if let value = data["value"] as? [String: AnyObject] {
-                    return Value(value: CNLCValue.loadFromData(value))
+                if let value = data["value"] as? [String: Any] {
+                    return Value(value: CNLCValue.loadFromData(value as [String : AnyObject]))
                 }
             case "variable":
                 if let variableName = data["variable-name"] as? String {
-                    return Variable(variableName: variableName)
+                    return variable(variableName: variableName)
                 }
             case "function":
-                if let function = data["funciton"] as? [String: AnyObject], functionName = function["function-name"] as? String {
-                    return Function(
+                if let function = data["funciton"] as? [String: Any], let functionName = function["function-name"] as? String {
+                    return self.function(
                         functionName: functionName,
-                        functionParameters: ((function["function-parameters"] as? [[String: AnyObject]])?.map { item in return CNLCExpression(data: item) }) ?? []
+                        functionParameters: ((function["function-parameters"] as? [[String: Any]])?.map { item in return CNLCExpression(data: item) }) ?? []
                     )
                 }
             default: break

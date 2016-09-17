@@ -10,23 +10,23 @@ import Foundation
 
 /// Description:    Clears drawing field, return player to initial state
 /// Arguments:      nope
-public class CNLCStatementClear: CNLCStatement {
+open class CNLCStatementClear: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "CLEAR"
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 0 {
-            CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -34,7 +34,7 @@ public class CNLCStatementClear: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.clear()
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }

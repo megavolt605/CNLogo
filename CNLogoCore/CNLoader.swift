@@ -27,8 +27,8 @@ struct CNLCLoader {
         "WIDTH": CNLCStatementWidth.self
     ]
     
-    static func createStatement(identifier: String?, info: [String: AnyObject]?) -> CNLCStatement? {
-        if let id = identifier, data = info, statement = knownStatements[id] {
+    static func createStatement(_ identifier: String?, info: [String: Any]?) -> CNLCStatement? {
+        if let id = identifier, let data = info, let statement = knownStatements[id] {
             let res = statement.init(data: data)
             if res.identifier == id {
                 return res

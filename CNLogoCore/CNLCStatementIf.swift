@@ -8,49 +8,49 @@
 
 import Foundation
 
-public class CNLCStatementIf: CNLCStatement {
+open class CNLCStatementIf: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "IF"
     }
     
     var statementsElse: [CNLCStatement] = []
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    public override func executeStatements() -> CNLCValue {
+    open override func executeStatements() -> CNLCValue {
         ///
-        return .Unknown
+        return .unknown
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         var result = super.execute(parameters)
         if result.isError { return result }
         
-        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.step, fromBlock: self)
         if let value = executableParameters.first?.variableValue.execute() {
             switch value {
-            case let .Bool(condition):
+            case let .bool(condition):
                 let statementsToExecute = condition ? statements : statementsElse
                 for statement in statementsToExecute {
                     result = statement.execute()
                     if result.isError { return result }
                 }
-            default: return .Error(block: self, error: .BoolValueExpected)
+            default: return .error(block: self, error: .boolValueExpected)
             }
         }
         return result
     }
     
-    override public func store() -> [String: AnyObject] {
+    override open func store() -> [String: Any] {
         var res = super.store()
         res["statement-else"] = statementsElse.map { $0.store() }
         return res
@@ -63,7 +63,7 @@ public class CNLCStatementIf: CNLCStatement {
     
     required public init(data: [String : AnyObject]) {
         super.init(data: data)
-        if let info = data["statements-else"] as? [[String: AnyObject]] {
+        if let info = data["statements-else"] as? [[String: Any]] {
             statementsElse = info.map { item in return CNLCStatement(data: item) }
         } else {
             statementsElse = []
@@ -79,7 +79,11 @@ public class CNLCStatementIf: CNLCStatement {
     }
     
     public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
-        fatalError("init(executableParameters:statements:) has not been implemented")
+        super.init(executableParameters: executableParameters, statements: statements)
+    }
+    
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
     }
     
 }

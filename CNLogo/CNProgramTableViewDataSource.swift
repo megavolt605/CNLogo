@@ -13,35 +13,35 @@ typealias CNProgramTableViewItem = (block: CNLCBlock, level: Int, startIndex: In
 
 class CNProgramTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    private var program: CNLCProgram
-    private var tableList: [CNProgramTableViewItem] = []
+    fileprivate var program: CNLCProgram
+    fileprivate var tableList: [CNProgramTableViewItem] = []
     
-    func indexOfBlock(block: CNLCBlock) -> Int? {
-        return tableList.indexOf { item in
+    func indexOfBlock(_ block: CNLCBlock) -> Int? {
+        return tableList.index { item in
             return item.block === block
         }
     }
     
     // UITableViewDataSource protocol
-    @objc func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    @objc func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableList.count
     }
     
-    @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CNProgramTableViewCell
-        cell.setup(tableList[indexPath.row], height: CNProgramTableViewCell.defaultHeight)
+    @objc func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CNProgramTableViewCell
+        cell.setup(tableList[(indexPath as NSIndexPath).row], height: CNProgramTableViewCell.defaultHeight)
         return cell
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CNProgramTableViewCell.defaultHeight
     }
     
-    func scanBlock(block: CNLCBlock, level: Int) {
+    func scanBlock(_ block: CNLCBlock, level: Int) {
         block.statements.forEach {
             let startIndex = tableList.count
             tableList.append((block: $0, level: level, startIndex: nil))

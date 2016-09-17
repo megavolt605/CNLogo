@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class CNLCStatementPush: CNLCStatement {
+open class CNLCStatementPush: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "PUSH"
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         var result = super.execute(parameters)
         if result.isError { return result }
@@ -24,34 +24,34 @@ public class CNLCStatementPush: CNLCStatement {
             if result.isError { return result }
             parentBlock?.valueStack.push(result)
         }
-        return .Unknown
+        return .unknown
     }
     
 }
 
-public class CNLCStatementPop: CNLCStatement {
+open class CNLCStatementPop: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "POP"
     }
     
-    public var variableName: String
+    open var variableName: String
     
     func popValue() -> CNLCValue? {
         return parentBlock?.valueStack.pop()
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
 
         if executableParameters.count != 0 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
         
@@ -61,16 +61,16 @@ public class CNLCStatementPop: CNLCStatement {
             } else {
                 parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: value))
             }
-            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.step, fromBlock: self)
             return value
         } else {
-            return .Error(block: self, error: .InvalidValue)
+            return .error(block: self, error: .invalidValue)
         }
     }
     
-    override public func store() -> [String: AnyObject] {
+    override open func store() -> [String: Any] {
         var res = super.store()
-        res["variable-name"] = variableName
+        res["variable-name"] = variableName as AnyObject?
         return res
     }
     
@@ -95,15 +95,19 @@ public class CNLCStatementPop: CNLCStatement {
         fatalError("init(executableParameters:) has not been implemented")
     }
     
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
+    }
+    
 }
 
-public class CNLCStatementGlobalPush: CNLCStatementPush {
+open class CNLCStatementGlobalPush: CNLCStatementPush {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "GPUSH"
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         var result = super.execute(parameters)
         if result.isError { return result }
 
@@ -117,9 +121,9 @@ public class CNLCStatementGlobalPush: CNLCStatementPush {
     
 }
 
-public class CNLCStatementGlobalPop: CNLCStatementPop {
+open class CNLCStatementGlobalPop: CNLCStatementPop {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "GPOP"
     }
     

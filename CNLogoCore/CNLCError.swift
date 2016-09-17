@@ -12,68 +12,68 @@ import Foundation
 public enum CNLCError {
     
     /// Not a error
-    case Unknown
+    case unknown
     
     /// There is no active program
-    case NoProgram
+    case noProgram
     
     /// Variable (variableName: String) not found
-    case VariableNotFound(variableName: String)
+    case variableNotFound(variableName: String)
     
     /// Function (functionName: String) not found
-    case FunctionNotFound(functionName: String)
+    case functionNotFound(functionName: String)
     
     /// Attempt assign value to non-variable object
-    case AssignToNonVariable
+    case assignToNonVariable
     
     /// Unknown operator in expression
-    case InvalidOperator
+    case invalidOperator
     
     /// Malformed expression
-    case InvalidExpression
+    case invalidExpression
     
     /// Function (functionName: String) parameter count mismatch
-    case InvalidParameterCount(functionName: String)
+    case invalidParameterCount(functionName: String)
     
     /// Function (functionName: String) parameter (parameterIndex: Int) type mismatch
-    case InvalidParameterType(functionName: String, parameterIndex: Int)
+    case invalidParameterType(functionName: String, parameterIndex: Int)
     
     /// Expected numeric value in expression
-    case NumericValueExpected
+    case numericValueExpected
     
     /// Expected integer value in expression
-    case IntValueExpected
+    case intValueExpected
 
     /// Expected logical value in expression
-    case BoolValueExpected
+    case boolValueExpected
     
     /// Unexpected value in expression
-    case InvalidValue
+    case invalidValue
     
     /// Attempt to declare duplicate variable (variableName: String)
-    case VariableAlreadyExists(variableName: String)
+    case variableAlreadyExists(variableName: String)
     
     /// Statement (statementIdentifier: String) parameter count mismatch (excpectedCount: Int, actualCount: Int)
-    case StatementParameterCountMismatch(statementIdentifier: String, excpectedCount: Int, actualCount: Int)
+    case statementParameterCountMismatch(statementIdentifier: String, excpectedCount: Int, actualCount: Int)
     
     /// Error printable description
     public var description: String {
         switch self {
-        case Unknown: return "Unknown error"
-        case NoProgram: return "No program"
-        case let VariableNotFound(variableName): return "Variable not found \(variableName)"
-        case let FunctionNotFound(functionName): return "Function not found \(functionName)"
-        case AssignToNonVariable: return "Assignment allowed to variables only"
-        case InvalidOperator: return "Invalid operator"
-        case InvalidExpression: return "Invalid expression"
-        case let InvalidParameterCount(functionName): return "Parameter count mismatch for function \(functionName)"
-        case let InvalidParameterType(functionName, parameterIndex): return "Parameter \(parameterIndex) type mismatch for function \(functionName)"
-        case NumericValueExpected: return "Numeric value expected"
-        case IntValueExpected: return "Integer value expected"
-        case BoolValueExpected: return "Boolean value expected"
-        case InvalidValue: return "Invalid value"
-        case let VariableAlreadyExists(variableName): return "Variable already exists \(variableName)"
-        case let StatementParameterCountMismatch(statementIdentifier, excpectedCount, actualCount): return "Statement \(statementIdentifier) expects \(excpectedCount) parameters, but found \(actualCount)"
+        case .unknown: return "Unknown error"
+        case .noProgram: return "No program"
+        case let .variableNotFound(variableName): return "Variable not found \(variableName)"
+        case let .functionNotFound(functionName): return "Function not found \(functionName)"
+        case .assignToNonVariable: return "Assignment allowed to variables only"
+        case .invalidOperator: return "Invalid operator"
+        case .invalidExpression: return "Invalid expression"
+        case let .invalidParameterCount(functionName): return "Parameter count mismatch for function \(functionName)"
+        case let .invalidParameterType(functionName, parameterIndex): return "Parameter \(parameterIndex) type mismatch for function \(functionName)"
+        case .numericValueExpected: return "Numeric value expected"
+        case .intValueExpected: return "Integer value expected"
+        case .boolValueExpected: return "Boolean value expected"
+        case .invalidValue: return "Invalid value"
+        case let .variableAlreadyExists(variableName): return "Variable already exists \(variableName)"
+        case let .statementParameterCountMismatch(statementIdentifier, excpectedCount, actualCount): return "Statement \(statementIdentifier) expects \(excpectedCount) parameters, but found \(actualCount)"
         }
     }
 }

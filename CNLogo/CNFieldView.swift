@@ -13,7 +13,7 @@ typealias CNAnimationCompletion = () -> Void
 
 protocol CNFieldViewDelegate: class {
     
-    func willExecuteHistoryItem(item: CNLCExecutionHistoryItem)
+    func willExecuteHistoryItem(_ item: CNLCExecutionHistoryItem)
     func didFinishExecution()
     
 }
@@ -27,26 +27,26 @@ class CNFieldView: UIView {
     var layers: [CALayer] = []
 
     var currentIndex = 0
-    var runState = CNRunState.Stopped
+    var runState = CNRunState.stopped
     weak var delegate: CNFieldViewDelegate?
     
-    func addPlayerAnimation(fromPoint: CGPoint, toPoint: CGPoint) {
+    func addPlayerAnimation(_ fromPoint: CGPoint, toPoint: CGPoint) {
 
         let playerAnimationX = CABasicAnimation(keyPath: "position.x")
         playerAnimationX.fromValue = fromPoint.x
         playerAnimationX.toValue = toPoint.x
         playerAnimationX.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         playerAnimationX.fillMode = kCAFillModeForwards
-        playerAnimationX.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimationX, forKey: "playerAnimationX")
+        playerAnimationX.isRemovedOnCompletion = false
+        playerLayer.add(playerAnimationX, forKey: "playerAnimationX")
         
         let playerAnimationY = CABasicAnimation(keyPath: "position.y")
         playerAnimationY.fromValue = fromPoint.y
         playerAnimationY.toValue = toPoint.y
         playerAnimationY.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         playerAnimationY.fillMode = kCAFillModeForwards
-        playerAnimationY.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimationY, forKey: "playerAnimationY")
+        playerAnimationY.isRemovedOnCompletion = false
+        playerLayer.add(playerAnimationY, forKey: "playerAnimationY")
         
     }
     
@@ -68,25 +68,25 @@ class CNFieldView: UIView {
         }
         
         if snapshotView.superview == nil {
-            snapshotView.opaque = false
-            snapshotView.frame = UIScreen.mainScreen().bounds
-            snapshotView.contentMode = .ScaleAspectFit
+            snapshotView.isOpaque = false
+            snapshotView.frame = UIScreen.main.bounds
+            snapshotView.contentMode = .scaleAspectFit
             addSubview(snapshotView)
         }
         snapshotView.image = nil
         
         if drawingView.superview == nil {
-            drawingView.opaque = false
-            drawingView.frame = UIScreen.mainScreen().bounds
+            drawingView.isOpaque = false
+            drawingView.frame = UIScreen.main.bounds
             addSubview(drawingView)
         }
         
         if playerLayer.superlayer == nil {
-            let image = UIImage(named: "player")!.CGImage
-            playerLayer.opaque = false
+            let image = UIImage(named: "player")!.cgImage
+            playerLayer.isOpaque = false
             playerLayer.contents = image
-            playerLayer.anchorPoint = CGPointMake(0.5, 1.0)
-            playerLayer.frame = CGRectMake(0.0, 0.0, 20.0, 20.0)
+            playerLayer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+            playerLayer.frame = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0)
             layer.addSublayer(playerLayer)
         }
         CATransaction.begin()
@@ -96,14 +96,14 @@ class CNFieldView: UIView {
         playerAnimation.toValue = 0.0
         playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         playerAnimation.fillMode = kCAFillModeForwards
-        playerAnimation.removedOnCompletion = false
-        playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
+        playerAnimation.isRemovedOnCompletion = false
+        playerLayer.add(playerAnimation, forKey: "playerRotation")
         CATransaction.commit()
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            playerLayer.position = CGPointMake(
-                program.player.startState.position.x,
-                program.player.startState.position.y
+            playerLayer.position = CGPoint(
+                x: program.player.startState.position.x,
+                y: program.player.startState.position.y
             )
         }
         
@@ -118,12 +118,12 @@ class CNFieldView: UIView {
         snapshotView.frame = bounds
     }
     
-    func makeSnapshot(force: Bool = false) {
+    func makeSnapshot(_ force: Bool = false) {
         if (layers.count > 200) || force {
             UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
             // Render the layer hierarchy to the current context
-            snapshotView.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
-            drawingView.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+            snapshotView.drawHierarchy(in: bounds, afterScreenUpdates: false)
+            drawingView.drawHierarchy(in: bounds, afterScreenUpdates: true)
             let viewImage = UIGraphicsGetImageFromCurrentImageContext()
         
             snapshotView.image = viewImage
@@ -135,15 +135,15 @@ class CNFieldView: UIView {
         }
     }
     
-    func addStrokeWithItem(item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addStrokeWithItem(_ item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
             CATransaction.setCompletionBlock(completion)
             let layer = CAShapeLayer()
-            let path = CGPathCreateMutable()
-            CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
-            CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
+            let path = CGMutablePath()
+            path.move(to: fromPoint)
+            path.addLine(to: toPoint)
             layer.path = path
             layer.strokeColor = item.playerState.color
             layer.lineWidth = item.playerState.width
@@ -156,15 +156,15 @@ class CNFieldView: UIView {
             strokeAnimation.toValue = 1.0
             strokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             strokeAnimation.fillMode = kCAFillModeForwards
-            strokeAnimation.removedOnCompletion = false
-            layer.addAnimation(strokeAnimation, forKey: "strokeAnimation")
+            strokeAnimation.isRemovedOnCompletion = false
+            layer.add(strokeAnimation, forKey: "strokeAnimation")
             addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options, completion: nil)
             CATransaction.commit()
         } else {
             let layer = CAShapeLayer()
-            let path = CGPathCreateMutable()
-            CGPathMoveToPoint(path, nil, fromPoint.x, fromPoint.y)
-            CGPathAddLineToPoint(path, nil, toPoint.x, toPoint.y)
+            let path = CGMutablePath()
+            path.move(to: fromPoint)
+            path.addLine(to: toPoint)
             layer.path = path
             layer.strokeColor = item.playerState.color
             layer.lineWidth = item.playerState.width
@@ -176,7 +176,7 @@ class CNFieldView: UIView {
         }
     }
     
-    func addPlayerMoveWithItem(item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addPlayerMoveWithItem(_ item: CNLCExecutionHistoryItem, fromPoint: CGPoint, toPoint: CGPoint, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
@@ -188,7 +188,7 @@ class CNFieldView: UIView {
         }
     }
 
-    func addPlayerRotationWithItem(item: CNLCExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, options: CNOptions, completion: CNAnimationCompletion?) {
+    func addPlayerRotationWithItem(_ item: CNLCExecutionHistoryItem, fromAngle: CGFloat, toAngle: CGFloat, options: CNOptions, completion: CNAnimationCompletion?) {
         if options.shouldAnimate {
             CATransaction.begin()
             CATransaction.setAnimationDuration(options.duration)
@@ -198,24 +198,24 @@ class CNFieldView: UIView {
             playerAnimation.toValue = toAngle
             playerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             playerAnimation.fillMode = kCAFillModeForwards
-            playerAnimation.removedOnCompletion = false
-            playerLayer.addAnimation(playerAnimation, forKey: "playerRotation")
+            playerAnimation.isRemovedOnCompletion = false
+            playerLayer.add(playerAnimation, forKey: "playerRotation")
             CATransaction.commit()
         } else {
             completion?()
         }
     }
     
-    func visualizeResult(options: CNOptions) {
+    func visualizeResult(_ options: CNOptions) {
         currentIndex = 0
         visualizeStep(options)
     }
     
-    func visualizeStep(options: CNOptions) {
+    func visualizeStep(_ options: CNOptions) {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             let history = program.executionHistory
             if currentIndex < history.history.count {
-                if runState == .Executing {
+                if runState == .executing {
                     makeSnapshot()
                     var shouldBreak = true
                     repeat {
@@ -223,18 +223,18 @@ class CNFieldView: UIView {
                         let item = history.history[currentIndex]
                         delegate?.willExecuteHistoryItem(item)
                         switch item.type {
-                        case .Clear:
+                        case .clear:
                             clear()
                             currentIndex += 1
                             shouldBreak = false
-                        case let .Move(fromPoint, toPoint, _):
+                        case let .move(fromPoint, toPoint, _):
                             if item.playerState.tailDown {
                                 addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
                                     self.currentIndex += 1
                                     if !options.shouldAnimate {
                                         shouldBreak = false
                                     } else {
-                                        dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                        DispatchQueue.main.async { self.visualizeStep(options) }
                                     }
                                 }
                             } else {
@@ -243,24 +243,24 @@ class CNFieldView: UIView {
                                     if !options.shouldAnimate {
                                         shouldBreak = false
                                     } else {
-                                        dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                        DispatchQueue.main.async { self.visualizeStep(options) }
                                     }
                                 }
                             }
-                        case let .Rotate(fromAngle, toAngle):
+                        case let .rotate(fromAngle, toAngle):
                             addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
                                 self.currentIndex += 1
                                 if !options.shouldAnimate {
                                     shouldBreak = false
                                 } else {
-                                    dispatch_async(dispatch_get_main_queue()) { self.visualizeStep(options) }
+                                    DispatchQueue.main.async { self.visualizeStep(options) }
                                 }
                             }
-                        case let .Print(value):
+                        case let .print(value):
                             print(value)
                             currentIndex += 1
                             shouldBreak = false
-                        case .TailState, .Color, .Width, .Scale, .Step, .StepIn, .StepOut:
+                        case .tailState, .color, .width, .scale, .step, .stepIn, .stepOut:
                             currentIndex += 1
                             shouldBreak = false
                             break
@@ -272,16 +272,16 @@ class CNFieldView: UIView {
             
             if currentIndex >= history.history.count {
                 makeSnapshot(true)
-                runState = .Stopped
+                runState = .stopped
                 delegate?.didFinishExecution()
             }
         }
     }
     
-    func execute(options: CNOptions) -> CNLCValue {
+    func execute(_ options: CNOptions) -> CNLCValue {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.clear()
-            program.player.startState.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+            program.player.startState.position = CGPoint(x: bounds.midX, y: bounds.midY)
             clear()
             let result = program.execute()
             if !options.shouldAnimate {
@@ -290,7 +290,7 @@ class CNFieldView: UIView {
             visualizeResult(options)
             return result
         }
-        return CNLCValue.Error(block: nil, error: .NoProgram)
+        return CNLCValue.error(block: nil, error: .noProgram)
     }
     
 }

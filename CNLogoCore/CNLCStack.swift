@@ -10,9 +10,9 @@ import Foundation
 
 public struct CNLCStack<T> {
     
-    private var items: [T] = []
+    fileprivate var items: [T] = []
     
-    mutating func push(value: T) {
+    mutating func push(_ value: T) {
         items.append(value)
     }
     

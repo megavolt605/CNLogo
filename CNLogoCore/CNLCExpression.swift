@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class CNLCExpression: CNLCBlock {
+open class CNLCExpression: CNLCBlock {
     
-    public var source: [CNLCExpressionParseElement]
+    open var source: [CNLCExpressionParseElement]
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "EXPR"
     }
     
-    override public var description: String {
+    override open var description: String {
         return source.reduce("") {
             return $0 + $1.description
         }
@@ -38,21 +38,21 @@ public class CNLCExpression: CNLCBlock {
     // )    / +         A B C * D E -
     // fin              A B C * D E - / +
     
-    private var preparedSource: [CNLCExpressionParseElement] = []
-    override public func prepare() -> CNLCBlockPrepareResult {
+    fileprivate var preparedSource: [CNLCExpressionParseElement] = []
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         var operatorStack = CNLCStack<CNLCExpressionParseElement>()
         preparedSource = []
         for element in source {
-            if CNLCExpressionParseElement.operators.contains({ $0.isEqualTo(element) }) {
+            if CNLCExpressionParseElement.operators.contains(where: { $0.isEqualTo(element) }) {
                 // operator
                 repeat {
                     if let oper = operatorStack.peek() {
-                        let c1 = ((element.associativity == .Right) && (element.weight < oper.weight))
-                        let c2 = ((element.associativity == .Left) && (element.weight <= oper.weight))
-                        if CNLCExpressionParseElement.operators.contains({ $0.isEqualTo(oper) }) && (c1 || c2) {
+                        let c1 = ((element.associativity == .right) && (element.weight < oper.weight))
+                        let c2 = ((element.associativity == .left) && (element.weight <= oper.weight))
+                        if CNLCExpressionParseElement.operators.contains(where: { $0.isEqualTo(oper) }) && (c1 || c2) {
                             preparedSource.append(operatorStack.pop()!)
                         } else {
                             break
@@ -65,29 +65,29 @@ public class CNLCExpression: CNLCBlock {
             } else {
                 // not operator
                 switch element {
-                case .Value, .Variable:
+                case .Value, .variable:
                     preparedSource.append(element)
-                case let .Function(function):
+                case let .function(function):
                     for parameter in function.functionParameters {
                         prepared = parameter.prepare()
                         if prepared.isError { return prepared }
                     }
                     preparedSource.append(element)
-                case .BracketOpen:
+                case .bracketOpen:
                     operatorStack.push(element)
-                case .BracketClose:
+                case .bracketClose:
                     repeat {
                         if let oper = operatorStack.pop() {
-                            if oper.isEqualTo(CNLCExpressionParseElement.BracketOpen) {
+                            if oper.isEqualTo(CNLCExpressionParseElement.bracketOpen) {
                                 break
                             }
                             preparedSource.append(oper)
                         } else {
-                            return CNLCBlockPrepareResult.Error(block: self, error: .InvalidExpression)
+                            return CNLCBlockPrepareResult.error(block: self, error: .invalidExpression)
                         }
                     } while true
                 default:
-                    return CNLCBlockPrepareResult.Error(block: self, error: .InvalidExpression)
+                    return CNLCBlockPrepareResult.error(block: self, error: .invalidExpression)
                 }
             }
         }
@@ -98,22 +98,22 @@ public class CNLCExpression: CNLCBlock {
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
         
         var resultStack = CNLCStack<CNLCExpressionParseElement>()
         for element in preparedSource {
-            if CNLCExpressionParseElement.operators.contains({ $0.isEqualTo(element) }) {
+            if CNLCExpressionParseElement.operators.contains(where: { $0.isEqualTo(element) }) {
                 // operator
                 switch element.kind {
-                case .Infix:
+                case .infix:
                     let left = resultStack.pop()!
                     let right = resultStack.pop()!
                     let value = element.getValue(left, right, self)
                     if value.isError { return value.value(self) }
                     resultStack.push(value)
-                default: return .Unknown
+                default: return .unknown
                 }
             } else {
                 resultStack.push(element)
@@ -124,11 +124,11 @@ public class CNLCExpression: CNLCBlock {
         if let finalResult = resultStack.pop() {
             return finalResult.value(self)
         } else {
-            return .Error(block: self, error: .InvalidExpression)
+            return .error(block: self, error: .invalidExpression)
         }
     }
 
-    override public func store() -> [String: AnyObject] {
+    override open func store() -> [String: Any] {
         var res = super.store()
         res["source"] = source.map { $0.store() }
         return res
@@ -139,10 +139,10 @@ public class CNLCExpression: CNLCBlock {
         super.init()
     }
     
-    override public init(data: [String: AnyObject]) {
+    override public init(data: [String: Any]) {
         source = []
         super.init(data: data)
-        if let info = data["source"] as? [[String: AnyObject]] {
+        if let info = data["source"] as? [[String: Any]] {
             source = info.map { item in return CNLCExpressionParseElement.loadFromData(item) }
         }
     }

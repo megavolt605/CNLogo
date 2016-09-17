@@ -10,22 +10,22 @@ import Foundation
 
 /// Description:    Set player drawing scale (affecs to all movement distances, drawing line width)
 /// Arguments:      New scale(Numeric)
-public class CNLCStatementScale: CNLCStatement {
+open class CNLCStatementScale: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "SCALE"
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -33,7 +33,7 @@ public class CNLCStatementScale: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.player.setScale(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }

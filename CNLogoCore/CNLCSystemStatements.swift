@@ -8,48 +8,48 @@
 
 import Foundation
 
-public class CNLCStatementPrint: CNLCStatement {
+open class CNLCStatementPrint: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "PRINT"
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         var result = super.execute(parameters)
         if result.isError { return result }
 
         for parameter in executableParameters {
             result = parameter.variableValue.execute()
             if result.isError { return result }
-            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Print(value: result.description), fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.print(value: result.description), fromBlock: self)
         }
         return result
     }
     
 }
 
-public class CNLCStatementVar: CNLCStatement {
+open class CNLCStatementVar: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "VAR"
     }
     
-    override public var description: String {
+    override open var description: String {
         return "\(identifier) \"\(variableName)\" = " + parametersDescription
     }
     
-    public var variableName: String
+    open var variableName: String
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         let result = super.execute(parameters)
         if result.isError { return result }
 
@@ -60,22 +60,22 @@ public class CNLCStatementVar: CNLCStatement {
             } else {
                 parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: value))
             }
-            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
+            CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.step, fromBlock: self)
             return value
         } else {
             if let _ = parentBlock?.variableByName(variableName) {
-                return .Error(block: self, error: .VariableAlreadyExists(variableName: variableName))
+                return .error(block: self, error: .variableAlreadyExists(variableName: variableName))
             } else {
-                parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: .Unknown))
+                parentBlock?.variables.append(CNLCVariable(variableName: variableName, variableValue: .unknown))
             }
         }
-        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.Step, fromBlock: self)
+        CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.step, fromBlock: self)
         return result
     }
     
-    override public func store() -> [String: AnyObject] {
+    override open func store() -> [String: Any] {
         var res = super.store()
-        res["variable-name"] = variableName
+        res["variable-name"] = variableName as AnyObject?
         return res
     }
     
@@ -103,6 +103,10 @@ public class CNLCStatementVar: CNLCStatement {
     
     public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
         fatalError("init(executableParameters:statements:) has not been implemented")
+    }
+    
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
     }
     
 }

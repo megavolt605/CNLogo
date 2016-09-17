@@ -8,27 +8,27 @@
 
 import Foundation
 
-public class CNLCFunctionSin: CNLCStatementFunction {
+open class CNLCFunctionSin: CNLCStatementFunction {
 
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
-            case let .Double(doubleValue): return .Double(value: sin(doubleValue))
-            case let .Int(intValue): return .Double(value: sin(Double(intValue)))
-            case let .String(stringValue): return .Double(value: sin(stringValue.doubleValue))
-            case .Error: return value
+            case let .double(doubleValue): return .double(value: sin(doubleValue))
+            case let .int(intValue): return .double(value: sin(Double(intValue)))
+            case let .string(stringValue): return .double(value: sin(stringValue.doubleValue))
+            case .error: return value
             default: break
             }
         }
         return super.execute(parameters)
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
@@ -36,7 +36,7 @@ public class CNLCFunctionSin: CNLCStatementFunction {
     init() {
         super.init(
             funcName: "SIN",
-            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
+            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .double(value: 0.0))],
             statements: []
         )
     }
@@ -56,29 +56,33 @@ public class CNLCFunctionSin: CNLCStatementFunction {
     public required init(executableParameters: [CNLCVariable]) {
         fatalError("init(executableParameters:) has not been implemented")
     }
+    
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
+    }
 
 }
 
-public class CNLCFunctionCos: CNLCStatementFunction {
+open class CNLCFunctionCos: CNLCStatementFunction {
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         if let value = parameters.first?.execute(parameters) {
             switch value {
-            case let .Double(doubleValue): return .Double(value: cos(doubleValue))
-            case let .Int(intValue): return .Double(value: cos(Double(intValue)))
-            case let .String(stringValue): return .Double(value: cos(stringValue.doubleValue))
-            case .Error: return value
+            case let .double(doubleValue): return .double(value: cos(doubleValue))
+            case let .int(intValue): return .double(value: cos(Double(intValue)))
+            case let .string(stringValue): return .double(value: cos(stringValue.doubleValue))
+            case .error: return value
             default: break
             }
         }
         return super.execute(parameters)
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
@@ -86,7 +90,7 @@ public class CNLCFunctionCos: CNLCStatementFunction {
     init() {
         super.init(
             funcName: "COS",
-            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .Double(value: 0.0))],
+            formalParameters: [CNLCVariable(variableName: "angle", variableValue: .double(value: 0.0))],
             statements: []
         )
     }
@@ -105,6 +109,10 @@ public class CNLCFunctionCos: CNLCStatementFunction {
     
     public required init(executableParameters: [CNLCVariable]) {
         fatalError("init(executableParameters:) has not been implemented")
+    }
+    
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
     }
     
 }

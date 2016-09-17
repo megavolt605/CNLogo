@@ -15,14 +15,14 @@ import Foundation
 /// - Unprepared: block is unprepared yet
 /// - Success: preparing completed with success
 public enum CNLCBlockPrepareResult {
-    case Error(block: CNLCBlock?, error: CNLCError)
-    case Unprepared
-    case Success
+    case error(block: CNLCBlock?, error: CNLCError)
+    case unprepared
+    case success
     
     /// Check for error state
     public var isError: Bool {
         switch self {
-        case .Error: return true
+        case .error: return true
         default: return false
         }
     }
@@ -30,31 +30,31 @@ public enum CNLCBlockPrepareResult {
     /// Check for success state
     public var isSuccess: Bool {
         switch self {
-        case .Success: return true
+        case .success: return true
         default: return false
         }
     }
 }
 
 /// Abstract code block with (or without) parameters
-public class CNLCBlock {
+open class CNLCBlock {
     
-    public var formalParameters: [CNLCVariable] = []
-    public var executableParameters: [CNLCVariable] = []
-    public var statements: [CNLCStatement] = []
-    public var variables: [CNLCVariable] = []
-    public var functions: [CNLCStatementFunction] = []
-    public var valueStack = CNLCStack<CNLCValue>()
+    open var formalParameters: [CNLCVariable] = []
+    open var executableParameters: [CNLCVariable] = []
+    open var statements: [CNLCStatement] = []
+    open var variables: [CNLCVariable] = []
+    open var functions: [CNLCStatementFunction] = []
+    open var valueStack = CNLCStack<CNLCValue>()
     
-    public var prepared: CNLCBlockPrepareResult = .Unprepared
+    open var prepared: CNLCBlockPrepareResult = .unprepared
 
-    weak public var parentBlock: CNLCBlock?
+    weak open var parentBlock: CNLCBlock?
 
-    public var identifier: String {
+    open var identifier: String {
         return "Anonymous BLOCK"
     }
     
-    public var description: String {
+    open var description: String {
         if executableParameters.count > 0 {
             return "\(identifier) \(parametersDescription)"
         } else {
@@ -62,7 +62,7 @@ public class CNLCBlock {
         }
     }
     
-    public var parametersDescription: String {
+    open var parametersDescription: String {
         return executableParameters.reduce("") {
             let variableName = $1.variableName ?? ""
             return ($0 == "" ? "" : "\($0),") + "\(variableName)\($1.variableValue.description)"
@@ -70,9 +70,9 @@ public class CNLCBlock {
     }
     
     /// Preparing statements within the block (recursively)
-    @warn_unused_result
-    public func prepare() -> CNLCBlockPrepareResult {
-        prepared = .Unprepared
+    
+    open func prepare() -> CNLCBlockPrepareResult {
+        prepared = .unprepared
         // prepare parameters
         for parameter in executableParameters {
             parameter.variableValue.parentBlock = self
@@ -89,21 +89,21 @@ public class CNLCBlock {
         return prepared
     }
 
-    @warn_unused_result
-    public func executeStatements() -> CNLCValue {
+    
+    open func executeStatements() -> CNLCValue {
         //print(self)
-        var lastValue: CNLCValue = .Unknown
+        var lastValue: CNLCValue = .unknown
         statements.forEach {
             lastValue = $0.execute()
         }
         return lastValue
     }
     
-    @warn_unused_result
-    public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    
+    open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         if !prepared.isSuccess {
             switch prepare() {
-            case let .Error(block, error): return .Error(block: block, error: error)
+            case let .error(block, error): return .error(block: block, error: error)
             default: break
             }
         }
@@ -111,8 +111,8 @@ public class CNLCBlock {
         return executeStatements()
     }
     
-    @warn_unused_result
-    public func variableByName(name: String) -> CNLCVariable? {
+    
+    open func variableByName(_ name: String) -> CNLCVariable? {
         for v in variables {
             if v.variableName == name {
                 return v
@@ -127,8 +127,8 @@ public class CNLCBlock {
         return parentBlock?.variableByName(name)
     }
     
-    @warn_unused_result
-    public func functionByName(name: String) -> CNLCStatementFunction? {
+    
+    open func functionByName(_ name: String) -> CNLCStatementFunction? {
         for f in functions {
             if f.funcName == name {
                 return f
@@ -137,19 +137,19 @@ public class CNLCBlock {
         return parentBlock?.functionByName(name)
     }
     
-    @warn_unused_result
-    public func store() -> [String: AnyObject] {
-        var res: [String: AnyObject] = [:]
+    
+    open func store() -> [String: Any] {
+        var res: [String: Any] = [:]
         if executableParameters.count > 0 {
-            res["parameters"] = executableParameters.enumerate().map { (index: Int, param: CNLCVariable) -> [String: AnyObject] in
+            res["parameters"] = executableParameters.enumerated().map { (index: Int, param: CNLCVariable) -> [String: Any] in
                 return [param.variableName ?? "\(index)": param.variableValue.store()]
             }
         }
         if statements.count > 0 {
-            res["statements"] = statements.map { $0.store() }
+            res["statements"] = statements.map { return $0.store() }
         }
         if functions.count > 0 {
-            res["functions"] = functions.map { $0.store() }
+            res["functions"] = functions.map { return $0.store() }
         }
         return res
     }
@@ -171,23 +171,23 @@ public class CNLCBlock {
         self.statements = statements
     }
     
-    public init(data: [String: AnyObject]) {
+    public init(data: [String: Any]) {
         executableParameters = []
-        if let info = data["parameters"] as? [String: [String: AnyObject]] {
+        if let info = data["parameters"] as? [String: [String: Any]] {
             executableParameters = info.map { name, value in
                 return CNLCVariable(variableName: name, variableValue: CNLCExpression(data: value))
             }
         }
 
         statements = []
-        if let info = data["statements"] as? [[String: AnyObject]] {
+        if let info = data["statements"] as? [[String: Any]] {
             statements = info.map { item in
-                return CNLCLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: AnyObject])!
+                return CNLCLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: Any])!
             }
         }
 
         functions = []
-        if let info = data["functions"] as? [[String: AnyObject]] {
+        if let info = data["functions"] as? [[String: Any]] {
             functions = info.map { item in
                 return functionByName(item["function-name"] as! String)!
             }

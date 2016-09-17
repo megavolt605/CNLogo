@@ -10,23 +10,23 @@ import Foundation
 
 /// Description:    Set tail state to Down (FORWARD and BACKWARD statements will draw)
 /// Arguments:      nope
-public class CNLCStatementTailDown: CNLCStatement {
+open class CNLCStatementTailDown: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "TAIL DOWN"
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 0 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -34,7 +34,7 @@ public class CNLCStatementTailDown: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.player.tailDown(true, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }
@@ -43,31 +43,51 @@ public class CNLCStatementTailDown: CNLCStatement {
 
 /// Description:    Set tail state to Up (no drawing with FORWARD and BACKWARD statements)
 /// Arguments:      nope
-public class CNLCStatementTailUp: CNLCStatement {
+open class CNLCStatementTailUp: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "TAIL UP"
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 0 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.player.tailDown(false, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
+    }
+    
+    override required public init() {
+        super.init()
+    }
+    
+    override public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
+    }
+    
+    override public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+        fatalError("init(executableParameters:statements:) has not been implemented")
+    }
+    
+    override public required init(executableParameters: [CNLCVariable]) {
+        fatalError("init(executableParameters:) has not been implemented")
+    }
+    
+    override public required init(statements: [CNLCStatement]) {
+        fatalError("init(statements:) has not been implemented")
     }
     
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: Anonymous parameter
-public class CNLCParameter: CNLCVariable {
+open class CNLCParameter: CNLCVariable {
     
     public init(value: CNLCExpression) {
         super.init(variableName: "", variableValue: value)

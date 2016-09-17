@@ -13,46 +13,46 @@ class CNBubbleView: UIView {
 
     var text: String
     var color: UIColor
-    var size: CGSize = CGSizeZero
+    var size: CGSize = CGSize.zero
     var bold: Bool
     var tiny = false
     
-    internal var strSize: CGSize = CGSizeZero
+    internal var strSize: CGSize = CGSize.zero
     
-    func textAttrs() -> [String: AnyObject] {
+    func textAttrs() -> [String: Any] {
         return [
-            NSFontAttributeName: bold ? UIFont.boldSystemFontOfSize(10.0) : UIFont.systemFontOfSize(10.0),
-            NSForegroundColorAttributeName: UIColor.blackColor()
+            NSFontAttributeName: bold ? UIFont.boldSystemFont(ofSize: 10.0) : UIFont.systemFont(ofSize: 10.0),
+            NSForegroundColorAttributeName: UIColor.black
         ]
     }
     
     func calcSize() {
         let str = NSString(string: text)
-        let strRect = str.boundingRectWithSize(
-            CGSizeMake(CGFloat.infinity, 0.0),
+        let strRect = str.boundingRect(
+            with: CGSize(width: CGFloat.infinity, height: 0.0),
             options: [],
             attributes: textAttrs(),
             context: nil
         )
-        strSize = CGSizeMake(strRect.width, strRect.height)
-        size = CGSizeMake(strRect.width + (tiny ? -2.0 : 10.0), size.height - 1.0)
+        strSize = CGSize(width: strRect.width, height: strRect.height)
+        size = CGSize(width: strRect.width + (tiny ? -2.0 : 10.0), height: size.height - 1.0)
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let attrs = textAttrs()
         let str = NSString(string: text)
-        let rectanglePath = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: size.height / 4.0)
+        let rectanglePath = UIBezierPath(roundedRect: CGRect(origin: CGPoint.zero, size: size), cornerRadius: size.height / 4.0)
         
         color.setFill()
         rectanglePath.fill()
-        let strOrigin = CGPointMake((size.width - strSize.width) / 2.0, (size.height - strSize.height) / 2.0 - 1.0)
-        str.drawInRect(CGRect(origin: strOrigin, size: strSize), withAttributes: attrs)
+        let strOrigin = CGPoint(x: (size.width - strSize.width) / 2.0, y: (size.height - strSize.height) / 2.0 - 1.0)
+        str.draw(in: CGRect(origin: strOrigin, size: strSize), withAttributes: attrs)
     }
     
     func initialize() {
-        self.backgroundColor = UIColor.clearColor()
-        self.opaque = false
+        self.backgroundColor = UIColor.clear
+        self.isOpaque = false
         self.calcSize()
     }
     
@@ -62,7 +62,7 @@ class CNBubbleView: UIView {
         self.size.height = height
         self.bold = bold
         self.tiny = tiny
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         initialize()
     }
     
@@ -73,7 +73,7 @@ class CNBubbleView: UIView {
 
 extension CNBubbleView {
     
-    static func createBlockBubbles(block: CNLCBlock, height: CGFloat, prefix: String = "", bold: Bool = false) -> [CNBubbleView] {
+    static func createBlockBubbles(_ block: CNLCBlock, height: CGFloat, prefix: String = "", bold: Bool = false) -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         let bubbleName = prefix + block.identifier
         if bubbleName != "" {
@@ -84,7 +84,7 @@ extension CNBubbleView {
         return res
     }
     
-    static func createStatementBubbles(statement: CNLCStatement, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    static func createStatementBubbles(_ statement: CNLCStatement, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         let bubbleName = prefix + statement.identifier
         if bubbleName != "" {
@@ -100,7 +100,7 @@ extension CNBubbleView {
         return res
     }
     
-    static func createStatementVarBubbles(statement: CNLCStatementVar, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    static func createStatementVarBubbles(_ statement: CNLCStatementVar, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         let bubbleName = prefix + statement.identifier
         if bubbleName != "" {
@@ -120,54 +120,54 @@ extension CNBubbleView {
         return res
     }
 
-    static func createBubblesForStatementFunctionParameter(parameter: CNLCVariable, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView]  {
-        return [CNBubbleView(text: "\(parameter.variableName)", color: UIColor.cyanColor(), height: height, bold: false)]
+    static func createBubblesForStatementFunctionParameter(_ parameter: CNLCVariable, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView]  {
+        return [CNBubbleView(text: "\(parameter.variableName)", color: UIColor.cyan, height: height, bold: false)]
     }
     
-    static func createStatementFunctionBubbles(function: CNLCStatementFunction, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    static func createStatementFunctionBubbles(_ function: CNLCStatementFunction, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res = createBlockBubbles(function, height: height, prefix: prefix, bold: true)
         
         if prefix == "" {
-            res.append(CNBubbleView(text: "\(function.funcName) (", color: UIColor.orangeColor(), height: height, bold: false))
-            function.formalParameters.enumerate().forEach { index, parameter in
+            res.append(CNBubbleView(text: "\(function.funcName) (", color: UIColor.orange, height: height, bold: false))
+            function.formalParameters.enumerated().forEach { index, parameter in
                 if index > 0 {
-                    res.append(CNBubbleView(text: ", ", color: UIColor.clearColor(), height: height, bold: false, tiny: true))
+                    res.append(CNBubbleView(text: ", ", color: UIColor.clear, height: height, bold: false, tiny: true))
                 }
                 res += createBubblesForStatementFunctionParameter(parameter, inBlock: function, height: height) ?? []
             }
-            res.append(CNBubbleView(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: false))
+            res.append(CNBubbleView(text: ")", color: UIColor.orange, height: height, bold: false, tiny: false))
         } else {
-            res.append(CNBubbleView(text: "\(function.funcName)", color: UIColor.orangeColor(), height: height, bold: false))
+            res.append(CNBubbleView(text: "\(function.funcName)", color: UIColor.orange, height: height, bold: false))
         }
         return res
     }
 
-    static func createBubblesForStatementCallParameter(parameter: CNLCVariable, height: CGFloat) -> [CNBubbleView]  {
+    static func createBubblesForStatementCallParameter(_ parameter: CNLCVariable, height: CGFloat) -> [CNBubbleView]  {
         let text = "\(parameter.variableName): \(parameter.variableValue.description)"
-        return [CNBubbleView(text: text, color: UIColor.cyanColor(), height: height, bold: false)]
+        return [CNBubbleView(text: text, color: UIColor.cyan, height: height, bold: false)]
     }
     
-    static func createStatementCallBubbles(statement: CNLCStatementCall, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    static func createStatementCallBubbles(_ statement: CNLCStatementCall, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res = (createBlockBubbles(statement, height: height, prefix: prefix, bold: true)) ?? []
         
-        res.append(CNBubbleView(text: "\(statement.funcName) (", color: UIColor.orangeColor(), height: height, bold: false))
+        res.append(CNBubbleView(text: "\(statement.funcName) (", color: UIColor.orange, height: height, bold: false))
         
-        statement.executableParameters.enumerate().forEach { index, parameter in
+        statement.executableParameters.enumerated().forEach { index, parameter in
             if index > 0 {
-                res.append(CNBubbleView(text: ", ", color: UIColor.clearColor(), height: height, bold: false, tiny: true))
+                res.append(CNBubbleView(text: ", ", color: UIColor.clear, height: height, bold: false, tiny: true))
             }
             res += createBubblesForStatementCallParameter(parameter, height: height) ?? []
         }
         
-        res.append(CNBubbleView(text: ")", color: UIColor.orangeColor(), height: height, bold: false, tiny: false))
+        res.append(CNBubbleView(text: ")", color: UIColor.orange, height: height, bold: false, tiny: false))
         return res
     }
 
-    static func createVariableBubbles(variable: CNLCVariable, height: CGFloat) -> [CNBubbleView] {
+    static func createVariableBubbles(_ variable: CNLCVariable, height: CGFloat) -> [CNBubbleView] {
         return createExpressionBubbles(variable.variableValue, height: height)
     }
 
-    static func createExpressionBubbles(expression: CNLCExpression, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    static func createExpressionBubbles(_ expression: CNLCExpression, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         var res: [CNBubbleView] = []
         if prefix != "" {
             let bubble = CNBubbleView(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
@@ -179,11 +179,11 @@ extension CNBubbleView {
         return res
     }
 
-    static func createExpressionElementBubbles(element: CNLCExpressionParseElement, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView] {
+    static func createExpressionElementBubbles(_ element: CNLCExpressionParseElement, inBlock: CNLCBlock, height: CGFloat) -> [CNBubbleView] {
         switch element {
         case let .Value(value):
             switch value {
-            case let .Color(color):
+            case let .color(color):
                 return [CNBubbleView(text: "  ", color: color, height: height, bold: false)]
             default:
                 return [CNBubbleView(
@@ -191,26 +191,26 @@ extension CNBubbleView {
                     color: UIColor(red: 0.75, green: 1.0, blue: 0.75, alpha: 1.0), height: height, bold: false
                     )]
             }
-        case let .Variable(name):
+        case let .variable(name):
             return [CNBubbleView(
                 text: name,
                 color: UIColor(red: 1.0, green: 1.0, blue: 0.5, alpha: 1.0), height: height, bold: false
                 )]
-        case let .Function(functionName, functionParameters):
+        case let .function(functionName, functionParameters):
             let function = inBlock.functionByName(functionName)
             var res: [CNBubbleView] = [
-                CNBubbleView(text: "\(description) (", color: UIColor.orangeColor(), height: height, bold: false)
+                CNBubbleView(text: "\(description) (", color: UIColor.orange, height: height, bold: false)
             ]
-            functionParameters.enumerate().forEach { index, parameter in
+            functionParameters.enumerated().forEach { index, parameter in
                 if index > 0 {
-                    res.append(CNBubbleView(text: ", ", color: UIColor.clearColor(), height: height, bold: false))
+                    res.append(CNBubbleView(text: ", ", color: UIColor.clear, height: height, bold: false))
                 }
                 if let parameterName = function?.formalParameters[index].variableName {
-                    res.append(CNBubbleView(text: parameterName, color: UIColor.cyanColor(), height: height, bold: false))
+                    res.append(CNBubbleView(text: parameterName, color: UIColor.cyan, height: height, bold: false))
                 }
                 res += createExpressionBubbles(parameter, height: height)
             }
-            res.append(CNBubbleView(text: ")", color: UIColor.orangeColor(), height: height, bold: false))
+            res.append(CNBubbleView(text: ")", color: UIColor.orange, height: height, bold: false))
             return res
         default: break
         }
@@ -222,7 +222,8 @@ extension CNBubbleView {
         ]
     }
 
-    static func bubbleFor(block: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
+    // coz we don't have normal possibilites to override extensions
+    static func bubbleFor(_ block: CNLCBlock, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
         
         if let statement = block as? CNLCStatementVar {
             return createStatementVarBubbles(statement, height: height)

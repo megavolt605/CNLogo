@@ -9,10 +9,10 @@
 import Foundation
 
 /// Variable of any type with value
-public class CNLCVariable {
-    public var variableName: String
-    public var variableValue: CNLCExpression
-    public var parentBlock: CNLCBlock?
+open class CNLCVariable {
+    open var variableName: String
+    open var variableValue: CNLCExpression
+    open var parentBlock: CNLCBlock?
     
     public init(variableName: String, variableValue: CNLCExpression) {
         self.variableName = variableName

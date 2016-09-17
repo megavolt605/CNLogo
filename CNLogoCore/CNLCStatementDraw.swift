@@ -12,13 +12,13 @@ import Foundation
 ///                 Movement is drawn as line with current color and width
 ///                 Preserve tail state
 /// Arguments:      Distance(Numeric)
-public class CNLCStatementDraw: CNLCStatementForward {
+open class CNLCStatementDraw: CNLCStatementForward {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "DRAW"
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         var result = super.execute(parameters)
         if result.isError { return result }

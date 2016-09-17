@@ -10,29 +10,29 @@ import UIKit
 
 extension UIImage {
 
-    func imageWithColor(color: UIColor) -> UIImage {
+    func imageWithColor(_ color: UIColor) -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         
         let context = UIGraphicsGetCurrentContext()
         color.setFill()
         
-        CGContextTranslateCTM(context, 0, size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
+        context?.translateBy(x: 0, y: size.height)
+        context?.scaleBy(x: 1.0, y: -1.0)
         
-        CGContextSetBlendMode(context, CGBlendMode.Copy)
-        let rect = CGRectMake(0, 0, size.width, size.height)
-        CGContextDrawImage(context, rect, CGImage)
+        context?.setBlendMode(CGBlendMode.copy)
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        context?.draw(cgImage!, in: rect)
         
-        CGContextClipToMask(context, rect, CGImage)
-        CGContextAddRect(context, rect)
-        CGContextDrawPath(context, CGPathDrawingMode.Fill)
+        context?.clip(to: rect, mask: cgImage!)
+        context?.addRect(rect)
+        context?.drawPath(using: CGPathDrawingMode.fill)
         
         let coloredImg = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return coloredImg
+        return coloredImg!
     }
 
 }

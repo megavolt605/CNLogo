@@ -8,31 +8,31 @@
 
 import Foundation
 
-public class CNLCStatementFunction: CNLCStatement {
+open class CNLCStatementFunction: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "FUNC"
     }
     
-    public var funcName: String
+    open var funcName: String
     
-    override public var description: String {
+    override open var description: String {
         return "\(identifier) \(funcName)(\(parametersDescription))"
     }
     
-    public override func prepare() -> CNLCBlockPrepareResult {
+    open override func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         parentBlock?.functions.append(self)
         return result
     }
     
-    public override func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    open override func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         // dummy
-        return .Unknown
+        return .unknown
     }
     
     func execute() -> CNLCValue {
-        return .Unknown
+        return .unknown
     }
     
     public init(funcName: String, formalParameters: [CNLCVariable] = [], statements: [CNLCStatement]) {
@@ -55,5 +55,9 @@ public class CNLCStatementFunction: CNLCStatement {
     
     public required init(statements: [CNLCStatement]) {
         fatalError("init(statements:) has not been implemented")
+    }
+    
+    public required init(data: [String : Any]) {
+        fatalError("init(data:) has not been implemented")
     }
 }

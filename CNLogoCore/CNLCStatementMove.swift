@@ -12,13 +12,13 @@ import Foundation
 ///                 Nothing is drawn
 ///                 Preserve tail state
 /// Arguments:      Distance(Numeric)
-public class CNLCStatementMove: CNLCStatementForward {
+open class CNLCStatementMove: CNLCStatementForward {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "MOVE"
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         var result = super.execute(parameters)
         if result.isError { return result }

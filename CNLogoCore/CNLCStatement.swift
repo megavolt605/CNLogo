@@ -8,17 +8,21 @@
 
 import Foundation
 
-public class CNLCStatement: CNLCBlock {
+open class CNLCStatement: CNLCBlock {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "Anonymous STATEMENT \(self)"
     }
     
-    override public func store() -> [String: AnyObject] {
-        return ["statement-id": identifier, "statement-info": super.store()]
+    override open func store() -> [String: Any] {
+        return ["statement-id": identifier as AnyObject, "statement-info": super.store() as AnyObject]
     }
     
-    override public required init(data: [String: AnyObject]) {
+    override public init() {
+        super.init()
+    }
+    
+    override public required init(data: [String: Any]) {
         super.init()
     }
     

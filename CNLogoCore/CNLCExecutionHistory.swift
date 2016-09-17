@@ -9,20 +9,20 @@
 import Foundation
 import CoreGraphics
 
-public class CNLCExecutionHistory {
+open class CNLCExecutionHistory {
     
-    public var history: [CNLCExecutionHistoryItem] = []
+    open var history: [CNLCExecutionHistoryItem] = []
     
-    public func append(itemType: CNLCExecutionHistoryItemType, block: CNLCBlock?) {
+    open func append(_ itemType: CNLCExecutionHistoryItemType, block: CNLCBlock?) {
         if let playerState = CNLCEnviroment.defaultEnviroment.currentProgram?.player.state.snapshot() {
             let item = CNLCExecutionHistoryItem(type: itemType, playerState: playerState, block: block)
             history.append(item)
         }
     }
     
-    public func clear() -> CNLCValue {
+    open func clear() -> CNLCValue {
         history = []
-        return .Unknown
+        return .unknown
     }
     
 }

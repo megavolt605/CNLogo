@@ -21,68 +21,68 @@ import UIKit // needs for UIColor, CoreGraphics
 /// - Color: color value
 
 public enum CNLCValue {
-    case Error(block: CNLCBlock?, error: CNLCError)
-    case Unknown
-    case Bool(value: Swift.Bool)
-    case Int(value: Swift.Int)
-    case Double(value: Swift.Double)
-    case String(value: Swift.String)
-    case Color(value: UIColor)
+    case error(block: CNLCBlock?, error: CNLCError)
+    case unknown
+    case bool(value: Swift.Bool)
+    case int(value: Swift.Int)
+    case double(value: Swift.Double)
+    case string(value: Swift.String)
+    case color(value: UIColor)
     
     public var isError: Swift.Bool {
         switch self {
-        case Error: return true
+        case .error: return true
         default: return false
         }
     }
     
     public var description: Swift.String {
         switch self {
-        case Unknown: return ""
-        case let Bool(value): return "\(value)"
-        case let Int(value): return "\(value)"
-        case let Double(value): return "\(value)"
-        case let String(value): return "\"\(value)\""
-        case let Color(value):
+        case .unknown: return ""
+        case let .bool(value): return "\(value)"
+        case let .int(value): return "\(value)"
+        case let .double(value): return "\(value)"
+        case let .string(value): return "\"\(value)\""
+        case let .color(value):
             var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
             value.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
             return "COLOR(red=\(red), green=\(green), blue=\(blue), alpha=\(alpha))"
-        case let Error(_, anError): return anError.description
+        case let .error(_, anError): return anError.description
         }
     }
 
     public var typeDescription: Swift.String {
         switch self {
-        case Unknown: return "Unknown"
-        case Bool: return "bool"
-        case Int: return "int"
-        case Double: return "double"
-        case String: return "string"
-        case Color: return "color"
-        case Error: return "error"
+        case .unknown: return "Unknown"
+        case .bool: return "bool"
+        case .int: return "int"
+        case .double: return "double"
+        case .string: return "string"
+        case .color: return "color"
+        case .error: return "error"
         }
     }
 
-    @warn_unused_result
-    func isEqualTo(value: CNLCValue) -> Swift.Bool {
+    
+    func isEqualTo(_ value: CNLCValue) -> Swift.Bool {
         switch (self, value) {
-        case (Bool, Bool): return true
-        case (Int, Int): return true
-        case (Double, Double): return true
-        case (String, String): return true
-        case (Color, Color): return true
+        case (.bool, .bool): return true
+        case (.int, .int): return true
+        case (.double, .double): return true
+        case (.string, .string): return true
+        case (.color, .color): return true
         default: return false
         }
     }
     
-    @warn_unused_result
-    func store() -> [Swift.String: AnyObject] {
+    
+    func store() -> [Swift.String: Any] {
         switch self {
-        case let Bool(value): return ["type": typeDescription, "value": value]
-        case let Int(value): return ["type": typeDescription, "value": value]
-        case let Double(value): return ["type": typeDescription, "value": value]
-        case let String(value): return ["type": typeDescription, "value": value]
-        case let Color(value):
+        case let .bool(value): return ["type": typeDescription as AnyObject, "value": value as AnyObject]
+        case let .int(value): return ["type": typeDescription as AnyObject, "value": value as AnyObject]
+        case let .double(value): return ["type": typeDescription as AnyObject, "value": value as AnyObject]
+        case let .string(value): return ["type": typeDescription as AnyObject, "value": value as AnyObject]
+        case let .color(value):
             var red: CGFloat = 0.0
             var green: CGFloat = 0.0
             var blue: CGFloat = 0.0
@@ -96,22 +96,22 @@ public enum CNLCValue {
         }
     }
 
-    @warn_unused_result
-    public static func loadFromData(data: [Swift.String: AnyObject]) -> CNLCValue {
+    
+    public static func loadFromData(_ data: [Swift.String: AnyObject]) -> CNLCValue {
         if let type = data["type"] as? Swift.String {
             switch type {
-            case "bool": return Bool(value: (data["value"] as? Swift.Bool) ?? false)
-            case "int": return Int(value: (data["value"] as? Swift.Int) ?? 0)
-            case "double": return Double(value: (data["value"] as? Swift.Double) ?? 0.0)
-            case "string": return String(value: (data["value"] as? Swift.String) ?? "")
+            case "bool": return bool(value: (data["value"] as? Swift.Bool) ?? false)
+            case "int": return int(value: (data["value"] as? Swift.Int) ?? 0)
+            case "double": return double(value: (data["value"] as? Swift.Double) ?? 0.0)
+            case "string": return string(value: (data["value"] as? Swift.String) ?? "")
             case "color":
-                if let red = data["red"] as? CGFloat, green = data["green"] as? CGFloat, blue = data["blue"] as? CGFloat, alpha = data["alpha"] as? CGFloat {
-                    return Color(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
+                if let red = data["red"] as? CGFloat, let green = data["green"] as? CGFloat, let blue = data["blue"] as? CGFloat, let alpha = data["alpha"] as? CGFloat {
+                    return color(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
                 }
             default: break
             }
         }
-        return Unknown
+        return unknown
     }
     
 }

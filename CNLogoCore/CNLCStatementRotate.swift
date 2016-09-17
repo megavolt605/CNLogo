@@ -10,23 +10,23 @@ import Foundation
 
 /// Description:    Rotate player by argument
 /// Arguments:      Angle delta(Double), in degrees. Positive - clockwise
-public class CNLCStatementRotate: CNLCStatement {
+open class CNLCStatementRotate: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "ROTATE"
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -34,7 +34,7 @@ public class CNLCStatementRotate: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }

@@ -10,13 +10,13 @@ import Foundation
 
 /// Description:    Set player drawing line width
 /// Arguments:      Width(Numeric)
-public class CNLCStatementWidth: CNLCStatement {
+open class CNLCStatementWidth: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "WIDTH"
     }
     
-    override public var description: String {
+    override open var description: String {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
         } else {
@@ -24,16 +24,16 @@ public class CNLCStatementWidth: CNLCStatement {
         }
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult{
+    override open func prepare() -> CNLCBlockPrepareResult{
         let result = super.prepare()
         if result.isError { return result }
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -41,7 +41,7 @@ public class CNLCStatementWidth: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             program.player.setWidth(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }

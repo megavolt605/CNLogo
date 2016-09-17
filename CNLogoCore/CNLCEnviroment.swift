@@ -8,18 +8,18 @@
 
 import Foundation
 
-public class CNLCEnviroment {
+open class CNLCEnviroment {
     
-    public static let defaultEnviroment = CNLCEnviroment()
+    open static let defaultEnviroment = CNLCEnviroment()
 
     let kSystemPrograms = "systemPrograms"
     let kUserPrograms = "userPrograms"
     
-    public var systemPrograms: [CNLCProgram]
-    public var userPrograms: [CNLCProgram]
-    public var currentProgram: CNLCProgram?
+    open var systemPrograms: [CNLCProgram]
+    open var userPrograms: [CNLCProgram]
+    open var currentProgram: CNLCProgram?
 
-    func appendExecutionHistory(itemType: CNLCExecutionHistoryItemType, fromBlock: CNLCBlock?) {
+    func appendExecutionHistory(_ itemType: CNLCExecutionHistoryItemType, fromBlock: CNLCBlock?) {
         currentProgram?.executionHistory.append(itemType, block: fromBlock)
     }
     
@@ -28,19 +28,19 @@ public class CNLCEnviroment {
         CNLCEnviroment._savePrograms(kUserPrograms, programs: userPrograms)
     }
     
-    private static func _urlForKey(keyName: String) -> NSURL? {
+    fileprivate static func _urlForKey(_ keyName: String) -> URL? {
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if let path = paths.first {
-            let url: NSURL
+            let url: URL
             if keyName != "" {
-                url = NSURL(fileURLWithPath: path).URLByAppendingPathComponent("\(keyName).plist")
+                url = URL(fileURLWithPath: path).appendingPathComponent("\(keyName).plist")
             } else {
-                url = NSURL(fileURLWithPath: path)
+                url = URL(fileURLWithPath: path)
             }
             
             do {
-                try NSFileManager.defaultManager().createDirectoryAtURL(url.URLByDeletingLastPathComponent!, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
                 return url
             } catch {
                 return nil
@@ -50,11 +50,11 @@ public class CNLCEnviroment {
         }
     }
     
-    private static func _loadPrograms(key: String) -> [CNLCProgram] {
+    fileprivate static func _loadPrograms(_ key: String) -> [CNLCProgram] {
         let res: [CNLCProgram]
-        if let storageURL = _urlForKey(key), programs = NSArray(contentsOfURL: storageURL) {
+        if let storageURL = _urlForKey(key), let programs = NSArray(contentsOf: storageURL) {
             res = programs.flatMap { item in
-                if let programData = item as? [String: AnyObject] {
+                if let programData = item as? [String: Any] {
                     return CNLCProgram(data: programData)
                 }
                 return nil
@@ -66,10 +66,10 @@ public class CNLCEnviroment {
         return res
     }
     
-    private static func _savePrograms(key: String, programs: [CNLCProgram]) {
+    fileprivate static func _savePrograms(_ key: String, programs: [CNLCProgram]) {
         if let storageURL = _urlForKey(key) {
             let data = NSArray(array: programs, copyItems: false)
-            data.writeToURL(storageURL, atomically: true)
+            data.write(to: storageURL, atomically: true)
         }
     }
     

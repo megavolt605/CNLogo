@@ -11,13 +11,13 @@ import Foundation
 /// Description:    Move player forward from current position, with current angle
 ///                 If tail is down, draw line with current color and width
 /// Arguments:      Distance(Numeric)
-public class CNLCStatementForward: CNLCStatement {
+open class CNLCStatementForward: CNLCStatement {
     
-    override public var identifier: String {
+    override open var identifier: String {
         return "FORWARD"
     }
     
-    override public var description: String {
+    override open var description: String {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
             return super.description + (program.player.state.scale == 1.0 ? "" : ", scale = \(program.player.state.scale)")
         } else {
@@ -25,17 +25,17 @@ public class CNLCStatementForward: CNLCStatement {
         }
     }
     
-    override public func prepare() -> CNLCBlockPrepareResult {
+    override open func prepare() -> CNLCBlockPrepareResult {
         let result = super.prepare()
         if result.isError { return result }
         
         if executableParameters.count != 1 {
-            return CNLCBlockPrepareResult.Error(block: self, error: .StatementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 1, actualCount: executableParameters.count))
         }
         return result
     }
     
-    override public func execute(parameters: [CNLCExpression] = []) -> CNLCValue {
+    override open func execute(_ parameters: [CNLCExpression] = []) -> CNLCValue {
         
         let result = super.execute(parameters)
         if result.isError { return result }
@@ -43,7 +43,7 @@ public class CNLCStatementForward: CNLCStatement {
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram{
             program.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
         } else {
-            return .Error(block: self, error: .NoProgram)
+            return .error(block: self, error: .noProgram)
         }
         return result
     }
