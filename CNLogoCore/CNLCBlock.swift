@@ -182,7 +182,7 @@ open class CNLCBlock {
         statements = []
         if let info = data["statements"] as? [[String: Any]] {
             statements = info.map { item in
-                return CNLCLoader.createStatement(item["statement-id"] as? String, info: item["statement-info"] as? [String: Any])!
+                return CNLCLoader.createStatement(item["statement-id"] as? String, info: item)!
             }
         }
 

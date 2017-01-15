@@ -15,7 +15,9 @@ open class CNLCStatement: CNLCBlock {
     }
     
     override open func store() -> [String: Any] {
-        return ["statement-id": identifier as AnyObject, "statement-info": super.store() as AnyObject]
+        var result = super.store()
+        result["statement-id"] = identifier
+        return result
     }
     
     override public init() {
