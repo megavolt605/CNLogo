@@ -1,0 +1,6 @@
+framework module Pods_CNLogoCore {
+  umbrella header "Pods-CNLogoCore-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -41,11 +41,10 @@ open class CNLCStatementForward: CNLCStatement {
         if result.isError { return result }
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram{
-            program.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+            return program.player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
 }

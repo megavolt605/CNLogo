@@ -64,7 +64,7 @@ open class CNLCBlock {
     
     open var parametersDescription: String {
         return executableParameters.reduce("") {
-            let variableName = $1.variableName ?? ""
+            let variableName = $1.variableName // 170115 ?? ""
             return ($0 == "" ? "" : "\($0),") + "\(variableName)\($1.variableValue.description)"
         }
     }
@@ -142,7 +142,7 @@ open class CNLCBlock {
         var res: [String: Any] = [:]
         if executableParameters.count > 0 {
             res["parameters"] = executableParameters.enumerated().map { (index: Int, param: CNLCVariable) -> [String: Any] in
-                return [param.variableName ?? "\(index)": param.variableValue.store()]
+                return [param.variableName /* 170115 ?? "\(index)"*/: param.variableValue.store()]
             }
         }
         if statements.count > 0 {

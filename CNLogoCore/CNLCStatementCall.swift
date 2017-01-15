@@ -79,7 +79,7 @@ open class CNLCStatementCall: CNLCStatement {
         fatalError("init(executableParameters:) has not been implemented")
     }
     
-    override public required init(data: [String : Any]) {
+    public required init(data: [String : Any]) {
         fatalError("init(data:) has not been implemented")
     }
     

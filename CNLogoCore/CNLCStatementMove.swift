@@ -29,10 +29,10 @@ open class CNLCStatementMove: CNLCStatementForward {
                 result = player.tailDown(false, fromBlock: self)
                 if result.isError { return result }
             }
-            player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
+            result = player.moveForward(executableParameters.first!.variableValue, fromBlock: self)
             if tailDown {
-                result = player.tailDown(true, fromBlock: self)
-                if result.isError { return result }
+                let tempResult = player.tailDown(true, fromBlock: self)
+                if tempResult.isError { return tempResult }
             }
         }
         return result

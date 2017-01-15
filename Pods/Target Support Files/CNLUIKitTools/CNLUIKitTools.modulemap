@@ -1,0 +1,6 @@
+framework module CNLUIKitTools {
+  umbrella header "CNLUIKitTools-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -75,18 +75,17 @@ open class CNLCPlayer {
                 x: state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 y: state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: true, fromBlock: fromBlock)
+            return moveTo(newPosition, forward: true, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPoint(
                 x: state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 y: state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: true, fromBlock: fromBlock)
+            return moveTo(newPosition, forward: true, fromBlock: fromBlock)
         case .error: return result
         default: return .error(block: fromBlock, error: .numericValueExpected)
         }
-        return .unknown
     }
     
     open func moveBackward(_ value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {
@@ -98,18 +97,17 @@ open class CNLCPlayer {
                 x: state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 y: state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: false, fromBlock: fromBlock)
+            return moveTo(newPosition, forward: false, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPoint(
                 x: state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
                 y: state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
             )
-            moveTo(newPosition, forward: false, fromBlock: fromBlock)
+            return moveTo(newPosition, forward: false, fromBlock: fromBlock)
         case .error: return result
         default: return .error(block: fromBlock, error: .numericValueExpected)
         }
-        return .unknown
     }
     
     open func rotate(_ value: CNLCExpression, fromBlock: CNLCBlock?) -> CNLCValue {

@@ -2,8 +2,8 @@
 //  CNLogoCore.h
 //  CNLogoCore
 //
-//  Created by Igor Smirnov on 28/09/15.
-//  Copyright © 2015 Complex Number. All rights reserved.
+//  Created by Igor Smirnov on 15/01/2017.
+//  Copyright © 2017 Complex Numbers. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

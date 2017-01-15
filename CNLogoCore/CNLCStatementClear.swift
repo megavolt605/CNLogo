@@ -21,7 +21,7 @@ open class CNLCStatementClear: CNLCStatement {
         if result.isError { return result }
         
         if executableParameters.count != 0 {
-            CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
+            return CNLCBlockPrepareResult.error(block: self, error: .statementParameterCountMismatch(statementIdentifier: identifier, excpectedCount: 0, actualCount: executableParameters.count))
         }
         return result
     }
@@ -32,11 +32,10 @@ open class CNLCStatementClear: CNLCStatement {
         if result.isError { return result }
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            program.clear()
+            return program.clear()
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
 }

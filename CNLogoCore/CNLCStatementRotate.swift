@@ -32,11 +32,10 @@ open class CNLCStatementRotate: CNLCStatement {
         if result.isError { return result }
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            program.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
+            return program.player.rotate(executableParameters.first!.variableValue, fromBlock: self)
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
 }

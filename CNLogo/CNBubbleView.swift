@@ -133,7 +133,7 @@ extension CNBubbleView {
                 if index > 0 {
                     res.append(CNBubbleView(text: ", ", color: UIColor.clear, height: height, bold: false, tiny: true))
                 }
-                res += createBubblesForStatementFunctionParameter(parameter, inBlock: function, height: height) ?? []
+                res += createBubblesForStatementFunctionParameter(parameter, inBlock: function, height: height)
             }
             res.append(CNBubbleView(text: ")", color: UIColor.orange, height: height, bold: false, tiny: false))
         } else {
@@ -148,7 +148,7 @@ extension CNBubbleView {
     }
     
     static func createStatementCallBubbles(_ statement: CNLCStatementCall, height: CGFloat, prefix: String = "") -> [CNBubbleView] {
-        var res = (createBlockBubbles(statement, height: height, prefix: prefix, bold: true)) ?? []
+        var res = (createBlockBubbles(statement, height: height, prefix: prefix, bold: true))
         
         res.append(CNBubbleView(text: "\(statement.funcName) (", color: UIColor.orange, height: height, bold: false))
         
@@ -156,7 +156,7 @@ extension CNBubbleView {
             if index > 0 {
                 res.append(CNBubbleView(text: ", ", color: UIColor.clear, height: height, bold: false, tiny: true))
             }
-            res += createBubblesForStatementCallParameter(parameter, height: height) ?? []
+            res += createBubblesForStatementCallParameter(parameter, height: height) 
         }
         
         res.append(CNBubbleView(text: ")", color: UIColor.orange, height: height, bold: false, tiny: false))

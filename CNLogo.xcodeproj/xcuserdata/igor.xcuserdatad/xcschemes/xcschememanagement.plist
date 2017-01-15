@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CNLogoCore.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>784E947E1E2BD9E500F3152B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7856FA761B9E01B40037E99F</key>
 		<dict>
 			<key>primary</key>

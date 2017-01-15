@@ -32,11 +32,10 @@ open class CNLCStatementTailDown: CNLCStatement {
         if result.isError { return result }
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            program.player.tailDown(true, fromBlock: self)
+            return program.player.tailDown(true, fromBlock: self)
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
 }
@@ -63,30 +62,29 @@ open class CNLCStatementTailUp: CNLCStatement {
         let result = super.execute(parameters)
         if result.isError { return result }
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            program.player.tailDown(false, fromBlock: self)
+            return program.player.tailDown(false, fromBlock: self)
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
     override required public init() {
         super.init()
     }
     
-    override public required init(data: [String : Any]) {
+    public required init(data: [String : Any]) {
         fatalError("init(data:) has not been implemented")
     }
     
-    override public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
+    public required init(executableParameters: [CNLCVariable], statements: [CNLCStatement]) {
         fatalError("init(executableParameters:statements:) has not been implemented")
     }
     
-    override public required init(executableParameters: [CNLCVariable]) {
+    public required init(executableParameters: [CNLCVariable]) {
         fatalError("init(executableParameters:) has not been implemented")
     }
     
-    override public required init(statements: [CNLCStatement]) {
+    public required init(statements: [CNLCStatement]) {
         fatalError("init(statements:) has not been implemented")
     }
     

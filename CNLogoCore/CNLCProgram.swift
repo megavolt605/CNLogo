@@ -25,6 +25,7 @@ open class CNLCProgram: CNLCBlock {
         CNLCFunctionCos()
     ]
     
+    @discardableResult
     open func clear() -> CNLCValue {
         let result = player.clear(nil)
         if result.isError { return result }

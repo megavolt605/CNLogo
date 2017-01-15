@@ -1,13 +1,27 @@
 PODS:
-  - BetweenKit (2.0.1)
-  - RATreeView (2.1.0)
+  - CNLDataProvider (0.0.2):
+    - CNLFoundationTools
+    - CNLUIKitTools
+  - CNLFoundationTools (0.0.10)
+  - CNLUIKitTools (0.0.12):
+    - CNLFoundationTools
 
 DEPENDENCIES:
-  - BetweenKit
-  - RATreeView
+  - CNLDataProvider (from `~/src/CNLDataProvider`)
+  - CNLFoundationTools
+  - CNLUIKitTools (from `~/src/CNLUIKitTools`)
+
+EXTERNAL SOURCES:
+  CNLDataProvider:
+    :path: ~/src/CNLDataProvider
+  CNLUIKitTools:
+    :path: ~/src/CNLUIKitTools
 
 SPEC CHECKSUMS:
-  BetweenKit: 89edc0c6dd96eb33ea02c097bb99a9b1c14880f0
-  RATreeView: fc82ec26b8be18cfa0f5f99a5abbe6be68edb21f
+  CNLDataProvider: 70f28b84c248d97c420afb23ce1d24d582107a71
+  CNLFoundationTools: 37df84706a26100ae3161755c19de973cb4866c9
+  CNLUIKitTools: 93eded115c74ff2cce1c83d1b560f4479df07dc7
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 43bc68d4e4c941a1f5d84c973daac3a0b1d15f13
+
+COCOAPODS: 1.2.0.beta.3

@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "027E555668B4B5D0A8AA43D24878D512BE38777C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CE70712FD2FE4AA7081421383AB866F0FC62002D" : 9223372036854775807,
+    "733C09BF6F3675951CFE5C6C916310CA04B51CBC" : 9223372036854775807,
+    "75574BC88B8682DC30167025EDADA6D15D100D74" : 9223372036854775807,
+    "027E555668B4B5D0A8AA43D24878D512BE38777C" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "13CBB8AF-87C2-42F4-B849-4C8A4C1CA24D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CE70712FD2FE4AA7081421383AB866F0FC62002D" : "CNLDataProvider\/",
+    "733C09BF6F3675951CFE5C6C916310CA04B51CBC" : "CNLFoundationTools\/",
+    "75574BC88B8682DC30167025EDADA6D15D100D74" : "CNLUIKitTools\/",
+    "027E555668B4B5D0A8AA43D24878D512BE38777C" : "CNLogo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CNLogo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CNLogo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:megavolt605\/CNLogo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "027E555668B4B5D0A8AA43D24878D512BE38777C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:megavolt605\/CNLFoundationTools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "733C09BF6F3675951CFE5C6C916310CA04B51CBC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:megavolt605\/CNLUIKitTools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "75574BC88B8682DC30167025EDADA6D15D100D74"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/megavolt605\/CNLDataProvider.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE70712FD2FE4AA7081421383AB866F0FC62002D"
+    }
+  ]
+}

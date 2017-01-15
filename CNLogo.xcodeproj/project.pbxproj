@@ -7,13 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33D758473FAFCB353C468933 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5C8C89A01537ADB22F7FAA /* Pods.framework */; };
-		46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0DC07F5CFA58ABCA3D1D24BE /* Pods_CNLogo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124312A298DDC69DE1E85169 /* Pods_CNLogo.framework */; };
+		54C4C452924040D549BBDEDA /* Pods_CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06DD615F6A47A32C498682B /* Pods_CNLogoCore.framework */; };
 		7825FCFE1BC00C20004C2903 /* CNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FCFD1BC00C20004C2903 /* CNButton.swift */; };
 		7825FD021BC012BA004C2903 /* CNLogo+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD011BC012BA004C2903 /* CNLogo+UIImage.swift */; };
-		7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7825FD0E1BC13C82004C2903 /* CNOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7825FD0D1BC13C82004C2903 /* CNOptions.swift */; };
 		78260ECA1BB08B0C006ADF68 /* CNProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */; };
+		784E94831E2BD9E500F3152B /* CNLogoCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 784E94811E2BD9E500F3152B /* CNLogoCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		784E94861E2BD9E500F3152B /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784E947F1E2BD9E500F3152B /* CNLogoCore.framework */; };
+		784E94871E2BD9E500F3152B /* CNLogoCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 784E947F1E2BD9E500F3152B /* CNLogoCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		784E94B31E2BD9FF00F3152B /* CNLCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E948D1E2BD9FF00F3152B /* CNLCError.swift */; };
+		784E94B41E2BD9FF00F3152B /* CNLCValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E948E1E2BD9FF00F3152B /* CNLCValue.swift */; };
+		784E94B51E2BD9FF00F3152B /* CNLCValueOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E948F1E2BD9FF00F3152B /* CNLCValueOperators.swift */; };
+		784E94B61E2BD9FF00F3152B /* CNVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94901E2BD9FF00F3152B /* CNVariable.swift */; };
+		784E94B71E2BD9FF00F3152B /* CNLCParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94911E2BD9FF00F3152B /* CNLCParameter.swift */; };
+		784E94B81E2BD9FF00F3152B /* CNLCBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94921E2BD9FF00F3152B /* CNLCBlock.swift */; };
+		784E94B91E2BD9FF00F3152B /* CNLCStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94931E2BD9FF00F3152B /* CNLCStatement.swift */; };
+		784E94BA1E2BD9FF00F3152B /* CNLCStatementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94941E2BD9FF00F3152B /* CNLCStatementFunction.swift */; };
+		784E94BB1E2BD9FF00F3152B /* CNLCStatementCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94951E2BD9FF00F3152B /* CNLCStatementCall.swift */; };
+		784E94BC1E2BD9FF00F3152B /* CNLCExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94961E2BD9FF00F3152B /* CNLCExpression.swift */; };
+		784E94BD1E2BD9FF00F3152B /* CNLCExpressionParseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94971E2BD9FF00F3152B /* CNLCExpressionParseElement.swift */; };
+		784E94BE1E2BD9FF00F3152B /* CNLCFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94981E2BD9FF00F3152B /* CNLCFunctions.swift */; };
+		784E94BF1E2BD9FF00F3152B /* CNLCPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94991E2BD9FF00F3152B /* CNLCPlayer.swift */; };
+		784E94C01E2BD9FF00F3152B /* CNLCProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949A1E2BD9FF00F3152B /* CNLCProgram.swift */; };
+		784E94C11E2BD9FF00F3152B /* CNLCStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949B1E2BD9FF00F3152B /* CNLCStack.swift */; };
+		784E94C21E2BD9FF00F3152B /* CNLCSystemStatements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949C1E2BD9FF00F3152B /* CNLCSystemStatements.swift */; };
+		784E94C31E2BD9FF00F3152B /* CNLCSystemStackStatements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949D1E2BD9FF00F3152B /* CNLCSystemStackStatements.swift */; };
+		784E94C41E2BD9FF00F3152B /* CNLCStatementForward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949E1E2BD9FF00F3152B /* CNLCStatementForward.swift */; };
+		784E94C51E2BD9FF00F3152B /* CNLCStatementBackward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E949F1E2BD9FF00F3152B /* CNLCStatementBackward.swift */; };
+		784E94C61E2BD9FF00F3152B /* CNLCStatementMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A01E2BD9FF00F3152B /* CNLCStatementMove.swift */; };
+		784E94C71E2BD9FF00F3152B /* CNLCStatementDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A11E2BD9FF00F3152B /* CNLCStatementDraw.swift */; };
+		784E94C81E2BD9FF00F3152B /* CNLCStatementRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A21E2BD9FF00F3152B /* CNLCStatementRotate.swift */; };
+		784E94C91E2BD9FF00F3152B /* CNLCStatementTail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A31E2BD9FF00F3152B /* CNLCStatementTail.swift */; };
+		784E94CA1E2BD9FF00F3152B /* CNLCStatementColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A41E2BD9FF00F3152B /* CNLCStatementColor.swift */; };
+		784E94CB1E2BD9FF00F3152B /* CNLCStatementWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A51E2BD9FF00F3152B /* CNLCStatementWidth.swift */; };
+		784E94CC1E2BD9FF00F3152B /* CNLCStatementClear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A61E2BD9FF00F3152B /* CNLCStatementClear.swift */; };
+		784E94CD1E2BD9FF00F3152B /* CNLCStatementScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A71E2BD9FF00F3152B /* CNLCStatementScale.swift */; };
+		784E94CE1E2BD9FF00F3152B /* CNLCStatementRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A81E2BD9FF00F3152B /* CNLCStatementRepeat.swift */; };
+		784E94CF1E2BD9FF00F3152B /* CNLCStatementWhile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94A91E2BD9FF00F3152B /* CNLCStatementWhile.swift */; };
+		784E94D01E2BD9FF00F3152B /* CNLCStatementIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94AA1E2BD9FF00F3152B /* CNLCStatementIf.swift */; };
+		784E94D11E2BD9FF00F3152B /* CNLogoCore+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94AC1E2BD9FF00F3152B /* CNLogoCore+String.swift */; };
+		784E94D21E2BD9FF00F3152B /* CNLCExecutionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94AD1E2BD9FF00F3152B /* CNLCExecutionHistory.swift */; };
+		784E94D31E2BD9FF00F3152B /* CNLCExecutionHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94AE1E2BD9FF00F3152B /* CNLCExecutionHistoryItem.swift */; };
+		784E94D41E2BD9FF00F3152B /* CNLCEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94AF1E2BD9FF00F3152B /* CNLCEnviroment.swift */; };
+		784E94D51E2BD9FF00F3152B /* CNLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E94B01E2BD9FF00F3152B /* CNLoader.swift */; };
 		7856FA7D1B9E01B40037E99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7C1B9E01B40037E99F /* AppDelegate.swift */; };
 		7856FA7F1B9E01B40037E99F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA7E1B9E01B40037E99F /* ViewController.swift */; };
 		7856FA821B9E01B40037E99F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7856FA801B9E01B40037E99F /* Main.storyboard */; };
@@ -22,27 +59,19 @@
 		7856FA931B9E01B40037E99F /* CNExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856FA921B9E01B40037E99F /* CNExpressionTests.swift */; };
 		785E7A761BB475FB00998ADB /* CNBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785E7A751BB475FB00998ADB /* CNBubbleView.swift */; };
 		78C0D3611BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */; };
-		78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */; };
 		78CA6F6A1CB7231900BB8F16 /* CNBubbleBlockStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F691CB7231900BB8F16 /* CNBubbleBlockStartView.swift */; };
 		78CA6F6C1CB7233800BB8F16 /* CNBubbleBlockEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F6B1CB7233800BB8F16 /* CNBubbleBlockEndView.swift */; };
 		78CA6F6E1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6F6D1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift */; };
 		78FDE94F1B9E1B2600AAFB1D /* CNFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */; };
-		84EC1A43D33EC1E3F7FE3104 /* Pods_CNLogoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B77F37B10D0E486DE96676D /* Pods_CNLogoTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FC543459F2DDF6BD1680A10D /* Pods_CNLogoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8709E167033D077A85503997 /* Pods_CNLogoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7825FD061BC034E8004C2903 /* PBXContainerItemProxy */ = {
+		784E94841E2BD9E500F3152B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
+			containerPortal = 7856FA6F1B9E01B40037E99F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 78C0D38D1BB9407200CCCE70;
-			remoteInfo = CNLogoCore;
-		};
-		7825FD0A1BC0352D004C2903 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 78C0D38D1BB9407200CCCE70;
+			remoteGlobalIDString = 784E947E1E2BD9E500F3152B;
 			remoteInfo = CNLogoCore;
 		};
 		7856FA8D1B9E01B40037E99F /* PBXContainerItemProxy */ = {
@@ -51,20 +80,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7856FA761B9E01B40037E99F;
 			remoteInfo = CNLogo;
-		};
-		78C0D3AD1BB940E300CCCE70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 78C0D38E1BB9407200CCCE70;
-			remoteInfo = CNLogoCore;
-		};
-		78C0D3AF1BB940E300CCCE70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 78C0D3981BB9407200CCCE70;
-			remoteInfo = CNLogoCoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -75,7 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7825FD091BC0352D004C2903 /* CNLogoCore.framework in Embed Frameworks */,
+				784E94871E2BD9E500F3152B /* CNLogoCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,9 +98,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B77F37B10D0E486DE96676D /* Pods_CNLogoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		602657654094446AFF2769FC /* Pods-CNLogoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.release.xcconfig"; sourceTree = "<group>"; };
+		0DDBB68985FB3E0E035107CD /* Pods-CNLogoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.release.xcconfig"; sourceTree = "<group>"; };
+		124312A298DDC69DE1E85169 /* Pods_CNLogo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		461A54D259B06FD3155B018C /* Pods-CNLogoCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.debug.xcconfig"; sourceTree = "<group>"; };
+		4D17F1F0E7D1003F60C77550 /* Pods-CNLogoCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.release.xcconfig"; sourceTree = "<group>"; };
+		73F2BF90455DA4AB9B2D3F99 /* Pods-CNLogoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7825FCF11BBFDF8B004C2903 /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = "Pods/../build/Debug-iphoneos/Dollar.framework"; sourceTree = "<group>"; };
 		7825FCF21BBFDF8B004C2903 /* LiquidFloatingActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiquidFloatingActionButton.framework; path = "Pods/../build/Debug-iphoneos/LiquidFloatingActionButton.framework"; sourceTree = "<group>"; };
 		7825FCF31BBFDF8B004C2903 /* LiquidLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiquidLoader.framework; path = "Pods/../build/Debug-iphoneos/LiquidLoader.framework"; sourceTree = "<group>"; };
@@ -95,6 +112,45 @@
 		78260EC91BB08B0C006ADF68 /* CNProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewCell.swift; sourceTree = "<group>"; };
 		78260ECD1BB09FCD006ADF68 /* ScreenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScreenShot.png; path = ../ScreenShot.png; sourceTree = "<group>"; };
 		78260ED21BB0A0F2006ADF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		784E947F1E2BD9E500F3152B /* CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLogoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		784E94811E2BD9E500F3152B /* CNLogoCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLogoCore.h; sourceTree = "<group>"; };
+		784E94821E2BD9E500F3152B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		784E948C1E2BD9FF00F3152B /* CNLogoCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNLogoCore.h; sourceTree = "<group>"; };
+		784E948D1E2BD9FF00F3152B /* CNLCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCError.swift; sourceTree = "<group>"; };
+		784E948E1E2BD9FF00F3152B /* CNLCValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCValue.swift; sourceTree = "<group>"; };
+		784E948F1E2BD9FF00F3152B /* CNLCValueOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCValueOperators.swift; sourceTree = "<group>"; };
+		784E94901E2BD9FF00F3152B /* CNVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVariable.swift; sourceTree = "<group>"; };
+		784E94911E2BD9FF00F3152B /* CNLCParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCParameter.swift; sourceTree = "<group>"; };
+		784E94921E2BD9FF00F3152B /* CNLCBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCBlock.swift; sourceTree = "<group>"; };
+		784E94931E2BD9FF00F3152B /* CNLCStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatement.swift; sourceTree = "<group>"; };
+		784E94941E2BD9FF00F3152B /* CNLCStatementFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementFunction.swift; sourceTree = "<group>"; };
+		784E94951E2BD9FF00F3152B /* CNLCStatementCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementCall.swift; sourceTree = "<group>"; };
+		784E94961E2BD9FF00F3152B /* CNLCExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCExpression.swift; sourceTree = "<group>"; };
+		784E94971E2BD9FF00F3152B /* CNLCExpressionParseElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCExpressionParseElement.swift; sourceTree = "<group>"; };
+		784E94981E2BD9FF00F3152B /* CNLCFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCFunctions.swift; sourceTree = "<group>"; };
+		784E94991E2BD9FF00F3152B /* CNLCPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCPlayer.swift; sourceTree = "<group>"; };
+		784E949A1E2BD9FF00F3152B /* CNLCProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCProgram.swift; sourceTree = "<group>"; };
+		784E949B1E2BD9FF00F3152B /* CNLCStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStack.swift; sourceTree = "<group>"; };
+		784E949C1E2BD9FF00F3152B /* CNLCSystemStatements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCSystemStatements.swift; sourceTree = "<group>"; };
+		784E949D1E2BD9FF00F3152B /* CNLCSystemStackStatements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCSystemStackStatements.swift; sourceTree = "<group>"; };
+		784E949E1E2BD9FF00F3152B /* CNLCStatementForward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementForward.swift; sourceTree = "<group>"; };
+		784E949F1E2BD9FF00F3152B /* CNLCStatementBackward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementBackward.swift; sourceTree = "<group>"; };
+		784E94A01E2BD9FF00F3152B /* CNLCStatementMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementMove.swift; sourceTree = "<group>"; };
+		784E94A11E2BD9FF00F3152B /* CNLCStatementDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementDraw.swift; sourceTree = "<group>"; };
+		784E94A21E2BD9FF00F3152B /* CNLCStatementRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementRotate.swift; sourceTree = "<group>"; };
+		784E94A31E2BD9FF00F3152B /* CNLCStatementTail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementTail.swift; sourceTree = "<group>"; };
+		784E94A41E2BD9FF00F3152B /* CNLCStatementColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementColor.swift; sourceTree = "<group>"; };
+		784E94A51E2BD9FF00F3152B /* CNLCStatementWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementWidth.swift; sourceTree = "<group>"; };
+		784E94A61E2BD9FF00F3152B /* CNLCStatementClear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementClear.swift; sourceTree = "<group>"; };
+		784E94A71E2BD9FF00F3152B /* CNLCStatementScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementScale.swift; sourceTree = "<group>"; };
+		784E94A81E2BD9FF00F3152B /* CNLCStatementRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementRepeat.swift; sourceTree = "<group>"; };
+		784E94A91E2BD9FF00F3152B /* CNLCStatementWhile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementWhile.swift; sourceTree = "<group>"; };
+		784E94AA1E2BD9FF00F3152B /* CNLCStatementIf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCStatementIf.swift; sourceTree = "<group>"; };
+		784E94AC1E2BD9FF00F3152B /* CNLogoCore+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLogoCore+String.swift"; sourceTree = "<group>"; };
+		784E94AD1E2BD9FF00F3152B /* CNLCExecutionHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCExecutionHistory.swift; sourceTree = "<group>"; };
+		784E94AE1E2BD9FF00F3152B /* CNLCExecutionHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCExecutionHistoryItem.swift; sourceTree = "<group>"; };
+		784E94AF1E2BD9FF00F3152B /* CNLCEnviroment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLCEnviroment.swift; sourceTree = "<group>"; };
+		784E94B01E2BD9FF00F3152B /* CNLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLoader.swift; sourceTree = "<group>"; };
 		7856FA771B9E01B40037E99F /* CNLogo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNLogo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7856FA7B1B9E01B40037E99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7856FA7C1B9E01B40037E99F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,25 +163,32 @@
 		7856FA921B9E01B40037E99F /* CNExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNExpressionTests.swift; sourceTree = "<group>"; };
 		785E7A751BB475FB00998ADB /* CNBubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleView.swift; sourceTree = "<group>"; };
 		78C0D3601BB03E2200CCCE70 /* CNProgramTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNProgramTableViewDataSource.swift; sourceTree = "<group>"; };
-		78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CNLogoCore.xcodeproj; sourceTree = "<group>"; };
 		78CA6F691CB7231900BB8F16 /* CNBubbleBlockStartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockStartView.swift; sourceTree = "<group>"; };
 		78CA6F6B1CB7233800BB8F16 /* CNBubbleBlockEndView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockEndView.swift; sourceTree = "<group>"; };
 		78CA6F6D1CB7235E00BB8F16 /* CNBubbleBlockShiftView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBubbleBlockShiftView.swift; sourceTree = "<group>"; };
 		78FDE94E1B9E1B2600AAFB1D /* CNFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFieldView.swift; sourceTree = "<group>"; };
+		8709E167033D077A85503997 /* Pods_CNLogoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A1879B815C9C1FD4C051117 /* Pods-CNLogo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogo/Pods-CNLogo.debug.xcconfig"; sourceTree = "<group>"; };
 		AC5C8C89A01537ADB22F7FAA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B989B2914AC7026F8A6F03B1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C54CCCAEF296F3CE22637A62 /* Pods-CNLogoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C8C072BC8E904167F5F16AE6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B07D2FB3A5381ABC45BB6482 /* Pods-CNLogo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLogo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNLogo/Pods-CNLogo.release.xcconfig"; sourceTree = "<group>"; };
+		D06DD615F6A47A32C498682B /* Pods_CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNLogoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		784E947B1E2BD9E500F3152B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54C4C452924040D549BBDEDA /* Pods_CNLogoCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7856FA741B9E01B40037E99F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78C0D3B11BB9418300CCCE70 /* CNLogoCore.framework in Frameworks */,
-				33D758473FAFCB353C468933 /* Pods.framework in Frameworks */,
-				46C4D17EEB0E7498C0426F8F /* Pods_CNLogo.framework in Frameworks */,
+				0DC07F5CFA58ABCA3D1D24BE /* Pods_CNLogo.framework in Frameworks */,
+				784E94861E2BD9E500F3152B /* CNLogoCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,24 +196,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84EC1A43D33EC1E3F7FE3104 /* Pods_CNLogoTests.framework in Frameworks */,
+				FC543459F2DDF6BD1680A10D /* Pods_CNLogoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B8A64F6A97A6B62BC6AE2F0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B989B2914AC7026F8A6F03B1 /* Pods.debug.xcconfig */,
-				C8C072BC8E904167F5F16AE6 /* Pods.release.xcconfig */,
-				C54CCCAEF296F3CE22637A62 /* Pods-CNLogoTests.debug.xcconfig */,
-				602657654094446AFF2769FC /* Pods-CNLogoTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5D6231D341B42C29B173064C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,21 +210,83 @@
 				7825FCF21BBFDF8B004C2903 /* LiquidFloatingActionButton.framework */,
 				7825FCF31BBFDF8B004C2903 /* LiquidLoader.framework */,
 				AC5C8C89A01537ADB22F7FAA /* Pods.framework */,
-				3B77F37B10D0E486DE96676D /* Pods_CNLogoTests.framework */,
-				1307196CF8B71F2A6460AED1 /* Pods_CNLogo.framework */,
+				124312A298DDC69DE1E85169 /* Pods_CNLogo.framework */,
+				8709E167033D077A85503997 /* Pods_CNLogoTests.framework */,
+				D06DD615F6A47A32C498682B /* Pods_CNLogoCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		784E94801E2BD9E500F3152B /* CNLogoCore */ = {
+			isa = PBXGroup;
+			children = (
+				784E948C1E2BD9FF00F3152B /* CNLogoCore.h */,
+				784E948D1E2BD9FF00F3152B /* CNLCError.swift */,
+				784E948E1E2BD9FF00F3152B /* CNLCValue.swift */,
+				784E948F1E2BD9FF00F3152B /* CNLCValueOperators.swift */,
+				784E94901E2BD9FF00F3152B /* CNVariable.swift */,
+				784E94911E2BD9FF00F3152B /* CNLCParameter.swift */,
+				784E94921E2BD9FF00F3152B /* CNLCBlock.swift */,
+				784E94931E2BD9FF00F3152B /* CNLCStatement.swift */,
+				784E94941E2BD9FF00F3152B /* CNLCStatementFunction.swift */,
+				784E94951E2BD9FF00F3152B /* CNLCStatementCall.swift */,
+				784E94961E2BD9FF00F3152B /* CNLCExpression.swift */,
+				784E94971E2BD9FF00F3152B /* CNLCExpressionParseElement.swift */,
+				784E94981E2BD9FF00F3152B /* CNLCFunctions.swift */,
+				784E94991E2BD9FF00F3152B /* CNLCPlayer.swift */,
+				784E949A1E2BD9FF00F3152B /* CNLCProgram.swift */,
+				784E949B1E2BD9FF00F3152B /* CNLCStack.swift */,
+				784E94AB1E2BD9FF00F3152B /* Statements */,
+				784E94AC1E2BD9FF00F3152B /* CNLogoCore+String.swift */,
+				784E94AD1E2BD9FF00F3152B /* CNLCExecutionHistory.swift */,
+				784E94AE1E2BD9FF00F3152B /* CNLCExecutionHistoryItem.swift */,
+				784E94AF1E2BD9FF00F3152B /* CNLCEnviroment.swift */,
+				784E94B01E2BD9FF00F3152B /* CNLoader.swift */,
+				784E94D61E2BDA0700F3152B /* Suporting Files */,
+			);
+			path = CNLogoCore;
+			sourceTree = "<group>";
+		};
+		784E94AB1E2BD9FF00F3152B /* Statements */ = {
+			isa = PBXGroup;
+			children = (
+				784E949C1E2BD9FF00F3152B /* CNLCSystemStatements.swift */,
+				784E949D1E2BD9FF00F3152B /* CNLCSystemStackStatements.swift */,
+				784E949E1E2BD9FF00F3152B /* CNLCStatementForward.swift */,
+				784E949F1E2BD9FF00F3152B /* CNLCStatementBackward.swift */,
+				784E94A01E2BD9FF00F3152B /* CNLCStatementMove.swift */,
+				784E94A11E2BD9FF00F3152B /* CNLCStatementDraw.swift */,
+				784E94A21E2BD9FF00F3152B /* CNLCStatementRotate.swift */,
+				784E94A31E2BD9FF00F3152B /* CNLCStatementTail.swift */,
+				784E94A41E2BD9FF00F3152B /* CNLCStatementColor.swift */,
+				784E94A51E2BD9FF00F3152B /* CNLCStatementWidth.swift */,
+				784E94A61E2BD9FF00F3152B /* CNLCStatementClear.swift */,
+				784E94A71E2BD9FF00F3152B /* CNLCStatementScale.swift */,
+				784E94A81E2BD9FF00F3152B /* CNLCStatementRepeat.swift */,
+				784E94A91E2BD9FF00F3152B /* CNLCStatementWhile.swift */,
+				784E94AA1E2BD9FF00F3152B /* CNLCStatementIf.swift */,
+			);
+			name = Statements;
+			sourceTree = "<group>";
+		};
+		784E94D61E2BDA0700F3152B /* Suporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				784E94811E2BD9E500F3152B /* CNLogoCore.h */,
+				784E94821E2BD9E500F3152B /* Info.plist */,
+			);
+			name = "Suporting Files";
 			sourceTree = "<group>";
 		};
 		7856FA6E1B9E01B40037E99F = {
 			isa = PBXGroup;
 			children = (
 				7856FA791B9E01B40037E99F /* CNLogo */,
-				78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */,
 				7856FA8F1B9E01B40037E99F /* CNLogoTests */,
+				784E94801E2BD9E500F3152B /* CNLogoCore */,
 				7856FA781B9E01B40037E99F /* Products */,
-				5B8A64F6A97A6B62BC6AE2F0 /* Pods */,
 				5D6231D341B42C29B173064C /* Frameworks */,
+				9897B2BF4376D0A8495569A4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +295,7 @@
 			children = (
 				7856FA771B9E01B40037E99F /* CNLogo.app */,
 				7856FA8C1B9E01B40037E99F /* CNLogoTests.xctest */,
+				784E947F1E2BD9E500F3152B /* CNLogoCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,15 +352,6 @@
 			name = "User Interface";
 			sourceTree = "<group>";
 		};
-		78C0D3A91BB940E300CCCE70 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */,
-				78C0D3B01BB940E300CCCE70 /* CNLogoCoreTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		78C0D3CE1BB95E1900CCCE70 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,26 +390,69 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		9897B2BF4376D0A8495569A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A1879B815C9C1FD4C051117 /* Pods-CNLogo.debug.xcconfig */,
+				B07D2FB3A5381ABC45BB6482 /* Pods-CNLogo.release.xcconfig */,
+				73F2BF90455DA4AB9B2D3F99 /* Pods-CNLogoTests.debug.xcconfig */,
+				0DDBB68985FB3E0E035107CD /* Pods-CNLogoTests.release.xcconfig */,
+				461A54D259B06FD3155B018C /* Pods-CNLogoCore.debug.xcconfig */,
+				4D17F1F0E7D1003F60C77550 /* Pods-CNLogoCore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		784E947C1E2BD9E500F3152B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				784E94831E2BD9E500F3152B /* CNLogoCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		7856FA761B9E01B40037E99F /* CNLogo */ = {
+		784E947E1E2BD9E500F3152B /* CNLogoCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7856FA961B9E01B40037E99F /* Build configuration list for PBXNativeTarget "CNLogo" */;
+			buildConfigurationList = 784E948B1E2BD9E500F3152B /* Build configuration list for PBXNativeTarget "CNLogoCore" */;
 			buildPhases = (
-				97EFE4D1E1111003301D910C /* Check Pods Manifest.lock */,
-				7856FA731B9E01B40037E99F /* Sources */,
-				7856FA741B9E01B40037E99F /* Frameworks */,
-				7856FA751B9E01B40037E99F /* Resources */,
-				76A8D1692B59DECC1443D85D /* Embed Pods Frameworks */,
-				638267E109337074A0201EED /* Copy Pods Resources */,
-				7825FD0C1BC0352D004C2903 /* Embed Frameworks */,
+				2D8FE9274A82E1C6ECC140CE /* [CP] Check Pods Manifest.lock */,
+				784E947A1E2BD9E500F3152B /* Sources */,
+				784E947B1E2BD9E500F3152B /* Frameworks */,
+				784E947C1E2BD9E500F3152B /* Headers */,
+				784E947D1E2BD9E500F3152B /* Resources */,
+				66043157F75FD18A15A8F579 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7825FD071BC034E8004C2903 /* PBXTargetDependency */,
-				7825FD0B1BC0352D004C2903 /* PBXTargetDependency */,
+			);
+			name = CNLogoCore;
+			productName = CNLogoCore;
+			productReference = 784E947F1E2BD9E500F3152B /* CNLogoCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7856FA761B9E01B40037E99F /* CNLogo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7856FA961B9E01B40037E99F /* Build configuration list for PBXNativeTarget "CNLogo" */;
+			buildPhases = (
+				4BF543BE657070601B8162CF /* [CP] Check Pods Manifest.lock */,
+				7856FA731B9E01B40037E99F /* Sources */,
+				7856FA741B9E01B40037E99F /* Frameworks */,
+				7856FA751B9E01B40037E99F /* Resources */,
+				7825FD0C1BC0352D004C2903 /* Embed Frameworks */,
+				18BA205270B9F9976BB40848 /* [CP] Embed Pods Frameworks */,
+				A1209EB88B5E2F6F90150A88 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				784E94851E2BD9E500F3152B /* PBXTargetDependency */,
 			);
 			name = CNLogo;
 			productName = CNLogo;
@@ -314,12 +463,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7856FA991B9E01B40037E99F /* Build configuration list for PBXNativeTarget "CNLogoTests" */;
 			buildPhases = (
-				2369A825E961BF41573E4A47 /* Check Pods Manifest.lock */,
+				ABACE437DC763497FA312E94 /* [CP] Check Pods Manifest.lock */,
 				7856FA881B9E01B40037E99F /* Sources */,
 				7856FA891B9E01B40037E99F /* Frameworks */,
 				7856FA8A1B9E01B40037E99F /* Resources */,
-				05F11F53EF139F5A578E6AB6 /* Embed Pods Frameworks */,
-				E018A227A91A0CE8ED10DB74 /* Copy Pods Resources */,
+				A4E6007E3A967A238B5AD2E5 /* [CP] Embed Pods Frameworks */,
+				BB7492E416357C63DFEC435E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,11 +487,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Complex Numbers";
 				TargetAttributes = {
+					784E947E1E2BD9E500F3152B = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SUMP8778AD;
+						ProvisioningStyle = Automatic;
+					};
 					7856FA761B9E01B40037E99F = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = SUMP8778AD;
 						LastSwiftMigration = 0800;
 					};
 					7856FA8B1B9E01B40037E99F = {
@@ -362,38 +517,23 @@
 			mainGroup = 7856FA6E1B9E01B40037E99F;
 			productRefGroup = 7856FA781B9E01B40037E99F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 78C0D3A91BB940E300CCCE70 /* Products */;
-					ProjectRef = 78C0D3A81BB940E300CCCE70 /* CNLogoCore.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7856FA761B9E01B40037E99F /* CNLogo */,
 				7856FA8B1B9E01B40037E99F /* CNLogoTests */,
+				784E947E1E2BD9E500F3152B /* CNLogoCore */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		78C0D3AE1BB940E300CCCE70 /* CNLogoCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CNLogoCore.framework;
-			remoteRef = 78C0D3AD1BB940E300CCCE70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78C0D3B01BB940E300CCCE70 /* CNLogoCoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CNLogoCoreTests.xctest;
-			remoteRef = 78C0D3AF1BB940E300CCCE70 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
+		784E947D1E2BD9E500F3152B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7856FA751B9E01B40037E99F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,59 +554,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05F11F53EF139F5A578E6AB6 /* Embed Pods Frameworks */ = {
+		18BA205270B9F9976BB40848 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2369A825E961BF41573E4A47 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		638267E109337074A0201EED /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		76A8D1692B59DECC1443D85D /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,29 +569,104 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNLogo/Pods-CNLogo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97EFE4D1E1111003301D910C /* Check Pods Manifest.lock */ = {
+		2D8FE9274A82E1C6ECC140CE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E018A227A91A0CE8ED10DB74 /* Copy Pods Resources */ = {
+		4BF543BE657070601B8162CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66043157F75FD18A15A8F579 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1209EB88B5E2F6F90150A88 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNLogo/Pods-CNLogo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E6007E3A967A238B5AD2E5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABACE437DC763497FA312E94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BB7492E416357C63DFEC435E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +677,48 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		784E947A1E2BD9E500F3152B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				784E94BB1E2BD9FF00F3152B /* CNLCStatementCall.swift in Sources */,
+				784E94B51E2BD9FF00F3152B /* CNLCValueOperators.swift in Sources */,
+				784E94CB1E2BD9FF00F3152B /* CNLCStatementWidth.swift in Sources */,
+				784E94C61E2BD9FF00F3152B /* CNLCStatementMove.swift in Sources */,
+				784E94C21E2BD9FF00F3152B /* CNLCSystemStatements.swift in Sources */,
+				784E94CD1E2BD9FF00F3152B /* CNLCStatementScale.swift in Sources */,
+				784E94BA1E2BD9FF00F3152B /* CNLCStatementFunction.swift in Sources */,
+				784E94BE1E2BD9FF00F3152B /* CNLCFunctions.swift in Sources */,
+				784E94C81E2BD9FF00F3152B /* CNLCStatementRotate.swift in Sources */,
+				784E94BD1E2BD9FF00F3152B /* CNLCExpressionParseElement.swift in Sources */,
+				784E94D41E2BD9FF00F3152B /* CNLCEnviroment.swift in Sources */,
+				784E94B91E2BD9FF00F3152B /* CNLCStatement.swift in Sources */,
+				784E94B81E2BD9FF00F3152B /* CNLCBlock.swift in Sources */,
+				784E94D01E2BD9FF00F3152B /* CNLCStatementIf.swift in Sources */,
+				784E94CC1E2BD9FF00F3152B /* CNLCStatementClear.swift in Sources */,
+				784E94CF1E2BD9FF00F3152B /* CNLCStatementWhile.swift in Sources */,
+				784E94B31E2BD9FF00F3152B /* CNLCError.swift in Sources */,
+				784E94B71E2BD9FF00F3152B /* CNLCParameter.swift in Sources */,
+				784E94BC1E2BD9FF00F3152B /* CNLCExpression.swift in Sources */,
+				784E94C31E2BD9FF00F3152B /* CNLCSystemStackStatements.swift in Sources */,
+				784E94C71E2BD9FF00F3152B /* CNLCStatementDraw.swift in Sources */,
+				784E94C01E2BD9FF00F3152B /* CNLCProgram.swift in Sources */,
+				784E94C41E2BD9FF00F3152B /* CNLCStatementForward.swift in Sources */,
+				784E94C51E2BD9FF00F3152B /* CNLCStatementBackward.swift in Sources */,
+				784E94D51E2BD9FF00F3152B /* CNLoader.swift in Sources */,
+				784E94B61E2BD9FF00F3152B /* CNVariable.swift in Sources */,
+				784E94BF1E2BD9FF00F3152B /* CNLCPlayer.swift in Sources */,
+				784E94B41E2BD9FF00F3152B /* CNLCValue.swift in Sources */,
+				784E94C11E2BD9FF00F3152B /* CNLCStack.swift in Sources */,
+				784E94D31E2BD9FF00F3152B /* CNLCExecutionHistoryItem.swift in Sources */,
+				784E94D21E2BD9FF00F3152B /* CNLCExecutionHistory.swift in Sources */,
+				784E94C91E2BD9FF00F3152B /* CNLCStatementTail.swift in Sources */,
+				784E94CE1E2BD9FF00F3152B /* CNLCStatementRepeat.swift in Sources */,
+				784E94CA1E2BD9FF00F3152B /* CNLCStatementColor.swift in Sources */,
+				784E94D11E2BD9FF00F3152B /* CNLogoCore+String.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7856FA731B9E01B40037E99F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,15 +749,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7825FD071BC034E8004C2903 /* PBXTargetDependency */ = {
+		784E94851E2BD9E500F3152B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CNLogoCore;
-			targetProxy = 7825FD061BC034E8004C2903 /* PBXContainerItemProxy */;
-		};
-		7825FD0B1BC0352D004C2903 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CNLogoCore;
-			targetProxy = 7825FD0A1BC0352D004C2903 /* PBXContainerItemProxy */;
+			target = 784E947E1E2BD9E500F3152B /* CNLogoCore */;
+			targetProxy = 784E94841E2BD9E500F3152B /* PBXContainerItemProxy */;
 		};
 		7856FA8E1B9E01B40037E99F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -574,6 +781,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		784E94881E2BD9E500F3152B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 461A54D259B06FD3155B018C /* Pods-CNLogoCore.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SUMP8778AD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CNLogoCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.complexnumbers.CNLogoCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		784E94891E2BD9E500F3152B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D17F1F0E7D1003F60C77550 /* Pods-CNLogoCore.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SUMP8778AD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CNLogoCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.complexnumbers.CNLogoCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		7856FA941B9E01B40037E99F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -587,8 +850,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -611,7 +876,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PODS_ROOT = "${SRCROOT}/Pods";
@@ -634,8 +899,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -651,10 +918,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PODS_ROOT = "${SRCROOT}/Pods";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -662,12 +930,13 @@
 		};
 		7856FA971B9E01B40037E99F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B989B2914AC7026F8A6F03B1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8A1879B815C9C1FD4C051117 /* Pods-CNLogo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = SUMP8778AD;
 				INFOPLIST_FILE = CNLogo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -677,12 +946,13 @@
 		};
 		7856FA981B9E01B40037E99F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8C072BC8E904167F5F16AE6 /* Pods.release.xcconfig */;
+			baseConfigurationReference = B07D2FB3A5381ABC45BB6482 /* Pods-CNLogo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = SUMP8778AD;
 				INFOPLIST_FILE = CNLogo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.complexnumbers.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -692,7 +962,7 @@
 		};
 		7856FA9A1B9E01B40037E99F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C54CCCAEF296F3CE22637A62 /* Pods-CNLogoTests.debug.xcconfig */;
+			baseConfigurationReference = 73F2BF90455DA4AB9B2D3F99 /* Pods-CNLogoTests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -708,7 +978,7 @@
 		};
 		7856FA9B1B9E01B40037E99F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 602657654094446AFF2769FC /* Pods-CNLogoTests.release.xcconfig */;
+			baseConfigurationReference = 0DDBB68985FB3E0E035107CD /* Pods-CNLogoTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CNLogoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -721,6 +991,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		784E948B1E2BD9E500F3152B /* Build configuration list for PBXNativeTarget "CNLogoCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				784E94881E2BD9E500F3152B /* Debug */,
+				784E94891E2BD9E500F3152B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7856FA721B9E01B40037E99F /* Build configuration list for PBXProject "CNLogo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

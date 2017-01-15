@@ -31,11 +31,10 @@ open class CNLCStatementColor: CNLCStatement {
         if result.isError { return result }
         
         if let program = CNLCEnviroment.defaultEnviroment.currentProgram {
-            program.player.setColor(executableParameters.first!.variableValue, fromBlock: self)
+            return program.player.setColor(executableParameters.first!.variableValue, fromBlock: self)
         } else {
             return .error(block: self, error: .noProgram)
         }
-        return result
     }
     
 }
