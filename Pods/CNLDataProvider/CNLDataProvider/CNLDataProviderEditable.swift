@@ -70,7 +70,7 @@ Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLMod
                             }
                         }
                         items = inserted.map { return self.dataViewer.createIndexPath(item: $0, section: 0) } // !!! section
-                        self.dataViewer.insertItemsAtIndexPaths(items)
+                        self.dataViewer.insertItems(at: items)
                         self.updateCounts()
                 },
                     completion: { _ in
@@ -114,7 +114,7 @@ Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLMod
                             }
                         }
                         let items = removed.map { return self.dataViewer.createIndexPath(item: $0, section: 0) } // !!! section
-                        self.dataViewer.deleteItemsAtIndexPaths(items)
+                        self.dataViewer.deleteItems(at: items)
                         self.updateCounts()
                 }, completion: { _ in
                     self.dataViewer.allowsMultipleSelection = false

@@ -12,8 +12,7 @@ import CNLFoundationTools
 
 public typealias CNLModelObjectToken = String
 
-public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
-    associatedtype ArrayElement: CNLModelObjectTokenized, CNLModelDictionary
+public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray where ArrayElement: CNLModelObjectTokenized {
     
     var tokens: [String] { get set }
     func reset()
@@ -41,11 +40,11 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     
 }
 
-public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelIncrementalArrayElement {
+public protocol CNLModelObjectTokenized: CNLModelIncrementalArrayElement {
     var token: CNLModelObjectToken { get set }
 }
 
-public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, Self.ArrayElement: CNLModelObjectTokenized {
+public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
     
     public func reset() {
         list = []

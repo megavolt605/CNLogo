@@ -75,7 +75,7 @@ public extension CNLModelObject {
 /// Model with primary (uniquie) key
 public protocol CNLModelObjectPrimaryKey: class, CNLModelObject {
     /// Primary key type
-    associatedtype KeyType: Hashable, CNLDictionaryValue
+    associatedtype KeyType: CNLDictionaryValue
     
     /// Primary key value
     var primaryKey: KeyType { get }

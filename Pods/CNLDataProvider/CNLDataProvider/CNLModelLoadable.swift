@@ -32,7 +32,9 @@ public extension CNLModelDataLoadable {
                 }
             },
             fail: { url, error, userData in
-                fail(url, error, userData)
+                if let urlError = error as? URLError, urlError.code != .cancelled {
+                    fail(url, error, userData)
+                }
                 if let key = url?.absoluteString {
                     self.cancelLoadingTaskCallbacks[key] = nil
                 }

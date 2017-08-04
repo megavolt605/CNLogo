@@ -79,7 +79,7 @@ public extension UINavigationController {
         transition.type = type
         transition.subtype = subtype
         view.layer.add(transition, forKey: nil)
-        let _ = popViewController(animated: false)
+        popViewController(animated: false)
     }
 
 }

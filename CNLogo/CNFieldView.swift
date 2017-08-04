@@ -229,7 +229,7 @@ class CNFieldView: UIView {
                             shouldBreak = false
                         case let .move(fromPoint, toPoint, _):
                             if item.playerState.tailDown {
-                                addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                addStrokeWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) {
                                     self.currentIndex += 1
                                     if !options.shouldAnimate {
                                         shouldBreak = false
@@ -238,7 +238,7 @@ class CNFieldView: UIView {
                                     }
                                 }
                             } else {
-                                addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) { done in
+                                addPlayerMoveWithItem(item, fromPoint: fromPoint, toPoint: toPoint, options: options) {
                                     self.currentIndex += 1
                                     if !options.shouldAnimate {
                                         shouldBreak = false
@@ -248,7 +248,7 @@ class CNFieldView: UIView {
                                 }
                             }
                         case let .rotate(fromAngle, toAngle):
-                            addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { done in
+                            addPlayerRotationWithItem(item, fromAngle: fromAngle, toAngle: toAngle, options: options) { 
                                 self.currentIndex += 1
                                 if !options.shouldAnimate {
                                     shouldBreak = false

@@ -16,7 +16,7 @@ class CNLTopAlignedLabel: UILabel{
             let labelStringSize = stringTextAsNSString.boundingRect(
                 with: CGSize(width: self.frame.width, height: CGFloat.greatestFiniteMagnitude),
                 options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                attributes: [NSFontAttributeName: font],
+                attributes: [.font: font],
                 context: nil).size
             super.drawText(in: CGRect(x: 0, y: 0, width: self.frame.width, height: ceil(labelStringSize.height)))
         } else {

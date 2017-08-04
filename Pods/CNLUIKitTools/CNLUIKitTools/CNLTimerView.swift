@@ -128,7 +128,7 @@ open class CNLTimerView: UIView {
     /// Timer function
     ///
     /// - Parameter timer: Source timer
-    open func timerFired(timer: Timer) {
+    @objc open func timerFired(timer: Timer) {
         updateProgress()
     }
     

@@ -13,7 +13,7 @@ import ImageIO
 import CNLFoundationTools
 
 public protocol CNLCodeScannerDelegate: class {
-    func codeScanner(_ codeScanner: CNLCodeScanner, didScanCode code: String, ofType type: String, screenshot: UIImage?)
+    func codeScanner(_ codeScanner: CNLCodeScanner, didScanObject object: AVMetadataObject, screenshot: UIImage?)
     func codeScanner(_ codeScanner: CNLCodeScanner, didTakePhoto image: UIImage?)
     func codeScannerError(_ codeScanner: CNLCodeScanner)
 }
@@ -39,7 +39,7 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     @discardableResult
     open func startReading(_ inView: UIView, isFront: Bool) -> Bool {
-        guard let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) else { return false }
+        let devices = AVCaptureDevice.devices(for: AVMediaType.video)
         guard devices.count != 0 else {
             // most cases: we run in simulator
             delegate?.codeScannerError(self)
@@ -48,17 +48,15 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         
         captureDevice = nil
         for device in devices {
-            if let device = device as? AVCaptureDevice {
-                if isFront {
-                    if device.position == .front {
-                        captureDevice = device
-                        break
-                    }
-                } else {
-                    if device.position == .back {
-                        captureDevice = device
-                        break
-                    }
+            if isFront {
+                if device.position == .front {
+                    captureDevice = device
+                    break
+                }
+            } else {
+                if device.position == .back {
+                    captureDevice = device
+                    break
                 }
             }
         }
@@ -105,7 +103,7 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
             captureSession = AVCaptureSession()
-            captureSession.sessionPreset = AVCaptureSessionPresetHigh
+            captureSession.sessionPreset = AVCaptureSession.Preset.high
             captureSession.addInput(input)
             
             captureImageOutput = AVCaptureStillImageOutput()
@@ -120,22 +118,22 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 
                 captureMetadataOutput.setMetadataObjectsDelegate(self, queue:dispatchQueue)
                 captureMetadataOutput.metadataObjectTypes = [
-                    AVMetadataObjectTypeQRCode,
-                    AVMetadataObjectTypeUPCECode,
-                    AVMetadataObjectTypeCode39Code,
-                    AVMetadataObjectTypeCode39Mod43Code,
-                    AVMetadataObjectTypeEAN13Code,
-                    AVMetadataObjectTypeEAN8Code,
-                    AVMetadataObjectTypeCode93Code,
-                    AVMetadataObjectTypeCode128Code,
-                    AVMetadataObjectTypePDF417Code,
-                    AVMetadataObjectTypeAztecCode
+                    AVMetadataObject.ObjectType.qr,
+                    AVMetadataObject.ObjectType.upce,
+                    AVMetadataObject.ObjectType.code39,
+                    AVMetadataObject.ObjectType.code39Mod43,
+                    AVMetadataObject.ObjectType.ean13,
+                    AVMetadataObject.ObjectType.ean8,
+                    AVMetadataObject.ObjectType.code93,
+                    AVMetadataObject.ObjectType.code128,
+                    AVMetadataObject.ObjectType.pdf417,
+                    AVMetadataObject.ObjectType.aztec
                 ]
             case .takePhoto: break
             }
             captureImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer.frame = inView.layer.bounds
             inView.layer.addSublayer(videoPreviewLayer)
             videoPreviewView = inView
@@ -172,7 +170,7 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                         //self.highlightView.frame = self.videoPreviewLayer.transformedMetadataObjectForMetadataObject(metadataObj).bounds
                         //self.highlightView.hidden = false
                         self.captureImage { image in
-                            self.delegate?.codeScanner(self, didScanCode: metadataObj.stringValue, ofType: metadataObj.type, screenshot: image)
+                            self.delegate?.codeScanner(self, didScanObject: metadataObj, screenshot: image)
                             self.stopReading()
                         }
                     })
@@ -197,15 +195,17 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func updateOrientation() {
-        if videoPreviewLayer != nil {
-            videoPreviewLayer.frame = videoPreviewView.bounds
-            switch UIApplication.shared.statusBarOrientation {
-            case .portrait: videoPreviewLayer.connection.videoOrientation = .portrait
-            case .landscapeLeft: videoPreviewLayer.connection.videoOrientation = .landscapeLeft
-            case .landscapeRight: videoPreviewLayer.connection.videoOrientation = .landscapeRight
-            case .portraitUpsideDown: videoPreviewLayer.connection.videoOrientation = .portraitUpsideDown
-            default: break //videoPreviewLayer.connection.videoOrientation = lastOrientation
-            }
+        guard
+            videoPreviewLayer != nil,
+            let connection = videoPreviewLayer.connection
+        else { return }
+        videoPreviewLayer.frame = videoPreviewView.bounds
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait: connection.videoOrientation = .portrait
+        case .landscapeLeft: connection.videoOrientation = .landscapeLeft
+        case .landscapeRight: connection.videoOrientation = .landscapeRight
+        case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
+        default: break //videoPreviewLayer.connection.videoOrientation = lastOrientation
         }
     }
     
@@ -215,31 +215,27 @@ open class CNLCodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         var videoConnection: AVCaptureConnection? = nil
-        for connectionItem in captureImageOutput.connections {
-            if let connection = connectionItem as? AVCaptureConnection {
-                for portItem in connection.inputPorts {
-                    if let port = portItem as? AVCaptureInputPort {
-                        if port.mediaType == AVMediaTypeVideo {
-                            videoConnection = connection
-                            break
-                        }
-                    }
-                }
-                if videoConnection != nil {
-                    break
-                }
+        for connection in captureImageOutput.connections {
+            if (connection.inputPorts.contains { $0.mediaType == AVMediaType.video }) {
+                videoConnection = connection
+                break
+            }
+            if videoConnection != nil {
+                break
             }
         }
         
         captureImageOutput.captureStillImageAsynchronously(from: videoConnection!) { (imageSampleBuffer: CMSampleBuffer?, _: Error?) -> Void in
             //let exifAttachments = CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, nil)
-            if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer) {
-                if let image = UIImage(data: imageData) {
-                    completion(image.adoptToDevice(CGSize(width: image.size.width / 2.0, height: image.size.height / 2.0), scale: 1.0))
+            guard
+                let sampleBuffer = imageSampleBuffer,
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer),
+                let image = UIImage(data: imageData)
+                else {
+                    completion(nil)
                     return
                 }
-            }
-            completion(nil)
+            completion(image.adoptToDevice(CGSize(width: image.size.width / 2.0, height: image.size.height / 2.0), scale: 1.0))
         }
     }
     

@@ -115,7 +115,7 @@ open class CNLSearchController: NSObject, UISearchBarDelegate {
         }
     }
     
-    open func searchButtonAction(_ sender: AnyObject) {
+    @objc open func searchButtonAction(_ sender: AnyObject) {
         UIView.animate(
             withDuration: 0.5,
             animations: {

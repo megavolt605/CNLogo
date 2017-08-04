@@ -1,6 +1,6 @@
 {
   "name": "CNLUIKitTools",
-  "version": "0.0.12",
+  "version": "0.0.17",
   "summary": "Common extensions to UIKit",
   "description": "Common extensions to UIKit. Commonly used in other Comlex Numbers projects.",
   "homepage": "https://github.com/megavolt605/CNLUIKitTools",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/megavolt605/CNLUIKitTools.git",
-    "tag": "0.0.12"
+    "tag": "0.0.17"
   },
   "source_files": "CNLUIKitTools/**/*.{h,m,swift}",
   "exclude_files": "Classes/Exclude",

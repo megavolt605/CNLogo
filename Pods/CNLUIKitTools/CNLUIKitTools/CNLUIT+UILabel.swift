@@ -11,8 +11,9 @@ import UIKit
 public extension UILabel {
     
     public func calculateHeight(_ width: CGFloat = 0.0) -> CGFloat {
+        guard let font = self.font else { return 0.0 }
         let textSize = CGSize(width: bounds.width, height: 10000.0)
-        let attrs = [NSFontAttributeName: font!]
+        let attrs: [NSAttributedStringKey: Any] = [.font: font]
         if let text = text {
             return text.boundingRect(with: textSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil).height
         } else {
@@ -21,8 +22,9 @@ public extension UILabel {
     }
     
     public func calculateWidth() -> CGFloat {
+        guard let font = self.font else { return 0.0 }
         let textSize = CGSize(width: 10000.0, height: bounds.height)
-        let attrs = [NSFontAttributeName: font!]
+        let attrs: [NSAttributedStringKey: Any] = [.font: font]
         if let text = text {
             return text.boundingRect(with: textSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil).width
         } else {

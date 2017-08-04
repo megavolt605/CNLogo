@@ -192,9 +192,9 @@ public extension CNLDataProvider {
     ///
     /// - Returns: Result array
     fileprivate func sectionRowIndexes() -> [IndexPath] {
-        return dataProviderVariables.sectionIndexes.flatMap { section, items in
-            return items.enumerated().map { (index, item) in
-                return self.dataViewer.createIndexPath(item: index, section: section)
+        return dataProviderVariables.sectionIndexes.flatMap { sectionIndex in
+            return sectionIndex.value.enumerated().map { item in
+                return self.dataViewer.createIndexPath(item: item.0, section: sectionIndex.key)
             }
         }
     }
@@ -204,7 +204,7 @@ public extension CNLDataProvider {
     /// - Returns: Result index set
     fileprivate func sectionIndexes() -> IndexSet {
         var res = IndexSet()
-        dataProviderVariables.sectionIndexes.forEach { section, _ in res.insert(section) }
+        dataProviderVariables.sectionIndexes.forEach { sectionIndex in res.insert(sectionIndex.key) }
         return res
     }
     
@@ -225,13 +225,15 @@ public extension CNLDataProvider {
     /// Default implementation. Does nothing
     public func afterFetch() { }
     
+    public typealias SSS = (_ success: Bool) -> Void
+    
     /// Default implementation. Fetch model items from the data source from the beginning
     ///
     /// - Parameter completed: Completion callback
-    public func fetchFromStart(completed: ((_ success: Bool) -> Void)? = nil) {
+    public func fetchFromStart(completed: SSS?) {
         beforeFetch()
         dataSource.model.pagingReset()
-        dataSource.model.update(
+        dataSource.update(
             success: { _, _ in
                 self.updateDataViewer { isCompleted in
                     DispatchQueue.main.async {
@@ -239,10 +241,10 @@ public extension CNLDataProvider {
                         completed?(isCompleted)
                     }
                 }
-        },
+            },
             failed: { _, _ in
                 completed?(false)
-        }
+            }
         )
     }
     
@@ -254,7 +256,7 @@ public extension CNLDataProvider {
         if (dataSource.model.fromIndex != 0) && !dataProviderVariables.isFetching {
             dataProviderVariables.isFetching = true
             beforeFetch()
-            dataSource.model.update(
+            dataSource.update(
                 success: { _, _ in
                     self.updateDataViewerPage { isCompleted in
                         self.updateContentState()
@@ -314,7 +316,7 @@ public extension CNLDataProvider {
                         CNLLog("Delete Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.deleteItemsAtIndexPaths(savedSectionRowIndexes)
+                self.dataViewer.deleteItems(at: savedSectionRowIndexes)
                 
                 self.updateCounts()
                 
@@ -335,7 +337,7 @@ public extension CNLDataProvider {
                         CNLLog("Insert Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.insertItemsAtIndexPaths(self.sectionRowIndexes())
+                self.dataViewer.insertItems(at: self.sectionRowIndexes())
                 self.dataViewer.reloadData()
             },
             completion: { _ in
@@ -359,20 +361,20 @@ public extension CNLDataProvider {
         // append new sections
         var newSectionIndexes = IndexSet()
         var newRowIndexes: [IndexPath] = []
-        self.dataProviderVariables.sectionIndexes.forEach { section, items in
-            if let oldSection = savedSections[section] {
-                items.enumerated().forEach { index, item in
-                    if !oldSection.contains(item) {
-                        if !savedLoadMore.visible || (section != savedLoadMore.section) || (index != 0) {
-                            newRowIndexes.append(self.dataViewer.createIndexPath(item: index, section: section))
+        self.dataProviderVariables.sectionIndexes.forEach { sectionIndex in
+            if let oldSection = savedSections[sectionIndex.key] {
+                sectionIndex.value.enumerated().forEach { item in
+                    if !oldSection.contains(item.element) {
+                        if !savedLoadMore.visible || (sectionIndex.key != savedLoadMore.section) || (item.offset != 0) {
+                            newRowIndexes.append(self.dataViewer.createIndexPath(item: item.offset, section: sectionIndex.key))
                         }
                     }
                 }
             } else {
-                if savedLoadMore.visible || (section != savedLoadMore.section) {
-                    newSectionIndexes.insert(section)
-                    items.enumerated().forEach { index, item in
-                        newRowIndexes.append(self.dataViewer.createIndexPath(item: index, section: section))
+                if savedLoadMore.visible || (sectionIndex.key != savedLoadMore.section) {
+                    newSectionIndexes.insert(sectionIndex.key)
+                    sectionIndex.value.enumerated().forEach { item in
+                        newRowIndexes.append(self.dataViewer.createIndexPath(item: item.offset, section: sectionIndex.key))
                     }
                 }
             }
@@ -398,7 +400,7 @@ public extension CNLDataProvider {
                     let loadMoreSectionEmpty = self.dataProviderVariables.sectionIndexes[savedLoadMore.section]?.count == 0
                     if loadMoreSectionExists || loadMoreSectionEmpty {
                         let indexPath = self.dataViewer.createIndexPath(item: 0, section: savedLoadMore.section)
-                        self.dataViewer.deleteItemsAtIndexPaths([indexPath])
+                        self.dataViewer.deleteItems(at: [indexPath])
                         self.dataViewer.deleteSections(IndexSet([savedLoadMore.section]))
                     }
                 }
@@ -421,7 +423,7 @@ public extension CNLDataProvider {
                         CNLLog("Insert Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.insertItemsAtIndexPaths(newRowIndexes)
+                self.dataViewer.insertItems(at: newRowIndexes)
             },
             completion: { _ in
                 UIView.setAnimationsEnabled(true)

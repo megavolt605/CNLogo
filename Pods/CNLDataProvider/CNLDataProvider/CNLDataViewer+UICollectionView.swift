@@ -118,7 +118,7 @@ extension UICollectionView: CNLDataViewer {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType : CNLDataSourceModel, T.ModelType.ArrayElement : CNLModelObject {
+        ) -> AnyObject where T.ModelType.ArrayElement : CNLModelObject {
         
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)
@@ -174,7 +174,7 @@ extension UICollectionView: CNLDataViewer {
 open class CNLCollectionViewLoadMoreCell: UICollectionViewCell, CNLDataViewerLoadMoreCell {
     
     open var activity: CNLDataViewerActivity?
-    open var createActivity: () -> CNLDataViewerActivity? = { _ in return nil }
+    open var createActivity: () -> CNLDataViewerActivity? = { return nil }
     
     open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
         contentView.backgroundColor = UIColor.clear

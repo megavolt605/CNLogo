@@ -7,15 +7,37 @@ PODS:
     - CNLFoundationTools
 
 DEPENDENCIES:
-  - CNLDataProvider
-  - CNLFoundationTools
-  - CNLUIKitTools
+  - CNLDataProvider (from `https://github.com/megavolt605/CNLDataProvider`, branch `swift4`)
+  - CNLFoundationTools (from `https://github.com/megavolt605/CNLFoundationTools`, branch `swift4`)
+  - CNLUIKitTools (from `https://github.com/megavolt605/CNLUIKitTools`, branch `swift4`)
+
+EXTERNAL SOURCES:
+  CNLDataProvider:
+    :branch: swift4
+    :git: https://github.com/megavolt605/CNLDataProvider
+  CNLFoundationTools:
+    :branch: swift4
+    :git: https://github.com/megavolt605/CNLFoundationTools
+  CNLUIKitTools:
+    :branch: swift4
+    :git: https://github.com/megavolt605/CNLUIKitTools
+
+CHECKOUT OPTIONS:
+  CNLDataProvider:
+    :commit: ceca3421e5953302bcd0a37e3055e1d25b52dae9
+    :git: https://github.com/megavolt605/CNLDataProvider
+  CNLFoundationTools:
+    :commit: db2d9e3803303dd00a599a471406459df182d354
+    :git: https://github.com/megavolt605/CNLFoundationTools
+  CNLUIKitTools:
+    :commit: 6361e1e10c5959d318e432e2047e2f2cf2c63fb7
+    :git: https://github.com/megavolt605/CNLUIKitTools
 
 SPEC CHECKSUMS:
-  CNLDataProvider: fed824cedaf9d899d344f575131df3906bc6b179
-  CNLFoundationTools: b30cb40c5588f92e9fc78e590a48970a0fda3ca6
-  CNLUIKitTools: b57f57e611af5a0e583e4e8ca06f329d2e86af8b
+  CNLDataProvider: cc46bada8327467d23392494e73e6f93674f8a92
+  CNLFoundationTools: 03ccf6e13a5fdba3a64671b09b2d2770183425e4
+  CNLUIKitTools: e94a8ae52f86d5f2a6d4642eea1f7a26a684b73c
 
-PODFILE CHECKSUM: ca08ad73487d6765a6f9c197a07363bdba013106
+PODFILE CHECKSUM: 42af0e0f4d2ecd6e825b290b7ba7fb1e84485c5f
 
 COCOAPODS: 1.3.0.beta.3

@@ -55,7 +55,7 @@ extension UITableView: CNLDataViewer {
         insertSections(indexes, with: .fade)
     }
     
-    public func insertItemsAtIndexPaths(_ indexes: [IndexPath]) {
+    public func insertItems(at indexes: [IndexPath]) {
         insertRows(at: indexes, with: .fade)
     }
     
@@ -63,7 +63,7 @@ extension UITableView: CNLDataViewer {
         deleteSections(indexes, with: .none)
     }
     
-    public func deleteItemsAtIndexPaths(_ indexes: [IndexPath]) {
+    public func deleteItems(at indexes: [IndexPath]) {
         deleteRows(at: indexes, with: .none)
     }
     
@@ -140,7 +140,7 @@ extension UITableView: CNLDataViewer {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType : CNLDataSourceModel, T.ModelType.ArrayElement : CNLModelObject {
+        ) -> AnyObject where T.ModelType.ArrayElement : CNLModelObject {
         
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)
@@ -198,7 +198,7 @@ extension UITableView: CNLDataViewer {
 open class CNLTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell {
     
     open var activity: CNLDataViewerActivity?
-    open var createActivity: () -> CNLDataViewerActivity? = { _ in return nil }
+    open var createActivity: () -> CNLDataViewerActivity? = { return nil }
     open var verticalInset: CGFloat = 0.0
     
     open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {

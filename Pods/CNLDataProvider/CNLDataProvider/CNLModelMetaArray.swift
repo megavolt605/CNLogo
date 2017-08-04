@@ -33,7 +33,7 @@ fileprivate var pagingArrayFromIndex = "fromIndex"
 
 public extension CNLModelMetaArray {
 
-    public final var ignoreFails: Bool {
+    public var ignoreFails: Bool {
         get {
             if let value = (objc_getAssociatedObject(self, &ignoreFailsKey) as? CNLAssociated<Bool>)?.closure {
                 return value
@@ -46,7 +46,7 @@ public extension CNLModelMetaArray {
         }
     }
 
-    public final var fromIndex: Int {
+    public var fromIndex: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
                 return value
@@ -105,22 +105,13 @@ public extension CNLModelMetaArray {
                     failed(self, wasFailedError)
                 } else {
                     self.list = self.metaInfos.flatMap { return $0.list }
-                    self.totalRecords = self.metaInfos.reduce(0) {
-                        #if DEBUG
-                            CNLLog($0.1.totalRecords ?? 0, level: .debug)
-                        #endif
-                        if !$0.1.isPagingEnabled {
-                            return $0.0 ?? 0
+                    self.totalRecords = self.metaInfos.reduce(0) { (value: Int?, item: MetaArrayItem) -> Int in
+                        if !item.isPagingEnabled {
+                            return value ?? 0
                         }
-                        return ($0.0 ?? 0) + ($0.1.totalRecords ?? 0)
+                        return (value ?? 0) + (item.totalRecords ?? 0)
                     }
-                    #if DEBUG
-                        CNLLog(self.totalRecords ?? 0, level: .debug)
-                    #endif
                     self.metaInfos.forEach {
-                        #if DEBUG
-                            CNLLog($0.list.count, level: .debug)
-                        #endif
                         if !$0.isPagingEnabled {
                             self.additionalRecords += $0.list.count
                         }

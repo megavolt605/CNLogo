@@ -62,7 +62,7 @@ public class CNLRatingView: UIView {
         }
     }
     
-    func tapGestureDetected(_ sender: AnyObject) {
+    @objc func tapGestureDetected(_ sender: AnyObject) {
         let point = tapGestureRecognizer.location(in: self)
         for index in 0..<starsCount {
             if starImageViews[index].frame.contains(point) {

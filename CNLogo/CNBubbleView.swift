@@ -19,10 +19,10 @@ class CNBubbleView: UIView {
     
     internal var strSize: CGSize = CGSize.zero
     
-    func textAttrs() -> [String: Any] {
+    func textAttrs() -> [NSAttributedStringKey: Any] {
         return [
-            NSFontAttributeName: bold ? UIFont.boldSystemFont(ofSize: 10.0) : UIFont.systemFont(ofSize: 10.0),
-            NSForegroundColorAttributeName: UIColor.black
+            .font: bold ? UIFont.boldSystemFont(ofSize: 10.0) : UIFont.systemFont(ofSize: 10.0),
+            .foregroundColor: UIColor.black
         ]
     }
     

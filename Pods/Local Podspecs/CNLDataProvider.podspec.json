@@ -1,6 +1,6 @@
 {
   "name": "CNLDataProvider",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "summary": "Basic model and data providers.",
   "description": "Basic model and data providers for UITableView and UICollectionView\nCommonly used in other Complex Numbers projects.",
   "homepage": "https://github.com/megavolt605/CNLDataProvider",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/megavolt605/CNLDataProvider.git",
-    "tag": "0.0.2"
+    "tag": "0.0.7"
   },
   "source_files": "CNLDataProvider/**/*.{h,m,swift,map}",
   "resources": "CNLDataProvider/*.xcassets",

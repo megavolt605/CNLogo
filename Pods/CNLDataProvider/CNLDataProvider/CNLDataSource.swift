@@ -76,7 +76,7 @@ public extension CNLDataSourceModel {
         additionalRecords = 0
     }
     
-    public final var fromIndex: Int {
+    public var fromIndex: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
                 return value
@@ -89,7 +89,7 @@ public extension CNLDataSourceModel {
         }
     }
     
-    public final var totalRecords: Int? {
+    public var totalRecords: Int? {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayTotalRecords) as? CNLAssociated<Int?>)?.closure {
                 return value
@@ -102,7 +102,7 @@ public extension CNLDataSourceModel {
         }
     }
     
-    public final var additionalRecords: Int {
+    public var additionalRecords: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayAdditionalRecords) as? CNLAssociated<Int>)?.closure {
                 return value
@@ -116,7 +116,7 @@ public extension CNLDataSourceModel {
     }
     
     public func update() {
-        update(success: { _ in }, failed: { _, _ in })
+        update(success: { _, _ in }, failed: { _, _ in })
     }
     
     public func requestCompleted() { }
