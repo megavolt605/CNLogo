@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Run backgoundClosure async in global queue, then completionClosure async in main queue
 ///
 /// - Parameters:
@@ -38,7 +37,7 @@ public func asyncGlobal (_ backgroundClosure: @escaping () -> Void) {
 /// - Parameters:
 ///   - backgroundClosure: payload closure with result
 ///   - completionClosure: completion closure with parameter
-public func asyncGlobal<R> (_ backgroundClosure: @escaping () -> R, _ completionClosure: @escaping ((_ result: R) -> ()) ) {
+public func asyncGlobal<R> (_ backgroundClosure: @escaping () -> R, _ completionClosure: @escaping ((_ result: R) -> Void) ) {
     DispatchQueue.global(qos: .default).async {
         let res = backgroundClosure()
         DispatchQueue.main.async {
@@ -83,19 +82,19 @@ public func asyncMain (_ backgroundClosure: @escaping () -> Void ) {
 /// - Parameters:
 ///   - backgroundClosure: payload closure with result
 ///   - completionClosure: completion closure with parameter
-public func asyncMain<R> (_ backgroundClosure: @escaping () -> R, _ completionClosure: @escaping ((_ result: R) -> ()) ) {
+public func asyncMain<R> (_ backgroundClosure: @escaping () -> R, _ completionClosure: @escaping ((_ result: R) -> Void) ) {
     DispatchQueue.main.async {
         let res = backgroundClosure()
         completionClosure(res)
     }
 }
 
-@inline(__always)
 /// Brackets call of closure in objc_sync_enter and objc_sync_exit calls, assotiated with object
 ///
 /// - Parameters:
-///   - object: <#object description#>
-///   - closure: <#closure description#>
+///   - object: Object used as lock souorce
+///   - closure: Closure to execute while lock is active
+@inline(__always)
 public func syncCritical(_ object: Any, _ closure: () -> Void) {
     objc_sync_enter(object)
     closure()
@@ -109,29 +108,52 @@ precedencegroup CNFTWith {
 
 infix operator -->: CNFTWith
 
+/// Executes right part with left part as an argument, returns retult of execution (not Optional)
+///
+/// - Parameters:
+///   - left: Source value
+///   - right: Closue to execute
+/// - Returns: Result of left closure
 @inline(__always)
 @discardableResult
 public func --> <T, U>(left: T, right: (T) -> U) -> U {
     return right(left)
 }
 
+/// Executes right part with left part as an argument, returns retult of execution (Optional)
+///
+/// - Parameters:
+///   - left: Source value
+///   - right: Closue to execute
+/// - Returns: Result of left closure
 @inline(__always)
 @discardableResult
 public func --> <T, U>(left: T?, right: (T?) -> U?) -> U? {
     return right(left)
 }
 
+/// Executes right part with left part as an argument, returns left part (not Optional)
+///
+/// - Parameters:
+///   - left: Source value
+///   - right: Closue to execute
+/// - Returns: Result of left closure
 @inline(__always)
 @discardableResult
-public func --> <T>(left: T, right: (T) -> ()) -> T {
+public func --> <T>(left: T, right: (T) -> Void) -> T {
     right(left)
     return left
 }
 
+/// Executes right part with left part as an argument, returns left part (Optional)
+///
+/// - Parameters:
+///   - left: Source value
+///   - right: Closue to execute
+/// - Returns: Result of left closure
 @inline(__always)
 @discardableResult
-public func --> <T>(left: T?, right: (T?) -> ()) -> T? {
+public func --> <T>(left: T?, right: (T?) -> Void) -> T? {
     right(left)
     return left
 }
-

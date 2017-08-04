@@ -72,15 +72,15 @@ open class CNLCPlayer {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPoint(
-                x: state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
-                y: state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
+                x: state.position.x + cos(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance),
+                y: state.position.y + sin(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance)
             )
             return moveTo(newPosition, forward: true, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPoint(
-                x: state.position.x + cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
-                y: state.position.y + sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
+                x: state.position.x + cos(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance),
+                y: state.position.y + sin(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance)
             )
             return moveTo(newPosition, forward: true, fromBlock: fromBlock)
         case .error: return result
@@ -94,15 +94,15 @@ open class CNLCPlayer {
         case let .double(distance):
             let scaledDistance = distance * Double(state.scale)
             let newPosition = CGPoint(
-                x: state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
-                y: state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
+                x: state.position.x - cos(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance),
+                y: state.position.y - sin(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance)
             )
             return moveTo(newPosition, forward: false, fromBlock: fromBlock)
         case let .int(distance):
             let scaledDistance = Double(distance) * Double(state.scale)
             let newPosition = CGPoint(
-                x: state.position.x - cos(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance),
-                y: state.position.y - sin(state.angle - CGFloat(M_PI_2)) * CGFloat(scaledDistance)
+                x: state.position.x - cos(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance),
+                y: state.position.y - sin(state.angle - CGFloat(Double.pi / 2.0)) * CGFloat(scaledDistance)
             )
             return moveTo(newPosition, forward: false, fromBlock: fromBlock)
         case .error: return result
@@ -115,12 +115,12 @@ open class CNLCPlayer {
         switch result {
         case let .double(angleDelta):
             let oldAngle = state.angle
-            let newAngle = state.angle + CGFloat(angleDelta * M_PI / 180.0)
+            let newAngle = state.angle + CGFloat(angleDelta * Double.pi / 180.0)
             state.angle = newAngle
             CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
         case let .int(angleDelta):
             let oldAngle = state.angle
-            let newAngle = state.angle + CGFloat(Double(angleDelta) * M_PI / 180.0)
+            let newAngle = state.angle + CGFloat(Double(angleDelta) * Double.pi / 180.0)
             state.angle = newAngle
             CNLCEnviroment.defaultEnviroment.appendExecutionHistory(CNLCExecutionHistoryItemType.rotate(fromAngle: oldAngle, toAngle: newAngle), fromBlock: fromBlock)
         case .error: return result

@@ -7,294 +7,290 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007F3D816331A7972F2A7B64ACB0B894 /* CNLDataProviderEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE9D0F438FBD32F04702F4AE15733E /* CNLDataProviderEditable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		032E23DFCB333446E24233E346D2B1B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
-		0979DA8131659C6BB6FDCD1BE7F5385F /* CNLURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC0CBC9C04C4B2ACEFCCE40A2DCD7B /* CNLURLCache.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		10181AA18D276C79B7103BC82562F15E /* CNLDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = BA18C45C0AEF8E65D4E85189F895E28A /* CNLDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		10F6F9C2997167A3873019EEAC286188 /* CNLUIT+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A0C5A119C2780B80D0070544B9E58 /* CNLUIT+UIImageView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		111E4C0747AB08306A2D81CB33EE04C0 /* CNLDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF06F26FF3CA935D22F9BC19511E70 /* CNLDatePickerView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		152DE98BA18F6848AB3C64100839955D /* CNLFT+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6725D0347E8C29AF4CFE492A0B7B6F44 /* CNLFT+Array.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		195693302F7F9F5360DE63FBC7F3610B /* CNLUIKitTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 92EB5B92F51C114EF183F8B6128497B2 /* CNLUIKitTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1979AC75C3E28B350FAB7786D3B8E184 /* CNLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA60E716CC3EB6FC6954673C76BFAEC /* CNLDataProvider.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		1A33FAA085074EEDB22B45F05CD53F89 /* CNLRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E2F7F7C06D5DEEA5EB130BCC4182A1 /* CNLRatingView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		1C5B4ACFF4AE9F71BE69DEE188057044 /* CNLModelDictionaryArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3640B531C5B02161D37EAB7428500798 /* CNLModelDictionaryArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		1CE95FF728667AF3A723A6A4693FCFB9 /* CNLUIT+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605679EEF1FD82CDD2812A1C82E24355 /* CNLUIT+CGRect.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		24170AD7DC187129B309F8F4F36E45B7 /* CNLSecuredTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3DC2FB60D596AA94CB36ED427CA2DD /* CNLSecuredTextEdit.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		28F184151FD4850A4E420A32F1FE74F0 /* CNLFT+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2FCC4D676EF6BBCAC61CCC32A065A6 /* CNLFT+Dictionary.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2AD3A385379D4EC42E5418A5F3F9963B /* module.map in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F86B3D0E5D5CEFB2443E13CC9BEF6 /* module.map */; };
-		333097A4E05A255D35344613869583E8 /* CNLUIKitTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8450D8E1BA23B7CA6E883211AF2E16 /* CNLUIKitTools.framework */; };
-		34FB3A65D73EF2DD79FB8FC821474892 /* CNLModelMetaArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3A01ADD4CA910228E76E5BD26DB7A /* CNLModelMetaArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		052A9BE7978F3871C9D4D073C8C41EDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
+		0AB2B3C46D774829260630EF4CB24EF5 /* CNLDataViewer+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D76FF4B9749A530E5879549355C3A2E /* CNLDataViewer+UITableView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0B33DFB47A779FEC49A30AC3F526E3CE /* CNLUIT+UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6FAB60C023304DF58EA3AC5B5BEF33 /* CNLUIT+UINavigationController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0CBF10D6750427F12F49E5DD299D4A5B /* CNLDataViewerActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739ADCEDABC4D61DBF76C8D464B3260E /* CNLDataViewerActivity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0EF4ED7AEC1ACCE64B3DC5B6CBC8F5A9 /* CNLModelMetaArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301AE206F02534C2E2FD81C47D5CFA0 /* CNLModelMetaArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0FDDB1B005C1C7BAE0986C2FF0B8D5D8 /* CNLDataProviderVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1675797A5BDF48B7AD151F414ADA6 /* CNLDataProviderVariables.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		10C0D6E9D30448A36503D3C647D05BA9 /* CNLQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F238095C3AD3603A7DCCFED0240460A /* CNLQRCodeGenerator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		150337B949608A12CDA50168EEB6E999 /* CNLDataViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79DBB1C4B949E10A08714A97D9E8CC9 /* CNLDataViewer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		15D3B92CA71D6B310A73463FB1C1F978 /* CNLUIKitTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8450D8E1BA23B7CA6E883211AF2E16 /* CNLUIKitTools.framework */; };
+		18F4E56F0C86CC1C36DE50EFDDE664B4 /* CNLFoundationTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */; };
+		235922A9DB77A387B989DB5B3752078C /* CNLFoundationTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF53A67667FF6C19A0891604687228D /* CNLFoundationTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		249A7B96D9DF0471E6B0576DB873055D /* CNLUIKitTools.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA8DB2D5975FE7C0D58FCB34AC4081A /* CNLUIKitTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27FD9167E84705990D870BE6663FD6CE /* CNLFT+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A221BCD0AEB4079F1AB919DEC492E7D /* CNLFT+Array.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		28221A46B547818877B357C244DB44E4 /* CNLTopAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0AC038DE7217041D1C33D06363F3B9 /* CNLTopAlignedLabel.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		28E9B5CC3B858E286E0E097A9313188A /* CNLFT+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230BE3385CC6AFE1FE570ED5E231765 /* CNLFT+Int.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		295DD985F53545AFAA35187683231222 /* CNLModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA76707EF5C543EED31A99EEE6DD8FC4 /* CNLModelArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2D159C78FBF69AC82518334C34051965 /* CNLUIKitTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB6B6BD54175AF53DDDF93D7368198 /* CNLUIKitTools-dummy.m */; };
+		2D84582E5B42C6DB1FDDFAFC5CDFF6E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE9A92EE5F1EA0EEAE0B458AA0ABB7C /* UIKit.framework */; };
+		2D906542ADF8DA586D76908CE3A0EEE9 /* CNLUIT+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376F3CD46D8B8B46F436404B59E1472 /* CNLUIT+UIBarButtonItem.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2F10EC313A5BEC843D4080D7B5E23F73 /* CNLModelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57BB75726DCCB1DC2628A8E259CC67A /* CNLModelDictionary.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		309754CB88855BC46A284D6553251A97 /* CNLCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8719F7B2B2F5AE1FD559851AB8BBCE41 /* CNLCheckBox.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3503716799A27ADDAA09414C6671F600 /* Pods-CNLogoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 676E6AE4042B5B932C71CA91E0C58B4A /* Pods-CNLogoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41F1874F3B6FF4A46C3B4C04610D3CA8 /* CNLDataProviderImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC723110F394EA0AF09ACFAE167DB4B /* CNLDataProviderImages.xcassets */; };
-		46A1C13BB8B80FDF8F1C0BD7ACFFA240 /* CNLDataViewerActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7843844C4F194CA492FECAB308B1097F /* CNLDataViewerActivity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		47E05AE1DBFA0A39EAF293FC61BE8247 /* CNLDataProvider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FEC6565AF038A449EEE7F9D4391ECC /* CNLDataProvider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		47F93683510FE2F39162AB7AD246953A /* CNLUIT+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050588B75E06F9FD65FA0B9F7A025E8B /* CNLUIT+UIColor.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4C098605822F4270A53961A3F2473F21 /* CNLUIT+UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4FA76C91531B3F1B275762FFE185C /* CNLUIT+UINavigationBar.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4C7300CF5CFCF73E42F4306313EDBE3D /* CNLDataViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEBEB7B05E64905353DA7EA6E802EFC /* CNLDataViewer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5249BBC526260C3EFA46FFFD17122E8C /* CNLModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69B26CE7A7B96B57E12AD8A4737611A /* CNLModelArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		572535655E0B97AD51288ABAD4DB8FA8 /* CNLCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7045EA3FFFC411969F5C0D5DAD01F7 /* CNLCodeScanner.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		574878421C37D82B753D3B2122C56F5A /* CNLUIT+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B726075203CE21BABC22EC5D10EF348 /* CNLUIT+UIView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		35EB09FF4005242E5907FA376C423E4A /* CNLUIT+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546A2ACB2C9F1D30DF37C2B91B830A3F /* CNLUIT+CALayer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		392395BBCBD44364ADCB3AB84DA58A95 /* CNLModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F7D6D9ABC0DB773482A00F93DAE29 /* CNLModelObject.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3B3ACF1BCDD6EC01C1A7E37C8C5BFBDB /* CNLUIKitTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC651A730D6319C1FCA93D37A08AA32E /* CNLUIKitTools.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		43F7ECD357191753756ED9713B67F954 /* CNLDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9FF4D612253D7D57A98FAAD830D26 /* CNLDatePickerView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4517876AB1A27AA5EC81799476DD96E8 /* CNLFT+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E91FE7072D4AA6D4E828EEC72E4B1D /* CNLFT+Location.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4909A37966AAAF19D9FCC2785A878EB6 /* CNLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E739FBCAC5016D42DCB2FEB2E3137C /* CNLLog.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4AB8931CD2EDA6486D4AE9830F9AED66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
+		4B081E9AC52DBB37A9D55A31014F1172 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
+		4B177BB8FA482FA2C26CBFA7D71BBF00 /* CNLFT+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C730D79F0D87F3D09D4B6CAFC50A55 /* CNLFT+Date.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4E339EABA3DA3E26741081398B03BDC4 /* CNLDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C41524B111EEB114BBB14E28EFF4B /* CNLDataSource.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		556EE95CB5E596DF018CECC67F91C59A /* CNLUIT+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CDE1FBFFB317C482C0F198ED0E347F /* CNLUIT+UILabel.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		57959FED4657B64B694BB9F2C9FDCA32 /* CNLModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D124577CD79103CE20C528B9942807 /* CNLModelAPI.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		579E4BBBBA1281B1B94BAC936BB5DD06 /* CNLFoundationTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 528B211978A5BBDEFDE0FEEE31DFA355 /* CNLFoundationTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5857756BE2DCD2DE5B547E62BAEF1731 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
 		5D7773906FB9E9D975EDCE3D906F9556 /* Pods-CNLogo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 763C7B7DA59BA8C877B4AE96416B85B1 /* Pods-CNLogo-dummy.m */; };
-		65577DAC1F53ADB55EBC69B152FD1823 /* CNLUIT+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28890C345DC4D54BC29A7F1F47ED50 /* CNLUIT+UITableView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		689EB4F6D61706B8B6B0BE069092CCF6 /* CNLDataViewer+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372DDA8E9F3391F4E30FC9ABA91D223 /* CNLDataViewer+UICollectionView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		68E6BD459FB4C4FE4631F185223BB348 /* CNLFoundationTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 004DCDFF761F5B3F480FCE252B09BD9D /* CNLFoundationTools-dummy.m */; };
-		6A11C5C2D8D9DFD062DB4B083EDF7CDE /* CNLTopAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1442E159532D07EF4FEEE7C4DA9F9703 /* CNLTopAlignedLabel.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		74FDE48FC14889D211F1CA614381E50D /* CNLFT+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39239E1B45C86EF99C85A0AF50AD31 /* CNLFT+Date.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		83A7CC73FDAF12D912DBC364617BC76F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
-		845C7E14773CD811204F8C92C4EA40AF /* CNLFT+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE47D442F9E2A50E21EC2A5B38201FB /* CNLFT+String.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8A4F7486FD22498AEE48976D105FB000 /* CNLDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680D187DE3870FAA5B51933AA355736 /* CNLDataSource.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8AED69B0140792C9486FBA5F677C86B3 /* CNLQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950324A821D9D70609058279BBDE411 /* CNLQRCodeGenerator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8B482A9303ABBAA9719FDA55AFF51A03 /* CNLUIKitTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BBFE13D55F6D53A4CE3BD7443D55A /* CNLUIKitTools.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		608ABBAACD8C0680EE10E83B240D273A /* CNLDataProviderImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD6465C24305D2919BE702BC5DE6CF2 /* CNLDataProviderImages.xcassets */; };
+		60A9ECFD17175B709BE24DD013AFE360 /* CNLRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC5A2C5014D354F98A40A25C738252 /* CNLRatingView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		77AFE4369A4AAA4188A32F4E3B8BD875 /* CNLDataProviderContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E049B8E4392275A6985F43EB2DF5C /* CNLDataProviderContentState.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		77E4E4641AC5395D4EF4AB2A7DE485D5 /* CNLDataViewer+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BAAC13CFDB97FA2808A3D74D3116A /* CNLDataViewer+UICollectionView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7B8EDAE6E894C25F82EB4F80BA5F345B /* CNLModelIncrementalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271C47333733E64F72BA5ABC922A4 /* CNLModelIncrementalArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7BE0D3A047E9332FC9E73324ECD2E403 /* CNLFT+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFC5C61EF30627E378C25F51565A8BD /* CNLFT+Dictionary.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7C5702879672F0DF5E9F7CE8338C1632 /* CNLFT+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CAD45E2C69890EF5D21126746DB602 /* CNLFT+Data.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		811349A95160EE05245A598DB17DD0DD /* CNLModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC19A6FD90B267F0BBDE02C8A7629F /* CNLModelError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		823D08276607DE5E7A17CA7DFB00BAF0 /* CNLCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F2B18104D27DC9859C2D2D1218B33 /* CNLCodeScanner.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		831E1E594CFEE36560F38E7652445E21 /* CNLSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD87E2B5F853E16223228C9827F0993 /* CNLSearchController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		84D85DD14A9B8E29CC4BE8691B0C776A /* CNLDataProviderEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68243B5FEF72E953D1B39B9F8EF98CCF /* CNLDataProviderEditable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8641AA31E34F12A8D4A8524EC1D7A671 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
+		8725F4ACC87E2A623EF1C28064FBEBF7 /* CNLDataProvider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CC41AFBF1D852687AFE9F9CF1FD004 /* CNLDataProvider-dummy.m */; };
+		8B2D7FDD5A4C70A14CA60623BED2C718 /* CNLAssociated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F87500D02A8590B2960150334B65EA /* CNLAssociated.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8D4F5D2DFAA5AB5946F21D0BDF9B9DAF /* Pods-CNLogoCore-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BC0EE24AD70D58F3BA2550FF6C677156 /* Pods-CNLogoCore-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8FC0867BCD01D4FE25AE74001F852ABB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
-		96DF220B74A17556689A590CF26BAAF4 /* CNLFoundationTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 086298F7D59EAE0303027969DBD3107D /* CNLFoundationTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97992A0103A72C7FDD420C68B259EE1D /* CNLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148596E0548495071D524F37846FEE47 /* CNLTabBarController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9966CE78EF16707E6B808F124B76EB34 /* CNLFoundationTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */; };
-		9A499D2EDAAFEE0A0724987D69392A53 /* CNLFT+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCBA305F9C2C7F88B0E71689FAB3FF /* CNLFT+Int.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8DCED6807E0991E22ABEB17948C4F179 /* CNLUIT+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A5F4393BDA71DDE04E04C8264090AD /* CNLUIT+UIColor.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		93CBA9AED4CACB8B6EDA5F915B9B1F35 /* CNLUIT+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A036BD73DF9D47FBAF0024F139ABD60F /* CNLUIT+UIView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9CD955378234C19580D3B6F1DB4993F2 /* CNLDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5C3D67572F1761A57EAE28A339B0C /* CNLDeepLink.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9D64C828AE47D8FC611B6EED66E1322B /* CNLFT+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB314C4F3037C84626C6FAB49ADB7F7 /* CNLFT+Timer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9E8ABF4866A0647AC841453363939C09 /* CNLModelIncrementalTokenizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CA8CC74E2CFE62A3A58CD562CE2BBF /* CNLModelIncrementalTokenizedArray.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A1EFEBD8AA8CE195E2FC8259C2555E66 /* Pods-CNLogo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 789AE23BDB8CD003B455FDA98CC0927A /* Pods-CNLogo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3D42C2A6835814CA4ABCA279E22EE62 /* CNLUIKitTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AE59F2434EABBA0F3EF66EA9A3938 /* CNLUIKitTools-dummy.m */; };
-		A6EBCD6FA628EA4D3A68CAC53368B679 /* CNLUIT+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD1B8928A727A783B11CF0F09B8C62 /* CNLUIT+UIImage.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A8E9B5E02E485BEC60F66D151DB42C6A /* CNLModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20073E991C56784F0526CBEFB964DD /* CNLModelNetwork.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A95554D54CA2DEEC16194A5813391B42 /* CNLFT+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36391428CD2DEB4B5D698F8771208AFB /* CNLFT+Timer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A9C7251B738AA3A98A8A93F83BB229E9 /* CNLModelLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E96B6EE381A7C6F40D37511E463FE /* CNLModelLoadable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		AC9AC13666BEC17704A14DA1899AE759 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
-		ACABA503D0BB304F6BC43DAA71A2F31F /* CNLUIT+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F87CE5786FF0F08E38A516D37D8001 /* CNLUIT+CALayer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		B08F9DB20F99F353813CEE0C4975648D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
-		B8F35E601B7E10220412719F05A0577A /* CNLDataViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A3AD07707FFF8015EB5A9A46EFCAC /* CNLDataViewerCell.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		BA65D0B7B39AC169DDC84FB289548EC8 /* CNLFoundationTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */; };
-		BE4AF4AC6F187585EE74C505CC4DBB2D /* CNLFT+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AADF1725D9026ECC9AADB1E70B0232 /* CNLFT+AttributedString.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		BEB1870BC60138B15BDECA460C16C9EA /* CNLTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61A81BC4DE7BC92B3F3B32DA7D15DC /* CNLTimerView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C0B33FC5A3E4AD087F43326B12A7D1F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */; };
+		A36FC5AC8A2BE14CB54A6B12F6D67438 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE9A92EE5F1EA0EEAE0B458AA0ABB7C /* UIKit.framework */; };
+		A4631786B058BB52ADAE3589DCE67DBC /* CNLFoundationTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AF11F559DCDF59A79CCA387C62F24A /* CNLFoundationTools-dummy.m */; };
+		A71CFC6800E1F60172011541A82475AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */; };
+		B6452F98BA82820E96C5F487A764DBF9 /* CNLFT+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38B1498C884B3A039BC5E5A789D71AE /* CNLFT+String.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B743D862C1856943614F9BBD7015BC03 /* CNLUIT+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89B70413A2A7B1D4D2B7C7FBFDFD84 /* CNLUIT+UITableView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B9828EAB07DDCCAC12E732A5FF3C5FFD /* CNLUIT+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1253589E728FB6BAAACCA6724B002 /* CNLUIT+UIImage.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		BD9F3F0DDC765CC8216F087C5ED72390 /* CNLCanShowViewActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E2746C003C2FA9BAE09E76941A077E /* CNLCanShowViewActivity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		BEE0E438DB34657EB27B4D5CF2DBAC0C /* CNLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4075F9AF29F95FA556B0269CE34999 /* CNLDataProvider.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C1E40D4A97DE324126C26775E0FD32C5 /* Pods-CNLogoCore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 401D39F79105E33E9FA16C022CB28F10 /* Pods-CNLogoCore-dummy.m */; };
-		C1E4CCDD9B44742422C2B3E52B851469 /* CNLModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623648E901E1D14514692D0A9079459B /* CNLModelError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C6965E3CD437CF2B7E83500642F35647 /* CNLAssociated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198374821586EC07E7324901C1B9281D /* CNLAssociated.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C78A144E9DBCC73B54C110138DF73DB5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4F53B6F73FEF227B62C9977BDF6EB3 /* UIKit.framework */; };
-		C7F5E35227A0399BE81ACCBB82811117 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4F53B6F73FEF227B62C9977BDF6EB3 /* UIKit.framework */; };
-		C875447DEB16A99210750F6ED21511EB /* CNLCanShowViewActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55F06CAC3EBAB08D2998568ACCB36B /* CNLCanShowViewActivity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CEA79DDB0541FE0739E466B0AC4BCFCF /* CNLUIT+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A207AD9B39D77FCD73C30BCA508FF72 /* CNLUIT+UIBarButtonItem.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CFE7C3D37F36F370C5B94D50E6C9E7F0 /* CNLDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C261968E7B07D1E34C2FD2A794E791CF /* CNLDispatch.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D8D7865C32DAEA5B2FB9282DEE78F06D /* CNLDataProviderContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333F72F242FAA12FD4B888332FAAD3D /* CNLDataProviderContentState.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		DF33A3BCB05FC03056DC3107BAABD1A3 /* CNLUIT+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F8CE819EAAF0980E61F764DDAE2480 /* CNLUIT+UILabel.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C3E50141DDF91F26B55F7AFA911E1D5B /* CNLURLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833B8FA824C8559612F367D8FF0E23F /* CNLURLCache.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C64D4E99550A6A94D6C47B6D6860E043 /* CNLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76C6CBB3B1F5ADC56FF5BE94B859245 /* CNLTabBarController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C741FCC01A185A2FC0983620FF95C895 /* CNLSecuredTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3839A678888996D5D98F339E1B96A /* CNLSecuredTextEdit.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CA73AAA046F1A37B63465C84FFAA5660 /* CNLFoundationTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */; };
+		D4944B17981BF3CB782B6884FB9CBE85 /* CNLUIT+UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613A374B7EE5F557A5B0E732300E7BCE /* CNLUIT+UINavigationBar.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D58E33356830E11C0FB8039A907FE447 /* CNLUIT+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A572B76D55D6799DF8D04862E0A7505 /* CNLUIT+UIImageView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D5D26757ECAF862CFAD295CC3574DE58 /* CNLModelLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDE97068C5B9FB580736AE7AA7F22AC /* CNLModelLoadable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DCEB6FE7751189895F4A2C8EB26D2D79 /* CNLFT+TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25566E4250FB6CC41178735B67D893E3 /* CNLFT+TimeZone.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		E1CECA88480BDE788650D1963CAA9F7A /* Pods-CNLogoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3189F1D0BE896165E0E837B45B899B /* Pods-CNLogoTests-dummy.m */; };
-		E35152743BAA3392B17674FBC0AF9A28 /* CNLUIKitTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 28134BA3FAA38C96BFB9656A1F771233 /* CNLUIKitTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E3EE54EDB304E0291FBE8C6D7C25E003 /* CNLSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D490B0507F71723FC02C3BB5D2D42A22 /* CNLSearchController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E5941FBB8D34BD85B157C221D0F1200C /* CNLDataProvider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60408FFEB70796B55B80DA50026600 /* CNLDataProvider-dummy.m */; };
-		E84FCFB61CF7DFF7ACCBE5B4070B594A /* CNLModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F77300CD9F759A10BC9EB5F3B76195 /* CNLModelObject.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		ED048470A3E4AE5EA36CF08C30B5D3E2 /* CNLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA8E7A2D9A0121D48531DE352CA1802 /* CNLLog.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		ED5DE54F02390CEF02C53AD1923D342F /* CNLFT+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4391F3297657F96DA3771FDD64AA3EA /* CNLFT+Data.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EEAE2C7E0F1CCF4763FF4B86B799FDD9 /* CNLCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7AB26F7F975A41EC9ADBCDCC00968B /* CNLCheckBox.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EECBA1A94F87A8E1571B2C548F6D8B8C /* CNLFT+TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EA93CC1160172A87B68713D2BB1292 /* CNLFT+TimeZone.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EEF9E5AF241EC92AF90E11601AC26EA9 /* CNLModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA363EFA4A99811F9F13ABED6C83C4A /* CNLModelAPI.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F2FCA148B4F2B044757ED40F6F56BBC7 /* CNLModelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A2846CD00276BD814184D920351130 /* CNLModelDictionary.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F39C9F6F4FA809F4430FF889D5AE91CA /* CNLDataViewer+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3EC702BEA986E9EC43552D094A0110 /* CNLDataViewer+UITableView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F5CF77D74E5CC17F6C640D4BBB0121DE /* CNLUIT+UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3881226BCF82D311C99B3E8465B79AF /* CNLUIT+UINavigationController.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F6F7FADDDEE8FDD267C3746AC0399FFD /* CNLDataProviderVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A08978760D45FDA33BD1A30D8684023 /* CNLDataProviderVariables.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FBAB028BFE022D2424AE603E3C34B23D /* CNLDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC2D1CE44632F836E59A98C386BB93F /* CNLDeepLink.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FF540188FAE2C8CB4EC06528534DB01D /* CNLFoundationTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 389A3EF9E7161002B8105702BCB0812B /* CNLFoundationTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E207B626432849DC0E7B26F384CA63BB /* CNLLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49E192FADE35B4B6B9014E36102F09 /* CNLLabel.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E33E2DF6983F946554E3419C0C5FDA80 /* CNLModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC7FABF652B9375DC68063FF3A4DCB /* CNLModelNetwork.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E45BA8A09A131685677D96E0D5EFBC45 /* CNLDataProvider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 12865F1D1CC74698936447A58D66DBFF /* CNLDataProvider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8A7CE65DD7F8052BE7EAB5BE635658B /* CNLUIKitTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C7765F8BB20C4B717323126D129995 /* CNLUIKitTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC1C1157BA21B0C847A9B481CA41468D /* CNLDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92F70CCA7DFEC529EBB04BA743945D /* CNLDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED71A1CFF39B36105BABF24E6D7EBEDF /* CNLDataViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88CC6D8A3F2D9C4CBDB996C5C8A762 /* CNLDataViewerCell.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F042CD9EF132854B9173EA55DFB71C86 /* CNLTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13BE919F65F4EC52D3C41005D3988E /* CNLTimerView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F4B7AB9F1D340AA7D54385111ECE9338 /* CNLDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74830B839F30F8A89F59147539B9915B /* CNLDispatch.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F8E84A79C945E1181CED59F40A60A69D /* CNLFT+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B885EEB0E5CA97102DF31110D6E5F /* CNLFT+AttributedString.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		FC3FDF9F18855FB401CC7FBEBDFB1954 /* CNLUIT+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3C7C051B8047D50C23D710279C239 /* CNLUIT+CGRect.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		231BE5BBFE6F81A7B99CCEF45FF33095 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06390F3EA55AAE7805ED8C6DCEDB2F77;
-			remoteInfo = CNLUIKitTools;
-		};
 		2763C621FE3673412D66CA6B3D9E3E2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 80763F7C5DDFC74EF9E4C39EBB0AA0D9;
+			remoteGlobalIDString = 29565043A6F6594FEE03ED7BBF87CF7E;
 			remoteInfo = CNLDataProvider;
+		};
+		445C89E795B4887103668705C3AA13AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 784AA57FF0EFA60F70EF7DB9CD823F85;
+			remoteInfo = CNLFoundationTools;
+		};
+		45880B1F022C01D31B92487670D11E5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D40BF65CFA3E8CF4BFDA857C268D460;
+			remoteInfo = CNLUIKitTools;
 		};
 		4D570FA7CA7558B43949B11215461690 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 885A58FB017A6078F0DD076D3B1678EF;
+			remoteGlobalIDString = 784AA57FF0EFA60F70EF7DB9CD823F85;
 			remoteInfo = CNLFoundationTools;
 		};
 		50DF2631DFB99685A7119B0684B80C28 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 06390F3EA55AAE7805ED8C6DCEDB2F77;
+			remoteGlobalIDString = 5D40BF65CFA3E8CF4BFDA857C268D460;
 			remoteInfo = CNLUIKitTools;
 		};
-		6B3EB9E21A65CEFC82374DE1DEEBD5FD /* PBXContainerItemProxy */ = {
+		641F8B11A5D53789FAD2187ED5557CFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 885A58FB017A6078F0DD076D3B1678EF;
+			remoteGlobalIDString = 784AA57FF0EFA60F70EF7DB9CD823F85;
 			remoteInfo = CNLFoundationTools;
 		};
 		924C800056C59BC45DE58D637B85CDC7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 06390F3EA55AAE7805ED8C6DCEDB2F77;
+			remoteGlobalIDString = 5D40BF65CFA3E8CF4BFDA857C268D460;
 			remoteInfo = CNLUIKitTools;
 		};
 		C22FF3BE3284313CFCFA58429C449EE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 80763F7C5DDFC74EF9E4C39EBB0AA0D9;
+			remoteGlobalIDString = 29565043A6F6594FEE03ED7BBF87CF7E;
 			remoteInfo = CNLDataProvider;
 		};
 		EC216C7D1E0D3C5182D8A86236E040E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 885A58FB017A6078F0DD076D3B1678EF;
-			remoteInfo = CNLFoundationTools;
-		};
-		ED62910D773A8BD6BB8F93B96F89CB83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 885A58FB017A6078F0DD076D3B1678EF;
+			remoteGlobalIDString = 784AA57FF0EFA60F70EF7DB9CD823F85;
 			remoteInfo = CNLFoundationTools;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		004DCDFF761F5B3F480FCE252B09BD9D /* CNLFoundationTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLFoundationTools-dummy.m"; sourceTree = "<group>"; };
 		024DDF5B724062A37B8E7538ED0C33D4 /* Pods-CNLogoTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CNLogoTests-resources.sh"; sourceTree = "<group>"; };
-		050588B75E06F9FD65FA0B9F7A025E8B /* CNLUIT+UIColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UIColor.swift"; sourceTree = "<group>"; };
 		05AC5B1D08A099521E767E988B951C29 /* Pods_CNLogo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CNLogo.framework; path = "Pods-CNLogo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		07FEC6565AF038A449EEE7F9D4391ECC /* CNLDataProvider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLDataProvider-umbrella.h"; sourceTree = "<group>"; };
-		086298F7D59EAE0303027969DBD3107D /* CNLFoundationTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLFoundationTools-umbrella.h"; sourceTree = "<group>"; };
-		0E20073E991C56784F0526CBEFB964DD /* CNLModelNetwork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelNetwork.swift; sourceTree = "<group>"; };
-		0F61A81BC4DE7BC92B3F3B32DA7D15DC /* CNLTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLTimerView.swift; sourceTree = "<group>"; };
-		10A2846CD00276BD814184D920351130 /* CNLModelDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelDictionary.swift; sourceTree = "<group>"; };
+		05C3C7C051B8047D50C23D710279C239 /* CNLUIT+CGRect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+CGRect.swift"; path = "CNLUIKitTools/CNLUIT+CGRect.swift"; sourceTree = "<group>"; };
+		05CC41AFBF1D852687AFE9F9CF1FD004 /* CNLDataProvider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLDataProvider-dummy.m"; sourceTree = "<group>"; };
+		063A2A4B7FDCFAD684D4455BC683D71F /* CNLDataProvider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLDataProvider.xcconfig; sourceTree = "<group>"; };
+		1230BE3385CC6AFE1FE570ED5E231765 /* CNLFT+Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Int.swift"; path = "CNLFoundationTools/CNLFT+Int.swift"; sourceTree = "<group>"; };
+		12865F1D1CC74698936447A58D66DBFF /* CNLDataProvider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLDataProvider-umbrella.h"; sourceTree = "<group>"; };
 		13D2C3F1E17414900654926DF4CB333A /* Pods-CNLogoCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogoCore.release.xcconfig"; sourceTree = "<group>"; };
-		1442E159532D07EF4FEEE7C4DA9F9703 /* CNLTopAlignedLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLTopAlignedLabel.swift; sourceTree = "<group>"; };
-		148596E0548495071D524F37846FEE47 /* CNLTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLTabBarController.swift; sourceTree = "<group>"; };
-		198374821586EC07E7324901C1B9281D /* CNLAssociated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLAssociated.swift; path = CNLFoundationTools/CNLAssociated.swift; sourceTree = "<group>"; };
+		16E739FBCAC5016D42DCB2FEB2E3137C /* CNLLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLLog.swift; path = CNLFoundationTools/CNLLog.swift; sourceTree = "<group>"; };
+		1A572B76D55D6799DF8D04862E0A7505 /* CNLUIT+UIImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UIImageView.swift"; path = "CNLUIKitTools/CNLUIT+UIImageView.swift"; sourceTree = "<group>"; };
 		1B3189F1D0BE896165E0E837B45B899B /* Pods-CNLogoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CNLogoTests-dummy.m"; sourceTree = "<group>"; };
-		1CEBEB7B05E64905353DA7EA6E802EFC /* CNLDataViewer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataViewer.swift; sourceTree = "<group>"; };
+		1C89B70413A2A7B1D4D2B7C7FBFDFD84 /* CNLUIT+UITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UITableView.swift"; path = "CNLUIKitTools/CNLUIT+UITableView.swift"; sourceTree = "<group>"; };
 		1D66F24A36A34D7CC74B3FF18B5B0852 /* Pods-CNLogoCore-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CNLogoCore-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1FD87E2B5F853E16223228C9827F0993 /* CNLSearchController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLSearchController.swift; path = CNLUIKitTools/CNLSearchController.swift; sourceTree = "<group>"; };
 		200D7EF45CC50ED53399F903C3DCF8D8 /* CNLDataProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNLDataProvider.framework; path = CNLDataProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20496181A0D34E26C823B2CCDFBAE4B3 /* CNLFoundationTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLFoundationTools-prefix.pch"; sourceTree = "<group>"; };
 		20C5095F615A92193D58855FAD90F6B3 /* Pods-CNLogoCore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CNLogoCore.modulemap"; sourceTree = "<group>"; };
-		235E96B6EE381A7C6F40D37511E463FE /* CNLModelLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelLoadable.swift; sourceTree = "<group>"; };
+		221C41524B111EEB114BBB14E28EFF4B /* CNLDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataSource.swift; path = CNLDataProvider/CNLDataSource.swift; sourceTree = "<group>"; };
+		23CA8CC74E2CFE62A3A58CD562CE2BBF /* CNLModelIncrementalTokenizedArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelIncrementalTokenizedArray.swift; path = CNLDataProvider/CNLModelIncrementalTokenizedArray.swift; sourceTree = "<group>"; };
+		24D124577CD79103CE20C528B9942807 /* CNLModelAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelAPI.swift; path = CNLDataProvider/CNLModelAPI.swift; sourceTree = "<group>"; };
+		25566E4250FB6CC41178735B67D893E3 /* CNLFT+TimeZone.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+TimeZone.swift"; path = "CNLFoundationTools/CNLFT+TimeZone.swift"; sourceTree = "<group>"; };
 		259807E429B3A953BD76251493ACBBF6 /* Pods-CNLogo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CNLogo.modulemap"; sourceTree = "<group>"; };
-		28134BA3FAA38C96BFB9656A1F771233 /* CNLUIKitTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CNLUIKitTools.h; sourceTree = "<group>"; };
-		2BA363EFA4A99811F9F13ABED6C83C4A /* CNLModelAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelAPI.swift; sourceTree = "<group>"; };
 		2C5D57034969100BA3E8734D07D3B203 /* CNLUIKitTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNLUIKitTools.framework; path = CNLUIKitTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DE6BBB10F0210545B028F7C1E437213 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33F2699694EAFDC8F670667B67A1F4FB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36391428CD2DEB4B5D698F8771208AFB /* CNLFT+Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Timer.swift"; path = "CNLFoundationTools/CNLFT+Timer.swift"; sourceTree = "<group>"; };
-		3640B531C5B02161D37EAB7428500798 /* CNLModelDictionaryArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelDictionaryArray.swift; sourceTree = "<group>"; };
-		36D4FA76C91531B3F1B275762FFE185C /* CNLUIT+UINavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UINavigationBar.swift"; sourceTree = "<group>"; };
-		37BDCEF427F36F8559B9F8E864D381C3 /* CNLUIKitTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLUIKitTools.modulemap; sourceTree = "<group>"; };
-		389A3EF9E7161002B8105702BCB0812B /* CNLFoundationTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNLFoundationTools.h; path = CNLFoundationTools/CNLFoundationTools.h; sourceTree = "<group>"; };
-		3B6BBFE13D55F6D53A4CE3BD7443D55A /* CNLUIKitTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLUIKitTools.swift; sourceTree = "<group>"; };
-		3D7045EA3FFFC411969F5C0D5DAD01F7 /* CNLCodeScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLCodeScanner.swift; sourceTree = "<group>"; };
+		379F7D6D9ABC0DB773482A00F93DAE29 /* CNLModelObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelObject.swift; path = CNLDataProvider/CNLModelObject.swift; sourceTree = "<group>"; };
+		3D2F2B18104D27DC9859C2D2D1218B33 /* CNLCodeScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLCodeScanner.swift; path = CNLUIKitTools/CNLCodeScanner.swift; sourceTree = "<group>"; };
+		3D4075F9AF29F95FA556B0269CE34999 /* CNLDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataProvider.swift; path = CNLDataProvider/CNLDataProvider.swift; sourceTree = "<group>"; };
+		3EE1253589E728FB6BAAACCA6724B002 /* CNLUIT+UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UIImage.swift"; path = "CNLUIKitTools/CNLUIT+UIImage.swift"; sourceTree = "<group>"; };
 		401D39F79105E33E9FA16C022CB28F10 /* Pods-CNLogoCore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CNLogoCore-dummy.m"; sourceTree = "<group>"; };
-		41E2F7F7C06D5DEEA5EB130BCC4182A1 /* CNLRatingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLRatingView.swift; sourceTree = "<group>"; };
+		40C9FF4D612253D7D57A98FAAD830D26 /* CNLDatePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDatePickerView.swift; path = CNLUIKitTools/CNLDatePickerView.swift; sourceTree = "<group>"; };
+		4376F3CD46D8B8B46F436404B59E1472 /* CNLUIT+UIBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UIBarButtonItem.swift"; path = "CNLUIKitTools/CNLUIT+UIBarButtonItem.swift"; sourceTree = "<group>"; };
+		43BC19A6FD90B267F0BBDE02C8A7629F /* CNLModelError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelError.swift; path = CNLDataProvider/CNLModelError.swift; sourceTree = "<group>"; };
+		43D8081E1FFE642A1F39C4BAF0FA55BA /* CNLDataProvider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLDataProvider.modulemap; sourceTree = "<group>"; };
 		47168F6F45D64439A845637C40235CCC /* Pods-CNLogo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CNLogo-frameworks.sh"; sourceTree = "<group>"; };
-		4A9A0C5A119C2780B80D0070544B9E58 /* CNLUIT+UIImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UIImageView.swift"; sourceTree = "<group>"; };
-		4B1F86B3D0E5D5CEFB2443E13CC9BEF6 /* module.map */ = {isa = PBXFileReference; includeInIndex = 1; name = module.map; path = CNLFoundationTools/CommonCrypto/module.map; sourceTree = "<group>"; };
-		4E60408FFEB70796B55B80DA50026600 /* CNLDataProvider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLDataProvider-dummy.m"; sourceTree = "<group>"; };
-		51CC0CBC9C04C4B2ACEFCCE40A2DCD7B /* CNLURLCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLURLCache.swift; path = CNLFoundationTools/CNLURLCache.swift; sourceTree = "<group>"; };
-		5372DDA8E9F3391F4E30FC9ABA91D223 /* CNLDataViewer+UICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLDataViewer+UICollectionView.swift"; sourceTree = "<group>"; };
-		56BEC7EB0F43700E9B7B3CDF7F352116 /* CNLFoundationTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLFoundationTools.xcconfig; sourceTree = "<group>"; };
+		49F87500D02A8590B2960150334B65EA /* CNLAssociated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLAssociated.swift; path = CNLFoundationTools/CNLAssociated.swift; sourceTree = "<group>"; };
+		4A221BCD0AEB4079F1AB919DEC492E7D /* CNLFT+Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Array.swift"; path = "CNLFoundationTools/CNLFT+Array.swift"; sourceTree = "<group>"; };
+		4CB5C3D67572F1761A57EAE28A339B0C /* CNLDeepLink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDeepLink.swift; path = CNLFoundationTools/CNLDeepLink.swift; sourceTree = "<group>"; };
+		51CAD45E2C69890EF5D21126746DB602 /* CNLFT+Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Data.swift"; path = "CNLFoundationTools/CNLFT+Data.swift"; sourceTree = "<group>"; };
+		528B211978A5BBDEFDE0FEEE31DFA355 /* CNLFoundationTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNLFoundationTools.h; path = CNLFoundationTools/CNLFoundationTools.h; sourceTree = "<group>"; };
+		546A2ACB2C9F1D30DF37C2B91B830A3F /* CNLUIT+CALayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+CALayer.swift"; path = "CNLUIKitTools/CNLUIT+CALayer.swift"; sourceTree = "<group>"; };
+		58A5F4393BDA71DDE04E04C8264090AD /* CNLUIT+UIColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UIColor.swift"; path = "CNLUIKitTools/CNLUIT+UIColor.swift"; sourceTree = "<group>"; };
 		58AEC0EA69E0AD0F50DE29C3D25BFC70 /* Pods-CNLogoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5A08978760D45FDA33BD1A30D8684023 /* CNLDataProviderVariables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataProviderVariables.swift; sourceTree = "<group>"; };
-		5A207AD9B39D77FCD73C30BCA508FF72 /* CNLUIT+UIBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UIBarButtonItem.swift"; sourceTree = "<group>"; };
-		5A4F53B6F73FEF227B62C9977BDF6EB3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		5CE47D442F9E2A50E21EC2A5B38201FB /* CNLFT+String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+String.swift"; path = "CNLFoundationTools/CNLFT+String.swift"; sourceTree = "<group>"; };
-		5EAD1B8928A727A783B11CF0F09B8C62 /* CNLUIT+UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UIImage.swift"; sourceTree = "<group>"; };
-		605679EEF1FD82CDD2812A1C82E24355 /* CNLUIT+CGRect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+CGRect.swift"; sourceTree = "<group>"; };
-		623648E901E1D14514692D0A9079459B /* CNLModelError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelError.swift; sourceTree = "<group>"; };
-		62AE4C3BF5BA57BBDF4EAAF59B3A1349 /* CNLFoundationTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLFoundationTools.modulemap; sourceTree = "<group>"; };
-		6725D0347E8C29AF4CFE492A0B7B6F44 /* CNLFT+Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Array.swift"; path = "CNLFoundationTools/CNLFT+Array.swift"; sourceTree = "<group>"; };
+		5B49E192FADE35B4B6B9014E36102F09 /* CNLLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLLabel.swift; path = CNLUIKitTools/CNLLabel.swift; sourceTree = "<group>"; };
+		5FBC7FABF652B9375DC68063FF3A4DCB /* CNLModelNetwork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelNetwork.swift; path = CNLDataProvider/CNLModelNetwork.swift; sourceTree = "<group>"; };
+		613A374B7EE5F557A5B0E732300E7BCE /* CNLUIT+UINavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UINavigationBar.swift"; path = "CNLUIKitTools/CNLUIT+UINavigationBar.swift"; sourceTree = "<group>"; };
 		676E6AE4042B5B932C71CA91E0C58B4A /* Pods-CNLogoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CNLogoTests-umbrella.h"; sourceTree = "<group>"; };
-		68C3A01ADD4CA910228E76E5BD26DB7A /* CNLModelMetaArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelMetaArray.swift; sourceTree = "<group>"; };
+		68243B5FEF72E953D1B39B9F8EF98CCF /* CNLDataProviderEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataProviderEditable.swift; path = CNLDataProvider/CNLDataProviderEditable.swift; sourceTree = "<group>"; };
 		6A640276645F52B2916361682DAF26B0 /* Pods-CNLogoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogoTests.release.xcconfig"; sourceTree = "<group>"; };
-		6B726075203CE21BABC22EC5D10EF348 /* CNLUIT+UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UIView.swift"; sourceTree = "<group>"; };
-		6BE2CEC9A0B5D0E375BA8B5B20269A9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C88CC6D8A3F2D9C4CBDB996C5C8A762 /* CNLDataViewerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataViewerCell.swift; path = CNLDataProvider/CNLDataViewerCell.swift; sourceTree = "<group>"; };
+		6CB314C4F3037C84626C6FAB49ADB7F7 /* CNLFT+Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Timer.swift"; path = "CNLFoundationTools/CNLFT+Timer.swift"; sourceTree = "<group>"; };
+		6D6FAB60C023304DF58EA3AC5B5BEF33 /* CNLUIT+UINavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UINavigationController.swift"; path = "CNLUIKitTools/CNLUIT+UINavigationController.swift"; sourceTree = "<group>"; };
 		6D8418F121D1A8052373C175AFB9A477 /* CNLFoundationTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CNLFoundationTools.framework; path = CNLFoundationTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		729F772C085242C610BB816DB6E1C73E /* CNLDataProvider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLDataProvider.modulemap; sourceTree = "<group>"; };
+		6FF3DFEB679CF36E4DA254411B3CFCB1 /* CNLFoundationTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLFoundationTools.modulemap; sourceTree = "<group>"; };
+		739ADCEDABC4D61DBF76C8D464B3260E /* CNLDataViewerActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataViewerActivity.swift; path = CNLDataProvider/CNLDataViewerActivity.swift; sourceTree = "<group>"; };
+		74830B839F30F8A89F59147539B9915B /* CNLDispatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDispatch.swift; path = CNLFoundationTools/CNLDispatch.swift; sourceTree = "<group>"; };
 		763C7B7DA59BA8C877B4AE96416B85B1 /* Pods-CNLogo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CNLogo-dummy.m"; sourceTree = "<group>"; };
-		7843844C4F194CA492FECAB308B1097F /* CNLDataViewerActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataViewerActivity.swift; sourceTree = "<group>"; };
 		789AE23BDB8CD003B455FDA98CC0927A /* Pods-CNLogo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CNLogo-umbrella.h"; sourceTree = "<group>"; };
-		7AA60E716CC3EB6FC6954673C76BFAEC /* CNLDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataProvider.swift; sourceTree = "<group>"; };
-		7B01C6312C8377DC262540B1E1B4E4F3 /* CNLUIKitTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLUIKitTools.xcconfig; sourceTree = "<group>"; };
-		89EA93CC1160172A87B68713D2BB1292 /* CNLFT+TimeZone.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+TimeZone.swift"; path = "CNLFoundationTools/CNLFT+TimeZone.swift"; sourceTree = "<group>"; };
+		83AC5A2C5014D354F98A40A25C738252 /* CNLRatingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLRatingView.swift; path = CNLUIKitTools/CNLRatingView.swift; sourceTree = "<group>"; };
+		8719F7B2B2F5AE1FD559851AB8BBCE41 /* CNLCheckBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLCheckBox.swift; path = CNLUIKitTools/CNLCheckBox.swift; sourceTree = "<group>"; };
+		8833B8FA824C8559612F367D8FF0E23F /* CNLURLCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLURLCache.swift; path = CNLFoundationTools/CNLURLCache.swift; sourceTree = "<group>"; };
+		88DB6B6BD54175AF53DDDF93D7368198 /* CNLUIKitTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLUIKitTools-dummy.m"; sourceTree = "<group>"; };
+		8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8D0D615D85DF0ED2F71F2106D731B9CB /* Pods-CNLogoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CNLogoTests.modulemap"; sourceTree = "<group>"; };
-		92649B520EF4453B682D1D38BDB674FD /* CNLFoundationTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLFoundationTools-prefix.pch"; sourceTree = "<group>"; };
-		92EB5B92F51C114EF183F8B6128497B2 /* CNLUIKitTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLUIKitTools-umbrella.h"; sourceTree = "<group>"; };
+		8F238095C3AD3603A7DCCFED0240460A /* CNLQRCodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLQRCodeGenerator.swift; path = CNLUIKitTools/CNLQRCodeGenerator.swift; sourceTree = "<group>"; };
+		8FDE97068C5B9FB580736AE7AA7F22AC /* CNLModelLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelLoadable.swift; path = CNLDataProvider/CNLModelLoadable.swift; sourceTree = "<group>"; };
+		912B885EEB0E5CA97102DF31110D6E5F /* CNLFT+AttributedString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+AttributedString.swift"; path = "CNLFoundationTools/CNLFT+AttributedString.swift"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		96FE9D0F438FBD32F04702F4AE15733E /* CNLDataProviderEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataProviderEditable.swift; sourceTree = "<group>"; };
 		97B8DC106F63B3A7C784A2548FB48052 /* Pods-CNLogoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CNLogoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		97F87CE5786FF0F08E38A516D37D8001 /* CNLUIT+CALayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+CALayer.swift"; sourceTree = "<group>"; };
 		9A0D1BA947638BB535A97DAECDC1E081 /* Pods-CNLogoCore-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CNLogoCore-acknowledgements.plist"; sourceTree = "<group>"; };
-		9A55F06CAC3EBAB08D2998568ACCB36B /* CNLCanShowViewActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLCanShowViewActivity.swift; sourceTree = "<group>"; };
+		9A92F70CCA7DFEC529EBB04BA743945D /* CNLDataProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNLDataProvider.h; path = CNLDataProvider/CNLDataProvider.h; sourceTree = "<group>"; };
+		9A9D71C22A9C13BE847840C6ADC5C810 /* CNLUIKitTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLUIKitTools.xcconfig; sourceTree = "<group>"; };
+		9AF53A67667FF6C19A0891604687228D /* CNLFoundationTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLFoundationTools-umbrella.h"; sourceTree = "<group>"; };
+		9BB1675797A5BDF48B7AD151F414ADA6 /* CNLDataProviderVariables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataProviderVariables.swift; path = CNLDataProvider/CNLDataProviderVariables.swift; sourceTree = "<group>"; };
 		9C955B7B81BEDA3FF0120C93C7E4B3CF /* Pods-CNLogo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CNLogo-resources.sh"; sourceTree = "<group>"; };
+		9D76FF4B9749A530E5879549355C3A2E /* CNLDataViewer+UITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLDataViewer+UITableView.swift"; path = "CNLDataProvider/CNLDataViewer+UITableView.swift"; sourceTree = "<group>"; };
+		A036BD73DF9D47FBAF0024F139ABD60F /* CNLUIT+UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UIView.swift"; path = "CNLUIKitTools/CNLUIT+UIView.swift"; sourceTree = "<group>"; };
+		A2A89DA161F83BA862DD5EF187467788 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLFoundationTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3881226BCF82D311C99B3E8465B79AF /* CNLUIT+UINavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UINavigationController.swift"; sourceTree = "<group>"; };
-		A74AE59F2434EABBA0F3EF66EA9A3938 /* CNLUIKitTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLUIKitTools-dummy.m"; sourceTree = "<group>"; };
+		A5D8BCCEBC764B34F8FD8BD6DB4C79DA /* CNLDataProvider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLDataProvider-prefix.pch"; sourceTree = "<group>"; };
 		AACB02D6FB317018BB57A0CDBBE18914 /* Pods_CNLogoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CNLogoCore.framework; path = "Pods-CNLogoCore.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE28890C345DC4D54BC29A7F1F47ED50 /* CNLUIT+UITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UITableView.swift"; sourceTree = "<group>"; };
 		AE3E3176EE6BA3954D94D9689529A217 /* Pods-CNLogo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CNLogo-acknowledgements.plist"; sourceTree = "<group>"; };
-		B2F8CE819EAAF0980E61F764DDAE2480 /* CNLUIT+UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLUIT+UILabel.swift"; sourceTree = "<group>"; };
-		BA18C45C0AEF8E65D4E85189F895E28A /* CNLDataProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CNLDataProvider.h; sourceTree = "<group>"; };
-		BAAF17CB901CEE63439DF541D21298CB /* CNLDataProvider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLDataProvider.xcconfig; sourceTree = "<group>"; };
-		BAC723110F394EA0AF09ACFAE167DB4B /* CNLDataProviderImages.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = CNLDataProviderImages.xcassets; sourceTree = "<group>"; };
-		BB7AB26F7F975A41EC9ADBCDCC00968B /* CNLCheckBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLCheckBox.swift; sourceTree = "<group>"; };
+		B5AF11F559DCDF59A79CCA387C62F24A /* CNLFoundationTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CNLFoundationTools-dummy.m"; sourceTree = "<group>"; };
+		B7AC7248103A8A9A1D8C29B7369BC094 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7E2746C003C2FA9BAE09E76941A077E /* CNLCanShowViewActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLCanShowViewActivity.swift; path = CNLDataProvider/CNLCanShowViewActivity.swift; sourceTree = "<group>"; };
+		BA76707EF5C543EED31A99EEE6DD8FC4 /* CNLModelArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelArray.swift; path = CNLDataProvider/CNLModelArray.swift; sourceTree = "<group>"; };
 		BBF89AFE5AF5F3D5C0E5E55090E61CD5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC0EE24AD70D58F3BA2550FF6C677156 /* Pods-CNLogoCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CNLogoCore-umbrella.h"; sourceTree = "<group>"; };
-		BEB6CA7376845C0BB6FB50F828B4A66D /* CNLUIKitTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLUIKitTools-prefix.pch"; sourceTree = "<group>"; };
-		C261968E7B07D1E34C2FD2A794E791CF /* CNLDispatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDispatch.swift; path = CNLFoundationTools/CNLDispatch.swift; sourceTree = "<group>"; };
+		BCEC1B68C56F5A47E459E6F1CC920B78 /* CNLUIKitTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLUIKitTools-prefix.pch"; sourceTree = "<group>"; };
+		BD0AC038DE7217041D1C33D06363F3B9 /* CNLTopAlignedLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLTopAlignedLabel.swift; path = CNLUIKitTools/CNLTopAlignedLabel.swift; sourceTree = "<group>"; };
+		C5AC3B0215E8BC81FDF16E617B559C62 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9226CBBC68CD0E73F33C87D03ADEBC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC85B588B0DC60972278888FFB966FEF /* Pods-CNLogo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogo.release.xcconfig"; sourceTree = "<group>"; };
-		CCA8E7A2D9A0121D48531DE352CA1802 /* CNLLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLLog.swift; path = CNLFoundationTools/CNLLog.swift; sourceTree = "<group>"; };
-		D0DCBA305F9C2C7F88B0E71689FAB3FF /* CNLFT+Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Int.swift"; path = "CNLFoundationTools/CNLFT+Int.swift"; sourceTree = "<group>"; };
-		D490B0507F71723FC02C3BB5D2D42A22 /* CNLSearchController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLSearchController.swift; sourceTree = "<group>"; };
-		D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D950324A821D9D70609058279BBDE411 /* CNLQRCodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLQRCodeGenerator.swift; sourceTree = "<group>"; };
-		D9FF06F26FF3CA935D22F9BC19511E70 /* CNLDatePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDatePickerView.swift; sourceTree = "<group>"; };
-		DD3EC702BEA986E9EC43552D094A0110 /* CNLDataViewer+UITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CNLDataViewer+UITableView.swift"; sourceTree = "<group>"; };
-		DD6A3AD07707FFF8015EB5A9A46EFCAC /* CNLDataViewerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataViewerCell.swift; sourceTree = "<group>"; };
+		D301AE206F02534C2E2FD81C47D5CFA0 /* CNLModelMetaArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelMetaArray.swift; path = CNLDataProvider/CNLModelMetaArray.swift; sourceTree = "<group>"; };
+		D57BB75726DCCB1DC2628A8E259CC67A /* CNLModelDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelDictionary.swift; path = CNLDataProvider/CNLModelDictionary.swift; sourceTree = "<group>"; };
+		D6CDE1FBFFB317C482C0F198ED0E347F /* CNLUIT+UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLUIT+UILabel.swift"; path = "CNLUIKitTools/CNLUIT+UILabel.swift"; sourceTree = "<group>"; };
+		DAB271C47333733E64F72BA5ABC922A4 /* CNLModelIncrementalArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLModelIncrementalArray.swift; path = CNLDataProvider/CNLModelIncrementalArray.swift; sourceTree = "<group>"; };
+		DAE9A92EE5F1EA0EEAE0B458AA0ABB7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		DBC3839A678888996D5D98F339E1B96A /* CNLSecuredTextEdit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLSecuredTextEdit.swift; path = CNLUIKitTools/CNLSecuredTextEdit.swift; sourceTree = "<group>"; };
+		DC651A730D6319C1FCA93D37A08AA32E /* CNLUIKitTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLUIKitTools.swift; path = CNLUIKitTools/CNLUIKitTools.swift; sourceTree = "<group>"; };
+		DDC7BE33B83C9E740E7B3A4A0CC8640F /* CNLUIKitTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CNLUIKitTools.modulemap; sourceTree = "<group>"; };
+		DE0E049B8E4392275A6985F43EB2DF5C /* CNLDataProviderContentState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataProviderContentState.swift; path = CNLDataProvider/CNLDataProviderContentState.swift; sourceTree = "<group>"; };
 		DE3CC80BE0E2E764CDAB8B8A1D30B258 /* Pods-CNLogoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CNLogoTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		DF39239E1B45C86EF99C85A0AF50AD31 /* CNLFT+Date.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Date.swift"; path = "CNLFoundationTools/CNLFT+Date.swift"; sourceTree = "<group>"; };
-		E5DAFF57C60090FD4F242115E15263BD /* CNLDataProvider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLDataProvider-prefix.pch"; sourceTree = "<group>"; };
-		E680D187DE3870FAA5B51933AA355736 /* CNLDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataSource.swift; sourceTree = "<group>"; };
+		DFFC5C61EF30627E378C25F51565A8BD /* CNLFT+Dictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Dictionary.swift"; path = "CNLFoundationTools/CNLFT+Dictionary.swift"; sourceTree = "<group>"; };
+		E10BAAC13CFDB97FA2808A3D74D3116A /* CNLDataViewer+UICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLDataViewer+UICollectionView.swift"; path = "CNLDataProvider/CNLDataViewer+UICollectionView.swift"; sourceTree = "<group>"; };
 		E90E67EEF16F458DEAE87A99C6C84C19 /* Pods-CNLogo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CNLogo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E9E91FE7072D4AA6D4E828EEC72E4B1D /* CNLFT+Location.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Location.swift"; path = "CNLFoundationTools/CNLFT+Location.swift"; sourceTree = "<group>"; };
+		EB13BE919F65F4EC52D3C41005D3988E /* CNLTimerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLTimerView.swift; path = CNLUIKitTools/CNLTimerView.swift; sourceTree = "<group>"; };
 		EB8450D8E1BA23B7CA6E883211AF2E16 /* CNLUIKitTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLUIKitTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE2FCC4D676EF6BBCAC61CCC32A065A6 /* CNLFT+Dictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Dictionary.swift"; path = "CNLFoundationTools/CNLFT+Dictionary.swift"; sourceTree = "<group>"; };
-		EE3DC2FB60D596AA94CB36ED427CA2DD /* CNLSecuredTextEdit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLSecuredTextEdit.swift; sourceTree = "<group>"; };
+		EBD6465C24305D2919BE702BC5DE6CF2 /* CNLDataProviderImages.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = CNLDataProviderImages.xcassets; path = CNLDataProvider/CNLDataProviderImages.xcassets; sourceTree = "<group>"; };
+		EC3FD2AC849D63F90D7279FA10705B4F /* CNLFoundationTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CNLFoundationTools.xcconfig; sourceTree = "<group>"; };
 		F003398BC5B2E873BE8853F9B3724622 /* Pods-CNLogoCore-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CNLogoCore-resources.sh"; sourceTree = "<group>"; };
 		F033CC6626D8800D4E646D1B98A8FD8E /* Pods-CNLogoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CNLogoTests-frameworks.sh"; sourceTree = "<group>"; };
-		F0F77300CD9F759A10BC9EB5F3B76195 /* CNLModelObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelObject.swift; sourceTree = "<group>"; };
-		F333F72F242FAA12FD4B888332FAAD3D /* CNLDataProviderContentState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLDataProviderContentState.swift; sourceTree = "<group>"; };
+		F38B1498C884B3A039BC5E5A789D71AE /* CNLFT+String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+String.swift"; path = "CNLFoundationTools/CNLFT+String.swift"; sourceTree = "<group>"; };
 		F3C7A3A460EFAF3DABA7B2D8B1E1B957 /* Pods-CNLogoCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogoCore.debug.xcconfig"; sourceTree = "<group>"; };
-		F4391F3297657F96DA3771FDD64AA3EA /* CNLFT+Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Data.swift"; path = "CNLFoundationTools/CNLFT+Data.swift"; sourceTree = "<group>"; };
-		F5AADF1725D9026ECC9AADB1E70B0232 /* CNLFT+AttributedString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+AttributedString.swift"; path = "CNLFoundationTools/CNLFT+AttributedString.swift"; sourceTree = "<group>"; };
-		F69B26CE7A7B96B57E12AD8A4737611A /* CNLModelArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CNLModelArray.swift; sourceTree = "<group>"; };
 		F6D222ACCA72FD878D962054DBA2143D /* Pods-CNLogo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CNLogo.debug.xcconfig"; sourceTree = "<group>"; };
-		FA57CDD9CA45D90C38DC3D2158F8392B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBC2D1CE44632F836E59A98C386BB93F /* CNLDeepLink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDeepLink.swift; path = CNLFoundationTools/CNLDeepLink.swift; sourceTree = "<group>"; };
+		F76C6CBB3B1F5ADC56FF5BE94B859245 /* CNLTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLTabBarController.swift; path = CNLUIKitTools/CNLTabBarController.swift; sourceTree = "<group>"; };
+		F79DBB1C4B949E10A08714A97D9E8CC9 /* CNLDataViewer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNLDataViewer.swift; path = CNLDataProvider/CNLDataViewer.swift; sourceTree = "<group>"; };
+		F7C7765F8BB20C4B717323126D129995 /* CNLUIKitTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CNLUIKitTools-umbrella.h"; sourceTree = "<group>"; };
+		F8C730D79F0D87F3D09D4B6CAFC50A55 /* CNLFT+Date.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CNLFT+Date.swift"; path = "CNLFoundationTools/CNLFT+Date.swift"; sourceTree = "<group>"; };
+		FDA8DB2D5975FE7C0D58FCB34AC4081A /* CNLUIKitTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CNLUIKitTools.h; path = CNLUIKitTools/CNLUIKitTools.h; sourceTree = "<group>"; };
 		FE09B9F66B6759CB061D0EBF4A10079A /* Pods_CNLogoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CNLogoTests.framework; path = "Pods-CNLogoTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		271648B99ED4F8E090140159ACE60180 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C0B33FC5A3E4AD087F43326B12A7D1F2 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		367DF7EF8E3F14C453E992C27B72798B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B08F9DB20F99F353813CEE0C4975648D /* Foundation.framework in Frameworks */,
+				4B081E9AC52DBB37A9D55A31014F1172 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,18 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A7CC73FDAF12D912DBC364617BC76F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		97C93EADE34401C65B67EC1ACBA08311 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA65D0B7B39AC169DDC84FB289548EC8 /* CNLFoundationTools.framework in Frameworks */,
-				333097A4E05A255D35344613869583E8 /* CNLUIKitTools.framework in Frameworks */,
-				AC9AC13666BEC17704A14DA1899AE759 /* Foundation.framework in Frameworks */,
-				C7F5E35227A0399BE81ACCBB82811117 /* UIKit.framework in Frameworks */,
+				5857756BE2DCD2DE5B547E62BAEF1731 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,66 +306,140 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032E23DFCB333446E24233E346D2B1B1 /* Foundation.framework in Frameworks */,
+				A71CFC6800E1F60172011541A82475AF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE6922EA7AF853825CDC3511EF561237 /* Frameworks */ = {
+		AF112DF2D68BE7911E0C6EAC9AB7DF6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9966CE78EF16707E6B808F124B76EB34 /* CNLFoundationTools.framework in Frameworks */,
-				8FC0867BCD01D4FE25AE74001F852ABB /* Foundation.framework in Frameworks */,
-				C78A144E9DBCC73B54C110138DF73DB5 /* UIKit.framework in Frameworks */,
+				4AB8931CD2EDA6486D4AE9830F9AED66 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D614C0ACA3D2E4DD12BBA49FD3E1941B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA73AAA046F1A37B63465C84FFAA5660 /* CNLFoundationTools.framework in Frameworks */,
+				15D3B92CA71D6B310A73463FB1C1F978 /* CNLUIKitTools.framework in Frameworks */,
+				8641AA31E34F12A8D4A8524EC1D7A671 /* Foundation.framework in Frameworks */,
+				A36FC5AC8A2BE14CB54A6B12F6D67438 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA17488865D20CDBFFAB20C819E0F87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F4E56F0C86CC1C36DE50EFDDE664B4 /* CNLFoundationTools.framework in Frameworks */,
+				052A9BE7978F3871C9D4D073C8C41EDD /* Foundation.framework in Frameworks */,
+				2D84582E5B42C6DB1FDDFAFC5CDFF6E1 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D8B3BFFC3D6F0A40C52D73610F177BC /* CNLUIKitTools */ = {
+		13C7142D9F9192A8CE544518890249FC /* CNLDataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				9F403ACED4ECA5959C70375CF925DA37 /* CNLUIKitTools */,
-				E48A73F017FBEB0B70EFE88E82123361 /* Support Files */,
-			);
-			name = CNLUIKitTools;
-			path = /Users/igor/src/CNLUIKitTools;
-			sourceTree = "<absolute>";
-		};
-		35813081DE976112B905DEBCC6085782 /* CNLDataProvider */ = {
-			isa = PBXGroup;
-			children = (
-				7AB196B315A834FB08175DCCF911D5CC /* CNLDataProvider */,
-				FB8CC125DB3A34109F78D629059E40C5 /* Resources */,
-				7164C5EF770C0691668EB2F656D7F789 /* Support Files */,
+				B7E2746C003C2FA9BAE09E76941A077E /* CNLCanShowViewActivity.swift */,
+				9A92F70CCA7DFEC529EBB04BA743945D /* CNLDataProvider.h */,
+				3D4075F9AF29F95FA556B0269CE34999 /* CNLDataProvider.swift */,
+				DE0E049B8E4392275A6985F43EB2DF5C /* CNLDataProviderContentState.swift */,
+				68243B5FEF72E953D1B39B9F8EF98CCF /* CNLDataProviderEditable.swift */,
+				9BB1675797A5BDF48B7AD151F414ADA6 /* CNLDataProviderVariables.swift */,
+				221C41524B111EEB114BBB14E28EFF4B /* CNLDataSource.swift */,
+				F79DBB1C4B949E10A08714A97D9E8CC9 /* CNLDataViewer.swift */,
+				E10BAAC13CFDB97FA2808A3D74D3116A /* CNLDataViewer+UICollectionView.swift */,
+				9D76FF4B9749A530E5879549355C3A2E /* CNLDataViewer+UITableView.swift */,
+				739ADCEDABC4D61DBF76C8D464B3260E /* CNLDataViewerActivity.swift */,
+				6C88CC6D8A3F2D9C4CBDB996C5C8A762 /* CNLDataViewerCell.swift */,
+				24D124577CD79103CE20C528B9942807 /* CNLModelAPI.swift */,
+				BA76707EF5C543EED31A99EEE6DD8FC4 /* CNLModelArray.swift */,
+				D57BB75726DCCB1DC2628A8E259CC67A /* CNLModelDictionary.swift */,
+				43BC19A6FD90B267F0BBDE02C8A7629F /* CNLModelError.swift */,
+				DAB271C47333733E64F72BA5ABC922A4 /* CNLModelIncrementalArray.swift */,
+				23CA8CC74E2CFE62A3A58CD562CE2BBF /* CNLModelIncrementalTokenizedArray.swift */,
+				8FDE97068C5B9FB580736AE7AA7F22AC /* CNLModelLoadable.swift */,
+				D301AE206F02534C2E2FD81C47D5CFA0 /* CNLModelMetaArray.swift */,
+				5FBC7FABF652B9375DC68063FF3A4DCB /* CNLModelNetwork.swift */,
+				379F7D6D9ABC0DB773482A00F93DAE29 /* CNLModelObject.swift */,
+				C95AB612599A3E4E2B1A54CC423FB08F /* Resources */,
+				1BCC2447CAE0BB7422770B850D4EE55C /* Support Files */,
 			);
 			name = CNLDataProvider;
-			path = /Users/igor/src/CNLDataProvider;
-			sourceTree = "<absolute>";
+			path = CNLDataProvider;
+			sourceTree = "<group>";
+		};
+		149A94E5B4CC773FC687CEB0E4725127 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8C4E64C347EF831F55720D50DED2C5A8 /* Foundation.framework */,
+				DAE9A92EE5F1EA0EEAE0B458AA0ABB7C /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		186FDB3CE25C55A723063B7E4560F48A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13C7142D9F9192A8CE544518890249FC /* CNLDataProvider */,
+				4270CDA34677F897FA5390EA9CB91A85 /* CNLFoundationTools */,
+				E0A7B2CE64E1A10DFC4C6D7FDFF83EE2 /* CNLUIKitTools */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1BCC2447CAE0BB7422770B850D4EE55C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				43D8081E1FFE642A1F39C4BAF0FA55BA /* CNLDataProvider.modulemap */,
+				063A2A4B7FDCFAD684D4455BC683D71F /* CNLDataProvider.xcconfig */,
+				05CC41AFBF1D852687AFE9F9CF1FD004 /* CNLDataProvider-dummy.m */,
+				A5D8BCCEBC764B34F8FD8BD6DB4C79DA /* CNLDataProvider-prefix.pch */,
+				12865F1D1CC74698936447A58D66DBFF /* CNLDataProvider-umbrella.h */,
+				B7AC7248103A8A9A1D8C29B7369BC094 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CNLDataProvider";
+			sourceTree = "<group>";
 		};
 		3C0E56687B3BECA7F946DC93E36AC302 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A3452FFF58B93DE38D9E7CB08D3CDD9A /* CNLFoundationTools.framework */,
 				EB8450D8E1BA23B7CA6E883211AF2E16 /* CNLUIKitTools.framework */,
-				FA98DBECC54A6555AD2FABE6AFABF3B9 /* iOS */,
+				149A94E5B4CC773FC687CEB0E4725127 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3E1FDC1C59AAFAF23CAB062A2EC0CC52 /* Support Files */ = {
+		4270CDA34677F897FA5390EA9CB91A85 /* CNLFoundationTools */ = {
 			isa = PBXGroup;
 			children = (
-				62AE4C3BF5BA57BBDF4EAAF59B3A1349 /* CNLFoundationTools.modulemap */,
-				56BEC7EB0F43700E9B7B3CDF7F352116 /* CNLFoundationTools.xcconfig */,
-				004DCDFF761F5B3F480FCE252B09BD9D /* CNLFoundationTools-dummy.m */,
-				92649B520EF4453B682D1D38BDB674FD /* CNLFoundationTools-prefix.pch */,
-				086298F7D59EAE0303027969DBD3107D /* CNLFoundationTools-umbrella.h */,
-				FA57CDD9CA45D90C38DC3D2158F8392B /* Info.plist */,
+				49F87500D02A8590B2960150334B65EA /* CNLAssociated.swift */,
+				4CB5C3D67572F1761A57EAE28A339B0C /* CNLDeepLink.swift */,
+				74830B839F30F8A89F59147539B9915B /* CNLDispatch.swift */,
+				528B211978A5BBDEFDE0FEEE31DFA355 /* CNLFoundationTools.h */,
+				4A221BCD0AEB4079F1AB919DEC492E7D /* CNLFT+Array.swift */,
+				912B885EEB0E5CA97102DF31110D6E5F /* CNLFT+AttributedString.swift */,
+				51CAD45E2C69890EF5D21126746DB602 /* CNLFT+Data.swift */,
+				F8C730D79F0D87F3D09D4B6CAFC50A55 /* CNLFT+Date.swift */,
+				DFFC5C61EF30627E378C25F51565A8BD /* CNLFT+Dictionary.swift */,
+				1230BE3385CC6AFE1FE570ED5E231765 /* CNLFT+Int.swift */,
+				E9E91FE7072D4AA6D4E828EEC72E4B1D /* CNLFT+Location.swift */,
+				F38B1498C884B3A039BC5E5A789D71AE /* CNLFT+String.swift */,
+				6CB314C4F3037C84626C6FAB49ADB7F7 /* CNLFT+Timer.swift */,
+				25566E4250FB6CC41178735B67D893E3 /* CNLFT+TimeZone.swift */,
+				16E739FBCAC5016D42DCB2FEB2E3137C /* CNLLog.swift */,
+				8833B8FA824C8559612F367D8FF0E23F /* CNLURLCache.swift */,
+				B650F7E0C84222DBAAC903035E8228B6 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/CNLFoundationTools";
+			name = CNLFoundationTools;
+			path = CNLFoundationTools;
 			sourceTree = "<group>";
 		};
 		5EDB45732236A8E27FE6C014D0B3DC6F /* Products */ = {
@@ -396,99 +455,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7164C5EF770C0691668EB2F656D7F789 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				729F772C085242C610BB816DB6E1C73E /* CNLDataProvider.modulemap */,
-				BAAF17CB901CEE63439DF541D21298CB /* CNLDataProvider.xcconfig */,
-				4E60408FFEB70796B55B80DA50026600 /* CNLDataProvider-dummy.m */,
-				E5DAFF57C60090FD4F242115E15263BD /* CNLDataProvider-prefix.pch */,
-				07FEC6565AF038A449EEE7F9D4391ECC /* CNLDataProvider-umbrella.h */,
-				2DE6BBB10F0210545B028F7C1E437213 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../CNLogo/Pods/Target Support Files/CNLDataProvider";
-			sourceTree = "<group>";
-		};
-		7AB196B315A834FB08175DCCF911D5CC /* CNLDataProvider */ = {
-			isa = PBXGroup;
-			children = (
-				9A55F06CAC3EBAB08D2998568ACCB36B /* CNLCanShowViewActivity.swift */,
-				BA18C45C0AEF8E65D4E85189F895E28A /* CNLDataProvider.h */,
-				7AA60E716CC3EB6FC6954673C76BFAEC /* CNLDataProvider.swift */,
-				F333F72F242FAA12FD4B888332FAAD3D /* CNLDataProviderContentState.swift */,
-				96FE9D0F438FBD32F04702F4AE15733E /* CNLDataProviderEditable.swift */,
-				5A08978760D45FDA33BD1A30D8684023 /* CNLDataProviderVariables.swift */,
-				E680D187DE3870FAA5B51933AA355736 /* CNLDataSource.swift */,
-				1CEBEB7B05E64905353DA7EA6E802EFC /* CNLDataViewer.swift */,
-				5372DDA8E9F3391F4E30FC9ABA91D223 /* CNLDataViewer+UICollectionView.swift */,
-				DD3EC702BEA986E9EC43552D094A0110 /* CNLDataViewer+UITableView.swift */,
-				7843844C4F194CA492FECAB308B1097F /* CNLDataViewerActivity.swift */,
-				DD6A3AD07707FFF8015EB5A9A46EFCAC /* CNLDataViewerCell.swift */,
-				2BA363EFA4A99811F9F13ABED6C83C4A /* CNLModelAPI.swift */,
-				F69B26CE7A7B96B57E12AD8A4737611A /* CNLModelArray.swift */,
-				10A2846CD00276BD814184D920351130 /* CNLModelDictionary.swift */,
-				3640B531C5B02161D37EAB7428500798 /* CNLModelDictionaryArray.swift */,
-				623648E901E1D14514692D0A9079459B /* CNLModelError.swift */,
-				235E96B6EE381A7C6F40D37511E463FE /* CNLModelLoadable.swift */,
-				68C3A01ADD4CA910228E76E5BD26DB7A /* CNLModelMetaArray.swift */,
-				0E20073E991C56784F0526CBEFB964DD /* CNLModelNetwork.swift */,
-				F0F77300CD9F759A10BC9EB5F3B76195 /* CNLModelObject.swift */,
-			);
-			name = CNLDataProvider;
-			path = CNLDataProvider;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				E338C96EC09B125CCB530725BF4887B6 /* Development Pods */,
 				3C0E56687B3BECA7F946DC93E36AC302 /* Frameworks */,
-				DC7DAE74FCBFF79C09E0A1BD40BF6CE3 /* Pods */,
+				186FDB3CE25C55A723063B7E4560F48A /* Pods */,
 				5EDB45732236A8E27FE6C014D0B3DC6F /* Products */,
 				A2F597E17E8E5ECF7D5837A0BAD55D66 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		92C42034ED072803499BC4CB4D3D4E3B /* CNLDataProvider */ = {
-			isa = PBXGroup;
-			children = (
-				BAC723110F394EA0AF09ACFAE167DB4B /* CNLDataProviderImages.xcassets */,
-			);
-			name = CNLDataProvider;
-			path = CNLDataProvider;
-			sourceTree = "<group>";
-		};
-		9F403ACED4ECA5959C70375CF925DA37 /* CNLUIKitTools */ = {
-			isa = PBXGroup;
-			children = (
-				BB7AB26F7F975A41EC9ADBCDCC00968B /* CNLCheckBox.swift */,
-				3D7045EA3FFFC411969F5C0D5DAD01F7 /* CNLCodeScanner.swift */,
-				D9FF06F26FF3CA935D22F9BC19511E70 /* CNLDatePickerView.swift */,
-				D950324A821D9D70609058279BBDE411 /* CNLQRCodeGenerator.swift */,
-				41E2F7F7C06D5DEEA5EB130BCC4182A1 /* CNLRatingView.swift */,
-				D490B0507F71723FC02C3BB5D2D42A22 /* CNLSearchController.swift */,
-				EE3DC2FB60D596AA94CB36ED427CA2DD /* CNLSecuredTextEdit.swift */,
-				148596E0548495071D524F37846FEE47 /* CNLTabBarController.swift */,
-				0F61A81BC4DE7BC92B3F3B32DA7D15DC /* CNLTimerView.swift */,
-				1442E159532D07EF4FEEE7C4DA9F9703 /* CNLTopAlignedLabel.swift */,
-				28134BA3FAA38C96BFB9656A1F771233 /* CNLUIKitTools.h */,
-				3B6BBFE13D55F6D53A4CE3BD7443D55A /* CNLUIKitTools.swift */,
-				97F87CE5786FF0F08E38A516D37D8001 /* CNLUIT+CALayer.swift */,
-				605679EEF1FD82CDD2812A1C82E24355 /* CNLUIT+CGRect.swift */,
-				5A207AD9B39D77FCD73C30BCA508FF72 /* CNLUIT+UIBarButtonItem.swift */,
-				050588B75E06F9FD65FA0B9F7A025E8B /* CNLUIT+UIColor.swift */,
-				5EAD1B8928A727A783B11CF0F09B8C62 /* CNLUIT+UIImage.swift */,
-				4A9A0C5A119C2780B80D0070544B9E58 /* CNLUIT+UIImageView.swift */,
-				B2F8CE819EAAF0980E61F764DDAE2480 /* CNLUIT+UILabel.swift */,
-				36D4FA76C91531B3F1B275762FFE185C /* CNLUIT+UINavigationBar.swift */,
-				A3881226BCF82D311C99B3E8465B79AF /* CNLUIT+UINavigationController.swift */,
-				AE28890C345DC4D54BC29A7F1F47ED50 /* CNLUIT+UITableView.swift */,
-				6B726075203CE21BABC22EC5D10EF348 /* CNLUIT+UIView.swift */,
-			);
-			name = CNLUIKitTools;
-			path = CNLUIKitTools;
 			sourceTree = "<group>";
 		};
 		A2F597E17E8E5ECF7D5837A0BAD55D66 /* Targets Support Files */ = {
@@ -499,6 +474,28 @@
 				F5DF74B04DA5C5A70033F73E6CE3F47A /* Pods-CNLogoTests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B650F7E0C84222DBAAC903035E8228B6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6FF3DFEB679CF36E4DA254411B3CFCB1 /* CNLFoundationTools.modulemap */,
+				EC3FD2AC849D63F90D7279FA10705B4F /* CNLFoundationTools.xcconfig */,
+				B5AF11F559DCDF59A79CCA387C62F24A /* CNLFoundationTools-dummy.m */,
+				20496181A0D34E26C823B2CCDFBAE4B3 /* CNLFoundationTools-prefix.pch */,
+				9AF53A67667FF6C19A0891604687228D /* CNLFoundationTools-umbrella.h */,
+				A2A89DA161F83BA862DD5EF187467788 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CNLFoundationTools";
+			sourceTree = "<group>";
+		};
+		C95AB612599A3E4E2B1A54CC423FB08F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EBD6465C24305D2919BE702BC5DE6CF2 /* CNLDataProviderImages.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CAF71F0B7A064EBD4C94D9BEA55067D9 /* Pods-CNLogoCore */ = {
@@ -518,60 +515,37 @@
 			path = "Target Support Files/Pods-CNLogoCore";
 			sourceTree = "<group>";
 		};
-		DC7DAE74FCBFF79C09E0A1BD40BF6CE3 /* Pods */ = {
+		E0A7B2CE64E1A10DFC4C6D7FDFF83EE2 /* CNLUIKitTools */ = {
 			isa = PBXGroup;
 			children = (
-				E5B1AC45CDA2F8138A6FE1C8A02D1C92 /* CNLFoundationTools */,
+				8719F7B2B2F5AE1FD559851AB8BBCE41 /* CNLCheckBox.swift */,
+				3D2F2B18104D27DC9859C2D2D1218B33 /* CNLCodeScanner.swift */,
+				40C9FF4D612253D7D57A98FAAD830D26 /* CNLDatePickerView.swift */,
+				5B49E192FADE35B4B6B9014E36102F09 /* CNLLabel.swift */,
+				8F238095C3AD3603A7DCCFED0240460A /* CNLQRCodeGenerator.swift */,
+				83AC5A2C5014D354F98A40A25C738252 /* CNLRatingView.swift */,
+				1FD87E2B5F853E16223228C9827F0993 /* CNLSearchController.swift */,
+				DBC3839A678888996D5D98F339E1B96A /* CNLSecuredTextEdit.swift */,
+				F76C6CBB3B1F5ADC56FF5BE94B859245 /* CNLTabBarController.swift */,
+				EB13BE919F65F4EC52D3C41005D3988E /* CNLTimerView.swift */,
+				BD0AC038DE7217041D1C33D06363F3B9 /* CNLTopAlignedLabel.swift */,
+				FDA8DB2D5975FE7C0D58FCB34AC4081A /* CNLUIKitTools.h */,
+				DC651A730D6319C1FCA93D37A08AA32E /* CNLUIKitTools.swift */,
+				546A2ACB2C9F1D30DF37C2B91B830A3F /* CNLUIT+CALayer.swift */,
+				05C3C7C051B8047D50C23D710279C239 /* CNLUIT+CGRect.swift */,
+				4376F3CD46D8B8B46F436404B59E1472 /* CNLUIT+UIBarButtonItem.swift */,
+				58A5F4393BDA71DDE04E04C8264090AD /* CNLUIT+UIColor.swift */,
+				3EE1253589E728FB6BAAACCA6724B002 /* CNLUIT+UIImage.swift */,
+				1A572B76D55D6799DF8D04862E0A7505 /* CNLUIT+UIImageView.swift */,
+				D6CDE1FBFFB317C482C0F198ED0E347F /* CNLUIT+UILabel.swift */,
+				613A374B7EE5F557A5B0E732300E7BCE /* CNLUIT+UINavigationBar.swift */,
+				6D6FAB60C023304DF58EA3AC5B5BEF33 /* CNLUIT+UINavigationController.swift */,
+				1C89B70413A2A7B1D4D2B7C7FBFDFD84 /* CNLUIT+UITableView.swift */,
+				A036BD73DF9D47FBAF0024F139ABD60F /* CNLUIT+UIView.swift */,
+				F9AEFAB42264F467DDFD420AC21571A6 /* Support Files */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		E338C96EC09B125CCB530725BF4887B6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				35813081DE976112B905DEBCC6085782 /* CNLDataProvider */,
-				0D8B3BFFC3D6F0A40C52D73610F177BC /* CNLUIKitTools */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		E48A73F017FBEB0B70EFE88E82123361 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				37BDCEF427F36F8559B9F8E864D381C3 /* CNLUIKitTools.modulemap */,
-				7B01C6312C8377DC262540B1E1B4E4F3 /* CNLUIKitTools.xcconfig */,
-				A74AE59F2434EABBA0F3EF66EA9A3938 /* CNLUIKitTools-dummy.m */,
-				BEB6CA7376845C0BB6FB50F828B4A66D /* CNLUIKitTools-prefix.pch */,
-				92EB5B92F51C114EF183F8B6128497B2 /* CNLUIKitTools-umbrella.h */,
-				6BE2CEC9A0B5D0E375BA8B5B20269A9F /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../CNLogo/Pods/Target Support Files/CNLUIKitTools";
-			sourceTree = "<group>";
-		};
-		E5B1AC45CDA2F8138A6FE1C8A02D1C92 /* CNLFoundationTools */ = {
-			isa = PBXGroup;
-			children = (
-				198374821586EC07E7324901C1B9281D /* CNLAssociated.swift */,
-				FBC2D1CE44632F836E59A98C386BB93F /* CNLDeepLink.swift */,
-				C261968E7B07D1E34C2FD2A794E791CF /* CNLDispatch.swift */,
-				389A3EF9E7161002B8105702BCB0812B /* CNLFoundationTools.h */,
-				6725D0347E8C29AF4CFE492A0B7B6F44 /* CNLFT+Array.swift */,
-				F5AADF1725D9026ECC9AADB1E70B0232 /* CNLFT+AttributedString.swift */,
-				F4391F3297657F96DA3771FDD64AA3EA /* CNLFT+Data.swift */,
-				DF39239E1B45C86EF99C85A0AF50AD31 /* CNLFT+Date.swift */,
-				EE2FCC4D676EF6BBCAC61CCC32A065A6 /* CNLFT+Dictionary.swift */,
-				D0DCBA305F9C2C7F88B0E71689FAB3FF /* CNLFT+Int.swift */,
-				5CE47D442F9E2A50E21EC2A5B38201FB /* CNLFT+String.swift */,
-				36391428CD2DEB4B5D698F8771208AFB /* CNLFT+Timer.swift */,
-				89EA93CC1160172A87B68713D2BB1292 /* CNLFT+TimeZone.swift */,
-				CCA8E7A2D9A0121D48531DE352CA1802 /* CNLLog.swift */,
-				51CC0CBC9C04C4B2ACEFCCE40A2DCD7B /* CNLURLCache.swift */,
-				4B1F86B3D0E5D5CEFB2443E13CC9BEF6 /* module.map */,
-				3E1FDC1C59AAFAF23CAB062A2EC0CC52 /* Support Files */,
-			);
-			name = CNLFoundationTools;
-			path = CNLFoundationTools;
+			name = CNLUIKitTools;
+			path = CNLUIKitTools;
 			sourceTree = "<group>";
 		};
 		EEEF28FA37952AF9A2BBC7A6047595D0 /* Pods-CNLogo */ = {
@@ -610,35 +584,23 @@
 			path = "Target Support Files/Pods-CNLogoTests";
 			sourceTree = "<group>";
 		};
-		FA98DBECC54A6555AD2FABE6AFABF3B9 /* iOS */ = {
+		F9AEFAB42264F467DDFD420AC21571A6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D5003A2F1823C3467C3D18ED0BFB21DA /* Foundation.framework */,
-				5A4F53B6F73FEF227B62C9977BDF6EB3 /* UIKit.framework */,
+				DDC7BE33B83C9E740E7B3A4A0CC8640F /* CNLUIKitTools.modulemap */,
+				9A9D71C22A9C13BE847840C6ADC5C810 /* CNLUIKitTools.xcconfig */,
+				88DB6B6BD54175AF53DDDF93D7368198 /* CNLUIKitTools-dummy.m */,
+				BCEC1B68C56F5A47E459E6F1CC920B78 /* CNLUIKitTools-prefix.pch */,
+				F7C7765F8BB20C4B717323126D129995 /* CNLUIKitTools-umbrella.h */,
+				C5AC3B0215E8BC81FDF16E617B559C62 /* Info.plist */,
 			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		FB8CC125DB3A34109F78D629059E40C5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				92C42034ED072803499BC4CB4D3D4E3B /* CNLDataProvider */,
-			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/CNLUIKitTools";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1482225FBF532BD41098E17F4D7B91DE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47E05AE1DBFA0A39EAF293FC61BE8247 /* CNLDataProvider-umbrella.h in Headers */,
-				10181AA18D276C79B7103BC82562F15E /* CNLDataProvider.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2F90562A5B171C2702FB0FEADB0C130B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -647,21 +609,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		895089D84E90556931A9E347CCFFE135 /* Headers */ = {
+		5FC7CE7914F0250C29A4D2B95A78B2C1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195693302F7F9F5360DE63FBC7F3610B /* CNLUIKitTools-umbrella.h in Headers */,
-				E35152743BAA3392B17674FBC0AF9A28 /* CNLUIKitTools.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AAE21EED21634E06C71784430BD2BA56 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96DF220B74A17556689A590CF26BAAF4 /* CNLFoundationTools-umbrella.h in Headers */,
-				FF540188FAE2C8CB4EC06528534DB01D /* CNLFoundationTools.h in Headers */,
+				E45BA8A09A131685677D96E0D5EFBC45 /* CNLDataProvider-umbrella.h in Headers */,
+				EC1C1157BA21B0C847A9B481CA41468D /* CNLDataProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +626,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9ACA54E757E157C69952AA7FADD9380 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A7CE65DD7F8052BE7EAB5BE635658B /* CNLUIKitTools-umbrella.h in Headers */,
+				249A7B96D9DF0471E6B0576DB873055D /* CNLUIKitTools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6E734C4A31268A49C7C3FAF4F32B525 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -681,25 +643,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FBA2BC280C45C074DDAD9C88D37B27E9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				235922A9DB77A387B989DB5B3752078C /* CNLFoundationTools-umbrella.h in Headers */,
+				579E4BBBBA1281B1B94BAC936BB5DD06 /* CNLFoundationTools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06390F3EA55AAE7805ED8C6DCEDB2F77 /* CNLUIKitTools */ = {
+		29565043A6F6594FEE03ED7BBF87CF7E /* CNLDataProvider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0740A9B3592C8C7941749EA6BCF0D516 /* Build configuration list for PBXNativeTarget "CNLUIKitTools" */;
+			buildConfigurationList = 6A4324B5D850BA040BBAF6F0F6BE35DB /* Build configuration list for PBXNativeTarget "CNLDataProvider" */;
 			buildPhases = (
-				31A67E0B8FDBE2BB3DC8DBAF2656569B /* Sources */,
-				CE6922EA7AF853825CDC3511EF561237 /* Frameworks */,
-				895089D84E90556931A9E347CCFFE135 /* Headers */,
+				C173A7F19B264D73A5218CBE5FBF21C3 /* Sources */,
+				D614C0ACA3D2E4DD12BBA49FD3E1941B /* Frameworks */,
+				5FC7CE7914F0250C29A4D2B95A78B2C1 /* Headers */,
+				F847100C384E9B4C48F400F5433FFD2E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8CD84620E4DF28F51CF9C5BA5715D238 /* PBXTargetDependency */,
+				8A5FA101CE47985D5114AA1E3956C570 /* PBXTargetDependency */,
+				F5AE3E4AAF567CA6BF60DF38F65566F2 /* PBXTargetDependency */,
 			);
-			name = CNLUIKitTools;
-			productName = CNLUIKitTools;
-			productReference = 2C5D57034969100BA3E8734D07D3B203 /* CNLUIKitTools.framework */;
+			name = CNLDataProvider;
+			productName = CNLDataProvider;
+			productReference = 200D7EF45CC50ED53399F903C3DCF8D8 /* CNLDataProvider.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		35A1EBB32D8513FEB554E24AA8238E02 /* Pods-CNLogo */ = {
@@ -722,33 +695,31 @@
 			productReference = 05AC5B1D08A099521E767E988B951C29 /* Pods_CNLogo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		80763F7C5DDFC74EF9E4C39EBB0AA0D9 /* CNLDataProvider */ = {
+		5D40BF65CFA3E8CF4BFDA857C268D460 /* CNLUIKitTools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D38D9C3198B16C8DBA8353F826A71D1D /* Build configuration list for PBXNativeTarget "CNLDataProvider" */;
+			buildConfigurationList = D03C01AAD2A780B77ACFE0A7E75C4AEE /* Build configuration list for PBXNativeTarget "CNLUIKitTools" */;
 			buildPhases = (
-				B6F56F4D3CA938580C195C3FB6664C9C /* Sources */,
-				97C93EADE34401C65B67EC1ACBA08311 /* Frameworks */,
-				1482225FBF532BD41098E17F4D7B91DE /* Headers */,
-				8E5E9046B9686085C1C0D0A5D8A96E01 /* Resources */,
+				CF8A6DA4EF16376E60621E69AC3B0729 /* Sources */,
+				DA17488865D20CDBFFAB20C819E0F87E /* Frameworks */,
+				D9ACA54E757E157C69952AA7FADD9380 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D697D95D6BBB6C21AB7A7F554F527070 /* PBXTargetDependency */,
-				EBBD94C6BF6EAC8482E158D47D92F0B9 /* PBXTargetDependency */,
+				936A84BF03F3D4EDCF3970869DA05238 /* PBXTargetDependency */,
 			);
-			name = CNLDataProvider;
-			productName = CNLDataProvider;
-			productReference = 200D7EF45CC50ED53399F903C3DCF8D8 /* CNLDataProvider.framework */;
+			name = CNLUIKitTools;
+			productName = CNLUIKitTools;
+			productReference = 2C5D57034969100BA3E8734D07D3B203 /* CNLUIKitTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */ = {
+		784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC57ABE238D886639A4A4FEA495A667C /* Build configuration list for PBXNativeTarget "CNLFoundationTools" */;
+			buildConfigurationList = 50C7464663723BC3F91BE57902A102F3 /* Build configuration list for PBXNativeTarget "CNLFoundationTools" */;
 			buildPhases = (
-				F5F66E051FE1BFC9D6B4BA93392A59B1 /* Sources */,
-				271648B99ED4F8E090140159ACE60180 /* Frameworks */,
-				AAE21EED21634E06C71784430BD2BA56 /* Headers */,
+				DCF3A6A7BEFD9758BCB840A26E97272F /* Sources */,
+				AF112DF2D68BE7911E0C6EAC9AB7DF6F /* Frameworks */,
+				FBA2BC280C45C074DDAD9C88D37B27E9 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -802,7 +773,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -817,9 +788,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80763F7C5DDFC74EF9E4C39EBB0AA0D9 /* CNLDataProvider */,
-				885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */,
-				06390F3EA55AAE7805ED8C6DCEDB2F77 /* CNLUIKitTools */,
+				29565043A6F6594FEE03ED7BBF87CF7E /* CNLDataProvider */,
+				784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */,
+				5D40BF65CFA3E8CF4BFDA857C268D460 /* CNLUIKitTools */,
 				35A1EBB32D8513FEB554E24AA8238E02 /* Pods-CNLogo */,
 				912B3322C1952A5B1C56943BAC470CA1 /* Pods-CNLogoCore */,
 				FA361102E3A39AEC99C5B58E23B69CC3 /* Pods-CNLogoTests */,
@@ -828,47 +799,17 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8E5E9046B9686085C1C0D0A5D8A96E01 /* Resources */ = {
+		F847100C384E9B4C48F400F5433FFD2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41F1874F3B6FF4A46C3B4C04610D3CA8 /* CNLDataProviderImages.xcassets in Resources */,
+				608ABBAACD8C0680EE10E83B240D273A /* CNLDataProviderImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		31A67E0B8FDBE2BB3DC8DBAF2656569B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EEAE2C7E0F1CCF4763FF4B86B799FDD9 /* CNLCheckBox.swift in Sources */,
-				572535655E0B97AD51288ABAD4DB8FA8 /* CNLCodeScanner.swift in Sources */,
-				111E4C0747AB08306A2D81CB33EE04C0 /* CNLDatePickerView.swift in Sources */,
-				8AED69B0140792C9486FBA5F677C86B3 /* CNLQRCodeGenerator.swift in Sources */,
-				1A33FAA085074EEDB22B45F05CD53F89 /* CNLRatingView.swift in Sources */,
-				E3EE54EDB304E0291FBE8C6D7C25E003 /* CNLSearchController.swift in Sources */,
-				24170AD7DC187129B309F8F4F36E45B7 /* CNLSecuredTextEdit.swift in Sources */,
-				97992A0103A72C7FDD420C68B259EE1D /* CNLTabBarController.swift in Sources */,
-				BEB1870BC60138B15BDECA460C16C9EA /* CNLTimerView.swift in Sources */,
-				6A11C5C2D8D9DFD062DB4B083EDF7CDE /* CNLTopAlignedLabel.swift in Sources */,
-				A3D42C2A6835814CA4ABCA279E22EE62 /* CNLUIKitTools-dummy.m in Sources */,
-				8B482A9303ABBAA9719FDA55AFF51A03 /* CNLUIKitTools.swift in Sources */,
-				ACABA503D0BB304F6BC43DAA71A2F31F /* CNLUIT+CALayer.swift in Sources */,
-				1CE95FF728667AF3A723A6A4693FCFB9 /* CNLUIT+CGRect.swift in Sources */,
-				CEA79DDB0541FE0739E466B0AC4BCFCF /* CNLUIT+UIBarButtonItem.swift in Sources */,
-				47F93683510FE2F39162AB7AD246953A /* CNLUIT+UIColor.swift in Sources */,
-				A6EBCD6FA628EA4D3A68CAC53368B679 /* CNLUIT+UIImage.swift in Sources */,
-				10F6F9C2997167A3873019EEAC286188 /* CNLUIT+UIImageView.swift in Sources */,
-				DF33A3BCB05FC03056DC3107BAABD1A3 /* CNLUIT+UILabel.swift in Sources */,
-				4C098605822F4270A53961A3F2473F21 /* CNLUIT+UINavigationBar.swift in Sources */,
-				F5CF77D74E5CC17F6C640D4BBB0121DE /* CNLUIT+UINavigationController.swift in Sources */,
-				65577DAC1F53ADB55EBC69B152FD1823 /* CNLUIT+UITableView.swift in Sources */,
-				574878421C37D82B753D3B2122C56F5A /* CNLUIT+UIView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7375B2F808F72DC18189A34B13BC4C29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -885,34 +826,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6F56F4D3CA938580C195C3FB6664C9C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C875447DEB16A99210750F6ED21511EB /* CNLCanShowViewActivity.swift in Sources */,
-				E5941FBB8D34BD85B157C221D0F1200C /* CNLDataProvider-dummy.m in Sources */,
-				1979AC75C3E28B350FAB7786D3B8E184 /* CNLDataProvider.swift in Sources */,
-				D8D7865C32DAEA5B2FB9282DEE78F06D /* CNLDataProviderContentState.swift in Sources */,
-				007F3D816331A7972F2A7B64ACB0B894 /* CNLDataProviderEditable.swift in Sources */,
-				F6F7FADDDEE8FDD267C3746AC0399FFD /* CNLDataProviderVariables.swift in Sources */,
-				8A4F7486FD22498AEE48976D105FB000 /* CNLDataSource.swift in Sources */,
-				689EB4F6D61706B8B6B0BE069092CCF6 /* CNLDataViewer+UICollectionView.swift in Sources */,
-				F39C9F6F4FA809F4430FF889D5AE91CA /* CNLDataViewer+UITableView.swift in Sources */,
-				4C7300CF5CFCF73E42F4306313EDBE3D /* CNLDataViewer.swift in Sources */,
-				46A1C13BB8B80FDF8F1C0BD7ACFFA240 /* CNLDataViewerActivity.swift in Sources */,
-				B8F35E601B7E10220412719F05A0577A /* CNLDataViewerCell.swift in Sources */,
-				EEF9E5AF241EC92AF90E11601AC26EA9 /* CNLModelAPI.swift in Sources */,
-				5249BBC526260C3EFA46FFFD17122E8C /* CNLModelArray.swift in Sources */,
-				F2FCA148B4F2B044757ED40F6F56BBC7 /* CNLModelDictionary.swift in Sources */,
-				1C5B4ACFF4AE9F71BE69DEE188057044 /* CNLModelDictionaryArray.swift in Sources */,
-				C1E4CCDD9B44742422C2B3E52B851469 /* CNLModelError.swift in Sources */,
-				A9C7251B738AA3A98A8A93F83BB229E9 /* CNLModelLoadable.swift in Sources */,
-				34FB3A65D73EF2DD79FB8FC821474892 /* CNLModelMetaArray.swift in Sources */,
-				A8E9B5E02E485BEC60F66D151DB42C6A /* CNLModelNetwork.swift in Sources */,
-				E84FCFB61CF7DFF7ACCBE5B4070B594A /* CNLModelObject.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BC7DC0866B5FE54FF72CC74397F1031E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -921,26 +834,86 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F5F66E051FE1BFC9D6B4BA93392A59B1 /* Sources */ = {
+		C173A7F19B264D73A5218CBE5FBF21C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6965E3CD437CF2B7E83500642F35647 /* CNLAssociated.swift in Sources */,
-				FBAB028BFE022D2424AE603E3C34B23D /* CNLDeepLink.swift in Sources */,
-				CFE7C3D37F36F370C5B94D50E6C9E7F0 /* CNLDispatch.swift in Sources */,
-				68E6BD459FB4C4FE4631F185223BB348 /* CNLFoundationTools-dummy.m in Sources */,
-				152DE98BA18F6848AB3C64100839955D /* CNLFT+Array.swift in Sources */,
-				BE4AF4AC6F187585EE74C505CC4DBB2D /* CNLFT+AttributedString.swift in Sources */,
-				ED5DE54F02390CEF02C53AD1923D342F /* CNLFT+Data.swift in Sources */,
-				74FDE48FC14889D211F1CA614381E50D /* CNLFT+Date.swift in Sources */,
-				28F184151FD4850A4E420A32F1FE74F0 /* CNLFT+Dictionary.swift in Sources */,
-				9A499D2EDAAFEE0A0724987D69392A53 /* CNLFT+Int.swift in Sources */,
-				845C7E14773CD811204F8C92C4EA40AF /* CNLFT+String.swift in Sources */,
-				A95554D54CA2DEEC16194A5813391B42 /* CNLFT+Timer.swift in Sources */,
-				EECBA1A94F87A8E1571B2C548F6D8B8C /* CNLFT+TimeZone.swift in Sources */,
-				ED048470A3E4AE5EA36CF08C30B5D3E2 /* CNLLog.swift in Sources */,
-				0979DA8131659C6BB6FDCD1BE7F5385F /* CNLURLCache.swift in Sources */,
-				2AD3A385379D4EC42E5418A5F3F9963B /* module.map in Sources */,
+				BD9F3F0DDC765CC8216F087C5ED72390 /* CNLCanShowViewActivity.swift in Sources */,
+				8725F4ACC87E2A623EF1C28064FBEBF7 /* CNLDataProvider-dummy.m in Sources */,
+				BEE0E438DB34657EB27B4D5CF2DBAC0C /* CNLDataProvider.swift in Sources */,
+				77AFE4369A4AAA4188A32F4E3B8BD875 /* CNLDataProviderContentState.swift in Sources */,
+				84D85DD14A9B8E29CC4BE8691B0C776A /* CNLDataProviderEditable.swift in Sources */,
+				0FDDB1B005C1C7BAE0986C2FF0B8D5D8 /* CNLDataProviderVariables.swift in Sources */,
+				4E339EABA3DA3E26741081398B03BDC4 /* CNLDataSource.swift in Sources */,
+				77E4E4641AC5395D4EF4AB2A7DE485D5 /* CNLDataViewer+UICollectionView.swift in Sources */,
+				0AB2B3C46D774829260630EF4CB24EF5 /* CNLDataViewer+UITableView.swift in Sources */,
+				150337B949608A12CDA50168EEB6E999 /* CNLDataViewer.swift in Sources */,
+				0CBF10D6750427F12F49E5DD299D4A5B /* CNLDataViewerActivity.swift in Sources */,
+				ED71A1CFF39B36105BABF24E6D7EBEDF /* CNLDataViewerCell.swift in Sources */,
+				57959FED4657B64B694BB9F2C9FDCA32 /* CNLModelAPI.swift in Sources */,
+				295DD985F53545AFAA35187683231222 /* CNLModelArray.swift in Sources */,
+				2F10EC313A5BEC843D4080D7B5E23F73 /* CNLModelDictionary.swift in Sources */,
+				811349A95160EE05245A598DB17DD0DD /* CNLModelError.swift in Sources */,
+				7B8EDAE6E894C25F82EB4F80BA5F345B /* CNLModelIncrementalArray.swift in Sources */,
+				9E8ABF4866A0647AC841453363939C09 /* CNLModelIncrementalTokenizedArray.swift in Sources */,
+				D5D26757ECAF862CFAD295CC3574DE58 /* CNLModelLoadable.swift in Sources */,
+				0EF4ED7AEC1ACCE64B3DC5B6CBC8F5A9 /* CNLModelMetaArray.swift in Sources */,
+				E33E2DF6983F946554E3419C0C5FDA80 /* CNLModelNetwork.swift in Sources */,
+				392395BBCBD44364ADCB3AB84DA58A95 /* CNLModelObject.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF8A6DA4EF16376E60621E69AC3B0729 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				309754CB88855BC46A284D6553251A97 /* CNLCheckBox.swift in Sources */,
+				823D08276607DE5E7A17CA7DFB00BAF0 /* CNLCodeScanner.swift in Sources */,
+				43F7ECD357191753756ED9713B67F954 /* CNLDatePickerView.swift in Sources */,
+				E207B626432849DC0E7B26F384CA63BB /* CNLLabel.swift in Sources */,
+				10C0D6E9D30448A36503D3C647D05BA9 /* CNLQRCodeGenerator.swift in Sources */,
+				60A9ECFD17175B709BE24DD013AFE360 /* CNLRatingView.swift in Sources */,
+				831E1E594CFEE36560F38E7652445E21 /* CNLSearchController.swift in Sources */,
+				C741FCC01A185A2FC0983620FF95C895 /* CNLSecuredTextEdit.swift in Sources */,
+				C64D4E99550A6A94D6C47B6D6860E043 /* CNLTabBarController.swift in Sources */,
+				F042CD9EF132854B9173EA55DFB71C86 /* CNLTimerView.swift in Sources */,
+				28221A46B547818877B357C244DB44E4 /* CNLTopAlignedLabel.swift in Sources */,
+				2D159C78FBF69AC82518334C34051965 /* CNLUIKitTools-dummy.m in Sources */,
+				3B3ACF1BCDD6EC01C1A7E37C8C5BFBDB /* CNLUIKitTools.swift in Sources */,
+				35EB09FF4005242E5907FA376C423E4A /* CNLUIT+CALayer.swift in Sources */,
+				FC3FDF9F18855FB401CC7FBEBDFB1954 /* CNLUIT+CGRect.swift in Sources */,
+				2D906542ADF8DA586D76908CE3A0EEE9 /* CNLUIT+UIBarButtonItem.swift in Sources */,
+				8DCED6807E0991E22ABEB17948C4F179 /* CNLUIT+UIColor.swift in Sources */,
+				B9828EAB07DDCCAC12E732A5FF3C5FFD /* CNLUIT+UIImage.swift in Sources */,
+				D58E33356830E11C0FB8039A907FE447 /* CNLUIT+UIImageView.swift in Sources */,
+				556EE95CB5E596DF018CECC67F91C59A /* CNLUIT+UILabel.swift in Sources */,
+				D4944B17981BF3CB782B6884FB9CBE85 /* CNLUIT+UINavigationBar.swift in Sources */,
+				0B33DFB47A779FEC49A30AC3F526E3CE /* CNLUIT+UINavigationController.swift in Sources */,
+				B743D862C1856943614F9BBD7015BC03 /* CNLUIT+UITableView.swift in Sources */,
+				93CBA9AED4CACB8B6EDA5F915B9B1F35 /* CNLUIT+UIView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF3A6A7BEFD9758BCB840A26E97272F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B2D7FDD5A4C70A14CA60623BED2C718 /* CNLAssociated.swift in Sources */,
+				9CD955378234C19580D3B6F1DB4993F2 /* CNLDeepLink.swift in Sources */,
+				F4B7AB9F1D340AA7D54385111ECE9338 /* CNLDispatch.swift in Sources */,
+				A4631786B058BB52ADAE3589DCE67DBC /* CNLFoundationTools-dummy.m in Sources */,
+				27FD9167E84705990D870BE6663FD6CE /* CNLFT+Array.swift in Sources */,
+				F8E84A79C945E1181CED59F40A60A69D /* CNLFT+AttributedString.swift in Sources */,
+				7C5702879672F0DF5E9F7CE8338C1632 /* CNLFT+Data.swift in Sources */,
+				4B177BB8FA482FA2C26CBFA7D71BBF00 /* CNLFT+Date.swift in Sources */,
+				7BE0D3A047E9332FC9E73324ECD2E403 /* CNLFT+Dictionary.swift in Sources */,
+				28E9B5CC3B858E286E0E097A9313188A /* CNLFT+Int.swift in Sources */,
+				4517876AB1A27AA5EC81799476DD96E8 /* CNLFT+Location.swift in Sources */,
+				B6452F98BA82820E96C5F487A764DBF9 /* CNLFT+String.swift in Sources */,
+				9D64C828AE47D8FC611B6EED66E1322B /* CNLFT+Timer.swift in Sources */,
+				DCEB6FE7751189895F4A2C8EB26D2D79 /* CNLFT+TimeZone.swift in Sources */,
+				4909A37966AAAF19D9FCC2785A878EB6 /* CNLLog.swift in Sources */,
+				C3E50141DDF91F26B55F7AFA911E1D5B /* CNLURLCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,64 +923,173 @@
 		038EC2CBCFD79C8C0DD95259459F2EAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLFoundationTools;
-			target = 885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */;
+			target = 784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */;
 			targetProxy = 4D570FA7CA7558B43949B11215461690 /* PBXContainerItemProxy */;
 		};
 		24B2CE71FD433F8332ECCA1DA00D8404 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLUIKitTools;
-			target = 06390F3EA55AAE7805ED8C6DCEDB2F77 /* CNLUIKitTools */;
+			target = 5D40BF65CFA3E8CF4BFDA857C268D460 /* CNLUIKitTools */;
 			targetProxy = 924C800056C59BC45DE58D637B85CDC7 /* PBXContainerItemProxy */;
 		};
 		34F829833522458D360A9BF6A6D059FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLDataProvider;
-			target = 80763F7C5DDFC74EF9E4C39EBB0AA0D9 /* CNLDataProvider */;
+			target = 29565043A6F6594FEE03ED7BBF87CF7E /* CNLDataProvider */;
 			targetProxy = C22FF3BE3284313CFCFA58429C449EE3 /* PBXContainerItemProxy */;
 		};
 		615508BC3927B9917D236B538A2838EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLFoundationTools;
-			target = 885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */;
+			target = 784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */;
 			targetProxy = EC216C7D1E0D3C5182D8A86236E040E2 /* PBXContainerItemProxy */;
 		};
 		751B92D4CF162375570AC89552B8A151 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLDataProvider;
-			target = 80763F7C5DDFC74EF9E4C39EBB0AA0D9 /* CNLDataProvider */;
+			target = 29565043A6F6594FEE03ED7BBF87CF7E /* CNLDataProvider */;
 			targetProxy = 2763C621FE3673412D66CA6B3D9E3E2A /* PBXContainerItemProxy */;
 		};
-		8CD84620E4DF28F51CF9C5BA5715D238 /* PBXTargetDependency */ = {
+		8A5FA101CE47985D5114AA1E3956C570 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLFoundationTools;
-			target = 885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */;
-			targetProxy = 6B3EB9E21A65CEFC82374DE1DEEBD5FD /* PBXContainerItemProxy */;
+			target = 784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */;
+			targetProxy = 641F8B11A5D53789FAD2187ED5557CFE /* PBXContainerItemProxy */;
 		};
-		D697D95D6BBB6C21AB7A7F554F527070 /* PBXTargetDependency */ = {
+		936A84BF03F3D4EDCF3970869DA05238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLFoundationTools;
-			target = 885A58FB017A6078F0DD076D3B1678EF /* CNLFoundationTools */;
-			targetProxy = ED62910D773A8BD6BB8F93B96F89CB83 /* PBXContainerItemProxy */;
+			target = 784AA57FF0EFA60F70EF7DB9CD823F85 /* CNLFoundationTools */;
+			targetProxy = 445C89E795B4887103668705C3AA13AA /* PBXContainerItemProxy */;
 		};
-		EBBD94C6BF6EAC8482E158D47D92F0B9 /* PBXTargetDependency */ = {
+		F5AE3E4AAF567CA6BF60DF38F65566F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLUIKitTools;
-			target = 06390F3EA55AAE7805ED8C6DCEDB2F77 /* CNLUIKitTools */;
-			targetProxy = 231BE5BBFE6F81A7B99CCEF45FF33095 /* PBXContainerItemProxy */;
+			target = 5D40BF65CFA3E8CF4BFDA857C268D460 /* CNLUIKitTools */;
+			targetProxy = 45880B1F022C01D31B92487670D11E5B /* PBXContainerItemProxy */;
 		};
 		FCE228D1543100551F509D3BA19914CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CNLUIKitTools;
-			target = 06390F3EA55AAE7805ED8C6DCEDB2F77 /* CNLUIKitTools */;
+			target = 5D40BF65CFA3E8CF4BFDA857C268D460 /* CNLUIKitTools */;
 			targetProxy = 50DF2631DFB99685A7119B0684B80C28 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		369B87BD5AB072342DC404BFAFE0A450 /* Debug */ = {
+		06ED0557382828DF256A7F9762113A9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B01C6312C8377DC262540B1E1B4E4F3 /* CNLUIKitTools.xcconfig */;
+			baseConfigurationReference = CC85B588B0DC60972278888FFB966FEF /* Pods-CNLogo.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CNLogo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CNLogo/Pods-CNLogo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CNLogo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		249E53C3FA6FA1C1D9D7EA28150F96A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A9D71C22A9C13BE847840C6ADC5C810 /* CNLUIKitTools.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CNLUIKitTools/CNLUIKitTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CNLUIKitTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CNLUIKitTools/CNLUIKitTools.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CNLUIKitTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2718088C294919C6956A758D3A5A2597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 063A2A4B7FDCFAD684D4455BC683D71F /* CNLDataProvider.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CNLDataProvider/CNLDataProvider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CNLDataProvider/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CNLDataProvider/CNLDataProvider.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CNLDataProvider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		33CD0EBEAAF584D2A535E090FC6AFC55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A9D71C22A9C13BE847840C6ADC5C810 /* CNLUIKitTools.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1029,6 +1111,7 @@
 				PRODUCT_NAME = CNLUIKitTools;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1037,45 +1120,11 @@
 			};
 			name = Debug;
 		};
-		3C4287A60FF72F7A2D18D616EC456600 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58AEC0EA69E0AD0F50DE29C3D25BFC70 /* Pods-CNLogoTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CNLogoTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		472042CF930A5D3EBC08B25D660BBED3 /* Release */ = {
+		3AF8EB2E7D4F80B2F401D5220EA0D8A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A640276645F52B2916361682DAF26B0 /* Pods-CNLogoTests.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1107,11 +1156,86 @@
 			};
 			name = Release;
 		};
-		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
+		6A2E833157833C45C53BFB832CDEF5DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC3FD2AC849D63F90D7279FA10705B4F /* CNLFoundationTools.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CNLFoundationTools/CNLFoundationTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CNLFoundationTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CNLFoundationTools/CNLFoundationTools.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CNLFoundationTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6BE05EA7CF06CF7A6AA64ED5F1F3C82A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6D222ACCA72FD878D962054DBA2143D /* Pods-CNLogo.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CNLogo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CNLogo/Pods-CNLogo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CNLogo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		97803B46811A9BDB5E70FA1303AFBFFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1119,10 +1243,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -1147,49 +1274,52 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		622C8023E4AACD78FCBFA6E0AF515DE4 /* Release */ = {
+		B15ED2A426AFC5F4B62B5E6965B666FB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC85B588B0DC60972278888FFB966FEF /* Pods-CNLogo.release.xcconfig */;
+			baseConfigurationReference = 58AEC0EA69E0AD0F50DE29C3D25BFC70 /* Pods-CNLogoTests.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CNLogo/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CNLogo/Pods-CNLogo.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoTests/Pods-CNLogoTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CNLogo;
+				PRODUCT_NAME = Pods_CNLogoTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		720CCA9402A2D255596134EDF21D1D14 /* Release */ = {
+		BC34EA147739FAC5644640002B921AA1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAAF17CB901CEE63439DF541D21298CB /* CNLDataProvider.xcconfig */;
+			baseConfigurationReference = 063A2A4B7FDCFAD684D4455BC683D71F /* CNLDataProvider.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1211,6 +1341,8 @@
 				PRODUCT_NAME = CNLDataProvider;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1218,148 +1350,12 @@
 			};
 			name = Release;
 		};
-		7D66B0ABCCC916A91DEA410373D6202F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13D2C3F1E17414900654926DF4CB333A /* Pods-CNLogoCore.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoCore/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CNLogoCore;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		928E0EE1D60A0F92056F9DD9EC1A8527 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3C7A3A460EFAF3DABA7B2D8B1E1B957 /* Pods-CNLogoCore.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoCore/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CNLogoCore;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		92FEF800B67B548207A5BB22F2E74937 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAAF17CB901CEE63439DF541D21298CB /* CNLDataProvider.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CNLDataProvider/CNLDataProvider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CNLDataProvider/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CNLDataProvider/CNLDataProvider.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CNLDataProvider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B3C64FA6FB0ECBEB7720AE0D72D5715B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56BEC7EB0F43700E9B7B3CDF7F352116 /* CNLFoundationTools.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CNLFoundationTools/CNLFoundationTools-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CNLFoundationTools/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CNLFoundationTools/CNLFoundationTools.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CNLFoundationTools;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
+		BDD0139D6EB93FA375F887ABD62DAB2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1367,10 +1363,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -1395,10 +1394,49 @@
 			};
 			name = Release;
 		};
-		DE138CF0254115A6F2C417F224FE01F3 /* Debug */ = {
+		BE74AEB16774342684C3227F200C13D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6D222ACCA72FD878D962054DBA2143D /* Pods-CNLogo.debug.xcconfig */;
+			baseConfigurationReference = 13D2C3F1E17414900654926DF4CB333A /* Pods-CNLogoCore.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CNLogoCore;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C3253A3A9828109C8B211C41A86FB231 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3C7A3A460EFAF3DABA7B2D8B1E1B957 /* Pods-CNLogoCore.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1410,68 +1448,39 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CNLogo/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-CNLogoCore/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CNLogo/Pods-CNLogo.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-CNLogoCore/Pods-CNLogoCore.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_CNLogo;
+				PRODUCT_NAME = Pods_CNLogoCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		E0A89CF0D332DC79F3C0CDF749B41A32 /* Release */ = {
+		EC532CAED69E42751144887BD15D4BBB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B01C6312C8377DC262540B1E1B4E4F3 /* CNLUIKitTools.xcconfig */;
+			baseConfigurationReference = EC3FD2AC849D63F90D7279FA10705B4F /* CNLFoundationTools.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CNLUIKitTools/CNLUIKitTools-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CNLUIKitTools/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CNLUIKitTools/CNLUIKitTools.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = CNLUIKitTools;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E532CF256B3B915EC28167192529ED0C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56BEC7EB0F43700E9B7B3CDF7F352116 /* CNLFoundationTools.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1484,34 +1493,27 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CNLFoundationTools/CNLFoundationTools.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = CNLFoundationTools;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0740A9B3592C8C7941749EA6BCF0D516 /* Build configuration list for PBXNativeTarget "CNLUIKitTools" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				369B87BD5AB072342DC404BFAFE0A450 /* Debug */,
-				E0A89CF0D332DC79F3C0CDF749B41A32 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		21C63537751F63814FD9A98F79825BBE /* Build configuration list for PBXNativeTarget "Pods-CNLogo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DE138CF0254115A6F2C417F224FE01F3 /* Debug */,
-				622C8023E4AACD78FCBFA6E0AF515DE4 /* Release */,
+				6BE05EA7CF06CF7A6AA64ED5F1F3C82A /* Debug */,
+				06ED0557382828DF256A7F9762113A9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1519,8 +1521,26 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
-				B7324857C38B065FEB1EEE3105C2367A /* Release */,
+				97803B46811A9BDB5E70FA1303AFBFFE /* Debug */,
+				BDD0139D6EB93FA375F887ABD62DAB2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50C7464663723BC3F91BE57902A102F3 /* Build configuration list for PBXNativeTarget "CNLFoundationTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC532CAED69E42751144887BD15D4BBB /* Debug */,
+				6A2E833157833C45C53BFB832CDEF5DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A4324B5D850BA040BBAF6F0F6BE35DB /* Build configuration list for PBXNativeTarget "CNLDataProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2718088C294919C6956A758D3A5A2597 /* Debug */,
+				BC34EA147739FAC5644640002B921AA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1528,26 +1548,17 @@
 		79852EEB720F4568DA62347A9CF832ED /* Build configuration list for PBXNativeTarget "Pods-CNLogoCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				928E0EE1D60A0F92056F9DD9EC1A8527 /* Debug */,
-				7D66B0ABCCC916A91DEA410373D6202F /* Release */,
+				C3253A3A9828109C8B211C41A86FB231 /* Debug */,
+				BE74AEB16774342684C3227F200C13D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC57ABE238D886639A4A4FEA495A667C /* Build configuration list for PBXNativeTarget "CNLFoundationTools" */ = {
+		D03C01AAD2A780B77ACFE0A7E75C4AEE /* Build configuration list for PBXNativeTarget "CNLUIKitTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3C64FA6FB0ECBEB7720AE0D72D5715B /* Debug */,
-				E532CF256B3B915EC28167192529ED0C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D38D9C3198B16C8DBA8353F826A71D1D /* Build configuration list for PBXNativeTarget "CNLDataProvider" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				92FEF800B67B548207A5BB22F2E74937 /* Debug */,
-				720CCA9402A2D255596134EDF21D1D14 /* Release */,
+				33CD0EBEAAF584D2A535E090FC6AFC55 /* Debug */,
+				249E53C3FA6FA1C1D9D7EA28150F96A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1555,8 +1566,8 @@
 		E7D7A740105337C24079BCC5CDA5A2C6 /* Build configuration list for PBXNativeTarget "Pods-CNLogoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C4287A60FF72F7A2D18D616EC456600 /* Debug */,
-				472042CF930A5D3EBC08B25D660BBED3 /* Release */,
+				B15ED2A426AFC5F4B62B5E6965B666FB /* Debug */,
+				3AF8EB2E7D4F80B2F401D5220EA0D8A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

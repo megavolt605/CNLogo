@@ -50,9 +50,9 @@ open class CNLCProgram: CNLCBlock {
     }
     
     fileprivate func internalInit() {
-        variables.append(CNLCVariable(variableName: "PI", variableValue: CNLCValue.double(value: M_PI)))
-        variables.append(CNLCVariable(variableName: "2_PI", variableValue: CNLCValue.double(value: M_2_PI)))
-        variables.append(CNLCVariable(variableName: "PI_2", variableValue: CNLCValue.double(value: M_PI_2)))
+        variables.append(CNLCVariable(variableName: "PI", variableValue: CNLCValue.double(value: Double.pi)))
+        variables.append(CNLCVariable(variableName: "2_PI", variableValue: CNLCValue.double(value: Double.pi * 2.0)))
+        variables.append(CNLCVariable(variableName: "PI_2", variableValue: CNLCValue.double(value: Double.pi / 2.0)))
         variables.append(CNLCVariable(variableName: "EXP", variableValue:  CNLCValue.double(value: M_E)))
     }
     

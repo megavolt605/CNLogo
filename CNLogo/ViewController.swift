@@ -298,7 +298,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
         CNLCEnviroment.defaultEnviroment.currentProgram = program
 
         switch program.prepare() {
-        case let .error(block, error): print("Prepare ERROR: \(error.description) in block: \(block)")
+        case let .error(block, error): print("Prepare ERROR: \(error.description) in block: \(String(describing: block))")
         default: break
         }
 
@@ -322,7 +322,7 @@ class ViewController: UIViewController, CNFieldViewDelegate {
             fieldView.runState = .executing
             updateButtons()
             switch fieldView.execute(options) {
-            case let .error(block, error): print("Execute ERROR: \(error.description) in block \(block)")
+            case let .error(block, error): print("Execute ERROR: \(error.description) in block \(String(describing: block))")
             default: break
             }
         }

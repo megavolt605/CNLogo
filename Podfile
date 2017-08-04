@@ -1,4 +1,4 @@
-#xcodeproj 'CNLogo.xcodeproj'
+xcodeproj 'CNLogo.xcodeproj'
 
 # Uncomment this line to define a global platform for your project
 platform :ios, '9.0'
@@ -12,23 +12,15 @@ inhibit_all_warnings!
 #pod 'BetweenKit'
 #pod 'RATreeView' #, "~> 2.1.0"
 
-def cnlft
+def complex_numbers
     pod 'CNLFoundationTools' #, :path => '~/src/CNLFoundationTools'
-end
-
-def cnluit
-    pod 'CNLUIKitTools', :path => '~/src/CNLUIKitTools'
-end
-
-def cnldp
-    pod 'CNLDataProvider', :path => '~/src/CNLDataProvider'
+    pod 'CNLUIKitTools' #, :path => '~/src/CNLUIKitTools'
+    pod 'CNLDataProvider' #, :path => '~/src/CNLDataProvider'
 end
 
 target 'CNLogo' do
 
-    cnlft
-    cnluit
-    cnldp
+    complex_numbers
     
     target 'CNLogoTests' do
         inherit! :search_paths
@@ -36,9 +28,6 @@ target 'CNLogo' do
 
 end
 
-
 target 'CNLogoCore' do
-    cnlft
-    cnluit
-    cnldp
+    complex_numbers
 end
