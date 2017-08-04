@@ -41,10 +41,8 @@ open class CNLCProgram: CNLCBlock {
     }
 
     override open func functionByName(_ name: String) -> CNLCStatementFunction? {
-        for f in embedFunctions {
-            if f.funcName == name {
-                return f
-            }
+        for f in embedFunctions where f.funcName == name {
+            return f
         }
         return super.functionByName(name)
     }

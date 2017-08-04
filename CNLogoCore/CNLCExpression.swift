@@ -143,7 +143,8 @@ open class CNLCExpression: CNLCBlock {
         source = []
         super.init(data: data)
         if let info = data["source"] as? [[String: Any]] {
-            source = info.map { item in return CNLCExpressionParseElement.loadFromData(item) }
+            source = info
+                .map { CNLCExpressionParseElement.loadFromData($0) }
         }
     }
 

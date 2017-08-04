@@ -33,10 +33,8 @@ open class CNLCStatementCall: CNLCStatement {
      }*/
     
     override open func variableByName(_ name: String) -> CNLCVariable? {
-        for v in variables {
-            if v.variableName == name {
-                return v
-            }
+        for v in variables where v.variableName == name {
+            return v
         }
         return parentBlock?.variableByName(name)
     }

@@ -227,9 +227,11 @@ public enum CNLCExpressionParseElement {
                 }
             case "function":
                 if let function = data["funciton"] as? [String: Any], let functionName = function["function-name"] as? String {
+                    let functionParameters = ((function["function-parameters"] as? [[String: Any]])?
+                        .map { item in return CNLCExpression(data: item) })
                     return self.function(
                         functionName: functionName,
-                        functionParameters: ((function["function-parameters"] as? [[String: Any]])?.map { item in return CNLCExpression(data: item) }) ?? []
+                        functionParameters: functionParameters ?? []
                     )
                 }
             default: break

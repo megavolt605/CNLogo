@@ -93,9 +93,9 @@ extension CNBubbleView {
         }
         
         if prefix == "" {
-            for param in statement.executableParameters {
-                res += createVariableBubbles(param, height: height)
-            }
+            res += statement.executableParameters
+                .map { createVariableBubbles($0, height: height) }
+                .flatMap { return $0 }
         }
         return res
     }
@@ -114,9 +114,10 @@ extension CNBubbleView {
         bubble = CNBubbleView(text: "=", color: UIColor(red: 1.0, green: 0.75, blue: 0.75, alpha: 1.0), height: height, bold: false)
         res.append(bubble)
         
-        for param in statement.executableParameters {
-            res += createVariableBubbles(param, height: height)
-        }
+        res += statement.executableParameters
+            .map { createVariableBubbles($0, height: height) }
+            .flatMap { $0 }
+        
         return res
     }
 
@@ -173,9 +174,9 @@ extension CNBubbleView {
             let bubble = CNBubbleView(text: prefix, color: UIColor(red: 0.75, green: 0.75, blue: 1.0, alpha: 1.0), height: height, bold: false)
             res.append(bubble)
         }
-        for item in expression.source {
-            res += createExpressionElementBubbles(item, inBlock: expression, height: height)
-        }
+        res += expression.source
+            .map { createExpressionElementBubbles($0, inBlock: expression, height: height) }
+            .flatMap { $0 }
         return res
     }
 
@@ -243,9 +244,9 @@ extension CNBubbleView {
         
         var res = createBlockBubbles(block, height: height)
         if prefix == "" {
-            for param in block.executableParameters {
-                res += createVariableBubbles(param, height: height)
-            }
+            res += block.executableParameters
+                .map { createVariableBubbles($0, height: height) }
+                .flatMap { $0 }
         }
         return res
     }

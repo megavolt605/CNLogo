@@ -64,7 +64,8 @@ open class CNLCStatementIf: CNLCStatement {
     required public init(data: [String : AnyObject]) {
         super.init(data: data)
         if let info = data["statements-else"] as? [[String: Any]] {
-            statementsElse = info.map { item in return CNLCStatement(data: item) }
+            statementsElse = info
+                .map { item in return CNLCStatement(data: item) }
         } else {
             statementsElse = []
         }

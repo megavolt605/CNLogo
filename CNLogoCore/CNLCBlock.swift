@@ -113,15 +113,11 @@ open class CNLCBlock {
     
     
     open func variableByName(_ name: String) -> CNLCVariable? {
-        for v in variables {
-            if v.variableName == name {
-                return v
-            }
+        for v in variables where v.variableName == name {
+            return v
         }
-        for v in executableParameters {
-            if v.variableName == name {
-                return v
-            }
+        for v in executableParameters where v.variableName == name {
+            return v
         }
         
         return parentBlock?.variableByName(name)
@@ -129,10 +125,8 @@ open class CNLCBlock {
     
     
     open func functionByName(_ name: String) -> CNLCStatementFunction? {
-        for f in functions {
-            if f.funcName == name {
-                return f
-            }
+        for f in functions where f.funcName == name {
+            return f
         }
         return parentBlock?.functionByName(name)
     }
